@@ -10,11 +10,11 @@ The formloco frontend is written in Angular, you can fork or clone the repo to y
 
 Both these scenarios will run against the formloco API by default.
 
-For information on how to deploy formloco to your own server or cloud service check out https://github.com/formloco/form369/wiki/Deployment.
+For information on how to deploy formloco to your own server or cloud service check out https://github.com/formloco/formloco/wiki/Deployment.
 
 ## Docs
 
-form369 docs: https://github.com/formloco/form369/wiki
+https://github.com/formloco/formloco/wiki
 ​
 ## License & copyright
 
