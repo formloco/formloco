@@ -1,6 +1,6 @@
 # formloco
 
-formloco is an open source project built to improve the way business deals with and interacts with their data. formloco can host your data for you or you can deploy the system to run against your own database. The frontend is designed to be easily branded and integrated into other systems.
+formloco is zero to low-code project for the creation, sharing and analysis of data. formloco can host your data for you or you can deploy the system to run against your own database. The frontend is designed to be easily branded and integrated into other systems.
 
 https://form369.formloco.com
 
