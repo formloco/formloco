@@ -12,6 +12,10 @@ If you would like to run the project on your computer, you can fork or clone the
 
 For information on how to deploy formloco to your own server or cloud service check out https://github.com/formloco/formloco/wiki/Deployment.
 
+## Connect formloco
+
+formloco ships with `Connectors` that are used to setup connections to other application API's, such as QuickBooks, Xero, Microsoft Business Central and others. For more information on how to configure existing connectors or how to add your own check out https://github.com/formloco/formloco/wiki/Software-Development-Guide.
+
 ## Rebrand formloco
 
 formloco is built to be rebranded or customized in any way. check out https://github.com/formloco/formloco/wiki/Software-Development-Guide. 
@@ -20,9 +24,6 @@ formloco is built to be rebranded or customized in any way. check out https://gi
 
 formloco ships with drag-n-drop designer containing these component types: `Form Controls, IoT Widgets and Micro Apps`. For more information on how to add your own form control, IoT widget or Micro App check out https://github.com/formloco/formloco/wiki/Software-Development-Guide.
 
-## Connect formloco
-
-formloco ships with `Connectors` that are used to setup connections to other application API's, such as QuickBooks, Xero, Microsoft Business Central and others. For more information on how to configure existing connectors or how to add your own check out https://github.com/formloco/formloco/wiki/Software-Development-Guide.
 
 ## Docs
 
