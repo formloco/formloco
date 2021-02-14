@@ -1,6 +1,6 @@
-# formloco
+# Client
 
-formloco is comprised of a frontend, server and a database. The frontend communicates with the server using an API. The API uses micro services architecture to provide authentication, security and data services for the frontend. The API is also the conduit through which data is paasssed to the formloco cloud database.
+form369 is designed to run with the formloco API. The API uses micro services architecture to provide authentication and security, as well as data and connector services for the frontend. The API is the conduit through which data is passed to the formloco cloud database.
 
 ## Deployment
 
@@ -14,8 +14,7 @@ For information on how to deploy formloco to your own server or cloud service ch
 
 ## Docs
 
-form369 docs: https://github.com/formloco/formloco/wiki
-Micro Services docs: https://github.com/formloco/formloco/wiki/Micro-Services
+form369 docs: https://github.com/formloco/form369/wiki
 ​
 ## License & copyright
 
