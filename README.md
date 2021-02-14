@@ -1,6 +1,8 @@
 # formloco
 
-formloco is comprised of a cllient, server and a database. The frontend communicates with the server using an API. The API uses micro services architecture to provide authentication, security and data services for the frontend. The API is also the conduit through which data is passed to the formloco cloud database.
+formloco is zero to low-code project for the creation, sharing and analysis of data. formloco can host your data for you or you can deploy the system to run against your own database. The frontend is designed to be easily branded and integrated into other systems.
+
+https://form369.formloco.com
 
 ## Deployment
 
