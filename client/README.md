@@ -1,6 +1,6 @@
 # Client
 
-form369 is designed to run with the formloco API. The API uses micro services architecture to provide authentication and security, as well as data and connector services for the frontend. The API is the conduit through which data is passed to the formloco cloud database.
+The client is designed to run with the formloco API. The API uses micro services architecture to provide authentication and security, as well as data and connector services for the frontend. The API is the conduit through which data is passed to the formloco cloud database.
 
 ## Deployment
 

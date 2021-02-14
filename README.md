@@ -1,23 +1,22 @@
 # formloco
 
-formloco is zero to low-code project for the creation, sharing and analysis of data.
+formloco is comprised of a frontend, server and a database. The frontend communicates with the server using an API. The API uses micro services architecture to provide authentication, security and data services for the frontend. The API is also the conduit through which data is passed to the formloco cloud database.
 
-Data is represented by forms. Forms can collect and display data. Forms consist of controls, connectors and IoT widgets.
+## Deployment
 
-Controls, connectors and IoT widgets are put on the form canvas using the drag-n-drop studio. Textboxes, multi-selects, file upload, GPS are some of the controls that are included with the project. Things like analog or digital gauges that represent live, or near-live data are examples of IoT Widgets.
+The fastest way to get up and running is to copy the `/dist/forms` folder into a web server directory. The app will run when you hit the web url in your browser.
 
-Connectors are used to connect forms to other data providers such as QuickBooks, Xero, Microsoft Business Central and many others. Connectors also have actions that allow for workflow that executes on form submission.
+The formloco frontend is written in Angular, you can fork or clone the repo to your local machine and use the Angular CLI to run it at `localhost:4200`.
 
-See formloco in action: https://form369.formloco.com/
+Both these scenarios will run against the formloco API by default.
+
+For information on how to deploy formloco to your own server or cloud service check out https://github.com/formloco/formloco/wiki/Deployment.
 
 ## Docs
 
-Client: https://github.com/formloco/formloco/wiki
-
-Server: https://github.com/formloco/formloco/wiki/Micro-Services
-
-Deployment https://github.com/formloco/formloco/wiki/Deployment
-
+Client docs: https://github.com/formloco/formloco/wiki
+Micro Services docs: https://github.com/formloco/formloco/wiki/Micro-Services
+​
 ## License & copyright
 
 Licensed under the [MIT License](LICENSE).
