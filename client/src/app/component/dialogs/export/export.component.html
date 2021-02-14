@@ -1,0 +1,30 @@
+<div fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <div class="mat-headline">Export to CSV</div>
+    <div class="edit-buttons icon-pointer" (click)="dialogRef.close()">
+      <mat-icon>close</mat-icon>
+    </div>
+  </div>
+  <form [formGroup]="exportForm">
+    <div fxLayout="column" fxLayoutGap="">
+      <mat-form-field appearance="outline" fxFlex>
+        <mat-label>File Name</mat-label>
+        <input matInput placeholder="Form Name" formControlName="name" type="text" required>
+        <mat-error>
+          File name is required!
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions fxLayoutAlign="center" 
+         style="margin-bottom: -14px !important;" fxLayout="row" fxLayoutGap="1rem">
+      <button (click)="export()" mat-raised-button color="primary" 
+              [disabled]="!exportForm.valid">
+        Export
+      </button>
+      <button mat-stroked-button color="primary" 
+              (click)="dialogRef.close()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,44 @@
+<div class="responsive-container">
+  <div class="lookup-bnt" fxLayout="row" fxLayoutAlign="center center">
+    <button mat-stroked-button (click)="isLookupOpen = !isLookupOpen" class="menu-label" cdkOverlayOrigin #lookupTrigger="cdkOverlayOrigin">
+      <img src="assets/logo/formlocoshield.png" height="22">&nbsp;&nbsp;Create List
+    </button>
+    <ng-template 
+      cdkConnectedOverlay 
+      [cdkConnectedOverlayOrigin]="lookupTrigger" 
+      [cdkConnectedOverlayOpen]="isLookupOpen" 
+      (backdropClick)="closeOverlay()"
+      [cdkConnectedOverlayHasBackdrop]=true 
+      cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop" 
+      cdkConnectedOverlayOffsetX=-80
+      cdkConnectedOverlayOffsetY=20>
+      <form [formGroup]="lookupListForm">
+        <div class="link-overlay" fxLayout="column">
+          <div>
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>List</mat-label>
+              <input matInput placeholder="Lookup List Name" formControlName="lookupListName" type="text" required>
+              <mat-error>
+                List is required!
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div fxLayoutAlign="center" fxLayout="row" fxLayoutGap="1rem">
+            <button (click)="createLookuplist()" mat-raised-button color="primary" [disabled]="!lookupListForm.valid">
+              Create List
+            </button>
+            <button mat-stroked-button color="primary" (click)="closeOverlay()">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+    </ng-template>
+  </div>
+  <div fxLayout="row wrap">
+    <mat-card (click)=run(formObj) class="custom icon-pointer" *ngFor="let formObj of appService.lookupLists; let i=index">
+      <div class="action-label" fxLayoutAlign="center">{{formObj.form.name}}</div>
+      <div><mat-icon class="card-icon">list</mat-icon></div>
+    </mat-card>
+  </div>
+</div>

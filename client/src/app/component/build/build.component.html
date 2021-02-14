@@ -1,0 +1,143 @@
+<div class="responsive-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-sidenav-container fullscreen [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav class="menu-background" #snav [opened]=builderService.showControls [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <div class="form-container menu">
+        <div cdkDropList id="formList" #formList="cdkDropList" [cdkDropListData]="builderService.controls" [cdkDropListConnectedTo]="dropForm"
+          class="form-list">
+          <span *ngFor="let control of builderService.controls; let i = index;">
+            <span [hidden]="formToggle">
+              <div *ngIf="control.type !== 'MicroApp' && control.type !== 'APP' && control.type !== 'Connector' && control.type !== 'File Upload' && control.type !== 'API' && control.type !== 'IOT' && control.type !== 'FORM' && control.type !== 'GPS' && control.type !== 'PressureGaugeIOT' && control.type !== 'BarCode' && control.type !== 'QRCode' && control.type !== 'BarCodeScanner' && control.type !== 'QRCodeScanner'"
+                class="form-box" cdkDrag fxLayoutAlign="space-between center">
+                {{control.label}}
+                <mat-icon>drag_indicator</mat-icon>
+              </div>
+              <div *ngIf="control.type === 'GPS'" class="form-box" cdkDrag (cdkDragEnded)=hideIndicator(i) [cdkDragDisabled]="isGPSDisabled"
+                fxLayoutAlign="space-between center">
+                {{control.label}}
+                <mat-icon *ngIf="!control.disabled">drag_indicator</mat-icon>
+              </div>
+              <div *ngIf="control.type === 'File Upload'" class="form-box" cdkDrag (cdkDragEnded)=hideIndicator(i) [cdkDragDisabled]="builderService.isFileUploadDisabled"
+                fxLayoutAlign="space-between center">
+                {{control.label}}
+                <mat-icon *ngIf="!control.disabled">drag_indicator</mat-icon>
+              </div>
+              <div *ngIf="control.type === 'BarCode'" class="form-box" cdkDrag (cdkDragEnded)=hideIndicator(i) [cdkDragDisabled]="builderService.isBarCodeDisabled"
+                fxLayoutAlign="space-between center">
+                <div *ngIf="!control.experiment">{{control.label}}</div>
+                <div *ngIf="control.experiment" fxLayoutAlign="start center">
+                  <mat-icon>science</mat-icon>{{control.label}}</div>
+                <div *ngIf="!control.disabled">
+                  <mat-icon>drag_indicator</mat-icon>
+                </div>
+              </div>
+              <div *ngIf="control.type === 'QRCode'" cdkDrag (cdkDragEnded)=hideIndicator(i) class="form-box" [cdkDragDisabled]="builderService.isQRCodeDisabled"
+                fxLayoutAlign="space-between center">
+                <div *ngIf="!control.experiment">{{control.label}}</div>
+                <div *ngIf="control.experiment" fxLayoutAlign="start center">
+                  <mat-icon>science</mat-icon>{{control.label}}</div>
+                <div *ngIf="!control.disabled">
+                  <mat-icon>drag_indicator</mat-icon>
+                </div>
+              </div>
+            </span>
+            <span [hidden]="appToggle">
+              <div *ngIf="control.type === 'MicroApp'" class="form-box" cdkDrag (cdkDragEnded)=hideIndicator(i) fxLayoutAlign="space-between center">
+                <div *ngIf="!control.experiment">{{control.label}}</div>
+                <div *ngIf="control.experiment" fxLayoutAlign="start center">
+                  {{control.label}}
+                </div>
+                <div *ngIf="!control.disabled">
+                  <mat-icon>drag_indicator</mat-icon>
+                </div>
+              </div>
+              <div *ngIf="control.type === 'BarCodeScanner'" class="form-box" cdkDrag (cdkDragEnded)=hideIndicator(i) [cdkDragDisabled]="builderService.isBarCodeScannerDisabled"
+              fxLayoutAlign="space-between center">
+              <div *ngIf="!control.experiment">{{control.label}}</div>
+              <div *ngIf="control.experiment" fxLayoutAlign="start center">
+                <mat-icon>science</mat-icon>{{control.label}}</div>
+              <div *ngIf="!control.disabled">
+                <mat-icon>drag_indicator</mat-icon>
+              </div>
+            </div>
+            <div *ngIf="control.type === 'QRCodeScanner'" class="form-box" cdkDrag (cdkDragEnded)=hideIndicator(i) [cdkDragDisabled]="builderService.isQRCodeScannerDisabled"
+              fxLayoutAlign="space-between center">
+              <div *ngIf="!control.experiment">{{control.label}}</div>
+              <div *ngIf="control.experiment" fxLayoutAlign="start center">
+                <mat-icon>science</mat-icon>{{control.label}}</div>
+              <div *ngIf="!control.disabled">
+                <mat-icon>drag_indicator</mat-icon>
+              </div>
+            </div>
+            </span>
+            <span [hidden]="apiToggle">
+              <div *ngIf="control.type === 'Connector'" class="form-box" cdkDrag (cdkDragEnded)=hideIndicator(i) [cdkDragDisabled]="isGPSDisabled"
+                fxLayoutAlign="space-between center">
+                <div *ngIf="!control.experiment">{{control.label}}</div>
+                <div *ngIf="control.experiment" fxLayoutAlign="start center">
+                  <mat-icon>science</mat-icon>{{control.label}}</div>
+                <div *ngIf="!control.disabled">
+                  <mat-icon>drag_indicator</mat-icon>
+                </div>
+              </div>
+            </span>
+            <span [hidden]="iotToggle">
+              <div *ngIf="control.type === 'PressureGaugeIOT'" class="form-box" cdkDrag fxLayoutAlign="space-between center">
+                <div *ngIf="!control.experiment">{{control.label}}</div>
+                <div *ngIf="control.experiment" fxLayoutAlign="start center">
+                  <mat-icon>science</mat-icon>{{control.label}}</div>
+                <div *ngIf="!control.disabled">
+                  <mat-icon>drag_indicator</mat-icon>
+                </div>
+              </div>
+            </span>
+            <div *ngIf="control.type === 'FORM'" (click)="subMenuToggle('FORM')" class="form-box-title" cdkDrag [cdkDragDisabled]=true
+              fxLayoutAlign="space-between center">
+              <div fxLayoutAlign="start center">
+                <mat-icon>dynamic_form</mat-icon>&nbsp;{{control.label}}
+              </div>
+              <!-- <div class="hand">
+                <mat-icon *ngIf="formToggle">expand_more</mat-icon>
+                <mat-icon *ngIf="!formToggle">expand_less</mat-icon>
+              </div> -->
+            </div>
+            <div *ngIf="control.type === 'APP'" (click)="subMenuToggle('APP')" class="form-box-title" cdkDrag [cdkDragDisabled]=true
+              fxLayoutAlign="space-between center">
+              <div fxLayoutAlign="start center">
+                <mat-icon>app_settings_alt</mat-icon>&nbsp;{{control.label}}
+              </div>
+              <!-- <div class="hand">
+                <mat-icon *ngIf="appToggle">expand_more</mat-icon>
+                <mat-icon *ngIf="!appToggle">expand_less</mat-icon>
+              </div> -->
+            </div>
+            <div *ngIf="control.type === 'API'" (click)="subMenuToggle('API')" class="form-box-title" cdkDrag [cdkDragDisabled]=true
+              fxLayoutAlign="space-between center">
+              <div fxLayoutAlign="start center">
+                <mat-icon>extension</mat-icon>&nbsp;{{control.label}}
+              </div>
+              <!-- <div class="hand">
+                <mat-icon *ngIf="apiToggle">expand_more</mat-icon>
+                <mat-icon *ngIf="!apiToggle">expand_less</mat-icon>
+              </div> -->
+            </div>
+            <div *ngIf="control.type === 'IOT'" (click)="subMenuToggle('IOT')" class="form-box-title" cdkDrag [cdkDragDisabled]=true
+              fxLayoutAlign="space-between center">
+              <div fxLayoutAlign="start center">
+                <mat-icon>wifi_tethering</mat-icon>&nbsp;{{control.label}}
+              </div>
+              <!-- <div class="hand">
+                <mat-icon *ngIf="iotToggle">expand_more</mat-icon>
+                <mat-icon *ngIf="!iotToggle">expand_less</mat-icon>
+              </div> -->
+            </div>
+          </span>
+        </div>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-canvas *ngFor="let canvasFormControl of canvasFormControls" [canvasFormControl]="canvasFormControl" [dropForm]="dropForm">
+      </app-canvas>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

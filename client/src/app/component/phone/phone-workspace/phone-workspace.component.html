@@ -1,0 +1,14 @@
+<div class="menu-container">
+  <div>
+    <div *ngIf="appService.page === 'launch-forms'" fxLayout="row">
+      <div fxLayout="row" class="title title-padding">
+        <div class="sm-margin" fxFlex="30px">
+          <mat-icon *ngIf="appService.page === 'launch-forms'">dynamic_form</mat-icon>
+        </div>
+        <div>{{appService.pageTitle}}</div>
+      </div>
+    </div>
+    <app-phone-form-launch *ngIf="appService.page === 'launch-forms'"></app-phone-form-launch>
+    <app-run *ngIf="appService.page === 'run'"></app-run>
+  </div>
+</div>

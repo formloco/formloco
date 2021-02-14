@@ -1,0 +1,20 @@
+<div class="setting-padding" fxLayout="row" fxLayoutAlign="space-between center">
+  <mat-icon *ngIf="builderService.showControls" class="icon2times-start" (click)="builderService.deleteControl(index)">close</mat-icon>
+  <div fxLayout="column" fxFlex>
+    <div class="label-padding">
+      <label>
+        {{builderService.canvasFormControls.details[this.index].label}}
+      </label>
+    </div>
+    <div fxLayoutGap="20px">
+      <mat-checkbox *ngFor="let checkbox of builderService.canvasFormControls.details[this.index].checkboxArray" [labelPosition]="checkbox.labelPosition"
+        [required]="checkbox.required">
+        {{checkbox.label}}
+      </mat-checkbox>
+    </div>
+  </div>
+  <div fxLayoutGap="40px">
+    <mat-icon class="icon2times" (click)="builderService.selectDetails(index)">settings</mat-icon>
+    <mat-icon *ngIf="builderService.showControls" class="icon2times-end">drag_indicator</mat-icon>
+  </div>
+</div>

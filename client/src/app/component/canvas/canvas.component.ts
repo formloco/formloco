@@ -1,0 +1,307 @@
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { CdkDragDrop, moveItemInArray, copyArrayItem } from '@angular/cdk/drag-drop';
+
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
+import { Observable } from 'rxjs';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
+
+import * as uuid from 'uuid';
+
+import { SaveasComponent } from '../dialogs/saveas/saveas.component';
+import { ArchiveComponent } from '../dialogs/archive/archive.component';
+
+import { MessageComponent } from '../dialogs/message/message.component';
+
+import { AppService } from "../../service/app.service";
+import { AuthService } from "../../service/auth.service";
+import { DataService } from "../../service/data.service";
+import { FormService } from "../../service/form.service";
+import { ErrorService } from "../../service/error.service";
+import { BuilderService } from "../../service/builder.service";
+import { BuilderControlService } from "../../service/builder-control.service";
+import { SuccessService } from "../../service/success.service";
+import { TransformStructureService } from "../../service/transform-structure.service";
+
+import { IdbCrudService } from "../../service-idb/idb-crud.service";
+import { IdbPersistenceService } from "../../service-idb/idb-persistence.service";
+
+import { environment } from '../../../environments/environment';
+
+import * as CryptoJS from 'crypto-js';
+
+import { saveAs } from 'file-saver';
+
+@Component({
+  selector: 'app-canvas',
+  templateUrl: './canvas.component.html',
+  styleUrls: ['./canvas.component.scss']
+})
+export class CanvasComponent implements OnChanges {
+
+  @Input() canvasFormControl;
+  @Input() dropForm;
+  
+  canvasForm: FormGroup;
+
+  id;
+  obj;
+  user;
+  data;
+  form;
+  forms;
+  token;
+  formObj = {};
+
+  response;
+  navigation;
+  unsavedform;
+  control;
+  currentIndex;
+  
+  isEmbeddedCode = false;
+  panelOpenState = false;
+  sharingLink;
+  embeddedCode;
+  canvasBackground = '#000000';
+
+  linkUrl = environment.linkUrl;
+  pinKeySecret = environment.pinKeySecret;
+
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private dialog: MatDialog,
+    private route: ActivatedRoute,
+    public appService: AppService,
+    private authService: AuthService,
+    private dataService: DataService,
+    private formService: FormService,
+    private errorService: ErrorService,
+    public builderService: BuilderService,
+    private successService: SuccessService,
+    private idbCrudService: IdbCrudService,
+    private builderControlService: BuilderControlService,
+    private idbPersistenceService: IdbPersistenceService,
+    private transformStructureService: TransformStructureService) {
+    this.canvasForm = this.fb.group({
+      name: ['', Validators.required]
+    });
+  }
+
+  ngOnChanges() {
+    if (this.appService.isDarkMode) this.canvasBackground = '#000000';
+    else this.canvasBackground = '#ffffff';
+
+    if (this.builderService.formObj) {
+      this.canvasForm.patchValue({
+        name: this.builderService.formObj.form.name
+      });
+      this.canvasFormControl = this.builderService.formObj.form;
+      this.dropForm[1] = this.canvasFormControl.name;
+      this.isEmbeddedCode = true;
+      this.embeddedCode = '<iframe style="border-width:0px" width="100%" height="400" src="https://form369.formloco.com/form?form_id="'+this.builderService.formObj.form_id+'&tenant_id='+this.builderService.formObj.form_id+'></iframe>';
+    }
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+
+    this.builderService.canvasFormControls = this.canvasFormControl;
+    
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      this.updateShadowMove(event)
+    }
+    else {
+      copyArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+      this.builderService.event = event;
+      this.builderService.currentIndex = event.currentIndex;
+      this.builderService.previousIndex = event.previousIndex;
+      this.builderControlService.updateDetail(event.container.data, event.currentIndex)
+    }
+  }
+
+  updateShadowMove(event) {
+    let detailArray = this.builderService.canvasFormControls.details.splice(event.previousIndex, 1);
+    let detailObj = detailArray[0];
+    this.builderService.canvasFormControls.details.splice(event.currentIndex, 0, detailObj);
+  }
+
+  selectControl(index) {
+    this.builderService.currentIndex = index;
+  }
+
+  saveas() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '450px';
+    dialogConfig.data = {
+      name: this.canvasForm.get('name').value
+    };
+    const dialogRef = this.dialog.open(SaveasComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        this.builderService.currentIndex = 0;
+        this.canvasFormControl = this.builderService.formObj.form;
+        this.builderService.canvasFormControls = this.builderService.formObj.form;
+        this.canvasForm.patchValue({
+          name: this.builderService.formObj.form.name
+        });
+        this.dropForm[1] = this.canvasFormControl.name;
+      }
+    });
+  }
+
+  save(): void {
+    this.user = this.authService.userSignedIn();
+    this.builderService.canvasFormControls.name = this.canvasForm.controls['name'].value;
+    if (this.builderService.formObj === undefined) 
+      this.saveIdbForm();
+    else {
+      this.idbCrudService.read('form', this.builderService.formObj.id).subscribe(form => {
+        this.form = form;
+        this.form["is_data"] = this.form.is_data;
+        this.form.form = this.builderService.canvasFormControls;
+        let obj = this.transformStructureService.generateSQLStructure('data'); 
+        this.builderService.canvasFormControls["labels"] = obj.labels;
+        this.builderService.canvasFormControls["columns"] = obj.columns;
+        this.form.date_last_access = new Date();
+        this.idbCrudService.put('form', this.form).subscribe();
+        this.successService.popSnackbar('Successfully Saved');
+        
+        if (this.user !== null) {
+          this.builderService.formObj["tenant_id"] = this.user.tenant_id;
+          this.formService.update(this.builderService.formObj).subscribe(res => {});
+
+        }
+      });
+    }
+  }
+
+  savePreview(): void {
+    this.builderService.canvasFormControls.name = this.canvasForm.controls['name'].value;
+    this.saveIdbForm();
+    this.router.navigate(['']);
+  }
+
+  saveIdbForm() {
+    let userCreated = null;
+    if (this.user !== null) userCreated = { email: this.user.email, date_created: new Date() }
+
+    let obj = this.transformStructureService.generateSQLStructure('data'); 
+      
+    this.builderService.canvasFormControls["labels"] = obj.labels;
+    this.builderService.canvasFormControls["columns"] = obj.columns;
+
+    let sixdigitsrandom = Math.floor(100000 + Math.random() * 900000);
+
+    let pin = CryptoJS.AES.encrypt(JSON.stringify(sixdigitsrandom + 'true'), this.pinKeySecret).toString();
+
+    let idbForm = ({
+      form: this.builderService.canvasFormControls,
+      form_id: uuid.v4(),
+      pin: pin,
+      date_created: new Date(),
+      date_archived: undefined,
+      date_last_access: new Date(),
+      user_created: userCreated,
+      user_archived: null,
+      is_data: false,
+      is_published: false
+    });
+    
+    this.idbCrudService.put('form', idbForm).subscribe(id => {
+      this.builderService.formObj = idbForm;
+      this.builderService.formObj["id"] = id;
+      this.builderService.detailArray = idbForm.form.details;
+      this.builderService.controlArray = idbForm.form.controls;
+    });
+    this.successService.popSnackbar('Successfully Saved');
+
+    if (this.user !== null) {
+      idbForm["tenant_id"] = this.user.tenant_id;
+      this.formService.create(idbForm).subscribe(res => {});
+    }
+  
+  }
+
+  archive() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '450px';
+    dialogConfig.data = {
+      form: this.builderService.formObj
+    };
+    const dialogRef = this.dialog.open(ArchiveComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(data => {
+      location.reload();
+    });
+  }
+
+  run() {
+    this.appService.page = 'run';
+    this.appService.pageTitle = '';
+    this.appService.isAnonymous = false;
+    this.appService.parentPage = 'form-library';
+    this.builderService.controlArray = this.canvasFormControl.controls;
+    this.builderService.detailArray = this.canvasFormControl.details;
+  }
+
+  delete() {
+    if (this.builderService.formObj.is_data === false) {
+      this.idbCrudService.delete('form', this.builderService.formObj.id);
+      let user = this.authService.userSignedIn();
+
+      if (user !== null) {
+        this.formService.delete(this.builderService.formObj).subscribe(response => {
+          this.response = response;
+          this.successService.popSnackbar(this.response.message);
+          location.reload();
+        });
+      }
+      else location.reload();
+    }
+      
+    else {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.width = '450px';
+      dialogConfig.data = {
+        title: 'Form Has Data',
+        message: 'Please login to sync your data before deleting the form.'
+      };
+      const dialogRef = this.dialog.open(MessageComponent, dialogConfig);
+    }
+  }
+
+  close() {
+    this.appService.page = this.appService.parentPage;
+  }
+
+  exportJSON() {
+    let yy = JSON.stringify(this.builderService.formObj)
+    let blob = new Blob([yy], {type: 'text/plain' })
+    saveAs(blob, 'template.json');
+  }
+
+  copyUrl() {
+    let link = this.linkUrl+'form?form_id='+this.builderService.formObj["form_id"]+'&tenant_id='+this.builderService.formObj["tenant_id"]
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = link;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+    this.successService.popSnackbar('URL copied to clipboard.');
+  }
+
+}

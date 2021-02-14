@@ -1,0 +1,12 @@
+<div class="setting-label-padding" fxLayout="row" fxLayoutAlign="space-between center">
+  <mat-icon *ngIf="builderService.showControls" class="icon2times-label-start" (click)="builderService.deleteControl(index)">close</mat-icon>
+  <div fxLayout="column" fxFlex>
+    <div *ngIf="builderService.canvasFormControls.details[this.index].label" class="{{builderService.canvasFormControls.details[this.index].fontValue}}">
+      {{builderService.canvasFormControls.details[this.index].label}}
+    </div>
+  </div>
+  <div fxLayoutGap="40px">
+    <mat-icon class="icon2times-label" (click)="builderService.selectDetails(index)">settings</mat-icon>
+    <mat-icon *ngIf="builderService.showControls" class="icon2times-label-end">drag_indicator</mat-icon>
+  </div>
+</div>

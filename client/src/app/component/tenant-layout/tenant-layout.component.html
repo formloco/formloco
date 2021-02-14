@@ -1,0 +1,5 @@
+<span *ngIf="appService.isDesktop">
+  <app-tenant-navigation (toggleTheme)="toggleTheme(event)"></app-tenant-navigation>
+  <app-desktop></app-desktop>
+</span>
+<app-phone *ngIf="appService.isPhone"></app-phone>

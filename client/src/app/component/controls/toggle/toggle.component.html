@@ -1,0 +1,18 @@
+<div class="setting-padding" fxLayout="row" fxLayoutAlign="space-between center">
+  <mat-icon *ngIf="builderService.showControls" class="icon2times-start" (click)="builderService.deleteControl(index)">close</mat-icon>
+  <div fxLayout="column" fxFlex>
+    <div class="label-padding">
+      <label>{{builderService.canvasFormControls.details[this.index].label}}</label>
+    </div>
+    <div fxLayoutGap="20px">
+      <mat-slide-toggle *ngFor="let toggle of builderService.canvasFormControls.details[this.index].toggleArray" 
+        [labelPosition]="toggle.labelPosition" [required]="toggle.required">
+        {{toggle.label}}
+      </mat-slide-toggle>
+    </div>
+  </div>
+  <div class="padding-left-40" fxLayoutGap="40px">
+    <mat-icon class="icon2times" (click)="builderService.selectDetails(index)">settings</mat-icon>
+    <mat-icon *ngIf="builderService.showControls" class="icon2times-end">drag_indicator</mat-icon>
+  </div>
+</div>

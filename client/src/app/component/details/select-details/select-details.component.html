@@ -1,0 +1,110 @@
+<form [formGroup]="selectForm">
+  <div fxLayout="column">
+    <div fxLayout="row">
+      <div class="detail-box-title" fxLayoutAlign="start center" fxFlex>
+        Select
+      </div>
+      <div fxLayoutAlign="end center" fxLayoutGap="10px">
+        <mat-icon *ngIf="!appService.isData" class="icon-pointer" (click)="deleteControl()" color="warn">
+          delete_outline
+        </mat-icon>
+      </div>
+    </div>
+    <!-- <div fxLayout="row">
+      <mat-form-field appearance="fill" fxFlex>
+        <mat-label>Select List</mat-label>
+        <mat-select (selectionChange)="setList()" formControlName="list" fxFlex>
+          <mat-option value="none">Manual List</mat-option>
+          <mat-option class="pad-top" *ngFor="let list of appService.apiLists; let i = index;" value="{{list.name}}">
+            <div fxLayoutAlign="start center">
+              <img src="{{list.src}}" height="24">&nbsp;{{list.name}}
+            </div>
+          </mat-option>
+        </mat-select>
+        <mat-hint>Select list on launch.</mat-hint>
+      </mat-form-field>
+    </div> -->
+    <!-- <br> -->
+    <div fxLayout="column" fxLayoutGap="10px">
+      <mat-form-field fxFlex>
+        <mat-label>Placeholder/Label</mat-label>
+        <input (change)="setLabel()" matInput formControlName="label" type="text" required>
+      </mat-form-field>
+      <mat-form-field fxFlex>
+        <mat-label>Appearance</mat-label>
+        <mat-select (selectionChange)="setAppearance()" formControlName="appearance" required>
+          <mat-option *ngFor="let appearance of appearances" [value]="appearance.value">
+            {{ appearance.viewValue }}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+          Appearance required!
+        </mat-error>
+      </mat-form-field>
+      <label>Required?</label>
+      <div class="top-10px" fxLayout="row">
+        <mat-radio-group formControlName="required" fxLayoutGap="10px">
+          <mat-radio-button [value]="true" (click)="setRequired(true)">
+            True
+          </mat-radio-button>
+          <mat-radio-button [value]="false" (click)="setRequired(false)">
+            False
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <mat-form-field class="top-15px" *ngIf="selectRequired" fxFlex>
+        <mat-label>Error Message</mat-label>
+        <input (change)="setError()" matInput formControlName="error" type="text">
+      </mat-form-field>
+      <span *ngIf="!selectRequired">&nbsp;</span>
+    </div>
+    <div fxLayout="row">
+      <mat-form-field appearance="fill" fxFlex>
+        <mat-label>Select List</mat-label>
+        <mat-select (selectionChange)="setList()" formControlName="list" fxFlex>
+          <mat-option value="none">Manual List</mat-option>
+          <mat-option class="pad-top" *ngFor="let list of appService.apiLists; let i = index;" value="{{list.name}}">
+            <div fxLayoutAlign="start center">
+              <img src="{{list.src}}" height="24">&nbsp;{{list.name}}
+            </div>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div *ngIf="isList">
+      <div fxLayout="row" class="control-padding">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let element; let i = index">{{element.value}}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; let i = index; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+
+    <div *ngIf="!isList" formArrayName="selectArray">
+      <div class="add-option" fxLayoutAlign="end center">
+        <mat-icon class="icon-pointer" (click)="add()" color="primary">
+          add_circle_outline
+        </mat-icon>
+      </div>
+      <div *ngFor="let select of selectForm.get('selectArray')?.controls; let i=index">
+        <div class="detail-box pad-top" [formGroupName]="i">
+          <div fxLayout="row">
+            <mat-form-field fxFlex>
+              <mat-label>Value</mat-label>
+              <input (change)="setValue(i)" matInput formControlName="value" type="text" required>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="end">
+            <mat-icon *ngIf="!appService.isData" class="icon-pointer" (click)="delete(i)" color="warn">
+              delete_outline
+            </mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

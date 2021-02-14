@@ -1,0 +1,28 @@
+<div class="responsive-container">
+  <div *ngIf="appService.forms.length === 1">
+    <div fxLayout="column">
+      <img src="assets/logo/parrot-sitting.svg" height="169">
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <div class="padding">No forms yet.<br>Would you like to create one now?</div>
+        <div>
+          <button class="create-form-btn" mat-flat-button color="light-green" (click)="this.appService.page = 'design'" matTooltip="Create Form">
+            <mat-icon>control_point</mat-icon>&nbsp;&nbsp;
+            <span class="menu-title">Create Form</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="row wrap" fxLayoutGap="30px" fxFlex>
+    <ng-container *ngFor="let formObj of forms; let i=index">
+      <mat-card class="custom" *ngIf="formObj.date_archived === null">
+        <div class="icon-pointer card-icon" (click)="openForm(formObj)" fxLayout="row">
+          <img class="card-icon" src="assets/logo/parrot-sitting.svg" height="60">
+        </div>
+        <div fxLayout="column" class="form-title" fxLayoutAlign="center center">
+          {{formObj.form.name | truncate:[30, '...']}}
+        </div>
+      </mat-card>
+    </ng-container>
+  </div>
+</div>

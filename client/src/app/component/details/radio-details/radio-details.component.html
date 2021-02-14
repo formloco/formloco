@@ -1,0 +1,71 @@
+<form *ngIf="isDetail" [formGroup]="radioForm">
+  <div fxLayout="column">
+    <div fxLayout="row">
+      <div class="detail-box-title" fxLayoutAlign="start center" fxFlex>
+        Radio
+      </div>
+      <div fxLayoutAlign="end center" fxLayoutGap="10px">
+        <mat-icon class="icon-pointer" (click)="add()" color="primary">
+          add_circle_outline
+        </mat-icon>
+        <mat-icon *ngIf="!appService.isData" class="icon-pointer" (click)="deleteControl()" color="warn">
+          delete_outline
+        </mat-icon>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" fxLayoutGap="5px">
+    <mat-form-field fxFlex>
+      <mat-label>Label</mat-label>
+      <input (change)="setLabel()" matInput formControlName="label" type="text">
+    </mat-form-field>
+    <label>Required?</label>
+    <mat-radio-group formControlName="required" fxLayoutGap="10px">
+      <mat-radio-button [value]="true" (click)="setRequired(true)">
+        True
+      </mat-radio-button>
+      <mat-radio-button [value]="false" (click)="setRequired(false)">
+        False
+      </mat-radio-button>
+    </mat-radio-group>
+    <mat-form-field class="top-15px" *ngIf="radioRequired" fxFlex>
+      <mat-label>Error Message</mat-label>
+      <input (change)="setError()" matInput formControlName="error" type="text">
+    </mat-form-field>
+    <span *ngIf="!radioRequired">&nbsp;</span>
+  </div>
+  <div formArrayName="radioArray">
+    <div fxLayout="column" fxLayoutGap="10px">
+      <div *ngFor="let radio of radioForm.get('radioArray')?.controls; let i=index">
+        <div class="detail-box" [formGroupName]="i">
+          <div fxLayout="row">
+            <mat-form-field fxFlex>
+              <mat-label>Label</mat-label>
+              <input matInput (change)="setRadioLabel(i)" formControlName="label" type="text" required>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row">
+            <mat-form-field fxFlex>
+              <mat-label>Value</mat-label>
+              <input matInput (change)="setValue(i)" formControlName="value" type="text" required>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row">
+            <mat-form-field fxFlex>
+              <mat-label>Label Position</mat-label>
+              <mat-select (selectionChange)="setLabelPosition(i)" matNativeControl formControlName="labelPosition" required>
+                <mat-option value="before">Before</mat-option>
+                <mat-option value="after">After</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="end">
+            <mat-icon *ngIf="!appService.isData" class="icon-pointer" (click)="delete(i)" color="warn">
+              delete_outline
+            </mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,22 @@
+<div class="connector-setting-padding" fxLayout="row" fxLayoutAlign="space-between center">
+  <mat-icon *ngIf="builderService.showControls" class="icon2times-label-start" (click)="builderService.deleteControl(index)">close</mat-icon>
+  <div fxLayout="column" fxFlex>
+    <div class="connector-title">
+      <img src="assets/logo/qrcode.png" height="24">&nbsp;QR Code Reader
+    </div>
+  </div>
+  <div fxLayoutGap="40px">
+    <mat-icon *ngIf="builderService.showControls" class="icon2times-label-end">drag_indicator</mat-icon>
+  </div>
+</div>
+
+<!-- 
+
+<div class="setting-padding" fxLayout="row">
+  <mat-icon *ngIf="builderService.showControls" class="icon2times-start" (click)="builderService.deleteControl(index)">close</mat-icon>
+  <zxing-scanner></zxing-scanner>
+  <div class="padding-left-40" fxLayoutGap="40px">
+    <mat-icon class="icon2times" (click)="builderService.selectDetails(index)">settings</mat-icon>
+    <mat-icon *ngIf="builderService.showControls" class="icon2times-end">drag_indicator</mat-icon>
+  </div>
+</div> -->

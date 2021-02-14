@@ -1,0 +1,32 @@
+<div fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <div class="mat-headline">Import Form JSON</div>
+    <div class="edit-buttons icon-pointer" (click)="dialogRef.close()">
+      <mat-icon>close</mat-icon>
+    </div>
+  </div>
+  <div class="files-padding">
+    <ngx-dropzone class="custom-dropzone"
+                  [multiple] = "true"
+                  [maxFileSize] = "200000"
+                  (change)="onSelect($event)">
+      <ngx-dropzone-label>Drop file(s) or click to select for upload</ngx-dropzone-label>
+      <ngx-dropzone-preview *ngFor="let f of builderService.fileArray" 
+                            [removable]="true" 
+                            (removed)="onRemove(f)">
+        <ngx-dropzone-label>
+          <p>{{ f.name | truncate:[20, '...']}}</p> 
+          <p *ngIf="f.type">({{ f.type | truncate:[20, '...']}})</p>
+        </ngx-dropzone-label>
+      </ngx-dropzone-preview>
+    </ngx-dropzone>
+  </div>
+  <div mat-dialog-actions fxLayoutAlign="center" style="margin-bottom: -14px !important;" fxLayout="row" fxLayoutGap="1rem">
+    <button (click)="import()" mat-raised-button color="primary">
+      Import
+    </button>
+    <button mat-stroked-button color="primary" (click)="dialogRef.close()">
+      Cancel
+    </button>
+  </div>
+</div>

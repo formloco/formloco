@@ -1,0 +1,11 @@
+<div fxLayout="column" flex>
+  <zxing-scanner *ngIf="scannerEnabled" class="qr-scanner" [enable]="scannerEnabled" (scanSuccess)="scanSuccess($event)" (scanError)="scanError($event)"
+    (scanFailure)="scanFailure($event)" (scanComplete)="scanComplete($event)">
+  </zxing-scanner>
+  <button *ngIf="!scannerEnabled" type="button" mat-flat-button color="primary" (click)="startScan()" fxFlex>
+    Start Scan
+  </button>
+  <button *ngIf="scannerEnabled" type="button" mat-flat-button color="warn" (click)="stopScan()" fxFlex>
+    Stop Scan
+  </button>
+</div>

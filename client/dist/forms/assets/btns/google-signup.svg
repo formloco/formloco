@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="380" height="67" viewBox="0 0 380 67">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #157afb;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-size: 16px;
+        font-family: Muli-Bold, Muli;
+        font-weight: 700;
+      }
+
+      .cls-3 {
+        filter: url(#Rectangle_6);
+      }
+    </style>
+    <filter id="Rectangle_6" x="0" y="0" width="380" height="67" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.235"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_3" data-name="Group 3" transform="translate(9 7)">
+    <g class="cls-3" transform="matrix(1, 0, 0, 1, -9, -7)">
+      <rect id="Rectangle_6-2" data-name="Rectangle 6" class="cls-1" width="362" height="49" rx="5" transform="translate(9 7)"/>
+    </g>
+    <text id="Sign_up_with_Google" data-name="Sign up with Google" class="cls-2" transform="translate(179 30)"><tspan x="-77.2" y="0">Sign up with Google</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,48 @@
+.custom {
+  background-color: rgb(64,178,233);
+}
+
+.custom.mat-card {
+  height: 110px;
+  width: 110px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 30px;
+  text-align: center;
+ }
+
+.card-icon {
+  margin-top: 3px;
+  margin-left: 22px;
+  margin-bottom: 3px;
+  color: white;
+  font-size: 85px;
+}
+
+.form-title {
+  font-style: normal;
+  font-variant-ligatures: normal;
+  font-variant-caps: normal;
+  font-variant-numeric: normal;
+  font-variant-east-asian: normal;
+  font-weight: 400;
+  font-stretch: normal;
+  font-size: 14px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: white;
+}
+
+.action-label-bg {
+  font-size: 20px;
+  color: white;
+}
+
+.responsive-container {
+  padding-left: 30px;
+}
+
+.padding {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

@@ -1,0 +1,18 @@
+<div class="files-padding">
+  <ngx-dropzone class="custom-dropzone"
+                [multiple] = "true"
+                [maxFileSize] = "30000000"
+                (change)="onSelect($event)"
+                [expandable]="true">
+    <ngx-dropzone-label>Drop file(s) or click to select for upload</ngx-dropzone-label>
+    <ngx-dropzone-preview *ngFor="let f of builderService.fileArray; let i=index" 
+                          [removable]="true" 
+                          (removed)="onRemove(i)">
+      <ngx-dropzone-label>
+        <p>{{ f.name | truncate:[20, '...']}}</p> 
+        <p *ngIf="f.type">({{ f.type | truncate:[20, '...']}})</p>
+      </ngx-dropzone-label>
+    </ngx-dropzone-preview>
+  </ngx-dropzone>
+</div>
+<mat-progress-bar *ngIf="builderService.isFileUploadRunning" mode="buffer"></mat-progress-bar>

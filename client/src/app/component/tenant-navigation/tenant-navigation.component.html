@@ -1,0 +1,35 @@
+<div class="nav-padding" fxLayout="row" fxLayoutAlign="space-between center">
+  <div>
+    <div class="top13">
+      <a href="https://cleverdaycare.ca">
+        <img src="assets/tenant/logo-cleverdaycare.png">
+      </a>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center">
+    <!-- <a mat-stroked-button class="menu-label" href="https://github.com/formloco/form369" target="blank">
+      <img class="filterIcon" src="assets/logo/GitHub_Logo.png" height="20">
+    </a>
+    <a mat-stroked-button class="menu-label" href="https://github.com/formloco/form369/wiki" target="blank">
+      <img class="filterIcon" src="assets/logo/GitHub-Mark-32px.png" height="20">&nbsp;&nbsp;&nbsp;Docs
+    </a>
+    <button mat-stroked-button class="menu-label" (click)="api()">
+      <mat-icon>api</mat-icon>&nbsp;&nbsp;API
+    </button>
+    <button *ngIf="user" mat-stroked-button class="menu-label" (click)="copyToken()">
+      <mat-icon>vpn_key</mat-icon>&nbsp;&nbsp;Token
+    </button> -->
+    <button *ngIf="user" (click)="openProfile()" mat-stroked-button matTooltip="Profile" [ngClass]="(isSelected === true ? 'menu-label-selected':'menu-label')">
+      <mat-icon>person</mat-icon>&nbsp;&nbsp;{{ userName }}
+    </button>
+    <div class="menu-label" *ngIf="appService.isDarkMode" fxLayoutAlign="center center">
+      <mat-icon>mode_night</mat-icon>
+    </div>
+    <div class="menu-label" *ngIf="!appService.isDarkMode" fxLayoutAlign="center center">
+      <mat-icon>wb_sunny</mat-icon>
+    </div>
+    <mat-slide-toggle [(ngModel)]="appService.isDarkMode" color="warn" (click)="changeTheme($event)"></mat-slide-toggle>
+    <button class="green" *ngIf="!appService.authProvider" (click)="signin()" mat-flat-button>Sign In</button>
+    <button class="green" *ngIf="appService.authProvider" (click)="signout()" mat-flat-button color="light-green">Sign Out</button>
+  </div>
+</div>

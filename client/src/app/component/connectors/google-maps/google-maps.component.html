@@ -1,0 +1,27 @@
+<div fxLayout="row">
+  <div fxLayout="column">
+    <img src="assets/logo/google-maps-icon.png" width="60px">
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center" class="xero-tagline">
+    Google Maps
+  </div>
+</div>
+<div *ngIf="!isLogin">
+  <div fxLayout="column">
+    <img src="assets/logo/parrot-sitting.svg" height="200">
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <div class="padding">Please sign in to access this connector.</div>
+      <div>
+        <button mat-flat-button color="light-green" (click)="signin()">Sign In</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="isLogin">
+  <div fxLayout="column">
+    <img src="assets/logo/parrot-sitting.svg" height="200">
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <div class="padding">this connector is under construction</div>
+    </div>
+  </div>
+</div>

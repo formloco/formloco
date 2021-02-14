@@ -1,0 +1,65 @@
+.link-overlay {
+  text-align: center;
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  background: white;
+  min-width: 280px;
+}
+
+ngx-dropzone-label {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.custom {
+  height: 100px;
+  width: 100px;
+  padding: 1px;
+  margin-left: 16px;
+  margin-bottom: 16px;
+  background-color: rgb(71,120,141);
+}
+
+.custom-background {
+  background-color: rgb(71,120,141);
+}
+
+.row-margin {
+  margin: 12px 12px 12px 12px;
+}
+
+.lookup-bnt {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.pad3-top {
+  padding-top: 6px;
+}
+
+.form-title {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: white;
+  display: inline-block;
+}
+
+.card-icon {
+  margin-top: -15px;
+  margin-left: 5px;
+  color: white;
+  font-size: 90px;
+}
+
+.action-label {
+  padding-top: 15px;
+  font-size: 18px;
+  color: white;
+}
+
+.center-icon {
+  margin-left: 20px;
+}

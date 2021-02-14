@@ -1,0 +1,19 @@
+<div *ngIf="isEnabled" fxLayout="row" fxLayoutAlign="center center">
+  <zxing-scanner [enable]=isEnabled [torch]="torchEnabled" [device]="deviceCurrent" (scanSuccess)="onCodeResult($event)" [formats]="formatsEnabled"
+    [tryHarder]="tryHarder" (permissionResponse)="onHasPermission($event)" (camerasFound)="onCamerasFound($event)" (torchCompatible)="onTorchCompatible($event)"></zxing-scanner>
+</div>
+<div class="control-padding">
+  <button *ngIf="isEnabled" mat-raised-button i18n (click)="stop()" color="primary" fxFlex>
+    Stop Barcode Scan
+  </button>
+  <!-- <button *ngIf="!isEnabled" mat-raised-button i18n (click)="scan()" color="primary" fxFlex>
+    Start Barcode Scan
+  </button> -->
+</div>
+
+<div *ngIf="!isEnabled" [formGroup]="runForm" class="control-padding">
+  <mat-form-field appearance="{{builderService.detailArray[index].appearance}}" fxFlex>
+    <mat-label>{{builderService.detailArray[index].label}}</mat-label>
+    <input matInput type="text" formControlName="{{builderService.detailArray[index].formControlName}}">
+  </mat-form-field>
+</div>

@@ -1,0 +1,8 @@
+<form [formGroup]="barcodeForm">
+  <div fxLayout="row">
+    <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Enter MSI Numeric Code</mat-label>
+        <input (change)="setValue()" matInput formControlName="value" type="text">
+      </mat-form-field>
+  </div>
+</form>

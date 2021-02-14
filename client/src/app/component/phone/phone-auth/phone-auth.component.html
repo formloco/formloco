@@ -1,0 +1,94 @@
+<!-- <div *ngIf="!isForgotPassword" class="signup-menu-padding" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="70px"> -->
+
+
+<div *ngIf="!isForgotPassword"class="signup-menu-padding" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="70px">
+  <div [ngClass]="(isSignin ? 'unselected-menu':'selected-menu')" (click)="togglePages()">Sign up</div>
+  <div [ngClass]="(isSignin ? 'selected-menu':'unselected-menu')" (click)="togglePages()">Sign in</div>
+</div>
+<div *ngIf="isForgotPassword" class="signup-menu-padding" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="70px">
+  <div class="unselected-menu" (click)="setPage('signup')">Sign up</div>
+  <div class="unselected-menu" (click)="setPage('signin')">Sign in</div>
+</div>
+<div *ngIf="isSignin && !isForgotPassword" fxLayout="column" fxLayoutAlign="center center">
+  <!-- <div class="btn-select" (click)="socialLogin('google')">
+    <img src="assets/btns/google.svg">
+  </div>
+  <div class="btn-select" (click)="socialLogin('facebook')">
+    <img src="assets/btns/facebook.svg">
+  </div>
+  <div class="btn-select" (click)="azure()">
+    <img src="assets/btns/azure.svg">
+  </div> -->
+  <form [formGroup]="emailSigninForm">
+    <div fxLayout="column" class="form-padding">
+      <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Email Address</mat-label>
+        <input matInput placeholder="Email Address" formControlName="email" type="text" required>
+        <mat-error>
+          Email address is required!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" formControlName="password" type="password" required>
+        <mat-error>
+          Password is required!
+        </mat-error>
+      </mat-form-field>
+      <button class="padding10" (click)="login('email')" mat-flat-button color="orange" [disabled]="!emailSigninForm.valid">
+        Sign in with Email
+      </button>
+      <div class="forgotPassword" (click)="forgotPassword()" fxLayout="row" fxLayoutAlign="center">
+        Forgot Password
+      </div>
+    </div>
+  </form>
+</div>
+<div *ngIf="!isSignin && !isForgotPassword" fxLayout="column" fxLayoutAlign="center center">
+  <!-- <div class="btn-select" (click)="socialLogin('google')">
+    <img src="assets/btns/google-signup.svg">
+  </div>
+  <div class="btn-select" (click)="socialLogin('facebook')">
+    <img src="assets/btns/facebook-signup.svg">
+  </div>
+  <div class="btn-select" (click)="azure()">
+    <img src="assets/btns/azure-signup.svg">
+  </div> -->
+  <form [formGroup]="emailSignupForm">
+    <div fxLayout="column" class="form-padding">
+      <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Email Address</mat-label>
+        <input matInput placeholder="Email" formControlName="email" type="text" required>
+        <mat-error>
+          Email address is required!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" formControlName="password" type="password" required>
+        <mat-error>
+          Password is required!
+        </mat-error>
+      </mat-form-field>
+      <button class="padding10" (click)="signupEmail()" mat-flat-button color="orange">
+        Sign up with Email
+      </button>
+    </div>
+  </form>
+</div>
+<div *ngIf="isForgotPassword" fxLayout="column" fxLayoutAlign="center center">
+  <form [formGroup]="forgotPasswordForm" (ngSubmit)="forgotPasswordEmail()">
+    <div fxLayout="column" class="form-padding">
+      <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Enter Email</mat-label>
+        <input matInput formControlName="email" required>
+        <mat-error>
+          Please enter a valid email address.
+        </mat-error>
+      </mat-form-field>
+      <button class="padding10" fxFlex mat-flat-button color="orange" type="submit">
+        Send Password Reset Email
+      </button>
+    </div>
+  </form>
+</div>

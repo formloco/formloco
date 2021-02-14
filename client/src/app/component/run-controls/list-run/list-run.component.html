@@ -1,0 +1,33 @@
+<div fxLayout="column" [formGroup]="runForm">
+  <mat-form-field appearance="{{builderService.detailArray[index].appearance}}" fxFlex>
+    <mat-label>{{builderService.detailArray[index].label}}</mat-label>
+    <input matInput [type]="builderService.detailArray[index].types" formControlName="{{builderService.detailArray[index].formControlName}}"
+      [placeholder]="builderService.detailArray[index].placeholder" required>
+    <mat-error>
+      {{builderService.detailArray[index].error}}
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button i18n (click)="saveIdb()" color="primary" [disabled]="!runForm.valid" runForm.type="submit">
+    Add ID to List
+  </button>
+</div>
+<br>
+<div fxLayout="row" class="control-padding">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td (click)="edit(i, element)" class="hand" mat-cell *matCellDef="let element; let i = index">
+        <span *ngIf="selectedIdx !== i">{{element.value}}</span>
+        <span *ngIf="selectedIdx === i">
+          <mat-form-field>
+            <input matInput type="text" [formControl]="id">
+          </mat-form-field>
+          <button (click)="updateIdb()" mat-button color="primary">Save</button>
+          <button (click)="deleteIdb(i)" mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+        </span>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; let i = index; columns: displayedColumns;"></tr>
+  </table>
+</div>

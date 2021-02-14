@@ -1,0 +1,19 @@
+<div class="setting-padding padding-bottom" fxLayout="row" fxLayoutAlign="space-between center">
+  <mat-icon *ngIf="builderService.showControls" class="icon2times-slider-start " (click)="builderService.deleteControl(index)">close</mat-icon>
+  <div fxLayout="column" fxFlex>
+    <div>
+      <label>{{builderService.canvasFormControls.details[this.index].label}}</label>
+    </div>
+    <div fxLayoutGap="20px">
+      <mat-slider fxFlex [max]="builderService.canvasFormControls.details[this.index].max" [min]="builderService.canvasFormControls.details[this.index].min"
+        [step]="builderService.canvasFormControls.details[this.index].step" [thumbLabel]="builderService.canvasFormControls.details[this.index].thumbLabel"
+        [tickInterval]="builderService.canvasFormControls.details[this.index].interval" [value]="builderService.canvasFormControls.details[this.index].value"
+        [vertical]="builderService.canvasFormControls.details[this.index].vertical">
+      </mat-slider>
+    </div>
+  </div>
+  <div class="padding-left-40" fxLayoutGap="40px">
+    <mat-icon class="icon2times-slider" (click)="builderService.selectDetails(index)">settings</mat-icon>
+    <mat-icon *ngIf="builderService.showControls" class="icon2times-slider-end">drag_indicator</mat-icon>
+  </div>
+</div>

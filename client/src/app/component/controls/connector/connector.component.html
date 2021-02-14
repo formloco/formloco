@@ -1,0 +1,51 @@
+<mat-accordion class="example-headers-align">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon class="icon2times-label-start" (click)="builderService.deleteControl(index)">close</mat-icon>
+        <div class="connector-title">
+          <img src="{{builderService.canvasFormControls.details[index].src}}" height="24"> &nbsp;{{connectorLabel}}&nbsp;Lists & Actions
+        </div>
+      </mat-panel-title>
+      <mat-panel-description >
+        &nbsp;
+        <span>
+          <mat-icon class="right9" (click)="openHelp($event, 'connector')">help_outline</mat-icon>
+          <mat-icon class="icon2times-label-end">drag_indicator</mat-icon>
+        </span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="setting-padding">
+      <div fxLayout="column" fxFlex="50">
+        <div class="lookup-title menu-label">
+          <mat-icon>pageview</mat-icon>&nbsp;Lists</div>
+        <mat-chip-list>
+          <mat-chip class="hand" color="primary" selected *ngFor="let item of builderService.canvasFormControls.details[index].lists; let i=index;">
+            <span *ngIf="!item.selected" class="top6">
+              <mat-icon (click)="selectList(i,item)">check_box_outline_blank</mat-icon>
+            </span>
+            <span *ngIf="item.selected" class="top6">
+              <mat-icon (click)="selectList(i,item)" color="warn">check_box</mat-icon>
+            </span>
+            &nbsp;{{item.viewValue}}
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+      <div fxLayout="column" fxFlex="50">
+        <div class="lookup-title menu-label">
+          <mat-icon>flash_on</mat-icon>Actions</div>
+        <mat-chip-list color="accent">
+          <mat-chip class="hand" selected *ngFor="let action of builderService.canvasFormControls.details[index].actions; let i=index;">
+            <span *ngIf="!action.selected" class="top6">
+              <mat-icon (click)="selectAction(i)">check_box_outline_blank</mat-icon>
+            </span>
+            <span *ngIf="action.selected" class="top6">
+              <mat-icon (click)="selectAction(i)" color="warn">check_box</mat-icon>
+            </span>
+            &nbsp;{{action.viewValue}}
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

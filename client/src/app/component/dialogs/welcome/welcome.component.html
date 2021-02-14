@@ -1,0 +1,26 @@
+<div fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <div class="mat-headline">formloco Preview</div>
+    <div class="edit-buttons icon-pointer" (click)="dialogRef.close()">
+      <mat-icon>close</mat-icon>
+    </div>
+  </div>
+  <img src="assets/logo/FlyingBirdMouthOpen.svg" height="100">
+  <br>
+  <div fxLayoutAlign="center">Here is a list of things currently in test.</div>
+  <div fxLayoutAlign="center">
+    <ul>
+      <li>Sign In/Sign - Google, Microsoft and Facebook in test</li>
+      <li>Light mode/Dark mode - (Experimental)</li>
+      <li>Sharing - work in progress</li>
+      <li>Data sync - work in progress</li>
+    </ul>
+  </div>
+  <div fxLayoutAlign="center">Please be sure to check back often for updates.</div>
+  <br>
+  <div fxLayoutAlign="start center">Do not show again&nbsp;<mat-icon click="saveWelcomeSetting()">check_box_outline_blank</mat-icon></div>
+  <br>
+  <div mat-dialog-actions fxLayoutAlign="center" style="margin-bottom: -14px !important;" fxLayout="row" fxLayoutGap="1rem">
+    <button mat-stroked-button color="primary" (click)="dialogRef.close()">OK </button>
+  </div>
+</div>

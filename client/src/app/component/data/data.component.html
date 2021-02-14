@@ -1,0 +1,56 @@
+<div class="responsive-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-sidenav-container class="responsive-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav-content class="data-table-container">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxFlex="50">
+          <mat-form-field *ngIf="isData" fxFlex>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          </mat-form-field>
+        </div>
+        <div *ngIf="isData" fxLayoutGap="20px">
+          <button mat-raised-button i18n color="primary" (click)="exportData()">
+            Export Data
+          </button>
+        </div>
+      </div>
+      <span *ngIf="isData">
+        <table #table mat-table matSort [dataSource]="dataSource">
+          <ng-container [matColumnDef]="column" *ngFor="let column of columnsToDisplay; let i = index">
+            <th class="header-wht" style="cursor: pointer;" mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{columnLabels[i]}}
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <span *ngIf="column === 'date_created' && column !== 'form_columns'">{{ row[column] | date }}</span>
+              <span *ngIf="column === 'user_created' && column !== 'form_columns'">{{ row[column] }}</span>
+              <span *ngIf="column !== 'date_created' && column !== 'user_created' && column !== 'form_columns'">
+                {{ row[column] }}
+              </span>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+        </table>
+        <div fxLayout="row" fxLayoutAlign="end center">
+          <mat-paginator fxLayoutAlign="start center" [length]="dataSource.length" [pageSizeOptions]="[100, 500]" [showFirstLastButtons]="true">
+          </mat-paginator>
+        </div>
+      </span>
+      <div *ngIf="!isData">No data returned</div>
+    </mat-sidenav-content>
+    <mat-sidenav class="file-list" *ngIf="isFiles" #right opened [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56" position="end">
+      <div class="padding-top" fxLayout="column">
+        <ng-container *ngFor="let file of filePaths; let i=index">
+          <div class="icon-pointer" (click)="openFile(file, i)" fxLayout="row" [ngClass]="(currentFileIndex === i ? 'seleted-form':'unseleted-form')">
+            <div *ngIf="user !== null">
+              <img class="thumbnail" src="{{file.url}}">
+            </div>
+            <div *ngIf="user === null">
+              <mat-icon class="greyIcon thumbnail-icon">photo</mat-icon>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </mat-sidenav>
+  </mat-sidenav-container>
+</div>

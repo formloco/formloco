@@ -1,0 +1,10 @@
+<div [formGroup]="runForm" class="control-padding" fxLayoutGap="20px">
+  <mat-form-field appearance="{{builderService.detailArray[index].lat.appearance}}" fxFlex>
+    <mat-label>{{builderService.detailArray[index].lat.label}}</mat-label>
+    <input matInput disabled value="{{lat}}" [type]="builderService.detailArray[index].lat.types" [placeholder]="builderService.detailArray[index].lat.placeholder">
+  </mat-form-field>
+  <mat-form-field appearance="{{builderService.detailArray[index].long.appearance}}" fxFlex>
+    <mat-label>{{builderService.detailArray[index].long.label}}</mat-label>
+    <input matInput disabled value="{{long}}" [type]="builderService.detailArray[index].long.types" [placeholder]="builderService.detailArray[index].long.placeholder">
+  </mat-form-field>
+</div>

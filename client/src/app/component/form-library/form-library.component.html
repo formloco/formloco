@@ -1,0 +1,61 @@
+<div class="row-margin" fxLayout="row wrap">
+  <mat-card class="icon-pointer custom" (click)="newForm()">
+    <mat-icon class="card-icon-add">control_point</mat-icon>
+    <div class="form-title-bg">
+      Create Form
+    </div>
+  </mat-card>
+  <div *ngFor="let formObj of appService.forms; let i=index">
+    <mat-card class="custom" *ngIf="i !== 0 && formObj.form.is_list === undefined">
+      <div [ngClass]="(formObj.form.name.length < 24 ? 'add-padding':'')" fxLayout="row wrap" class="form-title" fxLayoutAlign="center center">
+        {{formObj.form.name | truncate:[28, '...']}}
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <div class="icon-pointer" (click)="run(formObj)" fxLayout="column" fxFlex="33" fxLayoutAlign="center center">
+          <mat-icon *ngIf="formObj.form.is_list" class="card-icon">pageview</mat-icon>
+          <mat-icon *ngIf="!formObj.form.is_list" class="card-icon">dynamic_form</mat-icon>
+          <span class="action-label">Launch</span>
+        </div>
+        <div fxLayout="column" fxFlex="33" fxLayoutAlign="center center">
+          <div class="publish" fxLayoutAlign="center center">
+            <mat-slide-toggle (change)="publish(formObj, $event)" color="warn" [(ngModel)]=formObj.is_published>
+            </mat-slide-toggle>
+          </div>
+          <span class="action-label-pub" *ngIf="formObj.is_published">Published</span>
+          <span class="action-label-pub" *ngIf="!formObj.is_published">Publish</span>
+        </div>
+        <div class="icon-pointer" (click)="share(formObj)" fxLayout="column" fxFlex="33" fxLayoutAlign="center center">
+          <mat-icon class="card-icon">share</mat-icon>
+          <span class="action-label">Share</span>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div class="icon-pointer" (click)="edit(formObj)" fxLayout="column" fxFlex="33" fxLayoutAlign="center center">
+          <mat-icon class="card-icon">create</mat-icon>
+          <span class="action-label">Edit</span>
+        </div>
+        <div (click)=openLinkOverlay(formObj,i) class="icon-pointer" fxLayout="column" fxFlex="30" fxLayoutAlign="center center">
+          <span mat-icon-button  cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+            <mat-icon class="card-icon">link</mat-icon>
+          </span>
+          <span class="link-label">Copy Link</span>
+        </div>
+        <div class="icon-pointer" (click)="openData(formObj)" fxLayout="column" fxFlex="33" fxLayoutAlign="center center">
+          <mat-icon class="card-icon">storage</mat-icon>
+          <span class="action-label-data">Data</span>
+        </div>
+      </div>
+      <ng-template *ngIf="selectedIndex === i" cdkConnectedOverlay (backdropClick)="closeOverlay()" [cdkConnectedOverlayOrigin]="trigger"
+        [cdkConnectedOverlayOpen]="isLinkSelect" [cdkConnectedOverlayHasBackdrop]=true cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+        [cdkConnectedOverlayOffsetX]="xAxis" [cdkConnectedOverlayOffsetY]="yAxis">
+        <div class="link-overlay">
+          <div>PIN:&nbsp;{{pin}}</div>
+          <div class="mat-caption">
+            <mat-checkbox color="warn" (click)=usePIN(formObj) [(ngModel)]="isPin">Use PIN</mat-checkbox>
+          </div>
+          <button (click)=copyUrl(formObj) mat-button color="primary">Copy Link</button>
+        </div>
+      </ng-template>
+    </mat-card>
+  </div>
+</div>

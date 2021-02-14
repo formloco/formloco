@@ -1,0 +1,19 @@
+<mat-accordion class="example-headers-align">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon class="icon2times-label-start" (click)="builderService.deleteControl(index)">close</mat-icon>
+        <div class="connector-title">Document</div>
+      </mat-panel-title>
+      <mat-panel-description>
+        &nbsp;
+        <span>
+          <mat-icon class="icon2times-label-end">drag_indicator</mat-icon>
+        </span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div>
+      <quill-editor (onEditorCreated)="setFocus($event)" placeholder="Enter Text" [(ngModel)]="builderService.canvasFormControls.details[index].html" theme="snow"></quill-editor>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

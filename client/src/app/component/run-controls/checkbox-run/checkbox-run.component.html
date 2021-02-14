@@ -1,0 +1,14 @@
+<div [formGroup]="runForm" class="control-padding" fxLayout="column" fxLayoutGap="10px">
+  <div fxLayout="row">
+    <label>{{builderService.detailArray[index].label}}</label>
+  </div>
+  <div fxLayout="row wrap" fxLayoutGap="10px">
+    <mat-checkbox *ngFor="let checkbox of builderService.detailArray[index].checkboxArray"
+                  formControlName="{{checkbox.formControlName}}"
+                  value="{{checkbox.value}}"  
+                  [labelPosition]="checkbox.labelPosition" required=true>
+      {{checkbox.label}}
+    </mat-checkbox>
+  </div>
+</div>
+

@@ -1,0 +1,59 @@
+<form [formGroup]="textboxForm">
+  <div fxLayout="column">
+    <div fxLayout="row">
+      <div class="detail-box-title" fxLayoutAlign="start center" fxFlex>
+        Textbox
+      </div>
+      <div fxLayoutAlign="end center">
+        <mat-icon *ngIf="!appService.isData" class="icon-pointer" (click)="deleteControl()" color="warn">
+          delete_outline
+        </mat-icon>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" fxLayoutGap="10px">
+    <mat-form-field fxFlex>
+      <mat-label>Appearance</mat-label>
+      <mat-select (selectionChange)="setAppearance()" formControlName="appearance" required>
+        <mat-option *ngFor="let appearance of appearances" [value]="appearance.value">
+          {{ appearance.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-error>
+        Appearance required!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex>
+      <mat-label>Text Types</mat-label>
+      <mat-select (selectionChange)="setTypes()" formControlName="types" required>
+        <mat-option *ngFor="let type of types" [value]="type.value">
+          {{ type.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-error>
+        Type required!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex>
+      <mat-label>Label</mat-label>
+      <input (change)="setLabel()" matInput formControlName="label" type="text">
+    </mat-form-field>
+    <mat-form-field fxFlex>
+      <mat-label>Place Holder</mat-label>
+      <input (change)="setPlaceholder()" matInput formControlName="placeholder" type="text">
+    </mat-form-field>
+    <label>Required?</label>
+    <mat-radio-group formControlName="required" fxLayoutGap="10px">
+      <mat-radio-button [value]="true" (click)="setRequired(true)">
+        True
+      </mat-radio-button>
+      <mat-radio-button [value]="false" (click)="setRequired(false)">
+        False
+      </mat-radio-button>
+    </mat-radio-group>
+    <mat-form-field class="top-15px" *ngIf="textboxRequired" fxFlex>
+      <mat-label>Error Message</mat-label>
+      <input (change)="setError()" matInput formControlName="error" type="text">
+    </mat-form-field>
+  </div>
+</form>

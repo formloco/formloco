@@ -1,0 +1,19 @@
+<div fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <div class="mat-headline">Archive</div>
+    <div class="edit-buttons icon-pointer" (click)="dialogRef.close()">
+      <mat-icon>close</mat-icon>
+    </div>
+  </div>
+  <p align="center">
+    Clicking continue will archive the form. Archived forms can un-archived.
+  </p>
+  <div mat-dialog-actions fxLayoutAlign="center" style="margin-bottom: -14px !important;" fxLayout="row" fxLayoutGap="1rem">
+    <button (click)="archive()" mat-raised-button color="primary">
+      Continue
+    </button>
+    <button mat-stroked-button color="primary" (click)="dialogRef.close()">
+      Cancel
+    </button>
+  </div>
+</div>

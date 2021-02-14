@@ -1,0 +1,39 @@
+.selected-menu {
+  cursor: pointer;
+  color: #FFB45E;
+  font-size: 17px;
+  border-bottom: 2px solid #FFB45E;
+}
+
+.unselected-menu {
+  cursor: pointer;
+  color: #C3C0C0;
+  font-size: 17px;
+}
+
+.signup-menu-padding {
+  padding: 30px;
+}
+
+.form-padding {
+  padding: 30px;
+  width: 396px;
+}
+
+.padding10 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.mat-flat-button.mat-orange{
+  background-color:#FFB45E;
+  color: white;
+}
+
+.forgotPassword {
+  padding-top: 10px;
+  cursor: pointer;
+}
+.btn-select {
+  cursor: pointer;
+}

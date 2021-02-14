@@ -1,0 +1,53 @@
+<form [formGroup]="sliderForm">
+  <div fxLayout="column">
+    <div fxLayout="row">
+      <div class="detail-box-title" fxLayoutAlign="start center" fxFlex>
+        Slider
+      </div>
+      <div fxLayoutAlign="end center">
+        <mat-icon *ngIf="!appService.isData" class="icon-pointer" (click)="deleteControl()" color="warn">
+          delete_outline
+        </mat-icon>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" fxLayoutGap="10px">
+    <div fxLayout="row">
+      <mat-form-field fxFlex>
+        <mat-label>Label</mat-label>
+        <input (change)="setLabel()" matInput formControlName="label" type="text">
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <mat-form-field fxFlex>
+        <input matInput (change)="setValue()" type="number" placeholder="Value" formControlName="value" required>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <mat-form-field fxFlex>
+        <input matInput (change)="setMin()" type="number" placeholder="Min value" formControlName="min" required>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <mat-form-field fxFlex>
+        <input matInput (change)="setMax()" type="number" placeholder="Max value" formControlName="max" required>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <mat-form-field fxFlex>
+        <input matInput (change)="setStep()" type="number" placeholder="Step size" formControlName="step" required>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <mat-form-field fxFlex>
+        <input matInput (change)="setInterval()" type="number" placeholder="Interval" formControlName="interval" required>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <mat-checkbox (change)="setThumb()" formControlName="thumbLabel">Show thumbnail</mat-checkbox>
+    </div>
+    <div fxLayout="row">
+      <mat-checkbox (change)="setInvert()" formControlName="invert">Invert</mat-checkbox>
+    </div>
+  </div>
+</form>

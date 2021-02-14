@@ -1,0 +1,42 @@
+<div fxLayout="row" fxLayoutAlign="space-between">
+  <div class="mat-headline">Profile</div>
+  <div class="icon-pointer" (click)="dialogRef.close()">
+    <mat-icon>close</mat-icon>
+  </div>
+</div>
+<form [formGroup]="profileForm">
+  <div fxLayout="column" class="form-padding">
+    <!-- <mat-form-field appearance="outline" fxFlex>
+      <mat-label>First Name</mat-label>
+      <input matInput placeholder="First Name" formControlName="first_name" type="text">
+      <mat-error>
+        First name is required.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex>
+      <mat-label>Last Name</mat-label>
+      <input matInput placeholder="Last Name" formControlName="last_name" type="text">
+      <mat-error>
+        Last name is required.
+      </mat-error>
+    </mat-form-field> -->
+    <mat-form-field appearance="outline" fxFlex>
+      <mat-label>Admin PIN</mat-label>
+      <input matInput placeholder="Admin PIN" formControlName="adminPIN" type="text">
+    </mat-form-field>
+    <div fxLayoutGap="10px" fxLayoutAlign="center">
+      <mat-slide-toggle (click)="changeTheme()">
+        <span *ngIf="!isDarkMode">Light Mode</span>
+        <span *ngIf="isDarkMode">Dark Mode</span>
+      </mat-slide-toggle>
+    </div>
+    <!-- <div class="top20" fxLayoutGap="20px" fxLayoutAlign="center">
+      <button (click)="dialogRef.close()" mat-stroked-button color="warn">
+        Cancel
+      </button>
+      <button (click)="save()" mat-flat-button color="primary">
+        Save
+      </button>
+    </div> -->
+  </div>
+</form>

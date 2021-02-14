@@ -1,0 +1,14 @@
+<div class="details-container" [ngSwitch]="type">
+  <app-label-details *ngSwitchCase="'Label'" [index]=index></app-label-details>
+  <app-radio-details *ngSwitchCase="'Radio'" [index]=index></app-radio-details>
+  <app-slider-details *ngSwitchCase="'Slider'" [index]=index></app-slider-details>
+  <app-toggle-details *ngSwitchCase="'Toggle'" [index]=index></app-toggle-details>
+  <app-textbox-details *ngSwitchCase="'Textbox'" [index]=index></app-textbox-details>
+  <!-- <app-wysiwyg-details *ngSwitchCase="'Editor'" [index]=index></app-wysiwyg-details> -->
+  <app-textarea-details *ngSwitchCase="'Textarea'" [index]=index></app-textarea-details>
+  <app-checkbox-details *ngSwitchCase="'Checkbox'" [index]=index></app-checkbox-details>
+  <app-select-details *ngSwitchCase="'Select'" [index]=index></app-select-details>
+  <app-select-details *ngSwitchCase="'SelectMulti'" [index]=index></app-select-details>
+  <app-fileupload-details *ngSwitchCase="'Upload'" [index]=index></app-fileupload-details>
+</div>
+

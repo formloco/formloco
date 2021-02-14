@@ -1,0 +1,29 @@
+<div class="responsive-container">
+  <mat-sidenav-container fullscreen>
+    <mat-sidenav class="menu-background" #snav [opened]=builderService.showControls [mode]="'side'">
+      <div class="form-container menu">
+        <div class="design-sub-title" fxLayout="row" fxLayoutAlign="space-between center">
+          <div>Connectors</div>
+          <div class="icon-pointer" (click)="close()">
+            <mat-icon [ngStyle]="{'color':'white'}">close</mat-icon>
+          </div>
+        </div>
+        <div class="form-list">
+          <ng-container *ngFor="let connector of connectorList; let i=index">
+            <div class="form-box" (click)="open(i, connector)" fxLayout="row" [ngClass]="(currentIndex === i ? 'seleted-connection':'unseleted-connection')"
+              fxLayoutAlign="start center">
+              {{connector.name}}
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content *ngIf="connectorName" class="connection-container">
+      <div [ngSwitch]="connectorType">
+        <app-wave [connectorName]="connectorName" [connector]="connector" *ngSwitchCase="'wave'"></app-wave>
+        <app-oauth2 [connectorName]="connectorName" [connector]="connector" *ngSwitchCase="'oauth2'"></app-oauth2>
+        <app-google-maps [connectors]="connectors" *ngSwitchCase="'googlemaps'"></app-google-maps>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

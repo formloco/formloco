@@ -1,0 +1,52 @@
+<div class="padding-top" fxLayout="row" fxLayoutAlign="center">
+  <a href="https://cleverdaycare.ca">
+    <img src="assets/tenant/logo-cleverdaycare.png" height="80px">
+  </a>
+</div>
+<div *ngIf="isForgotPassword" class="signup-menu-padding" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="70px">
+  <div class="unselected-menu" (click)="setPage('signin')">Sign in</div>
+</div>
+<div *ngIf="!isForgotPassword" fxLayout="column" fxLayoutAlign="center center">
+  <form [formGroup]="emailSigninForm">
+    <div fxLayout="column" class="form-padding">
+      <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Email Address</mat-label>
+        <input matInput placeholder="Email Address" formControlName="email" type="text" required>
+        <mat-error>
+          Email address is required!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" formControlName="password" type="password" required>
+        <mat-error>
+          Password is required!
+        </mat-error>
+      </mat-form-field>
+      <button class="padding10" (click)="login('email')" mat-flat-button color="orange" [disabled]="!emailSigninForm.valid">
+        Sign in with Email
+      </button>
+      <br>
+      <div class="forgotPassword" (click)="forgotPassword()" fxLayout="row" fxLayoutAlign="center">
+        Forgot Password
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="isForgotPassword" fxLayout="column" fxLayoutAlign="center center">
+  <form [formGroup]="forgotPasswordForm" (ngSubmit)="forgotPasswordEmail()">
+    <div fxLayout="column" class="form-padding">
+      <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Enter Email</mat-label>
+        <input matInput formControlName="email" required>
+        <mat-error>
+          Please enter a valid email address.
+        </mat-error>
+      </mat-form-field>
+      <button class="padding10" fxFlex mat-flat-button color="orange" type="submit">
+        Send Password Reset Email
+      </button>
+    </div>
+  </form>
+</div>

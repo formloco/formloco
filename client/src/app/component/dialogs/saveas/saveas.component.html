@@ -1,0 +1,36 @@
+<div fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <div class="mat-headline">Save As</div>
+    <div class="edit-buttons icon-pointer" (click)="dialogRef.close()">
+      <mat-icon>close</mat-icon>
+    </div>
+  </div>
+  <form [formGroup]="saveasForm">
+    <div fxLayout="column">
+      <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" formControlName="name" type="text" required>
+        <mat-error>
+          Name is required!
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions fxLayoutAlign="center" 
+         style="margin-bottom: -14px !important;" fxLayout="row" fxLayoutGap="1rem">
+      <button (click)="save()" mat-raised-button color="primary" 
+              [disabled]="!saveasForm.valid">
+        Save
+      </button>
+      <button mat-stroked-button color="primary" 
+              (click)="dialogRef.close()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
+    
+    
+    
+  
+
+

@@ -1,0 +1,1863 @@
+swagger: '2.0'
+info:
+  description: This the API server for your forms. You will need to use a copy of the api key to authorize.
+  version: 1.0.0
+  title: formloco API
+  termsOfService: https://formloco/terms/
+  contact:
+    email: polly@formloco.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+host: https://bluerockmicro.com/api
+securityDefinitions:
+  ApiKeyAuth:
+    type: apiKey
+    in: header
+    name: x-access-token
+security:
+  - ApiKeyAuth: []
+paths:
+  /api/116bfcd8-bd03-48ba-80a6-46fd5c803304/7070e7c7-51ed-40ba-899c-84a26df3734a/:
+    post:
+      tags:
+        - tesst
+      summary: Add form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/tesst'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/tesst'
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - tesst
+      summary: Update form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/tesst'
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    get:
+      tags: 
+        - tesst
+      summary: Get form data
+      produces: 
+        - application/json
+      parameters:
+      - in: path
+        name: tenant_id
+        description: Form and data storage identifier
+        schema:
+        type: string
+      - in: path
+        name: form_id
+        description: Form identifier
+        schema:
+        type: string
+      - in: body
+        required: false
+        schema:
+          $ref: '#/definitions/tesst'
+      responses:
+        '201':
+          description: Success
+    delete:
+      tags:
+        - tesst
+      summary: Delete form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: tenant_id
+          description: Tenant ID
+          schema:
+            type: string
+        - in: path
+          name: form_id
+          description: Form ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    
+  /api/116bfcd8-bd03-48ba-80a6-46fd5c803304/de92d603-c7e6-4d99-b0be-3550f808be4d/:
+    post:
+      tags:
+        - erer
+      summary: Add form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/erer'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/erer'
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - erer
+      summary: Update form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/erer'
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    get:
+      tags: 
+        - erer
+      summary: Get form data
+      produces: 
+        - application/json
+      parameters:
+      - in: path
+        name: tenant_id
+        description: Form and data storage identifier
+        schema:
+        type: string
+      - in: path
+        name: form_id
+        description: Form identifier
+        schema:
+        type: string
+      - in: body
+        required: false
+        schema:
+          $ref: '#/definitions/erer'
+      responses:
+        '201':
+          description: Success
+    delete:
+      tags:
+        - erer
+      summary: Delete form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: tenant_id
+          description: Tenant ID
+          schema:
+            type: string
+        - in: path
+          name: form_id
+          description: Form ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    
+  /api/116bfcd8-bd03-48ba-80a6-46fd5c803304/5a0d822a-0ec7-4bf5-bd39-5e7fc8d974ff/:
+    post:
+      tags:
+        - rerer
+      summary: Add form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/rerer'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/rerer'
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - rerer
+      summary: Update form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/rerer'
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    get:
+      tags: 
+        - rerer
+      summary: Get form data
+      produces: 
+        - application/json
+      parameters:
+      - in: path
+        name: tenant_id
+        description: Form and data storage identifier
+        schema:
+        type: string
+      - in: path
+        name: form_id
+        description: Form identifier
+        schema:
+        type: string
+      - in: body
+        required: false
+        schema:
+          $ref: '#/definitions/rerer'
+      responses:
+        '201':
+          description: Success
+    delete:
+      tags:
+        - rerer
+      summary: Delete form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: tenant_id
+          description: Tenant ID
+          schema:
+            type: string
+        - in: path
+          name: form_id
+          description: Form ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    
+  /api/116bfcd8-bd03-48ba-80a6-46fd5c803304/c2fd39ad-33db-4aa6-8524-a5ae8adb2d8b/:
+    post:
+      tags:
+        - asaas
+      summary: Add form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/asaas'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/asaas'
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - asaas
+      summary: Update form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/asaas'
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    get:
+      tags: 
+        - asaas
+      summary: Get form data
+      produces: 
+        - application/json
+      parameters:
+      - in: path
+        name: tenant_id
+        description: Form and data storage identifier
+        schema:
+        type: string
+      - in: path
+        name: form_id
+        description: Form identifier
+        schema:
+        type: string
+      - in: body
+        required: false
+        schema:
+          $ref: '#/definitions/asaas'
+      responses:
+        '201':
+          description: Success
+    delete:
+      tags:
+        - asaas
+      summary: Delete form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: tenant_id
+          description: Tenant ID
+          schema:
+            type: string
+        - in: path
+          name: form_id
+          description: Form ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    
+  /api/116bfcd8-bd03-48ba-80a6-46fd5c803304/b0156e87-447b-4e46-8c41-33fdf7210d50/:
+    post:
+      tags:
+        - as
+      summary: Add form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/as'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/as'
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - as
+      summary: Update form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/as'
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    get:
+      tags: 
+        - as
+      summary: Get form data
+      produces: 
+        - application/json
+      parameters:
+      - in: path
+        name: tenant_id
+        description: Form and data storage identifier
+        schema:
+        type: string
+      - in: path
+        name: form_id
+        description: Form identifier
+        schema:
+        type: string
+      - in: body
+        required: false
+        schema:
+          $ref: '#/definitions/as'
+      responses:
+        '201':
+          description: Success
+    delete:
+      tags:
+        - as
+      summary: Delete form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: tenant_id
+          description: Tenant ID
+          schema:
+            type: string
+        - in: path
+          name: form_id
+          description: Form ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    
+  /api/116bfcd8-bd03-48ba-80a6-46fd5c803304/7b3ba867-e7a0-4dd0-808f-3f9cc2c43da1/:
+    post:
+      tags:
+        - terere
+      summary: Add form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/terere'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/terere'
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - terere
+      summary: Update form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/terere'
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    get:
+      tags: 
+        - terere
+      summary: Get form data
+      produces: 
+        - application/json
+      parameters:
+      - in: path
+        name: tenant_id
+        description: Form and data storage identifier
+        schema:
+        type: string
+      - in: path
+        name: form_id
+        description: Form identifier
+        schema:
+        type: string
+      - in: body
+        required: false
+        schema:
+          $ref: '#/definitions/terere'
+      responses:
+        '201':
+          description: Success
+    delete:
+      tags:
+        - terere
+      summary: Delete form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: tenant_id
+          description: Tenant ID
+          schema:
+            type: string
+        - in: path
+          name: form_id
+          description: Form ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    
+  /api/116bfcd8-bd03-48ba-80a6-46fd5c803304/6aa9d116-4f9b-4614-9c67-d7a9ecd3f9b7/:
+    post:
+      tags:
+        - uplload3
+      summary: Add form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/uplload3'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/uplload3'
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - uplload3
+      summary: Update form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/uplload3'
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    get:
+      tags: 
+        - uplload3
+      summary: Get form data
+      produces: 
+        - application/json
+      parameters:
+      - in: path
+        name: tenant_id
+        description: Form and data storage identifier
+        schema:
+        type: string
+      - in: path
+        name: form_id
+        description: Form identifier
+        schema:
+        type: string
+      - in: body
+        required: false
+        schema:
+          $ref: '#/definitions/uplload3'
+      responses:
+        '201':
+          description: Success
+    delete:
+      tags:
+        - uplload3
+      summary: Delete form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: tenant_id
+          description: Tenant ID
+          schema:
+            type: string
+        - in: path
+          name: form_id
+          description: Form ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    
+  /api/116bfcd8-bd03-48ba-80a6-46fd5c803304/9a44290a-136e-4b88-9710-dc52f810269d/:
+    post:
+      tags:
+        - upload
+      summary: Add form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/upload'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/upload'
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - upload
+      summary: Update form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/upload'
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    get:
+      tags: 
+        - upload
+      summary: Get form data
+      produces: 
+        - application/json
+      parameters:
+      - in: path
+        name: tenant_id
+        description: Form and data storage identifier
+        schema:
+        type: string
+      - in: path
+        name: form_id
+        description: Form identifier
+        schema:
+        type: string
+      - in: body
+        required: false
+        schema:
+          $ref: '#/definitions/upload'
+      responses:
+        '201':
+          description: Success
+    delete:
+      tags:
+        - upload
+      summary: Delete form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: tenant_id
+          description: Tenant ID
+          schema:
+            type: string
+        - in: path
+          name: form_id
+          description: Form ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    
+  /api/116bfcd8-bd03-48ba-80a6-46fd5c803304/3036d373-9e00-49c4-b405-ba78f80f05a0/:
+    post:
+      tags:
+        - upload2
+      summary: Add form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/upload2'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/upload2'
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - upload2
+      summary: Update form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/upload2'
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    get:
+      tags: 
+        - upload2
+      summary: Get form data
+      produces: 
+        - application/json
+      parameters:
+      - in: path
+        name: tenant_id
+        description: Form and data storage identifier
+        schema:
+        type: string
+      - in: path
+        name: form_id
+        description: Form identifier
+        schema:
+        type: string
+      - in: body
+        required: false
+        schema:
+          $ref: '#/definitions/upload2'
+      responses:
+        '201':
+          description: Success
+    delete:
+      tags:
+        - upload2
+      summary: Delete form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: tenant_id
+          description: Tenant ID
+          schema:
+            type: string
+        - in: path
+          name: form_id
+          description: Form ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    
+  /api/116bfcd8-bd03-48ba-80a6-46fd5c803304/586c5da2-7468-4b1a-9dff-636a09cd0979/:
+    post:
+      tags:
+        - two uploads
+      summary: Add form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/two uploads'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/two uploads'
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - two uploads
+      summary: Update form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/two uploads'
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    get:
+      tags: 
+        - two uploads
+      summary: Get form data
+      produces: 
+        - application/json
+      parameters:
+      - in: path
+        name: tenant_id
+        description: Form and data storage identifier
+        schema:
+        type: string
+      - in: path
+        name: form_id
+        description: Form identifier
+        schema:
+        type: string
+      - in: body
+        required: false
+        schema:
+          $ref: '#/definitions/two uploads'
+      responses:
+        '201':
+          description: Success
+    delete:
+      tags:
+        - two uploads
+      summary: Delete form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: tenant_id
+          description: Tenant ID
+          schema:
+            type: string
+        - in: path
+          name: form_id
+          description: Form ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    
+definitions:
+  tesst:
+    type: object
+    properties:
+      tesst:
+        type: object
+        properties:
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+  erer:
+    type: object
+    properties:
+      erer:
+        type: object
+        properties:
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+  rerer:
+    type: object
+    properties:
+      rerer:
+        type: object
+        properties:
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+  asaas:
+    type: object
+    properties:
+      asaas:
+        type: object
+        properties:
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+  as:
+    type: object
+    properties:
+      as:
+        type: object
+        properties:
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+  terere:
+    type: object
+    properties:
+      terere:
+        type: object
+        properties:
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+  uplload3:
+    type: object
+    properties:
+      uplload3:
+        type: object
+        properties:
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+  upload:
+    type: object
+    properties:
+      upload:
+        type: object
+        properties:
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+  upload2:
+    type: object
+    properties:
+      upload2:
+        type: object
+        properties:
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+  two uploads:
+    type: object
+    properties:
+      two uploads:
+        type: object
+        properties:
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox1:
+            type: string

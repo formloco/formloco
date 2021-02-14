@@ -1,0 +1,61 @@
+<div>
+  <img src="assets/logo/wave-logo.png" width="190px">
+</div>
+<div *ngIf="!isLogin">
+  <div fxLayout="column">
+    <img src="assets/logo/parrot-sitting.svg" height="200">
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <div class="padding">Please sign in to access this connector.</div>
+      <div>
+        <button mat-flat-button color="light-green" (click)="signin()">Sign In</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="isLogin" class="padding-top">
+  <form [formGroup]="waveForm" (ngSubmit)="save()">
+    <div fxLayout="column" fxLayoutGap="10px">
+      <mat-form-field appearance="outline">
+        <mat-label>Client ID</mat-label>
+        <input matInput placeholder="Name" formControlName="client_id" type="text" required>
+        <mat-error>
+          Client ID is required!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Client Secret</mat-label>
+        <input matInput placeholder="Password" formControlName="client_secret" type="password" required>
+        <mat-error>
+          Client secret required!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Full Access Token</mat-label>
+        <input matInput placeholder="Full Access Token" formControlName="full_access_token" type="text" required>
+        <mat-error>
+          Full Access Token required!
+        </mat-error>
+      </mat-form-field>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Actions</mat-label>
+          <mat-select formControlName="actions" multiple required>
+            <mat-optgroup *ngFor="let group of actionGroup" [label]="group.name">
+              <mat-option class="pad20" *ngFor="let action of group.action" [value]="action.value">
+                {{action.viewValue}}
+              </mat-option>
+            </mat-optgroup>
+          </mat-select>
+          <mat-error>
+            At least one action is required!
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row">
+        <button mat-raised-button [disabled]="!waveForm.valid" i18n color="primary" type="submit">
+          Save
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

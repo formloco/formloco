@@ -1,0 +1,71 @@
+.integration-menu-container {
+  width: 250px;
+  max-width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.connection-container {
+  padding-top: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.seleted-connection {
+  min-width: 100%;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+  cursor: pointer;
+  color: #FEB45E;
+  background: #e6f1f5;
+}
+
+.unseleted-connection {
+  cursor: pointer;
+  background: white;
+}
+
+.menu-background {
+  background: rgb(72,72,72);
+}
+
+.menu {
+  height: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  background: rgb(72,72,72);
+}
+
+.design-sub-title {
+  margin-top: 9px;
+  padding-bottom: 9px;
+  color: white;
+  font-size: 16px;
+}
+
+.form-list {
+  border: solid 1px #ccc;
+  min-height: 60px;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+}
+
+.form-box {
+  padding: 10px 10px;
+  border-bottom: solid 1px #ccc;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: pointer;
+  background: rgb(72,72,72);
+  font-size: 14px;
+}

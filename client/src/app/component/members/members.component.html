@@ -1,0 +1,59 @@
+<div fxLayout="column" class="members-padding">
+  <div fxLayout="row">
+    <mat-form-field fxFlex="50">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row">
+    <table mat-table [dataSource]="dataSource" matSort fxFlex>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Member Email</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.email }}
+          <br>
+          <span *ngIf="element.date_accepted_invite" class="mat-caption">Given access: {{ element.date_accepted_invite | date }} </span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Role</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field *ngIf="element.role !== 'Owner'" floatLabel="never">
+            <mat-select (selectionChange)="updateRole($event.value, element)" [value]="element.role">
+              <mat-option value="Admin">Admin</mat-option>
+              <mat-option value="Reporter">Reporter</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <span *ngIf="element.role === 'Owner'">Owner</span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.status }}
+          <br>
+          <span class="mat-caption">Date Invited: {{element.date_created | date}} </span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="resend">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element; let i = index">
+          <button mat-stroked-button color="primary" (click)="emailInvite(element)" matTooltip="Re-send invite">
+            <mat-icon>send</mat-icon>&nbsp;&nbsp;
+            Re-send Invite
+          </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="controls">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <button mat-icon-button color="alert" (click)="delete(i)">
+              <mat-icon>delete_outline</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>

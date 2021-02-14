@@ -1,0 +1,18 @@
+<div class="setting-padding" fxLayout="row" fxLayoutGap="20px">
+  <mat-icon *ngIf="builderService.showControls" class="icon2times-start" (click)="builderService.deleteControl(index)">close</mat-icon>
+  <mat-form-field appearance="{{builderService.canvasFormControls.details[index].lat.appearance}}" fxFlex>
+    <mat-label>
+      {{builderService.canvasFormControls.details[index].lat.label}}
+    </mat-label>
+    <input matInput [type]="builderService.canvasFormControls.details[index].lat.types" [placeholder]="builderService.canvasFormControls.details[index].lat.placeholder">
+  </mat-form-field>
+  <mat-form-field appearance="{{builderService.canvasFormControls.details[index].long.appearance}}" fxFlex>
+    <mat-label>
+      {{builderService.canvasFormControls.details[index].long.label}}
+    </mat-label>
+    <input matInput [type]="builderService.canvasFormControls.details[index].long.types" [placeholder]="builderService.canvasFormControls.details[index].long.placeholder">
+  </mat-form-field>
+  <div class="padding-left-40" fxLayoutGap="40px">
+    <mat-icon *ngIf="builderService.showControls" class="icon2times-end">drag_indicator</mat-icon>
+  </div>
+</div>

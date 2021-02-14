@@ -1,0 +1,31 @@
+<form *ngIf="isForm" [formGroup]="labelForm">
+  <div fxLayout="column">
+    <div fxLayout="row">
+      <div class="detail-box-title" fxLayoutAlign="start center" fxFlex>
+        Label
+      </div>
+      <div fxLayoutAlign="end center">
+        <mat-icon class="icon-pointer" (click)="deleteControl()" color="warn">
+          delete_outline
+        </mat-icon>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" fxLayoutGap="10px">
+    <mat-form-field fxFlex>
+      <mat-label>Label</mat-label>
+      <input (change)="setLabel()" matInput formControlName="label" type="text" required>
+    </mat-form-field>
+    <mat-form-field fxFlex>
+      <mat-label>Font Size</mat-label>
+      <mat-select (selectionChange)="setFont()" formControlName="fontClass" required>
+        <mat-option *ngFor="let font of fontClasses" [value]="font.value">
+          {{ font.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-error>
+        Font size required!
+      </mat-error>
+    </mat-form-field>
+  </div>
+</form>

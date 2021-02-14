@@ -1,0 +1,46 @@
+<div class="responsive-container">
+  <div *ngIf="appService.forms.length === 1">
+    <div fxLayout="column">
+      <img src="assets/logo/parrot-sitting.svg" height="169">
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <div class="padding">No data yet.
+          <br>Create a form to collect your data.</div>
+        <div>
+          <button class="create-form-btn" mat-flat-button color="light-green" (click)="this.appService.page = 'design'" matTooltip="Create Form">
+            <mat-icon>control_point</mat-icon>&nbsp;&nbsp;
+            <span class="menu-title">Create Form</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="row wrap" fxLayoutGap="30px" fxFlex>
+    <ng-container *ngFor="let formObj of appService.forms; let i=index">
+      <mat-card class="custom custom-background" *ngIf="i !== 0 && formObj.date_archived === undefined || i !== 0 && formObj.date_archived === null">
+        <div [ngClass]="(formObj.form.name.length < 24 ? 'add-padding':'')" fxLayout="column" class="form-title" fxLayoutAlign="center center">
+          {{formObj.form.name | truncate:[28, '...']}}
+        </div>
+        <div fxLayout="row">
+          <div class="icon-pointer left20" (click)="openData(formObj)">
+            <mat-icon class="card-icon">storage</mat-icon>
+            <div class="action-label-bg data-label">Data</div>
+          </div>
+          <div class="icon-pointer right20" (click)="api(formObj)">
+            <mat-icon class="card-icon">api</mat-icon>
+            <div class="action-label-bg api-label">API</div>
+          </div>
+        </div>
+        <div fxLayout="row">
+          <div class="icon-pointer left20" (click)="exportData(formObj)">
+            <mat-icon class="card-icon">cloud_download</mat-icon>
+            <div class="action-label-bg export-label">Export</div>
+          </div>
+          <div class="icon-pointer right10" (click)="importData(formObj)">
+            <mat-icon class="card-icon">cloud_upload</mat-icon>
+            <div class="action-label-bg import-label">Import</div>
+          </div>
+        </div>
+      </mat-card>
+    </ng-container>
+  </div>
+</div>

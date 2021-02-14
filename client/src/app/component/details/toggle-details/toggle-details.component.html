@@ -1,0 +1,64 @@
+<form [formGroup]="toggleForm">
+  <div fxLayout="column">
+    <div fxLayout="row">
+      <div class="detail-box-title" fxLayoutAlign="start center" fxFlex>
+        Toggle
+      </div>
+      <div fxLayoutAlign="end center" fxLayoutGap="10px">
+        <mat-icon class="icon-pointer" (click)="add()" color="primary">
+          add_circle_outline
+        </mat-icon>
+        <mat-icon *ngIf="!appService.isData" class="icon-pointer" (click)="deleteControl()" color="warn">
+          delete_outline
+        </mat-icon>
+      </div>
+    </div>
+    <mat-form-field fxFlex>
+      <mat-label>Label</mat-label>
+      <input (change)="setLabel()" matInput formControlName="label" type="text">
+    </mat-form-field>
+    <div *ngIf="isDetail" formArrayName="toggleArray">
+      <div fxLayout="column" fxLayoutGap="10px">
+        <div *ngFor="let toggle of toggleForm.get('toggleArray')?.controls; let i=index">
+          <div class="detail-box" [formGroupName]="i">
+            <div fxLayout="row">
+              <mat-form-field fxFlex>
+                <mat-label>Label</mat-label>
+                <input (change)="setToggleLabel(i)" matInput formControlName="label" type="text" required>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row">
+              <mat-form-field fxFlex>
+                <mat-label>Label Position</mat-label>
+                <mat-select (selectionChange)="setLabelPosition(i)" matNativeControl formControlName="labelPosition" required>
+                  <mat-option value="after">After</mat-option>
+                  <mat-option value="before">Before</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <label>Required?</label>
+            <div class="top-10px" fxLayout="row">
+              <mat-radio-group formControlName="required" fxLayoutGap="10px">
+                <mat-radio-button [value]="true" (click)="setRequired(true,i)">
+                  True
+                </mat-radio-button>
+                <mat-radio-button [value]="false" (click)="setRequired(false,i)">
+                  False
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <mat-form-field *ngIf="toggleRequired[i]" class="top-15px" fxFlex>
+              <mat-label>Error Message</mat-label>
+              <input (change)="setError()" formControlName="error" matInput type="text">
+            </mat-form-field>
+            <div fxLayout="row" fxLayoutAlign="end">
+              <mat-icon *ngIf="!appService.isData" class="icon-pointer" (click)="delete(i)" color="warn">
+                delete_outline
+              </mat-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

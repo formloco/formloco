@@ -1,0 +1,11 @@
+<div class="setting-fileupload-padding" fxLayout="row" fxLayoutAlign="space-between center">
+  <mat-icon class="icon2times" (click)="builderService.deleteDetails()">
+    <span *ngIf="builderService.showControls">close</span>&nbsp;
+  </mat-icon>
+  <mat-icon *ngIf="builderService.showControls" class="icon2times">drag_indicator</mat-icon>
+</div>
+<div class="setting-dropzone-padding">
+  <ngx-dropzone class="custom-dropzone" [disabled]="true">
+    <ngx-dropzone-label>Drop file(s) or click to select for upload</ngx-dropzone-label>
+  </ngx-dropzone>
+</div>

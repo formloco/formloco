@@ -1,0 +1,23 @@
+<mat-accordion class="example-headers-align">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon class="icon2times-label-start" (click)="builderService.deleteControl(index)">close</mat-icon>
+        <div class="connector-title">
+          <img src="assets/logo/formlocoshield.png" height="24"> &nbsp;{{microAppLabel}}&nbsp;Micro App
+        </div>
+      </mat-panel-title>
+      <mat-panel-description>
+        &nbsp;
+        <span>
+          <mat-icon class="right9" (click)="openHelp($event, 'connector')">help_outline</mat-icon>
+          <mat-icon class="icon2times-label-end">drag_indicator</mat-icon>
+        </span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="setting-padding">
+      <iframe style="border-width:0px" width="100%" height="200" src="https://template.formloco.com">
+      </iframe>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

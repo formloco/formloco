@@ -1,0 +1,49 @@
+<div class="share-container">
+  <div *ngIf="!isLogin">
+    <div fxLayout="column">
+      <img src="assets/logo/parrot-sitting.svg" height="200">
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <div class="padding">Please sign in to share your forms.</div>
+        <div>
+          <button mat-flat-button color="light-green" (click)="signin()">Sign In</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isLogin">
+    <div *ngIf="appService.page === 'share'" class="member-padding">
+      <div class="title">{{builderService.formObj.form.name}}</div>
+      <div *ngIf="appService.page === 'share'" class="mat-caption">Form created: {{builderService.formObj.date_created | date:'medium'}}</div>
+    </div>
+    <form [formGroup]="userForm">
+      <div fxLayout="column">
+        <mat-form-field appearance="outline">
+          <mat-label>Search for members or enter email to invite *</mat-label>
+          <input matInput type="email" placeholder="Search for members or enter email to invite *" formControlName="user" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let user of filteredUsers | async" [value]="user.email">
+              {{user.email}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Select a role</mat-label>
+          <mat-select formControlName="role">
+            <mat-option *ngFor="let role of roles" [value]="role.value">
+              {{ role.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div fxLayout="row">
+          <button *ngIf="builderService.formObj" mat-raised-button i18n (click)="inviteForm()" color="primary" [disabled]="!userForm.valid">
+            Send Email Invite
+          </button>
+          <button *ngIf="!builderService.formObj" mat-raised-button i18n (click)="inviteLibrary()" color="primary" [disabled]="!userForm.valid">
+            Send Email Invite
+          </button>
+        </div>
+      </div>
+    </form>
+    <app-members [members]=members></app-members>
+  </div>
+</div>

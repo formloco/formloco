@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="380" height="67" viewBox="0 0 380 67">
+  <defs>
+    <filter id="Rectangle_6" x="0" y="0" width="380" height="67" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.235"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Component_35_1" data-name="Component 35 – 1" transform="translate(9 7)">
+    <g id="Group_3" data-name="Group 3">
+      <g transform="matrix(1, 0, 0, 1, -9, -7)" filter="url(#Rectangle_6)">
+        <rect id="Rectangle_6-2" data-name="Rectangle 6" width="362" height="49" rx="5" transform="translate(9 7)" fill="#3e5c97"/>
+      </g>
+      <text id="Sign_in_with_Facebook" data-name="Sign in with Facebook" transform="translate(179 29)" fill="#fff" font-size="16" font-family="Muli-Bold, Muli" font-weight="700"><tspan x="-84.24" y="0">Sign in with Facebook</tspan></text>
+    </g>
+    <path id="Icon_awesome-facebook-square" data-name="Icon awesome-facebook-square" d="M19.049,2.25H2.286A2.286,2.286,0,0,0,0,4.536V21.3a2.286,2.286,0,0,0,2.286,2.286H8.822V16.332h-3V12.918h3v-2.6c0-2.96,1.762-4.595,4.461-4.595a18.176,18.176,0,0,1,2.644.23v2.9H14.438A1.707,1.707,0,0,0,12.513,10.7v2.217h3.276l-.524,3.414H12.513v7.253h6.536A2.286,2.286,0,0,0,21.335,21.3V4.536A2.286,2.286,0,0,0,19.049,2.25Z" transform="translate(13.001 11.294)" fill="#fff"/>
+  </g>
+</svg>

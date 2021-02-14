@@ -1,0 +1,34 @@
+<mat-accordion class="example-headers-align">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon class="icon2times-label-start" (click)="builderService.deleteControl(index)">close</mat-icon>
+        <div class="connector-title">
+          <img src="assets/logo/qrcode.png" height="24">&nbsp;QR Code
+        </div>
+      </mat-panel-title>
+      <mat-panel-description>
+        &nbsp;
+        <span>
+          <mat-icon class="right9" (click)="openHelp($event, 'connector')">help_outline</mat-icon>
+          <mat-icon class="icon2times-label-end">drag_indicator</mat-icon>
+        </span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div fxLayout="row" fxLayoutGap="20px">
+      <div fxLayout="column">
+        <ngx-qrcode 
+          [elementType]="elementType" 
+          [errorCorrectionLevel]="correctionLevel"
+          [value]="value">
+        </ngx-qrcode>
+      </div>
+      <div fxLayout="column" fxFlex>
+        <mat-form-field fxFlex>
+          <mat-label>Link URL</mat-label>
+          <input matInput placeholder="Link URL" [formControl]="linkURL" type="text">
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

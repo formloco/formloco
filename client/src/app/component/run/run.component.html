@@ -1,0 +1,107 @@
+<div [class.example-is-mobile]="mobileQuery.matches">
+  <form class="run-form-container" [formGroup]="runForm">
+    <span *ngIf="!appService.isAnonymous">
+      <div [ngClass]="(appService.isDesktop ? 'run-container':'')" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between center">
+        <div fxLayoutAlign="start center">
+          <h1 class="margin-10px">{{builderService.formObj?.form.name}}</h1>
+        </div>
+        <div *ngIf="appService.isDesktop" fxLayoutAlign="end center" fxLayoutGap="20px">
+          <button type="button" mat-stroked-button color="warn" (click)="close()">
+            Close
+          </button>
+          <button *ngIf="builderService.formObj.form.is_list" mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)=delete()>
+              <span>Delete List</span>
+            </button>
+          </mat-menu>
+          <button *ngIf="user === null && !builderService.formObj.form.is_list" mat-raised-button i18n (click)="save()" color="primary"
+            type="submit">
+            Save
+          </button>
+          <button *ngIf="user !== null && !builderService.formObj.form.is_list" mat-raised-button i18n (click)="saveCloud()" color="primary"
+            type="submit">
+            Save
+          </button>
+          <button *ngIf="builderService.formObj.is_data && !builderService.formObj.form.is_list" mat-raised-button i18n (click)="this.appService.page = 'data'"
+            color="primary" type="submit">
+            View Data
+          </button>
+        </div>
+        <div *ngIf="appService.isPhone" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between center">
+          <div fxLayoutAlign="end center" fxLayoutGap="20px">
+            <button type="button" mat-stroked-button color="warn" (click)="close()">
+              Close
+            </button>
+            <button *ngIf="user === null" mat-raised-button i18n (click)="save()" color="primary" type="submit">
+              Save
+            </button>
+            <button *ngIf="user !== null" mat-raised-button i18n (click)="saveCloud()" color="primary" type="submit">
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </span>
+    <span *ngIf="appService.isAnonymous">
+      <div [ngClass]="(appService.isDesktop ? 'run-container':'')" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between center">
+        <div fxLayoutAlign="start center">
+          <a href="https://form369.formloco.com">
+            <img src="assets/logo/formlocoshield.svg" height="50">
+          </a>
+          <div class="margin-10px" fxLayout="column">
+            <div class="title">{{builderService.formObj?.form.name}}</div>
+            <div class="mat-small">
+              Created by: {{ builderService.formObj?.user_created.email }}, {{ builderService.formObj?.date_created | date}}
+            </div>
+          </div>
+        </div>
+        <div fxLayoutAlign="end center" fxLayoutGap="20px">
+          <button type="button" mat-stroked-button color="warn" (click)="close()">
+            Close
+          </button>
+          <button mat-raised-button i18n (click)="saveCloud()" color="primary" type="submit">
+            Save
+          </button>
+        </div>
+      </div>
+    </span>
+
+    <div *ngFor="let control of builderService.controlArray; let i=index">
+      <div [ngSwitch]="control.type">
+        <app-label-run *ngSwitchCase="'Label'" [index]=i></app-label-run>
+        <app-quill-run *ngSwitchCase="'Editor'" [index]=i></app-quill-run>
+        <app-fileupload-run *ngSwitchCase="'File Upload'" [index]=i></app-fileupload-run>
+        <app-gps-run *ngSwitchCase="'GPS'" [runForm]="runForm" [index]=i></app-gps-run>
+        <app-textbox-run *ngSwitchCase="'Textbox'" [runForm]="runForm" [index]=i>
+        </app-textbox-run>
+        <app-textarea-run *ngSwitchCase="'Textarea'" [runForm]="runForm" [index]=i>
+        </app-textarea-run>
+        <app-checkbox-run *ngSwitchCase="'Checkbox'" [runForm]="runForm" [index]=i>
+        </app-checkbox-run>
+        <app-radio-run *ngSwitchCase="'Radio'" [runForm]="runForm" [index]=i>
+        </app-radio-run>
+        <app-select-run *ngSwitchCase="'Select'" [runForm]="runForm" [index]=i>
+        </app-select-run>
+        <app-select-run *ngSwitchCase="'SelectMulti'" [runForm]="runForm" [index]=i>
+        </app-select-run>
+        <app-slider-run *ngSwitchCase="'Slider'" [runForm]="runForm" [index]=i>
+        </app-slider-run>
+        <app-toggle-run *ngSwitchCase="'Toggle'" [runForm]="runForm" [index]=i>
+        </app-toggle-run>
+        <app-barcode-run *ngSwitchCase="'BarCode'" [runForm]="runForm" [index]=i>
+        </app-barcode-run>
+        <app-qrcode-run *ngSwitchCase="'QRCode'" [runForm]="runForm" [index]=i>
+        </app-qrcode-run>
+        <app-scanner-barcode-run *ngSwitchCase="'BarCodeScanner'" [runForm]="runForm" [index]=i>
+        </app-scanner-barcode-run>
+        <app-scanner-qrcode-run *ngSwitchCase="'QRCodeScanner'" [runForm]="runForm" [index]=i>
+        </app-scanner-qrcode-run>
+        <app-list-run *ngSwitchCase="'List'" [runForm]="runForm" [index]=i></app-list-run>
+        <app-micro-app-run *ngSwitchCase="'MicroApp'" [index]=i></app-micro-app-run>
+      </div>
+    </div>
+  </form>
+</div>
