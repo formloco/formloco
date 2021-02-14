@@ -2,7 +2,7 @@
 
 formloco is zero to low-code project for the creation, sharing and analysis of data. formloco can host your data for you or you can deploy the system to run against your own database. The frontend is designed to be easily branded and integrated into other systems.
 
-See it in aaction here: https://form369.formloco.com
+See it in action here: https://form369.formloco.com
 
 ## Deployment
 
