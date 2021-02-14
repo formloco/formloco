@@ -15,8 +15,9 @@ For information on how to deploy formloco to your own server or cloud service ch
 ## Docs
 
 formloco: https://github.com/formloco/formloco/wiki
-Micro Services: https://github.com/formloco/formloco/wiki/Micro-Services
-​
+
+Server: https://github.com/formloco/formloco/wiki/Micro-Services
+
 ## License & copyright
 
 Licensed under the [MIT License](LICENSE).
