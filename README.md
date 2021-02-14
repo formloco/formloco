@@ -14,7 +14,7 @@ For information on how to deploy formloco to your own server or cloud service ch
 
 ## Connect formloco
 
-formloco ships with `Connectors` that are used to setup connections to other application API's, such as QuickBooks, Xero, Microsoft Business Central and others. For more information on how to configure existing connectors or how to add your own check out https://github.com/formloco/formloco/wiki/Software-Development-Guide.
+formloco ships with `Connectors` that are used to setup connections to other application API's, such as QuickBooks, Xero, Microsoft Business Central and others. For more information on how to configure existing connectors or how to add your own check out https://github.com/formloco/formloco/wiki/Connectors.
 
 ## Rebrand formloco
 
