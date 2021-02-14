@@ -22,7 +22,7 @@ formloco ships with drag-n-drop designer containing these component types: `Form
 
 ## Connect formloco
 
-formloco ships with `Connectors` that are used to setup connections to other API's, such as QuickBooks, Xero, Microsoft Business Central and others. For more information on how to configure existing connectors or how to add your own check out https://github.com/formloco/formloco/wiki/Software-Development-Guide.
+formloco ships with `Connectors` that are used to setup connections to other application API's, such as QuickBooks, Xero, Microsoft Business Central and others. For more information on how to configure existing connectors or how to add your own check out https://github.com/formloco/formloco/wiki/Software-Development-Guide.
 
 ## Docs
 
