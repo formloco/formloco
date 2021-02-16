@@ -59,7 +59,6 @@ export class LayoutComponent {
   }
 
   toggleTheme(event) {
-console.log(this.appService.isDarkMode)
     let darkClassName = '';
 
     if (this.appService.isDarkMode === true)

@@ -3,8 +3,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AppService } from "../../../service/app.service";
-import { MsalService } from '@azure/msal-angular';
-import { AuthService as AuthSocialService } from "angularx-social-login";
+// import { MsalService } from '@azure/msal-angular';
+// import { AuthService as AuthSocialService } from "angularx-social-login";
 
 
 
@@ -22,20 +22,21 @@ export class PhoneNavigationComponent implements OnInit {
   constructor(
     private router: Router,
     public appService: AppService,
-    private authMsalService: MsalService,
-    private authSocialService: AuthSocialService) { }
+    // private authMsalService: MsalService,
+    // private authSocialService: AuthSocialService
+  ) { }
 
   ngOnInit(): void {
     this.appService.authProvider = localStorage.getItem('authProvider');
   }
 
-  logoutAzure() {
-    this.authMsalService.logout();
-  }
+  // logoutAzure() {
+  //   this.authMsalService.logout();
+  // }
 
-  logoutSocialMedia() {
-    this.authSocialService.signOut();
-  }
+  // logoutSocialMedia() {
+  //   this.authSocialService.signOut();
+  // }
 
   signout() {
     localStorage.removeItem('formToken');

@@ -28,8 +28,8 @@ export class AppComponent implements OnInit {
     /**
      * left here for dev purposes
      */
-    // this.appService.isPhone = true;
-    // this.appService.isDesktop = false;
+    this.appService.isPhone = true;
+    this.appService.isDesktop = false;
 
     // this.appService.isPhone = false;
     // this.appService.isDesktop = true;
