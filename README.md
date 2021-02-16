@@ -1,18 +1,29 @@
 # formloco
 
-formloco is zero to low-code project for the creation, sharing and analysis of data. formloco can host your data for you or you can deploy the system to run against your own database. The frontend is designed to be easily branded and integrated into other systems.
+formloco is zero to low-code project for the creation, connecting and sharing of data. formloco can host your data for you or you can deploy the system to run against your own database. The frontend is designed to be easily branded and integrated into other systems.
 
-https://form369.formloco.com
+See it in action here: https://form369.formloco.com
 
 ## Deployment
 
-The fastest way to get up and running is to copy the `/dist/forms` folder into a web server directory. The app will run when you hit the web url in your browser.
+The fastest way to get up and running is to copy the `client repository /dist/forms` folder into a web server directory. The app will run using thee formloco cloud API when you hit the web url in your browser.
 
-The formloco frontend is written in Angular, you can fork or clone the repo to your local machine and use the Angular CLI to run it at `localhost:4200`.
-
-Both these scenarios will run against the formloco API by default.
+If you would like to run the project on your computer, you can fork or clone the `client repository` and use the Angular CLI to run it at `localhost:4200`.
 
 For information on how to deploy formloco to your own server or cloud service check out https://github.com/formloco/formloco/wiki/Deployment.
+
+## Connect formloco
+
+formloco ships with `Connectors` that are used to setup connections to other application API's, such as QuickBooks, Xero, Microsoft Business Central and others. For more information on how to configure existing connectors or how to add your own check out https://github.com/formloco/formloco/wiki/Connectors.
+
+## Rebrand formloco
+
+formloco is built to be rebranded or customized in any way. check out https://github.com/formloco/formloco/wiki/Software-Development-Guide. 
+
+## Extend formloco
+
+formloco ships with drag-n-drop designer containing these component types: `Form Controls, IoT Widgets and Micro Apps`. For more information on how to add your own form control, IoT widget or Micro App check out https://github.com/formloco/formloco/wiki/Software-Development-Guide.
+
 
 ## Docs
 
