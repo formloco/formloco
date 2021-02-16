@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Router } from '@angular/router';
 
@@ -6,12 +6,16 @@ import { AppService } from "../../../service/app.service";
 import { MsalService } from '@azure/msal-angular';
 import { AuthService as AuthSocialService } from "angularx-social-login";
 
+
+
 @Component({
   selector: 'app-phone-navigation',
   templateUrl: './phone-navigation.component.html',
   styleUrls: ['./phone-navigation.component.scss']
 })
 export class PhoneNavigationComponent implements OnInit {
+
+  @Output() toggleTheme = new EventEmitter();
 
   isDarkMode;
   
@@ -42,9 +46,8 @@ export class PhoneNavigationComponent implements OnInit {
     location.reload();
   }
 
-  changeTheme() {
-    let theme = 'light-theme';
-    if (!this.isDarkMode) theme = 'dark-theme';
+  changeTheme(event) {
+    this.toggleTheme.emit(event);
   }
 
 }

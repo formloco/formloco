@@ -288,14 +288,20 @@ export class CanvasComponent implements OnChanges {
     saveAs(blob, 'template.json');
   }
 
-  copyUrl() {
-    let link = this.linkUrl+'form?form_id='+this.builderService.formObj["form_id"]+'&tenant_id='+this.builderService.formObj["tenant_id"]
+  copyUrl(type) {
+    // let link = ''
+    // let url = this.builderService.formObj["form_id"]+'&tenant_id='+this.builderService.formObj["tenant_id"]
+    // if (type === 'preview')
+    //   link = this.linkUrl+'link?form_id='+url;
+    // else
+    //   link = this.linkUrl+'form?form_id='+url;
+
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
     selBox.style.top = '0';
     selBox.style.opacity = '0';
-    selBox.value = link;
+    // selBox.value = link;
     document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();

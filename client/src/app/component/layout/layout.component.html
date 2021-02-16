@@ -2,6 +2,10 @@
   <app-navigation (toggleTheme)="toggleTheme(event)"></app-navigation>
   <app-desktop></app-desktop>
 </span>
-<app-phone *ngIf="appService.isPhone"></app-phone>
+<span *ngIf="appService.isPhone">
+  <app-phone-navigation (toggleTheme)="toggleTheme(event)"></app-phone-navigation>
+  <app-phone></app-phone>
+</span>
+
 
 

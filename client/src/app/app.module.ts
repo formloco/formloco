@@ -43,7 +43,7 @@ const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigato
     ComponentModule,
     MsalModule.forRoot({
       auth: {
-        clientId: '6d11c090-0684-4430-b545-0c0755f05b51',
+        clientId: '####################################',
         authority: 'https://login.microsoftonline.com/common/',
         redirectUri: 'https://form369.formloco.com',
       },

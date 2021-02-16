@@ -30,7 +30,7 @@ import { WelcomeComponent } from '../dialogs/welcome/welcome.component';
 export class NavigationComponent implements OnInit {
 
   @Output() toggleTheme = new EventEmitter();
-  @HostBinding('class') className = '';
+  // @HostBinding('class') className = '';
 
   user;
   token;
@@ -156,10 +156,6 @@ export class NavigationComponent implements OnInit {
 
   changeTheme(event) {
     this.toggleTheme.emit(event);
-    let obj = [this.appService.isDarkMode]
-    // this.idbCrudService.put('prefs', obj).subscribe(prefs => {
-    //   console.log('got back')
-    // });
   }
 
 }

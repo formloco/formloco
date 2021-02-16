@@ -5,9 +5,9 @@
 export const environment = {
   production: false,
   authUrl:      'https://bluerockmicro.com/auth/',
-  userUrl:     'https://bluerockmicro.com/user/',
+  userUrl:      'https://bluerockmicro.com/user/',
   shareUrl:     'https://bluerockmicro.com/share/',
-  syncUrl:     'https://bluerockmicro.com/sync/',
+  syncUrl:      'https://bluerockmicro.com/sync/',
   apiUrl:       'https://bluerockmicro.com/api/',
   formUrl:      'https://bluerockmicro.com/form/',
   emailUrl:     'https://bluerockmicro.com/email/',

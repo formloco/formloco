@@ -12,7 +12,7 @@ const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigato
 function MSALConfigFactory(): Configuration {
   return {
     auth: {
-      clientId: '6d11c090-0684-4430-b545-0c0755f05b51',
+      clientId: '#####################################',
       authority: "https://login.microsoftonline.com/common/",
       validateAuthority: true,
       redirectUri: "http://localhost:4200/",

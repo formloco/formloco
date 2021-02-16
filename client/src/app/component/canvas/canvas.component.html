@@ -13,7 +13,7 @@
           <h2>{{builderService.canvasFormControls.name}}</h2>
         </div>
         <div fxLayoutGap="10px" fxLayoutAlign="end center" fxFlex>
-          <button type="button" mat-stroked-button color="warn" (click)="close()">
+          <button mat-stroked-button color="warn" (click)="close()">
             Close
           </button>
           <button *ngIf="builderService.showControls && !builderService.isPreview" mat-stroked-button color="primary" (click)=save()
@@ -25,13 +25,17 @@
             Save
           </button>
           <span *ngIf="builderService.formObj" fxLayoutGap="10px">
-            <button type="button" mat-stroked-button color="primary" (click)=copyUrl()>
+            <button mat-stroked-button color="primary" (click)="copyUrl('preview')">
               <mat-icon class="card-icon">link</mat-icon>
-              Design Link
+              Preview
             </button>
-            <button type="button" mat-stroked-button color="primary" (click)=run()>
+            <button mat-stroked-button color="primary" (click)="copyUrl('link')">
+              <mat-icon class="card-icon">link</mat-icon>
+              link
+            </button>
+            <button mat-stroked-button color="primary" (click)="run()">
               <mat-icon class="card-icon">dynamic_form</mat-icon>
-              Launch Form
+              Launch
             </button>
             <button mat-icon-button [matMenuTriggerFor]="menu">
               <mat-icon>more_vert</mat-icon>
