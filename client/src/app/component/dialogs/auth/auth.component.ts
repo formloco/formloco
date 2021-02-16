@@ -12,13 +12,14 @@ import { AuthService } from "../../../service/auth.service";
 import { EmailService } from "../../../service/email.service";
 import { SyncControlService } from "../../../service/sync-control.service";
 
-import { SocialUser } from "angularx-social-login";
-import { AuthService as AuthSocialService } from "angularx-social-login";
-import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+// import { SocialUser } from "angularx-social-login";
+// import { AuthService as AuthSocialService } from "angularx-social-login";
+// import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+// import { BroadcastService, MsalService } from '@azure/msal-angular';
 
 import { ErrorService } from "../../../service/error.service";
 import { SuccessService } from "../../../service/success.service";
-import { BroadcastService, MsalService } from '@azure/msal-angular';
+
 import { IdbCrudService } from "../../../service-idb/idb-crud.service";
 
 
@@ -31,7 +32,7 @@ import { environment } from '../../../../environments/environment';
 export class AuthComponent implements OnInit {
 
   auth;
-  socialUser: SocialUser;
+  // socialUser: SocialUser;
   azureUser;
   isForgotPassword: boolean = false;
 
@@ -47,10 +48,10 @@ export class AuthComponent implements OnInit {
     private authService: AuthService,
     private errorService: ErrorService,
     private emailService: EmailService,
-    private authMsalService: MsalService,
+    // private authMsalService: MsalService,
     private successService: SuccessService,
-    private broadcastService: BroadcastService,
-    private authSocialService: AuthSocialService,
+    // private broadcastService: BroadcastService,
+    // private authSocialService: AuthSocialService,
     private syncControlService: SyncControlService,
     public dialogRef: MatDialogRef<AuthComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -75,12 +76,12 @@ export class AuthComponent implements OnInit {
       obj = { email: this.emailSigninForm.value.email, password: this.emailSigninForm.value.password }
     }
     else if (provider === 'google') {
-      this.socialLogin(provider);
-      obj = obj = { email: this.socialUser.email, password: this.socialUser.id }
+      // this.socialLogin(provider);
+      // obj = obj = { email: this.socialUser.email, password: this.socialUser.id }
     }
     else if (provider === 'facebook') {
-      this.socialLogin(provider);
-      obj = obj = { email: this.socialUser.email, password: this.socialUser.id }
+      // this.socialLogin(provider);
+      // obj = obj = { email: this.socialUser.email, password: this.socialUser.id }
     }
     else if (provider === 'azure')
       obj = { user: this.azureUser, isAzure: true }
@@ -101,9 +102,9 @@ export class AuthComponent implements OnInit {
   }
 
   signupSocial(provider) {
-    this.socialLogin(provider);
-    let obj = { email: this.socialUser.email, password: this.socialUser.id }
-    this.signup(provider, obj);
+    // this.socialLogin(provider);
+    // let obj = { email: this.socialUser.email, password: this.socialUser.id }
+    // this.signup(provider, obj);
   }
 
   signup(provider, obj) {
@@ -125,16 +126,16 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  socialLogin(provider) {
-    if (provider === 'facebook')
-      this.authSocialService.signIn(FacebookLoginProvider.PROVIDER_ID);
-    if (provider === 'google')
-      this.authSocialService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  // socialLogin(provider) {
+  //   if (provider === 'facebook')
+  //     this.authSocialService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  //   if (provider === 'google')
+  //     this.authSocialService.signIn(GoogleLoginProvider.PROVIDER_ID);
 
-    this.authSocialService.authState.subscribe((user) => {
-      this.socialUser = user;
-    });
-  }
+  //   this.authSocialService.authState.subscribe((user) => {
+  //     this.socialUser = user;
+  //   });
+  // }
 
   setPage(type) {
     if (type === 'signin') this.data.isSignin = true;
@@ -162,16 +163,16 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  azure() {
-    this.authMsalService.loginPopup();
-    this.authMsalService.handleRedirectCallback((authError, response) => {
-      if (authError) {
-        return;
-      }
-      this.login('azure');
-      this.azureUser = response;
-    });
-  }
+  // azure() {
+  //   this.authMsalService.loginPopup();
+  //   this.authMsalService.handleRedirectCallback((authError, response) => {
+  //     if (authError) {
+  //       return;
+  //     }
+  //     this.login('azure');
+  //     this.azureUser = response;
+  //   });
+  // }
 
   setSession(provider) {
     this.appService.authProvider = provider;

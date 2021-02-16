@@ -10,8 +10,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { MsalModule, MsalInterceptor } from '@azure/msal-angular';
-import { SocialMediaAuthModule } from './social-media-auth.module';
+// import { MsalModule, MsalInterceptor } from '@azure/msal-angular';
+// import { SocialMediaAuthModule } from './social-media-auth.module';
 
 import { ComponentModule } from './component/component.module';
 
@@ -41,31 +41,31 @@ const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigato
     AppRoutingModule,
     BrowserAnimationsModule,
     ComponentModule,
-    MsalModule.forRoot({
-      auth: {
-        clientId: '####################################',
-        authority: 'https://login.microsoftonline.com/common/',
-        redirectUri: 'https://form369.formloco.com',
-      },
-      cache: {
-        cacheLocation: 'localStorage',
-        storeAuthStateInCookie: isIE, // set to true for IE 11
-      },
-    },
-    {
-      popUp: !isIE,
-      consentScopes: [
-        'user.read',
-        'openid',
-        'profile',
-      ],
-      unprotectedResources: [],
-      protectedResourceMap: [
-        ['Enter_the_Graph_Endpoint_Herev1.0/me', ['user.read']]
-      ],
-      extraQueryParameters: {}
-    }),
-    SocialMediaAuthModule,
+    // MsalModule.forRoot({
+    //   auth: {
+    //     clientId: '####################################',
+    //     authority: 'https://login.microsoftonline.com/common/',
+    //     redirectUri: 'https://form369.formloco.com',
+    //   },
+    //   cache: {
+    //     cacheLocation: 'localStorage',
+    //     storeAuthStateInCookie: isIE, // set to true for IE 11
+    //   },
+    // },
+    // {
+    //   popUp: !isIE,
+    //   consentScopes: [
+    //     'user.read',
+    //     'openid',
+    //     'profile',
+    //   ],
+    //   unprotectedResources: [],
+    //   protectedResourceMap: [
+    //     ['Enter_the_Graph_Endpoint_Herev1.0/me', ['user.read']]
+    //   ],
+    //   extraQueryParameters: {}
+    // }),
+    // SocialMediaAuthModule,
   ],
   providers: [
     AuthService,

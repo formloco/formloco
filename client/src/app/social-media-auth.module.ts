@@ -4,20 +4,20 @@ import { CommonModule } from '@angular/common';
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
 
-let config = new AuthServiceConfig([
-  {
-    id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider("##############################.apps.googleusercontent.com")
-  },
-  {
-    id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider("####################")
-  }
-]);
+// let config = new AuthServiceConfig([
+//   {
+//     id: GoogleLoginProvider.PROVIDER_ID,
+//     provider: new GoogleLoginProvider("##############################.apps.googleusercontent.com")
+//   },
+//   {
+//     id: FacebookLoginProvider.PROVIDER_ID,
+//     provider: new FacebookLoginProvider("####################")
+//   }
+// ]);
 
-export function provideConfig() {
-  return config;
-}
+// export function provideConfig() {
+//   return config;
+// }
 
 @NgModule({
   declarations: [],
@@ -26,10 +26,10 @@ export function provideConfig() {
     SocialLoginModule
   ],
   providers: [
-    {
-      provide: AuthServiceConfig,
-      useFactory: provideConfig
-    }
+    // {
+    //   provide: AuthServiceConfig,
+    //   useFactory: provideConfig
+    // }
   ],
 })
 export class SocialMediaAuthModule { }
