@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, HostBinding } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Router } from '@angular/router';
 
@@ -10,12 +10,12 @@ import { AuthComponent } from '../dialogs/auth/auth.component';
 import { ProfileComponent } from '../dialogs/profile/profile.component';
 
 import { AppService } from "../../service/app.service";
-import { MsalService } from '@azure/msal-angular';
+// import { MsalService } from '@azure/msal-angular';
 import { AuthService } from "../../service/auth.service";
 import { BuilderService } from "../../service/builder.service";
 import { SuccessService } from "../../service/success.service";
 
-import { AuthService as AuthSocialService } from "angularx-social-login";
+// import { AuthService as AuthSocialService } from "angularx-social-login";
 import { IdbCrudService } from "../../service-idb/idb-crud.service";
 
 import { environment } from '../../../environments/environment';
@@ -30,7 +30,6 @@ import { WelcomeComponent } from '../dialogs/welcome/welcome.component';
 export class NavigationComponent implements OnInit {
 
   @Output() toggleTheme = new EventEmitter();
-  @HostBinding('class') className = '';
 
   user;
   token;
@@ -55,12 +54,13 @@ export class NavigationComponent implements OnInit {
     private dialog: MatDialog,
     public appService: AppService,
     private authService: AuthService,
-    private authMsalService: MsalService,
+    // private authMsalService: MsalService,
     private builderService: BuilderService,
     private successService: SuccessService,
     private idbCrudService: IdbCrudService,
     private overlayContainer: OverlayContainer,
-    private authSocialService: AuthSocialService) { }
+    // private authSocialService: AuthSocialService
+  ) { }
 
   ngOnInit() {
     this.getUser();
@@ -92,13 +92,13 @@ export class NavigationComponent implements OnInit {
     });
   }
 
-  logoutAzure() {
-    this.authMsalService.logout();
-  }
+  // logoutAzure() {
+  //   this.authMsalService.logout();
+  // }
 
-  logoutSocialMedia() {
-    this.authSocialService.signOut();
-  }
+  // logoutSocialMedia() {
+  //   this.authSocialService.signOut();
+  // }
 
   signout() {
     localStorage.removeItem('formToken');
@@ -156,10 +156,6 @@ export class NavigationComponent implements OnInit {
 
   changeTheme(event) {
     this.toggleTheme.emit(event);
-    let obj = [this.appService.isDarkMode]
-    // this.idbCrudService.put('prefs', obj).subscribe(prefs => {
-    //   console.log('got back')
-    // });
   }
 
 }

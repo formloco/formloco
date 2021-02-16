@@ -1,5 +1,5 @@
 @import './form369';
-@import './quill.snow'; // altered to include dark mode
+// @import './quill.snow';
 @import "~@angular/material/theming";
 @include mat-core();
 
@@ -27,6 +27,7 @@ $angular-dark-theme: mat-dark-theme(
   )
 );
 .darkMode {
+  @import './quill.dark'; // altered to include dark mode
   @include angular-material-color($angular-dark-theme);
 }
 

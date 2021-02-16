@@ -11,11 +11,11 @@ import { Router } from '@angular/router';
 import { AppService } from "../../../service/app.service";
 import { AuthService } from "../../../service/auth.service";
 import { EmailService } from "../../../service/email.service";
-import { SocialUser } from "angularx-social-login";
-import { AuthService as AuthSocialService } from "angularx-social-login";
-import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 
-import { BroadcastService, MsalService } from '@azure/msal-angular';
+// import { SocialUser } from "angularx-social-login";
+// import { AuthService as AuthSocialService } from "angularx-social-login";
+// import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+// import { BroadcastService, MsalService } from '@azure/msal-angular';
 
 import { ErrorService } from "../../../service/error.service";
 
@@ -29,7 +29,7 @@ import { environment } from '../../../../environments/environment';
 export class PhoneAuthComponent implements OnInit {
 
   auth;
-  socialUser: SocialUser;
+  // socialUser: SocialUser;
   azureUser;
 
   // nav/component boolean controls
@@ -48,8 +48,9 @@ export class PhoneAuthComponent implements OnInit {
     private authService: AuthService,
     private errorService: ErrorService,
     private emailService: EmailService,
-    private authMsalService: MsalService,
-    private authSocialService: AuthSocialService) { 
+    // private authMsalService: MsalService,
+    // private authSocialService: AuthSocialService
+  ) { 
     this.emailSigninForm = this.fb.group({
       email:    ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.required]
@@ -97,27 +98,27 @@ export class PhoneAuthComponent implements OnInit {
   }
 
   socialLogin(provider) {
-    if (provider === 'facebook')
-      this.authSocialService.signIn(FacebookLoginProvider.PROVIDER_ID);
-    if (provider === 'google')
-      this.authSocialService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    // if (provider === 'facebook')
+    //   this.authSocialService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    // if (provider === 'google')
+    //   this.authSocialService.signIn(GoogleLoginProvider.PROVIDER_ID);
       
-    this.authSocialService.authState.subscribe((user) => {
-      this.socialUser = user;
-      this.login(provider);
-    });
+    // this.authSocialService.authState.subscribe((user) => {
+    //   this.socialUser = user;
+    //   this.login(provider);
+    // });
   }
 
-  azure() {
-    this.authMsalService.loginPopup();
-    this.authMsalService.handleRedirectCallback((authError, response) => {
-      if (authError) {
-        return;
-      }
-      this.login('azure');
-      this.azureUser = response;
-    });
-  }
+  // azure() {
+  //   this.authMsalService.loginPopup();
+  //   this.authMsalService.handleRedirectCallback((authError, response) => {
+  //     if (authError) {
+  //       return;
+  //     }
+  //     this.login('azure');
+  //     this.azureUser = response;
+  //   });
+  // }
 
   /** needs testing on object 
    * email provider works
@@ -127,13 +128,13 @@ export class PhoneAuthComponent implements OnInit {
       let obj = {};
       if (provider === 'google') {
         obj = {
-          user: this.socialUser,
+          // user: this.socialUser,
           isGoogle: true
         }
       } 
       else if (provider === 'facebook') {
         obj = {
-          user: this.socialUser,
+          // user: this.socialUser,
           isFacebook: true
         }
       }

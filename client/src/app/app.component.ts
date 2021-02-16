@@ -1,9 +1,5 @@
 import { Component,  OnDestroy, OnInit } from '@angular/core';
 
-import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
-
-import { Subscription } from 'rxjs';
-
 import { DeviceDetectorService } from 'ngx-device-detector';
 
 import { AppService } from "./service/app.service";
@@ -16,13 +12,10 @@ import { AuthService } from "./service/auth.service";
 })
 export class AppComponent implements OnInit {
 
-  themeSubscription: Subscription;
-
   token;
   loggedIn = false;
 
   constructor(
-    private dialog: MatDialog,
     public appService: AppService,
     private authService: AuthService,
     private deviceService: DeviceDetectorService) { }
@@ -43,7 +36,4 @@ export class AppComponent implements OnInit {
 
   }
 
-  ngOnDestroy() {
-    this.themeSubscription.unsubscribe();
-  }
 }
