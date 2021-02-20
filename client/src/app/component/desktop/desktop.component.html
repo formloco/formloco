@@ -1,6 +1,7 @@
-<mat-sidenav-container class="menu-container" autosize>
+<mat-sidenav-container class="menu-container">
   <mat-sidenav #sidenav [ngClass]="(appService.isMainMenu ? 'menu-open':'menu-icons')" mode="side" opened>
     <div fxLayout="row" class="toggle-close icon-pointer" (click)="toggleMainMenu()" fxLayoutAlign="end">
+      <div *ngIf="appService.isMainMenu" class="verison-text">build 3.4 - Feb 15, 2021</div>
       <mat-icon *ngIf="appService.isMainMenu">menu_open</mat-icon>
       <mat-icon *ngIf="!appService.isMainMenu">menu</mat-icon>
     </div>
@@ -65,8 +66,7 @@
           <mat-icon>import_export</mat-icon>Import Template
         </button>
         <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="importTrigger" [cdkConnectedOverlayOpen]="isImportOpen" (backdropClick)="closeOverlay()"
-          [cdkConnectedOverlayHasBackdrop]=true 
-          cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop">
+          [cdkConnectedOverlayHasBackdrop]=true cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop">
           <div class="link-overlay" fxLayout="column">
             <div class="files-padding">
               <ngx-dropzone class="custom-dropzone" accept="*" [multiple]="true" [maxFileSize]="200000" (change)="onSelect($event)">
@@ -143,4 +143,3 @@
     <app-connectors *ngIf="appService.page === 'connector'"></app-connectors>
   </mat-sidenav-content>
 </mat-sidenav-container>
-<app-footer></app-footer>

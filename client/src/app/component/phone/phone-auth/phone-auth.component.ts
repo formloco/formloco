@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnChanges, Input, Inject } from '@angular/core';
 
 import { Observable, of, pipe } from 'rxjs';
 import { switchMap, debounceTime, tap, catchError } from 'rxjs/operators';
@@ -26,11 +26,14 @@ import { environment } from '../../../../environments/environment';
   templateUrl: './phone-auth.component.html',
   styleUrls: ['./phone-auth.component.scss']
 })
-export class PhoneAuthComponent implements OnInit {
+export class PhoneAuthComponent implements OnChanges {
 
+  @Input() isDarkMode
   auth;
   // socialUser: SocialUser;
   azureUser;
+
+  canvasBackground = '#000000';
 
   // nav/component boolean controls
   isSignin: boolean = true;
@@ -64,7 +67,9 @@ export class PhoneAuthComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
+    if (this.isDarkMode) this.canvasBackground = '#000000';
+    else this.canvasBackground = '#ffffff';
   }
 
   signupEmail() {

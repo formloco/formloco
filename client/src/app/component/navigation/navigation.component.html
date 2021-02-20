@@ -2,7 +2,10 @@
   <div>
     <div class="top13">
       <a href="https://formloco.com">
-        <img src="assets/logo/WordmarkTagBadgeTransparent.svg" height="50">
+        <img *ngIf="!appService.isDarkMode" src="assets/logo/formlocologo.svg" height="40">
+        <img *ngIf="appService.isDarkMode" src="assets/logo/formlocologo-white.svg" height="40">
+  
+        <!-- <img src="assets/logo/WordmarkTagBadgeTransparent.svg" height="50"> -->
       </a>
     </div>
   </div>

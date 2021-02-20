@@ -19,6 +19,8 @@ export class LayoutComponent {
   prefs;
   formObj;
 
+  canvasBackground = '#000000';
+
   constructor(
     public appService: AppService,
     private idbCrudService: IdbCrudService,
@@ -26,7 +28,6 @@ export class LayoutComponent {
 
 
   ngOnInit(): void {
-
     this.idbCrudService.readAll('prefs').subscribe(prefs => {
       this.prefs = prefs;
       let darkClassName = '';
@@ -54,11 +55,16 @@ export class LayoutComponent {
       } else {
         this.overlayContainer.getContainerElement().classList.remove(darkClassName);
       }
+
+      if (this.appService.isDarkMode) this.canvasBackground = '#3b3b3b';
+      else this.canvasBackground = '#ffffff';
+
     });
 
   }
 
   toggleTheme(event) {
+    console.log(this.appService.isDarkMode)
     let darkClassName = '';
 
     if (this.appService.isDarkMode === true)
@@ -75,6 +81,9 @@ export class LayoutComponent {
       this.overlayContainer.getContainerElement().classList.add(darkClassName);
     else
       this.overlayContainer.getContainerElement().classList.remove('darkMode');
+
+    if (this.appService.isDarkMode) this.canvasBackground = '#3b3b3b';
+    else this.canvasBackground = '#ffffff';
 
   }
 

@@ -45,6 +45,7 @@ export class CanvasComponent implements OnChanges {
   @Input() dropForm;
   
   canvasForm: FormGroup;
+  myInnerHeight = window.innerHeight;
 
   id;
   obj;

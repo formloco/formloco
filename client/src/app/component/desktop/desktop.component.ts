@@ -47,6 +47,7 @@ export class DesktopComponent implements OnInit {
   isImportOpen = false;
   
   pinKeySecret = environment.pinKeySecret;
+  myInnerHeight = window.innerHeight;
 
   constructor(
     private dialog: MatDialog,
@@ -85,6 +86,8 @@ export class DesktopComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.myInnerHeight = this.myInnerHeight - 200;
+    console.log(window)
     this.builderService.showControls = true;
     if (this.formObj === undefined) {
       this.appService.page = 'form-library';

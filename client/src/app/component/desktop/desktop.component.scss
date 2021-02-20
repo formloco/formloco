@@ -1,3 +1,14 @@
+.mat-drawer-content {
+  height: 100vh;
+}
+
+.verison-text {
+  padding-top:7px;
+  padding-right:6px;
+  font-size: 11px;
+  color: #959595;
+}
+
 .cc {
   overflow-x: hidden
 }
@@ -33,12 +44,13 @@
   color: #FEB45E;
 }
 
-.menu-container {
-  position: relative;
-  height: 100%;
-  left: 0;
-  right: 0;
-}
+// .menu-container {
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+// }
 
 .menu-open {
   width: 170px;

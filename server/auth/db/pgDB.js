@@ -35,7 +35,7 @@ const loginAuthSQL = async (data) => {
   let response = await client.query(`SELECT id, password FROM public.user WHERE email = '` + data["email"] + `'`)
 
   client.release()
-  
+ 
   if (response.rowCount > 0) {
     let passwordIsValid = bcrypt.compareSync(data["password"], response.rows[0].password)
     if (!passwordIsValid)
@@ -46,7 +46,7 @@ const loginAuthSQL = async (data) => {
     })
 
     let shares = await client.query(`SELECT tenant_id, forms, role, is_tenant_share FROM public.share WHERE email = '` + data["email"] + `'`)
-     
+    
     let userShares = []
     let shareRoles = [] // setup shadow role array for sync placement
     for (let j = 0; j < shares.rows.length; j++) {
@@ -55,7 +55,9 @@ const loginAuthSQL = async (data) => {
       let clientTenant = await poolTenant.connect()
       // need to check if share status = Active
 
-      // if library share (is_tenant_share === true)
+      /** if library share (is_tenant_share === true), allll forms in library are shared
+       * if false only the selected form is shared
+      */
       if (shares.rows[j]["is_tenant_share"]) {
         let forms = await clientTenant.query(`SELECT * FROM public.form WHERE date_archived is null AND is_published is true`)
 
@@ -65,7 +67,7 @@ const loginAuthSQL = async (data) => {
         }
       }
       else {
-        let form = await clientTenant.query(`SELECT * FROM public.form WHERE date_archived is null AND is_published is true AND form_id = '`  + shares.rows[j]["forms"][i] + `'`)
+        let form = await clientTenant.query(`SELECT * FROM public.form WHERE date_archived is null AND is_published is true AND form_id = '`  + shares.rows[j]["forms"][0] + `'`)
         userShares.push(form)
         shareRoles.push(shares.rows[j]["role"])
       }

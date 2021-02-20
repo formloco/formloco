@@ -33,11 +33,11 @@ export class AuthService {
   }
 
   login(obj) {
-    return this._http.post(this.authUrl+'login', obj);
+    return this._http.post(this.authUrl, obj);
   }
 
   loginProvider(obj) {
-    return this._http.post(this.authUrl+'login/provider', obj);
+    return this._http.post(this.authUrl+'/provider', obj);
   }
 
   signupEmail(obj) {

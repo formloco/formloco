@@ -8,14 +8,15 @@ const { tempToken, authLogin, loginProvider, signupEmail, tokenRefresh } = requi
 const router = express.Router()
  
 //auth
+router.put('/token/refresh', VerifyToken, tokenRefresh)
+
 router.get('/token', tempToken)
 
-router.post('/login', authLogin)
+router.post('/', authLogin)
 
-router.post('/login/provider', loginProvider)
+router.post('/provider', loginProvider)
 
-router.post('/signup/email', signupEmail)
+router.post('/email', signupEmail)
 
-router.put('/token/refresh', VerifyToken, tokenRefresh)
 
 module.exports = router

@@ -34,7 +34,7 @@
               "./node_modules/quill/dist/quill.snow.css"
             ],
             "scripts": [],
-            "allowedCommonJsDependencies": ["ngx-quill","techiediaries-ngx-qrcode"]
+            "allowedCommonJsDependencies": ["ngx-quill","qrcode"]
           },
           "configurations": {
             "production": {

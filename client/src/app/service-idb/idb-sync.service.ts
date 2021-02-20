@@ -16,23 +16,23 @@ export class IdbSyncService {
   }
 
   createIdb(store, obj): Observable<void> {
-    return this.idbPersistenceService.create(store, obj);
+    return this.idbPersistenceService.put(store, obj);
   }
 
   deleteIdb(store, obj): Observable<void> {
-    return this.idbPersistenceService.create(store, obj);
+    return this.idbPersistenceService.put(store, obj);
   }
 
   syncForm(store, obj): Observable<void> {
-    return this.idbPersistenceService.create(store, obj);
+    return this.idbPersistenceService.put(store, obj);
   }
 
   syncData(store, obj): Observable<void> {
-    return this.idbPersistenceService.create(store, obj);
+    return this.idbPersistenceService.put(store, obj);
   }
 
   update(store, obj): Observable<void> {
-    return this.idbPersistenceService.update(store, obj);
+    return this.idbPersistenceService.put(store, obj);
   }
 
   read(store, key): Observable<void> {
