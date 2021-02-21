@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { DeviceDetectorService } from 'ngx-device-detector';
 
@@ -12,7 +12,7 @@ import { AuthService } from "./service/auth.service";
 })
 export class AppComponent implements OnInit {
 
-  @HostBinding('class') className = '';
+  // @HostBinding('class') className = '';
 
   token;
   prefs;

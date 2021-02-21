@@ -13,7 +13,7 @@ import { IdbCrudService } from "../../service-idb/idb-crud.service"
 })
 export class LayoutComponent {
 
-  @HostBinding('class') className = ''
+  @HostBinding('class') className = 'darkMode'
 
   token
   prefs
@@ -30,46 +30,45 @@ export class LayoutComponent {
 
     this.idbCrudService.readAll('prefs').subscribe(prefs => {
       this.prefs = prefs
-      let darkClassName = ''
+
+      let darkClassName = '';
 
       if (this.prefs.length === 0) {
-        this.appService.isDarkMode = true
-        this.pushClass('darkMode')
+        darkClassName = 'darkMode';
       }
       else {
-        this.appService.isDarkMode = false
-        this.pushClass('')
+        this.appService.isDarkMode = this.prefs[0]["dark_mode"];
+        if (this.appService.isDarkMode) darkClassName = 'darkMode';
+        else darkClassName = '';
       }
 
+      this.setMode(darkClassName)
+     
     });
 
   }
 
-  pushClass(mode) {
-    this.className = mode
-    this.overlayContainer.getContainerElement().classList.add(mode)
-  }
-
   toggleTheme() {
-    
-    console.log(this.appService.isDarkMode)
+
     let darkClassName = '';
 
-    if (this.appService.isDarkMode === true)
-      darkClassName = '';
-    else
-      darkClassName = 'darkMode';
+    if (this.appService.isDarkMode) darkClassName = '';
+    else darkClassName = 'darkMode';
+
+    this.setMode(darkClassName)
 
     let obj = { id: 0, dark_mode: !this.appService.isDarkMode }
-    // this.idbCrudService.put('prefs', obj);
+    this.idbCrudService.put('prefs', obj);
 
+  }
+
+  setMode(darkClassName) {
     this.className = 'darkMode' ? darkClassName : '';
 
     if (darkClassName === 'darkMode')
       this.overlayContainer.getContainerElement().classList.add(darkClassName);
     else
       this.overlayContainer.getContainerElement().classList.remove('darkMode');
-
   }
 
 }
