@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { DeviceDetectorService } from 'ngx-device-detector';
 
 import { AppService } from "./service/app.service";
-import { AuthService } from "./service/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -12,16 +11,8 @@ import { AuthService } from "./service/auth.service";
 })
 export class AppComponent implements OnInit {
 
-  // @HostBinding('class') className = '';
-
-  token;
-  prefs;
-  loggedIn = false;
-  canvasBackground = '#3b3b3b'
-
   constructor(
     public appService: AppService,
-    private authService: AuthService,
     private deviceService: DeviceDetectorService
   ) { }
 
