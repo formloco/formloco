@@ -40,7 +40,7 @@ export class PhoneComponent implements OnChanges {
   }
 
   changeTheme(event) {
-    this.toggleTheme.emit(event);
+    this.toggleTheme.emit();
   }
 
 }

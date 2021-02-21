@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 
 import { BuilderService } from "../../../service/builder.service";
 
@@ -7,12 +7,23 @@ import { BuilderService } from "../../../service/builder.service";
   templateUrl: './quill.component.html',
   styleUrls: ['./quill.component.scss']
 })
-export class QuillComponent {
+export class QuillComponent implements OnChanges{
 
   @Input() index;
+  @Output() toggleDragDisable = new EventEmitter<any>();
 
-  constructor(public builderService: BuilderService) { }
+  constructor(public builderService: BuilderService) { 
+    
+  }
 
-  setFocus(editor) { editor.focus(); }
+  ngOnChanges() {
+    this.builderService.currentQilllIndex = this.index;
+  }
+
+  setIndex() {
+    this.toggleDragDisable.emit();
+  }
+  
+  setFocus(editor) { editor.focus(); } 
 
 }

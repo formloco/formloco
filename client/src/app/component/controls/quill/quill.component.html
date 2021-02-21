@@ -1,5 +1,5 @@
 <mat-accordion class="headers-align">
-  <mat-expansion-panel>
+  <mat-expansion-panel (click)=setIndex()>
     <mat-expansion-panel-header>
       <mat-panel-title>
         <mat-icon class="icon2times-label-start" (click)="builderService.deleteControl(index)">close</mat-icon>

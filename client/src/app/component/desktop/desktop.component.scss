@@ -3,8 +3,11 @@
 }
 
 .verison-text {
-  padding-top:7px;
-  padding-right:6px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding-left: 30px;
+  padding-bottom:9px;
   font-size: 11px;
   color: #959595;
 }
@@ -12,6 +15,7 @@
 .cc {
   overflow-x: hidden
 }
+
 .menu-title {
   padding-left: 13px;
 }

@@ -1,6 +1,5 @@
-<div [ngStyle]="{'background-color': canvasBackground}">
-  <app-navigation *ngIf="appService.isDesktop" (toggleTheme)="toggleTheme(event)"></app-navigation>
-  <app-desktop *ngIf="appService.isDesktop"></app-desktop>
-  <app-phone *ngIf="appService.isPhone" (toggleTheme)="toggleTheme(event)" [isDarkMode]="appService.isDarkMode"></app-phone>
+<div>
+  <app-navigation *ngIf="appService.isDesktop" (toggleTheme)="toggleTheme()" [isDarkMode]="appService.isDarkMode"></app-navigation>
+  <app-desktop *ngIf="appService.isDesktop" [isDarkMode]="appService.isDarkMode"></app-desktop>
+  <app-phone *ngIf="appService.isPhone" (toggleTheme)="toggleTheme()" [isDarkMode]="appService.isDarkMode"></app-phone>
 </div>
-<!-- <app-footer></app-footer> -->

@@ -1,4 +1,4 @@
-import { Component,  OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 
 import { DeviceDetectorService } from 'ngx-device-detector';
 
@@ -12,15 +12,21 @@ import { AuthService } from "./service/auth.service";
 })
 export class AppComponent implements OnInit {
 
+  @HostBinding('class') className = '';
+
   token;
+  prefs;
   loggedIn = false;
+  canvasBackground = '#3b3b3b'
 
   constructor(
     public appService: AppService,
     private authService: AuthService,
-    private deviceService: DeviceDetectorService) { }
+    private deviceService: DeviceDetectorService
+  ) { }
 
   ngOnInit() {
+  
     this.appService.isPhone = this.deviceService.isMobile();
     this.appService.isTablet = this.deviceService.isTablet();
     this.appService.isDesktop = this.deviceService.isDesktop();

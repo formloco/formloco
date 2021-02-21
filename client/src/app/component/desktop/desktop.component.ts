@@ -1,9 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnChanges, Input } from '@angular/core';
 
 import * as uuid from 'uuid';
 import * as CryptoJS from 'crypto-js';
-
-// import { OverlayContainer } from '@angular/cdk/overlay';
 
 import { FormControl, Validators, FormGroup, FormBuilder  } from "@angular/forms";
 import { TooltipPosition } from '@angular/material/tooltip';
@@ -31,9 +29,10 @@ import { LookupList } from '../../model/connector';
   templateUrl: './desktop.component.html',
   styleUrls: ['./desktop.component.scss']
 })
-export class DesktopComponent implements OnInit {
+export class DesktopComponent implements OnChanges {
 
   @Input() formObj;
+  @Input() isDarkMode;
 
   isForm;
   isControls = true;
@@ -60,7 +59,6 @@ export class DesktopComponent implements OnInit {
     public builderService: BuilderService,
     private idbCrudService: IdbCrudService,
     private successService: SuccessService,
-    // private overlayContainer: OverlayContainer,
     private transformStructureService: TransformStructureService) {}
 
   private async readFile(file: File): Promise<string | ArrayBuffer> {
@@ -85,9 +83,7 @@ export class DesktopComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.myInnerHeight = this.myInnerHeight - 200;
-    console.log(window)
+  ngOnChanges(): void {
     this.builderService.showControls = true;
     if (this.formObj === undefined) {
       this.appService.page = 'form-library';

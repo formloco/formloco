@@ -28,6 +28,7 @@ export class BuilderService {
   */
   public showControls = true; // 
   public isPreview = false;
+  public isDrag = false;
 
   // drag'n drop
   public controls
@@ -36,6 +37,7 @@ export class BuilderService {
   public previousIndex: number;
   public canvasFormControls; //current form controls
   public isExpandDetails: boolean;
+  public currentQilllIndex;
 
   public isFileUploadDisabled = false;
   public isFileUploadRunning = false;

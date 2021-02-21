@@ -56,7 +56,7 @@ export class TenantLayoutComponent implements OnInit {
 
   }
 
-  toggleTheme(event) {
+  toggleTheme() {
 
     let darkClassName = '';
 

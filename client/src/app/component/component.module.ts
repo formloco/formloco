@@ -74,7 +74,6 @@ import { ScannerBarcodeComponent  } from './controls/scanner-barcode/scanner-bar
 import { PhoneComponent } from './phone/phone.component';
 import { PhoneAuthComponent } from './phone/phone-auth/phone-auth.component';
 import { PhoneWorkspaceComponent } from './phone/phone-workspace/phone-workspace.component';
-import { PhoneNavigationComponent } from './phone/phone-navigation/phone-navigation.component';
 import { PhoneFormLaunchComponent } from './phone/phone-form-launch/phone-form-launch.component';
 
 import { GpsRunComponent } from './run-controls/gps-run/gps-run.component';
@@ -126,7 +125,6 @@ import { MicroAppRunComponent } from './run-controls/micro-app-run/micro-app-run
     PhoneComponent,
     PhoneAuthComponent,
     PhoneWorkspaceComponent,
-    PhoneNavigationComponent,
     FormLaunchComponent,
     DataComponent,
     DesktopComponent,
@@ -225,7 +223,6 @@ import { MicroAppRunComponent } from './run-controls/micro-app-run/micro-app-run
     PhoneComponent,
     PhoneAuthComponent,
     PhoneWorkspaceComponent,
-    PhoneNavigationComponent,
     FormLaunchComponent,
     DataComponent,
     DesktopComponent,

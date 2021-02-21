@@ -18,6 +18,7 @@ export class AppService {
 
   idbData;
 
+  public canvasBackground;
   public isDarkMode = true;
   public isPhone;
   public isTablet;

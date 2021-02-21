@@ -66,7 +66,6 @@ export class CanvasComponent implements OnChanges {
   panelOpenState = false;
   sharingLink;
   embeddedCode;
-  canvasBackground = '#000000';
 
   linkUrl = environment.linkUrl;
   pinKeySecret = environment.pinKeySecret;
@@ -93,9 +92,6 @@ export class CanvasComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    if (this.appService.isDarkMode) this.canvasBackground = '#000000';
-    else this.canvasBackground = '#ffffff';
-
     if (this.builderService.formObj) {
       this.canvasForm.patchValue({
         name: this.builderService.formObj.form.name
@@ -105,6 +101,7 @@ export class CanvasComponent implements OnChanges {
       this.isEmbeddedCode = true;
       this.embeddedCode = '<iframe style="border-width:0px" width="100%" height="400" src="https://form369.formloco.com/form?form_id="'+this.builderService.formObj.form_id+'&tenant_id='+this.builderService.formObj.form_id+'></iframe>';
     }
+
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -133,6 +130,10 @@ export class CanvasComponent implements OnChanges {
     let detailArray = this.builderService.canvasFormControls.details.splice(event.previousIndex, 1);
     let detailObj = detailArray[0];
     this.builderService.canvasFormControls.details.splice(event.currentIndex, 0, detailObj);
+  }
+
+  toggleDragDisable(isDrag) {
+    this.builderService.isDrag = !this.builderService.isDrag;
   }
 
   selectControl(index) {

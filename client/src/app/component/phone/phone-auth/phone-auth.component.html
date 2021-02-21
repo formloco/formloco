@@ -1,5 +1,5 @@
 <!-- <div *ngIf="!isForgotPassword" class="signup-menu-padding" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="70px"> -->
-<div [ngStyle]="{'background-color': 'canvasBackground'}">
+<div [ngStyle]="{'background-color': 'appService.canvasBackground'}">
   <div *ngIf="!isForgotPassword" class="signup-menu-padding" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="70px">
     <div [ngClass]="(isSignin ? 'unselected-menu':'selected-menu')" (click)="togglePages()">Sign up</div>
     <div [ngClass]="(isSignin ? 'selected-menu':'unselected-menu')" (click)="togglePages()">Sign in</div>

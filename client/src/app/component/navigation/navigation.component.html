@@ -1,15 +1,13 @@
-<div class="nav-padding" fxLayout="row" fxLayoutAlign="space-between center">
+<div class="nav-padding" [ngStyle]="{'background-color': canvasBackground}" fxLayout="row" fxLayoutAlign="space-between center">
   <div>
     <div class="top13">
       <a href="https://formloco.com">
         <img *ngIf="!appService.isDarkMode" src="assets/logo/formlocologo.svg" height="40">
         <img *ngIf="appService.isDarkMode" src="assets/logo/formlocologo-white.svg" height="40">
-  
-        <!-- <img src="assets/logo/WordmarkTagBadgeTransparent.svg" height="50"> -->
       </a>
     </div>
   </div>
-  <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center">
+  <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center">
     <a mat-stroked-button class="menu-label" href="https://github.com/formloco" target="blank">
       <img class="filterIcon" src="assets/logo/GitHub_Logo.png" height="20">
     </a>
@@ -25,12 +23,6 @@
     <button *ngIf="user" (click)="openProfile()" mat-stroked-button matTooltip="Profile" [ngClass]="(isSelected === true ? 'menu-label-selected':'menu-label')">
       <mat-icon>person</mat-icon>&nbsp;&nbsp;{{ userName }}
     </button>
-    <div class="menu-label" *ngIf="appService.isDarkMode" fxLayoutAlign="center center">
-      <mat-icon>mode_night</mat-icon>
-    </div>
-    <div class="menu-label" *ngIf="!appService.isDarkMode" fxLayoutAlign="center center">
-      <mat-icon>wb_sunny</mat-icon>
-    </div>
     <mat-slide-toggle [(ngModel)]="appService.isDarkMode" color="warn" (click)="changeTheme($event)"></mat-slide-toggle>
     <button class="green" *ngIf="!appService.authProvider" (click)="signin()" mat-flat-button>Sign In</button>
     <button class="green" *ngIf="appService.authProvider" (click)="signout()" mat-flat-button color="light-green">Sign Out</button>

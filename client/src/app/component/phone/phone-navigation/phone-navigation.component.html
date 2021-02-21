@@ -1,7 +1,0 @@
-<div class="nav-padding" fxLayout="row" fxLayoutAlign="space-between">
-  <div><img src="assets/logo/formlocologo.svg" height="40"></div>
-  <div fxLayoutGap="20px">
-    <mat-slide-toggle [(ngModel)]="appService.isDarkMode" color="warn" (click)="toggleTheme($event)"></mat-slide-toggle>
-    <button *ngIf="appService.authProvider" mat-flat-button color="light-green" (click)="signout()">Sign Out</button>
-  </div>
-</div>

@@ -140,11 +140,8 @@ export class TenantNavigationComponent implements OnInit {
   }
 
   changeTheme(event) {
-    this.toggleTheme.emit(event);
+    this.toggleTheme.emit();
     let obj = [this.appService.isDarkMode]
-    // this.idbCrudService.put('prefs', obj).subscribe(prefs => {
-    //   console.log('got back')
-    // });
   }
 
 }

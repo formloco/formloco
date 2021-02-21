@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 
 import { Router } from '@angular/router';
 
@@ -10,11 +10,12 @@ import { AuthComponent } from '../dialogs/auth/auth.component';
 import { ProfileComponent } from '../dialogs/profile/profile.component';
 
 import { AppService } from "../../service/app.service";
-// import { MsalService } from '@azure/msal-angular';
 import { AuthService } from "../../service/auth.service";
 import { BuilderService } from "../../service/builder.service";
 import { SuccessService } from "../../service/success.service";
 
+//** social media libaries */
+// import { MsalService } from '@azure/msal-angular';
 // import { AuthService as AuthSocialService } from "angularx-social-login";
 import { IdbCrudService } from "../../service-idb/idb-crud.service";
 
@@ -27,8 +28,9 @@ import { WelcomeComponent } from '../dialogs/welcome/welcome.component';
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent implements OnChanges {
 
+  @Input() isDarkMode;
   @Output() toggleTheme = new EventEmitter();
 
   user;
@@ -39,7 +41,8 @@ export class NavigationComponent implements OnInit {
   unsavedform;
   authProvider;
   userName;
-
+  canvasBackground ;
+  
   isSelected = false;
 
   swaggerUrl = environment.swaggerUrl;
@@ -54,17 +57,29 @@ export class NavigationComponent implements OnInit {
     private dialog: MatDialog,
     public appService: AppService,
     private authService: AuthService,
-    // private authMsalService: MsalService,
     private builderService: BuilderService,
     private successService: SuccessService,
     private idbCrudService: IdbCrudService,
     private overlayContainer: OverlayContainer,
+
+    //** social media libaries */
+    // private authMsalService: MsalService,
     // private authSocialService: AuthSocialService
   ) { }
 
-  ngOnInit() {
+  ngOnChanges() {
+    if (this.appService.isDarkMode) this.canvasBackground = '#3b3b3b';
+    else this.canvasBackground = '#ffffff';
     this.getUser();
   }
+
+  // logoutAzure() {
+  //   this.authMsalService.logout();
+  // }
+
+  // logoutSocialMedia() {
+  //   this.authSocialService.signOut();
+  // }
 
   getUser() {
     this.user = this.authService.userSignedIn();
@@ -91,14 +106,6 @@ export class NavigationComponent implements OnInit {
       this.getUser();
     });
   }
-
-  // logoutAzure() {
-  //   this.authMsalService.logout();
-  // }
-
-  // logoutSocialMedia() {
-  //   this.authSocialService.signOut();
-  // }
 
   signout() {
     localStorage.removeItem('formToken');
@@ -155,7 +162,7 @@ export class NavigationComponent implements OnInit {
   }
 
   changeTheme(event) {
-    this.toggleTheme.emit(event);
+    this.toggleTheme.emit();
   }
 
 }

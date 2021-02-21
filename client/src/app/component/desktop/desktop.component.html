@@ -1,7 +1,6 @@
-<mat-sidenav-container class="menu-container">
+<mat-sidenav-container class="menu-container" autosize>
   <mat-sidenav #sidenav [ngClass]="(appService.isMainMenu ? 'menu-open':'menu-icons')" mode="side" opened>
     <div fxLayout="row" class="toggle-close icon-pointer" (click)="toggleMainMenu()" fxLayoutAlign="end">
-      <div *ngIf="appService.isMainMenu" class="verison-text">build 3.4 - Feb 15, 2021</div>
       <mat-icon *ngIf="appService.isMainMenu">menu_open</mat-icon>
       <mat-icon *ngIf="!appService.isMainMenu">menu</mat-icon>
     </div>
@@ -36,6 +35,7 @@
         <span class="menu-title">Connectors</span>
       </button>
     </div>
+    <div *ngIf="appService.isMainMenu" class="verison-text">build 3.4 - Feb 15, 2021</div>
   </mat-sidenav>
   <mat-sidenav [ngClass]="(builderService.isExpandDetails ? 'detail-container-exp':'detail-container')" mode="over" [(opened)]="builderService.isRightMenu"
     position="end">

@@ -68,7 +68,7 @@ export class PhoneAuthComponent implements OnChanges {
   }
 
   ngOnChanges(): void {
-    if (this.isDarkMode) this.canvasBackground = '#000000';
+    if (this.isDarkMode) this.appService.canvasBackground = '#000000';
     else this.canvasBackground = '#ffffff';
   }
 
