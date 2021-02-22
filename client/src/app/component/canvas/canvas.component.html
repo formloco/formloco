@@ -79,7 +79,7 @@
       [cdkDropListConnectedTo]="dropForm" 
       (cdkDropListDropped)="drop($event)">
       <div cdkDrag (click)=selectControl(i) 
-        [cdkDragDisabled]="(builderService.currentQilllIndex === i ? builderService.isDrag: false)"
+        [cdkDragDisabled]="(builderService.currentQilllIndex === i && builderService.isDrag ? true: false)"
         [ngClass]="(builderService.currentIndex === i ? 'seleted-box':'unseleted-box')" 
         *ngFor="let control of canvasFormControl.controls; let i=index">
         <div [ngSwitch]="control.type">
@@ -88,7 +88,7 @@
           <app-radio *ngSwitchCase="'Radio'" [index]=i></app-radio>
           <app-slider *ngSwitchCase="'Slider'" [index]=i></app-slider>
           <app-toggle *ngSwitchCase="'Toggle'" [index]=i></app-toggle>
-          <app-quill *ngSwitchCase="'Editor'" (toggleDragDisable)="toggleDragDisable()" [index]=i></app-quill>
+          <app-quill *ngSwitchCase="'Editor'" [index]=i></app-quill>
           <app-textbox *ngSwitchCase="'Textbox'" [index]=i></app-textbox>
           <app-textarea *ngSwitchCase="'Textarea'" [index]=i></app-textarea>
           <app-checkbox *ngSwitchCase="'Checkbox'" [index]=i></app-checkbox>
