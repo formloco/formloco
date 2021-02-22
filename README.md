@@ -6,7 +6,7 @@ See it in action here: https://form369.formloco.com
 
 ## Deployment
 
-The fastest way to get up and running is to copy the `client repository /dist/forms` folder into a web server directory. The app will run using thee formloco cloud API when you hit the web url in your browser.
+The fastest way to get up and running is to copy the `client repository /dist/forms` folder into a web server directory. The app will run using the formloco cloud API when you hit the web url in your browser.
 
 If you would like to run the project on your computer, you can fork or clone the `client repository` and use the Angular CLI to run it at `localhost:4200`.
 
