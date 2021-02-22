@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1613251001383,
+  "timestamp": 1613990689331,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -12,14 +12,14 @@
       },
       "urls": [
         "/index.html",
-        "/main-es2015.c4c664b585783928df67.js",
-        "/main-es5.c4c664b585783928df67.js",
+        "/main-es2015.7de47629cce2b8898bdc.js",
+        "/main-es5.7de47629cce2b8898bdc.js",
         "/manifest.webmanifest",
-        "/polyfills-es2015.2cbc0945121a519b5f05.js",
-        "/polyfills-es5.f15ea94fcd154cfb192d.js",
+        "/polyfills-es2015.2d4d07e110b96fdcd14b.js",
+        "/polyfills-es5.0cf50cc7364ac3d57c39.js",
         "/runtime-es2015.a1ac991fc00ebf39524f.js",
         "/runtime-es5.a1ac991fc00ebf39524f.js",
-        "/styles.708300b35aca1f43de54.css"
+        "/styles.4b3f03e71879f16c8909.css"
       ],
       "patterns": []
     },
@@ -86,7 +86,9 @@
         "/assets/logo/WordmarkTagBadgeWhite.svg",
         "/assets/logo/WordmarkWhite.svg",
         "/assets/logo/barcode.png",
+        "/assets/logo/dark_mode-white-18dp.svg",
         "/assets/logo/footerlogo.svg",
+        "/assets/logo/formlocologo-white.svg",
         "/assets/logo/formlocologo.png",
         "/assets/logo/formlocologo.svg",
         "/assets/logo/formlocoshield.png",
@@ -95,6 +97,7 @@
         "/assets/logo/freshbooks-logo.png",
         "/assets/logo/freshbooks-shield.png",
         "/assets/logo/google-maps-icon.png",
+        "/assets/logo/light_mode-black-18dp.svg",
         "/assets/logo/microsoft-business-central-shield.png",
         "/assets/logo/microsoft-dynamics-365-business-central-logo.png",
         "/assets/logo/parrot-sitting.svg",
@@ -167,7 +170,9 @@
     "/assets/logo/WordmarkTagBadgeWhite.svg": "f12b3a044f59c2c4cc90c9740a4cec8b5c20e792",
     "/assets/logo/WordmarkWhite.svg": "13e9296e009f422a54e485be3552841b070856aa",
     "/assets/logo/barcode.png": "c01738ff81d6c85ae75d1b3858d7a051c955b238",
+    "/assets/logo/dark_mode-white-18dp.svg": "e5cc75a7bea75415097c0b468c99b7786651e8ae",
     "/assets/logo/footerlogo.svg": "1af6c58514ba376486ead7c4d9457b2aad3ee3f1",
+    "/assets/logo/formlocologo-white.svg": "cce987f45ed6b672008f2de71bb942a1dd302296",
     "/assets/logo/formlocologo.png": "e0014b089c768b08493d7c099f3c071db47a97a8",
     "/assets/logo/formlocologo.svg": "d810203739679521d0e1e5a076f666b9c8ba0dce",
     "/assets/logo/formlocoshield.png": "20fdc8440b31357bed30e9eec087c4798b4e734d",
@@ -176,6 +181,7 @@
     "/assets/logo/freshbooks-logo.png": "7bce321ac0f36e4cef3a4eaba022e612bee1fca1",
     "/assets/logo/freshbooks-shield.png": "5bbe16b990857edaef4b21c2fdd872f69102f15b",
     "/assets/logo/google-maps-icon.png": "2a5e32e46f75fec6c0452f8b3bc1471035f5c4cf",
+    "/assets/logo/light_mode-black-18dp.svg": "afdd80e5d61f4c408f479dcf55b7be3ab93fe26f",
     "/assets/logo/microsoft-business-central-shield.png": "2d5d9dbd4a1c93461d29b95483d9379b16ea53f9",
     "/assets/logo/microsoft-dynamics-365-business-central-logo.png": "84f5d4daaa34c7664151dc9d41f7b238bc9a31b4",
     "/assets/logo/parrot-sitting.svg": "aa37c6989421ed4584fdee9a87fb89818cc12ae8",
@@ -187,15 +193,15 @@
     "/assets/logo/wave-shield.png": "175c8d653f7892ef86696cf50d49ffe23b71b233",
     "/assets/logo/xero-logo.png": "ba1ac0085e330340d9acb5097222a1c4825bff25",
     "/assets/tenant/logo-cleverdaycare.png": "89a8774c108a00a28346c5e825a0e0ffeb0da8ff",
-    "/index.html": "5aa2aa6b44cfd9fe98dd11386ed98502bc14e0ec",
-    "/main-es2015.c4c664b585783928df67.js": "4f99ee004bce74c8bbbd5057d1e6066672394013",
-    "/main-es5.c4c664b585783928df67.js": "fe73e46fd1ad02ead45fbc49019a132663eadc96",
+    "/index.html": "f716f6eedf007de539dc7173a9ee82228d794fa1",
+    "/main-es2015.7de47629cce2b8898bdc.js": "8201af633ff4274abc7657ace57c9534b0b7a9ab",
+    "/main-es5.7de47629cce2b8898bdc.js": "cc634962e7c8e69b0b6cd57f302ba1e4c7a29a3e",
     "/manifest.webmanifest": "45f8a5cc9c9ed812bf0440fe05ea28bfea445e13",
-    "/polyfills-es2015.2cbc0945121a519b5f05.js": "d373e0370dbfe91a44282ee31ce09348187b2fc2",
-    "/polyfills-es5.f15ea94fcd154cfb192d.js": "f75c418d3c7b691e0f603e152b9f46a5ed6011cc",
+    "/polyfills-es2015.2d4d07e110b96fdcd14b.js": "14cfbc58484c6433c4cbce27a3dd34ad5651c635",
+    "/polyfills-es5.0cf50cc7364ac3d57c39.js": "22e71cca09fe346c438a279afe18aab47e171319",
     "/runtime-es2015.a1ac991fc00ebf39524f.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
     "/runtime-es5.a1ac991fc00ebf39524f.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
-    "/styles.708300b35aca1f43de54.css": "03111f163fdba0559ce0a4b7801a04b19898c486"
+    "/styles.4b3f03e71879f16c8909.css": "b6f0b71e7745e97536eeff0de3d7327e62a8d6a3"
   },
   "navigationUrls": [
     {
