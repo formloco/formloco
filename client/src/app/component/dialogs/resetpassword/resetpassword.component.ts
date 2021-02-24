@@ -20,7 +20,7 @@ export class ResetpasswordComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private appService: AppService,
+    public appService: AppService,
     private authService: AuthService,
     public dialogRef: MatDialogRef<ResetpasswordComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { 

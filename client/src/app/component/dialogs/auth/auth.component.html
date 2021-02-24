@@ -5,7 +5,8 @@
     </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="center">
-    <img src="assets/logo/formlocologo.svg">
+    <img *ngIf="!appService.isDarkMode" src="assets/logo/formlocologo.svg">
+    <img *ngIf="appService.isDarkMode" src="assets/logo/formlocologo-white.svg">
   </div>
   <div *ngIf="!isForgotPassword" class="signup-menu-padding" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="70px">
     <div [ngClass]="(data.isSignin ? 'unselected-menu':'selected-menu')" (click)="togglePages()">Sign up</div>

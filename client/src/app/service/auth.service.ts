@@ -37,11 +37,11 @@ export class AuthService {
   }
 
   loginProvider(obj) {
-    return this._http.post(this.authUrl+'/provider', obj);
+    return this._http.post(this.authUrl+'provider', obj);
   }
 
   signupEmail(obj) {
-    return this._http.post(this.authUrl+'signup/email', obj);
+    return this._http.post(this.authUrl+'email', obj);
   }
 
   resetPassword(obj) {

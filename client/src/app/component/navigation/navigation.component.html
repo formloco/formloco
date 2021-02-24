@@ -24,10 +24,11 @@
       <mat-icon>person</mat-icon>&nbsp;&nbsp;{{ userName }}
     </button>
     <div fxLayoutAlign="center center">
-      <mat-slide-toggle [(ngModel)]="appService.isDarkMode" color="warn" (click)="changeTheme($event)"></mat-slide-toggle>
       <span class="menu-label" *ngIf="appService.isDarkMode" fxLayoutAlign="center center">
-        &nbsp;&nbsp;<mat-icon>wb_sunny</mat-icon>
-      </span>
+        &nbsp;&nbsp;
+        <mat-icon>wb_sunny</mat-icon>
+      </span>&nbsp;&nbsp;
+      <mat-slide-toggle [(ngModel)]="appService.isDarkMode" color="warn" (click)="changeTheme($event)"></mat-slide-toggle>
       <div class="menu-label" *ngIf="!appService.isDarkMode" fxLayoutAlign="center center">
         <mat-icon>mode_night</mat-icon>
       </div>
