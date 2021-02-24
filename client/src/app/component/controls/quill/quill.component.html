@@ -7,7 +7,7 @@
       </mat-panel-title>
       <mat-panel-description>
         &nbsp;
-        <span>
+        <span *ngIf="!builderService.isDrag">
           <mat-icon class="icon2times-label-end">drag_indicator</mat-icon>
         </span>
       </mat-panel-description>
