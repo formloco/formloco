@@ -1,6 +1,6 @@
 <div>
   <div fxLayout="row wrap" fxLayoutAlign="center" fxFlex>
-    <ng-container *ngFor="let formObj of forms; let i=index">
+    <ng-container *ngFor="let formObj of appService.forms; let i=index">
       <mat-card class="custom" *ngIf="i !== 0 && formObj.date_archived === undefined || i !== 0 && formObj.date_archived === null && !formObj.form.is_list">
         <div class="icon-pointer card-icon" (click)="openForm(formObj)" fxLayout="row">
           <img class="card-icon" src="assets/logo/parrot-sitting.svg" height="60">

@@ -5,8 +5,14 @@
       <img *ngIf="appService.isDarkMode" src="assets/logo/formlocologo-white.svg" height="40">
     </div>
     <div fxLayoutGap="20px">
-      <mat-slide-toggle [(ngModel)]="appService.isDarkMode" color="warn" (click)="changeTheme($event)"></mat-slide-toggle>
-      <button *ngIf="appService.authProvider" mat-flat-button color="light-green" (click)="signout()">Sign Out</button>
+      <div class="menu-label" fxLayoutAlign="center center">
+        <span *ngIf="appService.isDarkMode"><mat-icon>wb_sunny</mat-icon></span>
+        &nbsp;&nbsp;<mat-slide-toggle [(ngModel)]="appService.isDarkMode" color="warn" (click)="toggleTheme()"></mat-slide-toggle>&nbsp;&nbsp;
+        <span *ngIf="!appService.isDarkMode" fxLayoutAlign="center center">
+          <mat-icon>mode_night</mat-icon>
+        </span>&nbsp;&nbsp;
+        <button class="green" *ngIf="isSignin" mat-flat-button (click)="signout()">Sign Out</button>
+      </div>
     </div>
   </div>
   <app-phone-auth [isDarkMode]="appService.isDarkMode" *ngIf="!isSignin"></app-phone-auth>

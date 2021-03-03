@@ -77,11 +77,11 @@ export class AuthComponent implements OnInit {
     }
     else if (provider === 'google') {
       // this.socialLogin(provider);
-      // obj = obj = { email: this.socialUser.email, password: this.socialUser.id }
+      // obj = { email: this.socialUser.email, password: this.socialUser.id }
     }
     else if (provider === 'facebook') {
       // this.socialLogin(provider);
-      // obj = obj = { email: this.socialUser.email, password: this.socialUser.id }
+      // obj = { email: this.socialUser.email, password: this.socialUser.id }
     }
     else if (provider === 'azure')
       obj = { user: this.azureUser, isAzure: true }

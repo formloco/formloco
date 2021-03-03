@@ -1,3 +1,7 @@
+/** sync control handles the workflow for sync'ing
+ * form structures and data and list data
+*/
+
 import { Injectable } from '@angular/core';
 
 import { AppService } from "../service/app.service";
@@ -139,13 +143,6 @@ export class SyncControlService {
         let obj = {
           tenant_id: user.tenant_id,
           data: this.idbData
-        }
-        this.syncListData(obj)
-      }
-      else {
-        let obj = {
-          tenant_id: user.tenant_id,
-          data: []
         }
         this.syncListData(obj)
       }

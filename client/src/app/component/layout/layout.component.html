@@ -1,5 +1,6 @@
 <div>
   <app-navigation *ngIf="appService.isDesktop" (toggleTheme)="toggleTheme()" [isDarkMode]="appService.isDarkMode"></app-navigation>
   <app-desktop *ngIf="appService.isDesktop" [isDarkMode]="appService.isDarkMode"></app-desktop>
-  <app-phone *ngIf="appService.isPhone" (toggleTheme)="toggleTheme()" [isDarkMode]="appService.isDarkMode"></app-phone>
+  <!-- <app-phone *ngIf="appService.isPhone" (toggleTheme)="toggleTheme()" [isDarkMode]="appService.isDarkMode"></app-phone> -->
+  <app-phone *ngIf="appService.isPhone" [isDarkMode]="appService.isDarkMode"></app-phone>
 </div>

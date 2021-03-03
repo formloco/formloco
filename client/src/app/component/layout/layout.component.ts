@@ -13,12 +13,12 @@ import { IdbCrudService } from "../../service-idb/idb-crud.service"
 })
 export class LayoutComponent {
 
-  @HostBinding('class') className = 'darkMode'
+  // @HostBinding('class') className = 'darkMode'
 
   token
   prefs
   formObj
-
+  
   constructor(
     public appService: AppService,
     private idbCrudService: IdbCrudService,
@@ -28,23 +28,23 @@ export class LayoutComponent {
 
   ngOnInit(): void {
 
-    this.idbCrudService.readAll('prefs').subscribe(prefs => {
-      this.prefs = prefs
+    // this.idbCrudService.readAll('prefs').subscribe(prefs => {
+    //   this.prefs = prefs
 
-      let darkClassName = '';
+    //   let darkClassName = '';
 
-      if (this.prefs.length === 0) {
-        darkClassName = 'darkMode';
-      }
-      else {
-        this.appService.isDarkMode = this.prefs[0]["dark_mode"];
-        if (this.appService.isDarkMode) darkClassName = 'darkMode';
-        else darkClassName = '';
-      }
+    //   if (this.prefs.length === 0) {
+    //     darkClassName = 'darkMode';
+    //   }
+    //   else {
+    //     this.appService.isDarkMode = this.prefs[0]["dark_mode"];
+    //     if (this.appService.isDarkMode) darkClassName = 'darkMode';
+    //     else darkClassName = '';
+    //   }
 
-      this.setMode(darkClassName)
+    //   this.setMode(darkClassName)
      
-    });
+    // });
 
   }
 
@@ -63,12 +63,12 @@ export class LayoutComponent {
   }
 
   setMode(darkClassName) {
-    this.className = 'darkMode' ? darkClassName : '';
+    // this.className = 'darkMode' ? darkClassName : '';
 
-    if (darkClassName === 'darkMode')
-      this.overlayContainer.getContainerElement().classList.add(darkClassName);
-    else
-      this.overlayContainer.getContainerElement().classList.remove('darkMode');
+    // if (darkClassName === 'darkMode')
+    //   this.overlayContainer.getContainerElement().classList.add(darkClassName);
+    // else
+    //   this.overlayContainer.getContainerElement().classList.remove('darkMode');
   }
 
 }

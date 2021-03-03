@@ -33,14 +33,6 @@ export class PhoneFormLaunchComponent implements OnInit {
 
   ngOnInit(): void {
     this.appService.getForms();
-    this.forms = this.appService.forms;
-    this.user = this.authService.userSignedIn();
-    this.formService.getForms(this.user.tenant_id).subscribe(forms => {
-      this.forms = forms;
-      this.forms = this.forms.concat(this.user.share);
-    });
-    if (this.user !== null && this.user.share.length > 0)
-      this.forms = this.appService.forms.concat(this.user.share);
   }
 
   openForm(formObj) {

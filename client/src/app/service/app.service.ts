@@ -17,6 +17,7 @@ import { MessageComponent } from '../component/dialogs/message/message.component
 export class AppService {
 
   idbData;
+  shares;
 
   public canvasBackground;
   public isDarkMode = true;
@@ -38,9 +39,9 @@ export class AppService {
   public isWelcomeMessage: boolean;
 
   public isData: boolean; //if data exists for certain form, 
-  
+
   public isAnonymous: boolean; //used to delete anonymous form token
-  
+
   public tenant;
   public members;
   public authProvider;
@@ -68,16 +69,16 @@ export class AppService {
             this.archives.push(formObj);
             this.forms.splice(index, 1);
           }
-          
+
           if (formObj.form.is_list) {
             let tenant_id = null;
             if (formObj.tenant_id !== undefined) tenant_id = formObj.tenant_id
-              
+
             this.apiLists.push({
               src: 'assets/logo/formlocoshield.png',
               type: 'formloco',
-              tenant_id: tenant_id, 
-              form_id: formObj.form_id, 
+              tenant_id: tenant_id,
+              form_id: formObj.form_id,
               name: formObj.form.name
             });
             this.lookupLists.push(formObj);
@@ -90,13 +91,13 @@ export class AppService {
 
   getAPIList(formObj) {
     formObj.form.details.forEach(element => {
-      if (element.type === 'APIAction') 
-      element.lists.forEach(listItem => {
-        if (listItem.selected) {
-          listItem["src"] = element.src;
-          this.apiLists.push(listItem);
-        }
-      });
+      if (element.type === 'APIAction')
+        element.lists.forEach(listItem => {
+          if (listItem.selected) {
+            listItem["src"] = element.src;
+            this.apiLists.push(listItem);
+          }
+        });
     })
   }
 

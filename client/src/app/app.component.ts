@@ -17,7 +17,8 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-  
+    this.appService.getForms();
+
     this.appService.isPhone = this.deviceService.isMobile();
     this.appService.isTablet = this.deviceService.isTablet();
     this.appService.isDesktop = this.deviceService.isDesktop();
@@ -25,8 +26,8 @@ export class AppComponent implements OnInit {
     /**
      * left here for dev purposes
      */
-    // this.appService.isPhone = true;
-    // this.appService.isDesktop = false;
+    this.appService.isPhone = true;
+    this.appService.isDesktop = false;
 
     // this.appService.isPhone = false;
     // this.appService.isDesktop = true;

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnChanges, ChangeDetectorRef, Output, Input, EventEmitter } from '@angular/core';
 
 import * as CryptoJS from 'crypto-js';
 
@@ -30,7 +30,7 @@ import { getLocaleDateFormat } from '@angular/common';
   templateUrl: './form-library.component.html',
   styleUrls: ['./form-library.component.scss']
 })
-export class FormLibraryComponent implements OnInit {
+export class FormLibraryComponent implements OnChanges {
 
   @Output() openRun = new EventEmitter<boolean>();
   @Output() openForm = new EventEmitter<any>();
@@ -82,9 +82,8 @@ export class FormLibraryComponent implements OnInit {
     this.appService.parentPage = 'form-library';
   }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.user = this.authService.userSignedIn();
-    this.appService.getForms();
   }
 
   newForm() {

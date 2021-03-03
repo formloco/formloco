@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
 
 import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 
@@ -16,7 +16,7 @@ import { IdbCrudService } from "../../service-idb/idb-crud.service";
   templateUrl: './form-launch.component.html',
   styleUrls: ['./form-launch.component.scss']
 })
-export class FormLaunchComponent implements OnInit {
+export class FormLaunchComponent implements OnChanges {
 
   data;
   user;
@@ -31,7 +31,7 @@ export class FormLaunchComponent implements OnInit {
     public idbCrudService: IdbCrudService,
     public builderService: BuilderService) { }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     this.idbCrudService.readAll('form').subscribe(data => {
       this.forms = data;
       this.user = this.authService.userSignedIn();

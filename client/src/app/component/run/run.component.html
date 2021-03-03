@@ -1,11 +1,11 @@
 <div [class.example-is-mobile]="mobileQuery.matches">
-  <form class="run-form-container" [formGroup]="runForm">
+  <form [formGroup]="runForm">
     <span *ngIf="!appService.isAnonymous">
-      <div [ngClass]="(appService.isDesktop ? 'run-container':'')" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between center">
-        <div fxLayoutAlign="start center">
-          <h1 class="margin-10px">{{builderService.formObj?.form.name}}</h1>
-        </div>
-        <div *ngIf="appService.isDesktop" fxLayoutAlign="end center" fxLayoutGap="20px">
+      <div *ngIf="appService.isDesktop" class="run-form-container" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between center">
+        <div fxLayoutAlign="end center" fxLayoutGap="20px">
+          <div fxLayoutAlign="start center">
+            <h1 class="margin-10px">{{builderService.formObj?.form.name}}</h1>
+          </div>
           <button type="button" mat-stroked-button color="warn" (click)="close()">
             Close
           </button>
@@ -30,18 +30,19 @@
             View Data
           </button>
         </div>
-        <div *ngIf="appService.isPhone" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between center">
-          <div fxLayoutAlign="end center" fxLayoutGap="20px">
-            <button type="button" mat-stroked-button color="warn" (click)="close()">
-              Close
-            </button>
-            <button *ngIf="user === null" mat-raised-button i18n (click)="save()" color="primary" type="submit">
-              Save
-            </button>
-            <button *ngIf="user !== null" mat-raised-button i18n (click)="saveCloud()" color="primary" type="submit">
-              Save
-            </button>
-          </div>
+      </div>
+      <div *ngIf="appService.isPhone" class="phone-pad"  fxLayout="column" fxLayoutAlign="center">
+        <div fxLayout="row" class="title">{{builderService.formObj?.form.name}}</div>
+        <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+          <button type="button" mat-stroked-button color="warn" (click)="close()">
+            Close
+          </button>
+          <button *ngIf="user === null" mat-raised-button i18n (click)="save()" color="primary" type="submit">
+            Save
+          </button>
+          <button *ngIf="user !== null" mat-raised-button i18n (click)="saveCloud()" color="primary" type="submit">
+            Save
+          </button>
         </div>
       </div>
     </span>
