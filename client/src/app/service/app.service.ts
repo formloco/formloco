@@ -19,7 +19,7 @@ export class AppService {
   idbData;
   shares;
 
-  public canvasBackground;
+  public canvasBackground = '#ffffff';
   public isDarkMode = true;
   public isPhone;
   public isTablet;

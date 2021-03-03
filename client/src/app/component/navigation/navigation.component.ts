@@ -30,7 +30,6 @@ import { WelcomeComponent } from '../dialogs/welcome/welcome.component';
 })
 export class NavigationComponent implements OnChanges {
 
-  @Input() isDarkMode;
   @Output() toggleTheme = new EventEmitter();
 
   user;
@@ -68,8 +67,6 @@ export class NavigationComponent implements OnChanges {
   ) { }
 
   ngOnChanges() {
-    if (this.appService.isDarkMode) this.canvasBackground = '#3b3b3b';
-    else this.canvasBackground = '#ffffff';
     this.getUser();
   }
 
