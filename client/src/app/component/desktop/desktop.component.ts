@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input } from '@angular/core';
+import { Component, OnChanges, Input, HostBinding } from '@angular/core';
 
 import * as uuid from 'uuid';
 import * as CryptoJS from 'crypto-js';
@@ -7,6 +7,7 @@ import { FormControl, Validators, FormGroup, FormBuilder  } from "@angular/forms
 import { TooltipPosition } from '@angular/material/tooltip';
 import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { OverlayContainer } from '@angular/cdk/overlay'
 
 import { ImportComponent } from '../dialogs/import/import.component';
 import { MessageComponent } from '../dialogs/message/message.component';
@@ -34,8 +35,12 @@ export class DesktopComponent implements OnChanges {
   @Input() formObj;
   @Input() isDarkMode;
 
+  @HostBinding('class') className = 'darkMode'
+
+  prefs
   isForm;
   isControls = true;
+  canvasBackground = '#3b3b3b'
 
   pageTitle;
   menuSelect;
@@ -59,6 +64,7 @@ export class DesktopComponent implements OnChanges {
     public builderService: BuilderService,
     private idbCrudService: IdbCrudService,
     private successService: SuccessService,
+    private overlayContainer: OverlayContainer,
     private transformStructureService: TransformStructureService) {}
 
   private async readFile(file: File): Promise<string | ArrayBuffer> {
@@ -84,6 +90,10 @@ export class DesktopComponent implements OnChanges {
   }
 
   ngOnChanges(): void {
+    this.appService.getForms();
+    if (this.isDarkMode) this.canvasBackground = '#3b3b3b'
+    else this.canvasBackground = '#ffffff'
+
     this.builderService.showControls = true;
     if (this.formObj === undefined) {
       this.appService.page = 'form-library';
@@ -125,6 +135,30 @@ export class DesktopComponent implements OnChanges {
     }
     this.appService.page = page;
   }
+
+  toggleTheme() {
+
+    let darkClassName = '';
+
+    if (this.appService.isDarkMode) darkClassName = '';
+    else darkClassName = 'darkMode';
+
+    this.setMode(darkClassName)
+
+    let obj = { id: 0, dark_mode: !this.appService.isDarkMode }
+    this.idbCrudService.put('prefs', obj);
+
+  }
+
+  setMode(darkClassName) {
+    this.className = 'darkMode' ? darkClassName : '';
+
+    if (darkClassName === 'darkMode')
+      this.overlayContainer.getContainerElement().classList.add(darkClassName);
+    else
+      this.overlayContainer.getContainerElement().classList.remove('darkMode');
+  }
+
 
   toggleMainMenu() {
     this.appService.isMainMenu = !this.appService.isMainMenu;

@@ -14,14 +14,13 @@ import { IdbCrudService } from "../../service-idb/idb-crud.service"
 export class PhoneComponent implements OnChanges {
 
   @Input() isDarkMode
-  // @Output() toggleTheme = new EventEmitter()
 
   @HostBinding('class') className = 'darkMode'
 
   myInnerHeight = window.innerHeight;
 
   isSignin = false
-  canvasBackground = '#000000'
+  canvasBackground = '#3b3b3b'
 
   constructor(
     public appService: AppService,
@@ -30,6 +29,7 @@ export class PhoneComponent implements OnChanges {
     private overlayContainer: OverlayContainer) { }
 
   ngOnChanges(): void {
+    this.appService.getForms();
     if (this.appService.isDarkMode) this.canvasBackground = '#3b3b3b'
     else this.canvasBackground = '#ffffff'
     
@@ -62,10 +62,6 @@ export class PhoneComponent implements OnChanges {
     else
       this.overlayContainer.getContainerElement().classList.remove('darkMode')
   }
-
-  // themeToggle() {
-  //   this.toggleTheme.emit();
-  // }
 
   signout() {
     this.isSignin = false;
