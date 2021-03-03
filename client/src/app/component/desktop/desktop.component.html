@@ -1,6 +1,6 @@
 <div [ngStyle]="{'background-color': canvasBackground}" fxLayout="column">
 
-<app-navigation [ngStyle]="{'background-color': canvasBackground}" (toggleTheme)="toggleTheme()"></app-navigation>
+<app-navigation [ngStyle]="{'background-color': canvasBackground}" [userName]=userName (toggleTheme)="toggleTheme()"></app-navigation>
 <mat-sidenav-container class="menu-container" autosize>
   <mat-sidenav #sidenav [ngClass]="(appService.isMainMenu ? 'menu-open':'menu-icons')" mode="side" opened>
     <div fxLayout="row" class="toggle-close icon-pointer" (click)="toggleMainMenu()" fxLayoutAlign="end">

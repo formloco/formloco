@@ -18,10 +18,10 @@
     <button mat-stroked-button class="menu-label" (click)="api()">
       <mat-icon>api</mat-icon>&nbsp;&nbsp;API
     </button>
-    <button *ngIf="user" mat-stroked-button class="menu-label" (click)="copyToken()">
+    <button *ngIf="userName" mat-stroked-button class="menu-label" (click)="copyToken()">
       <mat-icon>vpn_key</mat-icon>&nbsp;&nbsp;Token
     </button>
-    <button *ngIf="user" (click)="openProfile()" mat-stroked-button matTooltip="Profile" [ngClass]="(isSelected === true ? 'menu-label-selected':'menu-label')">
+    <button *ngIf="userName" (click)="openProfile()" mat-stroked-button matTooltip="Profile" [ngClass]="(isSelected === true ? 'menu-label-selected':'menu-label')">
       <mat-icon>person</mat-icon>&nbsp;&nbsp;{{ userName }}
     </button>
     <div fxLayoutAlign="center center">

@@ -30,6 +30,7 @@ import { WelcomeComponent } from '../dialogs/welcome/welcome.component';
 })
 export class NavigationComponent implements OnChanges {
 
+  @Input() userName
   @Output() toggleTheme = new EventEmitter();
 
   user;
@@ -39,8 +40,6 @@ export class NavigationComponent implements OnChanges {
   navigation;
   unsavedform;
   authProvider;
-  userName;
-  canvasBackground ;
   
   isSelected = false;
 
@@ -66,9 +65,7 @@ export class NavigationComponent implements OnChanges {
     // private authSocialService: AuthSocialService
   ) { }
 
-  ngOnChanges() {
-    this.getUser();
-  }
+  ngOnChanges() {}
 
   // logoutAzure() {
   //   this.authMsalService.logout();
@@ -85,7 +82,7 @@ export class NavigationComponent implements OnChanges {
         this.userName = this.user.first_name + ' ' + this.user.last_name;
       else
         this.userName = this.user.email;
-
+        console.log(this.userName)
       this.appService.authProvider = localStorage.getItem('authProvider');
     }
   }
@@ -99,7 +96,7 @@ export class NavigationComponent implements OnChanges {
     };
     const dialogRef = this.dialog.open(AuthComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(() => {
-      setTimeout(function () { location.reload() }, 3000);
+      // setTimeout(function() { location.reload() }, 3000);
       this.getUser();
     });
   }

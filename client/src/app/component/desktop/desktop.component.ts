@@ -25,6 +25,7 @@ import { environment } from '../../../environments/environment';
 
 import { LookupList } from '../../model/connector';
 
+
 @Component({
   selector: 'app-desktop',
   templateUrl: './desktop.component.html',
@@ -36,6 +37,9 @@ export class DesktopComponent implements OnChanges {
   @Input() isDarkMode;
 
   @HostBinding('class') className = 'darkMode'
+
+  user
+  userName
 
   prefs
   isForm;
@@ -90,6 +94,16 @@ export class DesktopComponent implements OnChanges {
   }
 
   ngOnChanges(): void {
+    this.user = this.authService.userSignedIn();
+    console.log(this.user)
+    if (this.user && this.user !== null) {
+      if (this.user.first_name !== null && this.user.last_name !== null)
+        this.userName = this.user.first_name + ' ' + this.user.last_name;
+      else
+        this.userName = this.user.email;
+
+      this.appService.authProvider = localStorage.getItem('authProvider');
+    }
     this.appService.getForms();
     if (this.isDarkMode) this.canvasBackground = '#3b3b3b'
     else this.canvasBackground = '#ffffff'
