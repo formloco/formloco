@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1615738820392,
+  "timestamp": 1615739474634,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -185,7 +185,7 @@
     "/assets/logo/wave-shield.png": "175c8d653f7892ef86696cf50d49ffe23b71b233",
     "/assets/logo/xero-logo.png": "ba1ac0085e330340d9acb5097222a1c4825bff25",
     "/assets/tenant/logo-cleverdaycare.png": "89a8774c108a00a28346c5e825a0e0ffeb0da8ff",
-    "/index.html": "44e572d7366f625240bfa7de1b638d7ec05362ef",
+    "/index.html": "6c4988ab2995d8c0c9e3dd092adef6ebf123299f",
     "/main-es2015.c5074cb810fde5200d31.js": "0a545772a3893e5a70ab8960cc280752225accab",
     "/main-es5.c5074cb810fde5200d31.js": "74bb0cd02292bd86ae377469c76fac744c3aec56",
     "/manifest.webmanifest": "45f8a5cc9c9ed812bf0440fe05ea28bfea445e13",
