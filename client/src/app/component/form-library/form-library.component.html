@@ -6,7 +6,7 @@
     </div>
   </mat-card>
   <div *ngFor="let formObj of appService.forms; let i=index">
-    <mat-card class="custom" *ngIf="i !== 0 && formObj.form.is_list === undefined">
+    <mat-card class="custom" *ngIf="i !== 0 && formObj.form !== undefined && formObj.form.is_list === undefined">
       <div [ngClass]="(formObj.form.name.length < 24 ? 'add-padding':'')" fxLayout="row wrap" class="form-title" fxLayoutAlign="center center">
         {{formObj.form.name | truncate:[28, '...']}}
       </div>

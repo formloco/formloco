@@ -82,7 +82,7 @@ export class NavigationComponent implements OnChanges {
         this.userName = this.user.first_name + ' ' + this.user.last_name;
       else
         this.userName = this.user.email;
-        console.log(this.userName)
+
       this.appService.authProvider = localStorage.getItem('authProvider');
     }
   }
@@ -96,7 +96,7 @@ export class NavigationComponent implements OnChanges {
     };
     const dialogRef = this.dialog.open(AuthComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(() => {
-      // setTimeout(function() { location.reload() }, 3000);
+      setTimeout(function(){window.location = window.location}, 1000);
       this.getUser();
     });
   }
@@ -106,7 +106,7 @@ export class NavigationComponent implements OnChanges {
     localStorage.removeItem('formUser');
     localStorage.removeItem('authProvider');
     this.appService.authProvider = undefined;
-    location.reload();
+    setTimeout(function(){window.location = window.location}, 1000);
   }
 
   openProfile() {

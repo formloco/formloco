@@ -110,7 +110,7 @@ export class PhoneAuthComponent implements OnChanges {
       if (this.auth.message === 'Sign in sucessful.') {
         this.setSession(provider);
         this.router.navigate(['/phone']);
-        location.reload();
+        setTimeout(function(){window.location = window.location}, 1000);
       }
       else
         this.errorService.popSnackbar(this.auth.message);

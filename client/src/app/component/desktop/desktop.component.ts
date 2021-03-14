@@ -33,7 +33,6 @@ import { LookupList } from '../../model/connector';
 })
 export class DesktopComponent implements OnChanges {
 
-  @Input() formObj;
   @Input() isDarkMode;
 
   @HostBinding('class') className = 'darkMode'
@@ -43,6 +42,7 @@ export class DesktopComponent implements OnChanges {
 
   prefs
   isForm;
+  formObj;
   isControls = true;
   canvasBackground = '#3b3b3b'
 
@@ -95,7 +95,6 @@ export class DesktopComponent implements OnChanges {
 
   ngOnChanges(): void {
     this.user = this.authService.userSignedIn();
-    console.log(this.user)
     if (this.user && this.user !== null) {
       if (this.user.first_name !== null && this.user.last_name !== null)
         this.userName = this.user.first_name + ' ' + this.user.last_name;

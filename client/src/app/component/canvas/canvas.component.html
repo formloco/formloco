@@ -25,10 +25,6 @@
             Save
           </button>
           <span *ngIf="builderService.formObj" fxLayoutGap="10px">
-            <button mat-stroked-button color="primary" (click)="copyUrl('preview')">
-              <mat-icon class="card-icon">link</mat-icon>
-              Preview
-            </button>
             <button mat-stroked-button color="primary" (click)="copyUrl('link')">
               <mat-icon class="card-icon">link</mat-icon>
               link
@@ -41,6 +37,9 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="copyUrl('preview')">
+                <span>Preview Link</span>
+              </button>
               <button mat-menu-item (click)=saveas()>
                 <span>Save As</span>
               </button>
@@ -74,14 +73,10 @@
       </mat-expansion-panel>
     </mat-accordion>
     <br>
-    <div class="canvas-list" cdkDropList id="{{canvasFormControl.name}}"
-      [cdkDropListData]="canvasFormControl.controls" 
-      [cdkDropListConnectedTo]="dropForm" 
+    <div class="canvas-list" cdkDropList id="{{canvasFormControl.name}}" [cdkDropListData]="canvasFormControl.controls" [cdkDropListConnectedTo]="dropForm"
       (cdkDropListDropped)="drop($event)">
-      <div cdkDrag (click)=selectControl(i) 
-        [cdkDragDisabled]="(builderService.currentQilllIndex === i && builderService.isDrag ? true: false)"
-        [ngClass]="(builderService.currentIndex === i ? 'seleted-box':'unseleted-box')" 
-        *ngFor="let control of canvasFormControl.controls; let i=index">
+      <div cdkDrag (click)=selectControl(i) [cdkDragDisabled]="(builderService.currentQilllIndex === i && builderService.isDrag ? true: false)"
+        [ngClass]="(builderService.currentIndex === i ? 'seleted-box':'unseleted-box')" *ngFor="let control of canvasFormControl.controls; let i=index">
         <div [ngSwitch]="control.type">
           <app-gps *ngSwitchCase="'GPS'" [index]=i></app-gps>
           <app-label *ngSwitchCase="'Label'" [index]=i></app-label>

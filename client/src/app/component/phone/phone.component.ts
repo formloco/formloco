@@ -69,7 +69,7 @@ export class PhoneComponent implements OnChanges {
     localStorage.removeItem('formUser');
     localStorage.removeItem('authProvider');
     this.appService.authProvider = undefined;
-    location.reload();
+    setTimeout(function(){window.location = window.location}, 1000);
   }
 
 

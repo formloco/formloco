@@ -243,7 +243,7 @@ export class CanvasComponent implements OnChanges {
     };
     const dialogRef = this.dialog.open(ArchiveComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(data => {
-      location.reload();
+      setTimeout(function(){window.location = window.location}, 1000);
     });
   }
 
@@ -265,10 +265,10 @@ export class CanvasComponent implements OnChanges {
         this.formService.delete(this.builderService.formObj).subscribe(response => {
           this.response = response;
           this.successService.popSnackbar(this.response.message);
-          location.reload();
+          setTimeout(function(){window.location = window.location}, 1000);
         });
       }
-      else location.reload();
+      else setTimeout(function(){window.location = window.location}, 1000);
     }
       
     else {
@@ -284,6 +284,7 @@ export class CanvasComponent implements OnChanges {
 
   close() {
     this.appService.page = this.appService.parentPage;
+    setTimeout(function(){window.location = window.location}, 1000);
   }
 
   exportJSON() {
@@ -293,19 +294,19 @@ export class CanvasComponent implements OnChanges {
   }
 
   copyUrl(type) {
-    // let link = ''
-    // let url = this.builderService.formObj["form_id"]+'&tenant_id='+this.builderService.formObj["tenant_id"]
-    // if (type === 'preview')
-    //   link = this.linkUrl+'link?form_id='+url;
-    // else
-    //   link = this.linkUrl+'form?form_id='+url;
+    let link = ''
+    let url = this.builderService.formObj["form_id"]+'&tenant_id='+this.builderService.formObj["tenant_id"]
+    if (type === 'preview')
+      link = this.linkUrl+'link?form_id='+url;
+    else
+      link = this.linkUrl+'form?form_id='+url;
 
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
     selBox.style.top = '0';
     selBox.style.opacity = '0';
-    // selBox.value = link;
+    selBox.value = link;
     document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();
