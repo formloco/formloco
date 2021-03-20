@@ -1,0 +1,265 @@
+swagger: '2.0'
+info:
+  description: This the API server for your forms. You will need to use a copy of the api key to authorize.
+  version: 1.0.0
+  title: formloco API
+  termsOfService: https://formloco/terms/
+  contact:
+    email: polly@formloco.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+host: https://bluerockmicro.com/api
+securityDefinitions:
+  ApiKeyAuth:
+    type: apiKey
+    in: header
+    name: x-access-token
+security:
+  - ApiKeyAuth: []
+paths:
+  /api/25c4c10c-2198-4010-ac4a-63c7b025cad6/08d3272a-90e7-4c7c-9379-ac40f5e8af1b/:
+    post:
+      tags:
+        - test
+      summary: Add form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/test'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/test'
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - test
+      summary: Update form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/test'
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    get:
+      tags: 
+        - test
+      summary: Get form data
+      produces: 
+        - application/json
+      parameters:
+      - in: path
+        name: tenant_id
+        description: Form and data storage identifier
+        schema:
+        type: string
+      - in: path
+        name: form_id
+        description: Form identifier
+        schema:
+        type: string
+      - in: body
+        required: false
+        schema:
+          $ref: '#/definitions/test'
+      responses:
+        '201':
+          description: Success
+    delete:
+      tags:
+        - test
+      summary: Delete form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: tenant_id
+          description: Tenant ID
+          schema:
+            type: string
+        - in: path
+          name: form_id
+          description: Form ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    
+  /api/25c4c10c-2198-4010-ac4a-63c7b025cad6/08d3272a-90e7-4c7c-9379-ac40f5e8af1b/:
+    post:
+      tags:
+        - test
+      summary: Add form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/test'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/test'
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - test
+      summary: Update form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Form object
+          required: true
+          schema:
+            $ref: '#/definitions/test'
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    get:
+      tags: 
+        - test
+      summary: Get form data
+      produces: 
+        - application/json
+      parameters:
+      - in: path
+        name: tenant_id
+        description: Form and data storage identifier
+        schema:
+        type: string
+      - in: path
+        name: form_id
+        description: Form identifier
+        schema:
+        type: string
+      - in: body
+        required: false
+        schema:
+          $ref: '#/definitions/test'
+      responses:
+        '201':
+          description: Success
+    delete:
+      tags:
+        - test
+      summary: Delete form data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: tenant_id
+          description: Tenant ID
+          schema:
+            type: string
+        - in: path
+          name: form_id
+          description: Form ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
+    
+definitions:
+  test:
+    type: object
+    properties:
+      test:
+        type: object
+        properties:
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+  test:
+    type: object
+    properties:
+      test:
+        type: object
+        properties:
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string
+          id:
+            type: string
+          user_updated:
+            type: string
+          user_created:
+            type: string
+          user_archived:
+            type: string
+          date_updated:
+            type: string
+          date_archived:
+            type: string
+          date_created:
+            type: string
+          textbox0:
+            type: string

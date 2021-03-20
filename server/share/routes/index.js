@@ -6,9 +6,9 @@ const { shareRead, shareCreate, shareUpdate, shareDelete, sharePublish } = requi
 const router = express.Router()
  
 //share
-router.post('/share/publish', VerifyToken, sharePublish);
+router.post('/publish', VerifyToken, sharePublish);
 
-router.post('/share/delete', VerifyToken, shareDelete);
+router.post('/delete', VerifyToken, shareDelete);
 
 router.get('/share', VerifyToken, shareRead);
 

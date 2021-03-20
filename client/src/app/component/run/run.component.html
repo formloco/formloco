@@ -1,11 +1,11 @@
-<div [class.example-is-mobile]="mobileQuery.matches">
+<div class="run-form-container">
   <form [formGroup]="runForm">
     <span *ngIf="!appService.isAnonymous">
-      <div *ngIf="appService.isDesktop" class="run-form-container" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between center">
+      <div *ngIf="appService.isDesktop" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between center">
+        <div fxLayoutAlign="start center">
+          <h1 class="margin-10px">{{builderService.formObj?.form.name}}</h1>
+        </div>
         <div fxLayoutAlign="end center" fxLayoutGap="20px">
-          <div fxLayoutAlign="start center">
-            <h1 class="margin-10px">{{builderService.formObj?.form.name}}</h1>
-          </div>
           <button type="button" mat-stroked-button color="warn" (click)="close()">
             Close
           </button>
@@ -31,7 +31,7 @@
           </button>
         </div>
       </div>
-      <div *ngIf="appService.isPhone" class="phone-pad"  fxLayout="column" fxLayoutAlign="center">
+      <div *ngIf="appService.isPhone" class="phone-pad" fxLayout="column" fxLayoutAlign="center">
         <div fxLayout="row" class="title">{{builderService.formObj?.form.name}}</div>
         <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
           <button type="button" mat-stroked-button color="warn" (click)="close()">

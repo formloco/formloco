@@ -25,7 +25,7 @@ let corsOptions = {
 }
 app.use(cors(corsOptions))
   
-app.use(routes)
+app.use('/api',routes)
  
 app.listen(9003, () => console.log('form app listening on port 9003!'))
  

@@ -29,7 +29,7 @@ export class DataService {
   }
 
   getData(obj) {
-    return this._http.get(this.apiUrl + obj.tenant_id + '/' + obj.form_id);
+    return this._http.get(this.apiUrl  + obj.tenant_id + '/' + obj.form_id);
   }
 
   getFiles(tenant_id, form_id) {

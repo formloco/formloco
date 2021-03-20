@@ -10,6 +10,7 @@ import { environment } from '../../environments/environment';
 export class ShareService {
 
   shareUrl = environment.shareUrl;
+  publishUrl = environment.publishUrl;
 
   constructor(
     private _http: HttpClient
@@ -24,10 +25,10 @@ export class ShareService {
   }
 
   publishShare(obj) {
-    return this._http.post(this.shareUrl+'publish', obj);
+    return this._http.post(this.publishUrl, obj);
   }
 
   deleteShare(obj) {
-    return this._http.post(this.shareUrl+'share/delete', obj);
+    return this._http.post(this.shareUrl+'delete', obj);
   }
 }

@@ -37,9 +37,9 @@ export class RunComponent implements OnInit {
   linkUrl = environment.linkUrl;
 
   runForm: FormGroup;
-  mobileQuery: MediaQueryList;
+  // mobileQuery: MediaQueryList;
 
-  private _mobileQueryListener: () => void;
+  // private _mobileQueryListener: () => void;
 
   constructor(
     media: MediaMatcher,
@@ -55,9 +55,9 @@ export class RunComponent implements OnInit {
     private transformRunService: TransformRunService) {
 
     this.runForm = this.fb.group({});
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+    // this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    // this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    // this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
   ngOnInit() {

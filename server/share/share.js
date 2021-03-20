@@ -18,7 +18,7 @@ app.use(cors(corsOptions));
  
 app.use(routes);
  
-app.listen(9007, () => console.log('listening on port 9001!'));
+app.listen(9007, () => console.log('listening on port 9007!'));
  
 module.exports = {
   app

@@ -3,6 +3,7 @@ export const environment = {
   authUrl:      'https://bluerockmicro.com/auth/',
   userUrl:      'https://bluerockmicro.com/user/',
   shareUrl:     'https://bluerockmicro.com/share/',
+  publishUrl:   'https://bluerockmicro.com/publish/',
   syncUrl:      'https://bluerockmicro.com/sync/',
   apiUrl:       'https://bluerockmicro.com/api/',
   formUrl:      'https://bluerockmicro.com/form/',
