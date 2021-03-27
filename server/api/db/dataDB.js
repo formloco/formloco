@@ -26,7 +26,7 @@ const dataReadSQL = async (tenant_id, form_id) => {
     let res = await client.query(`SELECT * FROM "` + form_id + `"`)
     data = res.rows
   }
-
+console.log(data)
   return data
 }
 

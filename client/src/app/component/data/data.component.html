@@ -1,5 +1,5 @@
-<div class="responsive-container" [class.example-is-mobile]="mobileQuery.matches">
-  <mat-sidenav-container class="responsive-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+<div class="responsive-container">
+  <mat-sidenav-container class="responsive-sidenav-container">
     <mat-sidenav-content class="data-table-container">
       <div fxLayout="row" fxLayoutAlign="space-between center">
         <div fxFlex="50">
@@ -30,10 +30,6 @@
           <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
           <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
         </table>
-        <div fxLayout="row" fxLayoutAlign="end center">
-          <mat-paginator fxLayoutAlign="start center" [length]="dataSource.length" [pageSizeOptions]="[100, 500]" [showFirstLastButtons]="true">
-          </mat-paginator>
-        </div>
       </span>
       <div *ngIf="!isData">No data returned</div>
     </mat-sidenav-content>

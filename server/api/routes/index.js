@@ -6,12 +6,12 @@ const { readData, createData, updateData, deleteData } = require('../controllers
 const router = express.Router()
  
 //data
-router.get('/:tenant_id/:form_id', VerifyToken, readData)
+router.get('/api/:tenant_id/:form_id', VerifyToken, readData)
 
-router.post('/', VerifyToken, createData)
+router.post('/api', VerifyToken, createData)
 
-router.put('/', VerifyToken, updateData)
+router.put('/api', VerifyToken, updateData)
 
-router.delete('/', VerifyToken, deleteData)
+router.delete('/api', VerifyToken, deleteData)
 
 module.exports = router
