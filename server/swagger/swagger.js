@@ -18,7 +18,7 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.use('/api/docs/:token/:tenant/', VerifyToken, async function(req, res, next) {
+app.use('/api-docs/:token/:tenant/', VerifyToken, async function(req, res, next) {
   try {
     await fs.promises.access(`./docs/`+req.params.tenant+`.yaml`);
     req.swaggerDoc = YAML.load(`./docs/`+req.params.tenant+`.yaml`)

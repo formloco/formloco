@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1616875235273,
+  "timestamp": 1616880113318,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -12,8 +12,8 @@
       },
       "urls": [
         "/index.html",
-        "/main-es2015.94467d24d3165ff1b233.js",
-        "/main-es5.94467d24d3165ff1b233.js",
+        "/main-es2015.570d0ba5648bf5e1c9cb.js",
+        "/main-es5.570d0ba5648bf5e1c9cb.js",
         "/manifest.webmanifest",
         "/polyfills-es2015.2d4d07e110b96fdcd14b.js",
         "/polyfills-es5.0cf50cc7364ac3d57c39.js",
@@ -185,9 +185,9 @@
     "/assets/logo/wave-shield.png": "175c8d653f7892ef86696cf50d49ffe23b71b233",
     "/assets/logo/xero-logo.png": "ba1ac0085e330340d9acb5097222a1c4825bff25",
     "/assets/tenant/logo-cleverdaycare.png": "89a8774c108a00a28346c5e825a0e0ffeb0da8ff",
-    "/index.html": "dcae7202085131b5b37a55e3e40c669940122f4c",
-    "/main-es2015.94467d24d3165ff1b233.js": "51298b28fa2d1c842825363720fcdf039acf6687",
-    "/main-es5.94467d24d3165ff1b233.js": "932d8c17eaa91168799de7e7365f3c03a4a50f2c",
+    "/index.html": "bad8997b680e129e81bf2604c4053a8480f56c65",
+    "/main-es2015.570d0ba5648bf5e1c9cb.js": "a76e4818c31024a3ee4662485ba79481a8d23d26",
+    "/main-es5.570d0ba5648bf5e1c9cb.js": "6daab06a528d2103b30c7e8aa0b2a7cad12f3a24",
     "/manifest.webmanifest": "45f8a5cc9c9ed812bf0440fe05ea28bfea445e13",
     "/polyfills-es2015.2d4d07e110b96fdcd14b.js": "14cfbc58484c6433c4cbce27a3dd34ad5651c635",
     "/polyfills-es5.0cf50cc7364ac3d57c39.js": "22e71cca09fe346c438a279afe18aab47e171319",

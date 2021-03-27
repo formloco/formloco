@@ -12,7 +12,7 @@ export const environment = {
   formUrl:      'https://bluerockmicro.com/form/',
   emailUrl:     'https://bluerockmicro.com/email/',
   connectorUrl: 'https://bluerockmicro.com/connector/',
-  // swaggerUrl:   'https://bluerockmicro.com/api/docs/',
+  // swaggerUrl:   'https://bluerockmicro.com/api-docs/',
   fileUrl:      'https://bluerockmicro.com/file/',
   staticUrl:    'https://bluerockmicro.com/static/',
   templateUrl:  'https://bluerockmicro.com/template/',
@@ -25,7 +25,7 @@ export const environment = {
   // shareUrl: 'http://localhost:9007/share/',
   // syncUrl: 'http://localhost:9008/',
   // staticUrl: 'http://localhost:8080/',
-  swaggerUrl: 'http://localhost:3690/api/docs/',
+  swaggerUrl: 'http://localhost:3690/api-docs/',
   // templateUrl: 'http://localhost:9002/template/',
   // connectorUrl: 'http://localhost:9005/connector/',
 

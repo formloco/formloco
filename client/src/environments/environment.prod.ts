@@ -10,7 +10,7 @@ export const environment = {
   fileUrl:      'https://bluerockmicro.com/file/',
   emailUrl:     'https://bluerockmicro.com/email/',
   connectorUrl: 'https://bluerockmicro.com/connector/',
-  swaggerUrl:   'https://bluerockmicro.com/api/docs/',
+  swaggerUrl:   'https://bluerockmicro.com/api-docs/',
   staticUrl:    'https://bluerockmicro.com/static/',
   linkUrl:      'https://form369.formloco.com/',
   templateUrl:  'https://bluerockmicro.com/template/',
