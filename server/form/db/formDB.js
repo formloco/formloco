@@ -1,3 +1,4 @@
+const fs = require('fs')
 let envPath = process.cwd()
 envPath = envPath.slice(0,envPath.length-5)+'/.env'
 const dotenv = require('dotenv')
@@ -57,7 +58,7 @@ const formUpdateSQL = async (data) => {
   let userUpdated = JSON.stringify(data["user_created"])
 
   if (data["date_archived"] === undefined || data["date_archived"] === null) {
-    await client.query(`UPDATE public.form SET form = '` + formObj + `', pin = '` + data["pin"] + `', user_updated = '` + userUpdated + `' WHERE id = ` + data["id"])
+    await client.query(`UPDATE public.form SET form = '` + formObj + `', pin = '` + data["pin"] + `', user_updated = '` + userUpdated + `' WHERE form_id = '` + data["form_id"] + `'`)
   }
   else {
     let userArchived = JSON.stringify(data["user_updated"])
@@ -71,7 +72,13 @@ const formDeleteSQL = async (data) => {
   pool.options.database = data["tenant_id"]
   let client = await pool.connect()
 
-   await client.query(`DELETE FROM public.form WHERE form_id = '` +  data["form_id"] + `'`)
+  await client.query(`DELETE FROM public.form WHERE form_id = '` +  data["form_id"] + `'`)
+
+  let swaggerPath = process.cwd()
+  swaggerPath = swaggerPath.slice(0,swaggerPath.length-4)+`swagger/docs/`
+  fs.unlink(swaggerPath + data["tenant_id"] + `.yaml`, (err) => {
+    if (err) console.log("failed to delete local image:"+err)
+  })
 
    client.release()
 }

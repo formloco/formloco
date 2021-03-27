@@ -65,7 +65,9 @@ export class NavigationComponent implements OnChanges {
     // private authSocialService: AuthSocialService
   ) { }
 
-  ngOnChanges() {}
+  ngOnChanges() {
+    
+  }
 
   // logoutAzure() {
   //   this.authMsalService.logout();
@@ -136,6 +138,7 @@ export class NavigationComponent implements OnChanges {
   }
 
   api() {
+    this.user = this.authService.userSignedIn();
     if (this.user !== null)
       window.open(this.swaggerUrl + localStorage.getItem('formToken') + '/' + this.user.tenant_id + '/', '_blank');
     else {

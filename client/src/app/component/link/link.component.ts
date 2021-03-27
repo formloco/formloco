@@ -64,11 +64,11 @@ export class LinkComponent implements OnInit {
       this.builderService.formObj = this.formObj;
       this.builderService.detailArray = this.formObj.form.details;
       this.builderService.controlArray = this.formObj.form.controls;
-
+console.log(this.formObj)
       const bytes = CryptoJS.AES.decrypt(this.formObj["pin"], this.pinKeySecret);
       if (bytes.toString()) {
         let pinAndUse = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-
+console.log(pinAndUse)
         this.pin = pinAndUse.substring(0, 6);
         let isPin = pinAndUse.substring(6).trim();
 

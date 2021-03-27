@@ -92,7 +92,6 @@ export class CanvasComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    console.log(this.builderService.isDrag)
     if (this.builderService.formObj) {
       this.canvasForm.patchValue({
         name: this.builderService.formObj.form.name
