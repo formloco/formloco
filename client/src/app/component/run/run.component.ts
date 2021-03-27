@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 
 import * as uuid from 'uuid';
@@ -37,9 +37,6 @@ export class RunComponent implements OnInit {
   linkUrl = environment.linkUrl;
 
   runForm: FormGroup;
-  // mobileQuery: MediaQueryList;
-
-  // private _mobileQueryListener: () => void;
 
   constructor(
     media: MediaMatcher,
@@ -48,16 +45,12 @@ export class RunComponent implements OnInit {
     private authService: AuthService,
     private dataService: DataService,
     private syncService: SyncService,
-    changeDetectorRef: ChangeDetectorRef,
     public builderService: BuilderService,
     public idbCrudService: IdbCrudService,
     private successService: SuccessService,
     private transformRunService: TransformRunService) {
 
     this.runForm = this.fb.group({});
-    // this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    // this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    // this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
   ngOnInit() {
@@ -85,7 +78,6 @@ export class RunComponent implements OnInit {
 
   save() {
     let data = this.runForm.value;
-    // this.builderService.isFileUploadRunning = true;
 
     data["user_created"] = this.user_created;
     data["date_archived"] = undefined;

@@ -10,13 +10,9 @@ const cors = require('cors')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-var corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200 
-}
-app.use(cors(corsOptions));
+app.use(cors());
  
-app.use(routes);
+app.use(routes, cors());
  
 app.listen(9007, () => console.log('listening on port 9007!'));
  

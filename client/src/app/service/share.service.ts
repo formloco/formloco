@@ -10,25 +10,24 @@ import { environment } from '../../environments/environment';
 export class ShareService {
 
   shareUrl = environment.shareUrl;
-  publishUrl = environment.publishUrl;
 
   constructor(
     private _http: HttpClient
   ) { }
 
   createShare(obj) {
-    return this._http.post(this.shareUrl+'share', obj);
+    return this._http.post(this.shareUrl, obj);
   }
 
   updateShare(obj) {
-    return this._http.put(this.shareUrl+'share', obj);
+    return this._http.put(this.shareUrl, obj);
   }
 
   publishShare(obj) {
-    return this._http.post(this.publishUrl, obj);
+    return this._http.post(this.shareUrl+'publish/', obj);
   }
 
   deleteShare(obj) {
-    return this._http.post(this.shareUrl+'delete', obj);
+    return this._http.post(this.shareUrl+'delete/', obj);
   }
 }

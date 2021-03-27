@@ -144,6 +144,7 @@ export class ShareComponent implements OnInit {
   }
 
   createShare(userObj) {
+    console.log(userObj)
     this.shareService.createShare(userObj).subscribe(data => {
       this.userNew = data;
       this.user = this.authService.refreshUser(this.userNew.user);
