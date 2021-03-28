@@ -18,10 +18,10 @@ securityDefinitions:
 security:
   - ApiKeyAuth: []
 paths:
-  /api/25c4c10c-2198-4010-ac4a-63c7b025cad6/6119dcaa-bdd0-4e74-951f-50f79cce0130/:
+  /api/06632206-3cd4-4751-9e5d-b8839a454ca8/f147a0cf-aa25-46ba-967f-f8abeca33a92/:
     post:
       tags:
-        - teest
+        - test
       summary: Add form data
       consumes:
         - application/json
@@ -33,17 +33,17 @@ paths:
           description: Form object
           required: true
           schema:
-            $ref: '#/definitions/teest'
+            $ref: '#/definitions/test'
       responses:
         '200':
           description: successful operation
           schema:
-            $ref: '#/definitions/teest'
+            $ref: '#/definitions/test'
         '405':
           description: Invalid input
     put:
       tags:
-        - teest
+        - test
       summary: Update form data
       consumes:
         - application/json
@@ -55,7 +55,7 @@ paths:
           description: Form object
           required: true
           schema:
-            $ref: '#/definitions/teest'
+            $ref: '#/definitions/test'
       responses:
         '200':
           description: Successful operation
@@ -63,7 +63,7 @@ paths:
           description: Invalid input
     get:
       tags: 
-        - teest
+        - test
       summary: Get form data
       produces: 
         - application/json
@@ -81,13 +81,13 @@ paths:
       - in: body
         required: false
         schema:
-          $ref: '#/definitions/teest'
+          $ref: '#/definitions/test'
       responses:
         '201':
           description: Success
     delete:
       tags:
-        - teest
+        - test
       summary: Delete form data
       consumes:
         - application/json
@@ -111,10 +111,10 @@ paths:
           description: Invalid input
     
 definitions:
-  teest:
+  test:
     type: object
     properties:
-      teest:
+      test:
         type: object
         properties:
           id:

@@ -43,7 +43,7 @@ export class CanvasComponent implements OnChanges {
 
   @Input() canvasFormControl;
   @Input() dropForm;
-  
+
   canvasForm: FormGroup;
   myInnerHeight = window.innerHeight;
 
@@ -61,7 +61,7 @@ export class CanvasComponent implements OnChanges {
   unsavedform;
   control;
   currentIndex;
-  
+
   isEmbeddedCode = false;
   panelOpenState = false;
   sharingLink;
@@ -99,7 +99,7 @@ export class CanvasComponent implements OnChanges {
       this.canvasFormControl = this.builderService.formObj.form;
       this.dropForm[1] = this.canvasFormControl.name;
       this.isEmbeddedCode = true;
-      this.embeddedCode = '<iframe style="border-width:0px" width="100%" height="400" src="https://form369.formloco.com/form?form_id="'+this.builderService.formObj.form_id+'&tenant_id='+this.builderService.formObj.form_id+'></iframe>';
+      this.embeddedCode = '<iframe style="border-width:0px" width="100%" height="400" src="https://form369.formloco.com/form?form_id="' + this.builderService.formObj.form_id + '&tenant_id=' + this.builderService.formObj.form_id + '></iframe>';
     }
 
   }
@@ -107,7 +107,7 @@ export class CanvasComponent implements OnChanges {
   drop(event: CdkDragDrop<string[]>) {
 
     this.builderService.canvasFormControls = this.canvasFormControl;
-    
+
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
       this.updateShadowMove(event)
@@ -134,7 +134,7 @@ export class CanvasComponent implements OnChanges {
 
   toggleDragDisable() {
     this.builderService.isDrag = true;
-    
+
   }
 
   selectControl(index) {
@@ -164,23 +164,23 @@ export class CanvasComponent implements OnChanges {
   save(): void {
     this.user = this.authService.userSignedIn();
     this.builderService.canvasFormControls.name = this.canvasForm.controls['name'].value;
-    if (this.builderService.formObj === undefined) 
+    if (this.builderService.formObj === undefined)
       this.saveIdbForm();
     else {
       this.idbCrudService.read('form', this.builderService.formObj.id).subscribe(form => {
         this.form = form;
         this.form["is_data"] = this.form.is_data;
         this.form.form = this.builderService.canvasFormControls;
-        let obj = this.transformStructureService.generateSQLStructure('data'); 
+        let obj = this.transformStructureService.generateSQLStructure('data');
         this.builderService.canvasFormControls["labels"] = obj.labels;
         this.builderService.canvasFormControls["columns"] = obj.columns;
         this.form.date_last_access = new Date();
         this.idbCrudService.put('form', this.form).subscribe();
         this.successService.popSnackbar('Successfully Saved');
-        
+
         if (this.user !== null) {
           this.builderService.formObj["tenant_id"] = this.user.tenant_id;
-          this.formService.update(this.builderService.formObj).subscribe(res => {});
+          this.formService.update(this.builderService.formObj).subscribe(res => { });
 
         }
       });
@@ -194,11 +194,8 @@ export class CanvasComponent implements OnChanges {
   }
 
   saveIdbForm() {
-    let userCreated = null;
-    if (this.user !== null) userCreated = { email: this.user.email, date_created: new Date() }
+    let obj = this.transformStructureService.generateSQLStructure('data');
 
-    let obj = this.transformStructureService.generateSQLStructure('data'); 
-      
     this.builderService.canvasFormControls["labels"] = obj.labels;
     this.builderService.canvasFormControls["columns"] = obj.columns;
 
@@ -206,9 +203,17 @@ export class CanvasComponent implements OnChanges {
 
     let pin = CryptoJS.AES.encrypt(JSON.stringify(sixdigitsrandom + 'true'), this.pinKeySecret).toString();
 
+    let userCreated = { email: 'polly@formloco.com', date_created: new Date() };
+    let tenantID = null;
+    if (this.user != null) {
+      tenantID = this.user.tenant_id
+      userCreated = { email: this.user.email, date_created: new Date() }
+    }
+
     let idbForm = ({
       form: this.builderService.canvasFormControls,
       form_id: uuid.v4(),
+      tenant_id: tenantID,
       pin: pin,
       date_created: new Date(),
       date_archived: undefined,
@@ -218,20 +223,22 @@ export class CanvasComponent implements OnChanges {
       is_data: false,
       is_published: false
     });
-    
-    this.idbCrudService.put('form', idbForm).subscribe(id => {
-      this.builderService.formObj = idbForm;
-      this.builderService.formObj["id"] = id;
-      this.builderService.detailArray = idbForm.form.details;
-      this.builderService.controlArray = idbForm.form.controls;
-    });
-    this.successService.popSnackbar('Successfully Saved');
 
     if (this.user !== null) {
-      idbForm["tenant_id"] = this.user.tenant_id;
-      this.formService.create(idbForm).subscribe(res => {});
+      this.idbCrudService.put('form', idbForm).subscribe(id => {
+        this.builderService.formObj = idbForm;
+        this.builderService.formObj["id"] = id;
+        this.builderService.detailArray = idbForm.form.details;
+        this.builderService.controlArray = idbForm.form.controls;
+      });
+      this.successService.popSnackbar('Successfully Saved');
+
+      // if (this.user !== null) {
+      //   idbForm["tenant_id"] = this.user.tenant_id;
+      //   this.formService.create(idbForm).subscribe(res => { });
+      // }
     }
-  
+
   }
 
   archive() {
@@ -242,7 +249,7 @@ export class CanvasComponent implements OnChanges {
     };
     const dialogRef = this.dialog.open(ArchiveComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(data => {
-      setTimeout(function(){window.location = window.location}, 1000);
+      setTimeout(function () { window.location = window.location }, 1000);
     });
   }
 
@@ -264,12 +271,12 @@ export class CanvasComponent implements OnChanges {
         this.formService.delete(this.builderService.formObj).subscribe(response => {
           this.response = response;
           this.successService.popSnackbar(this.response.message);
-          setTimeout(function(){window.location = window.location}, 1000);
+          setTimeout(function () { window.location = window.location }, 1000);
         });
       }
-      else setTimeout(function(){window.location = window.location}, 1000);
+      else setTimeout(function () { window.location = window.location }, 1000);
     }
-      
+
     else {
       const dialogConfig = new MatDialogConfig();
       dialogConfig.width = '450px';
@@ -283,22 +290,22 @@ export class CanvasComponent implements OnChanges {
 
   close() {
     this.appService.page = this.appService.parentPage;
-    setTimeout(function(){window.location = window.location}, 1000);
+    setTimeout(function () { window.location = window.location }, 1000);
   }
 
   exportJSON() {
     let yy = JSON.stringify(this.builderService.formObj)
-    let blob = new Blob([yy], {type: 'text/plain' })
+    let blob = new Blob([yy], { type: 'text/plain' })
     saveAs(blob, 'template.json');
   }
 
   copyUrl(type) {
     let link = ''
-    let url = this.builderService.formObj["form_id"]+'&tenant_id='+this.builderService.formObj["tenant_id"]
+    let url = this.builderService.formObj["form_id"] + '&tenant_id=' + this.builderService.formObj["tenant_id"]
     if (type === 'preview')
-      link = this.linkUrl+'link?form_id='+url;
+      link = this.linkUrl + 'link?form_id=' + url;
     else
-      link = this.linkUrl+'form?form_id='+url;
+      link = this.linkUrl + 'form?form_id=' + url;
 
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';

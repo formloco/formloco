@@ -8,10 +8,10 @@ const router = express.Router()
 //data
 router.get('/api/:tenant_id/:form_id', VerifyToken, readData)
 
-router.post('/api', VerifyToken, createData)
+router.post('/api/', VerifyToken, createData)
 
-router.put('/api', VerifyToken, updateData)
+router.put('/api/', VerifyToken, updateData)
 
-router.delete('/api', VerifyToken, deleteData)
+router.delete('/api/', VerifyToken, deleteData)
 
 module.exports = router

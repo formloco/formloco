@@ -74,17 +74,19 @@ const createShareSQL = async (data) => {
   // update member list attached to the user
   let userTenant = await client.query(`SELECT * FROM public.user WHERE tenant_id = '` + data["tenant_id"] + `'`)
 
-  if (userTenant.rowCount === 1) memberArray = userTenant.rows[0].members
+  if (userTenant.rowCount === 1) {
+    memberArray = userTenant.rows[0].members
 
-  // add library share of tenant to user that is going to be sharing the form
-  if (data["form_id"] === null)
-    memberArray.push({ id: share_id, form_id: null, email: data["email"], role: data["role"], status: 'Invited', date_created: new Date() })
-  else
-    memberArray.push({ id: share_id, form_id: data["form_id"], email: data["email"], role: data["role"], status: 'Invited', date_created: new Date() })
+    // add library share of tenant to user that is going to be sharing the form
+    if (data["form_id"] === null)
+      memberArray.push({ id: share_id, form_id: null, email: data["email"], role: data["role"], status: 'Invited', date_created: new Date() })
+    else
+      memberArray.push({ id: share_id, form_id: data["form_id"], email: data["email"], role: data["role"], status: 'Invited', date_created: new Date() })
     
-  let members = JSON.stringify(memberArray)
+    let members = JSON.stringify(memberArray)
 
-  await client.query(`UPDATE public.user SET members = '` + members + `' WHERE tenant_id = '` + data["tenant_id"] + `'`)
+    await client.query(`UPDATE public.user SET members = '` + members + `' WHERE tenant_id = '` + data["tenant_id"] + `'`)
+  }
 
   let user = await client.query(`SELECT tenant_id, first_name, last_name, email, members, settings FROM public.user WHERE tenant_id = '` + data["tenant_id"] + `'`)
 
@@ -100,11 +102,11 @@ const deleteShareSQL = async (data) => {
 
   await client.query(`DELETE FROM public.share WHERE id = ` + data.share["id"])
 
-  // member array comes from client
-  memberArray = data.user.members
-  let members = JSON.stringify(memberArray)
-  await client.query(`UPDATE public.user SET members = '` + members + `' WHERE tenant_id = '` + data.user["tenant_id"] + `'`)
-
+  if (data.user.members.length > 0) {
+    let members = JSON.stringify(data.user.members)
+    await client.query(`UPDATE public.user SET members = '` + members + `' WHERE tenant_id = '` + data.user["tenant_id"] + `'`)
+  }
+  
   client.release()
 
   return data.user

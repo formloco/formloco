@@ -56,12 +56,14 @@ export class RunComponent implements OnInit {
   ngOnInit() {
     this.lists = [];
     this.fileArray = [];
+    
+    this.user_created = 'polly@formloco.com'
+    let tenantID = null;
+
     this.user = this.authService.userSignedIn();
-    if (this.user !== null) {
-      this.user_created = {
-        email: this.user.email,
-        date_created: new Date()
-      }
+    if (this.user != null) {
+      tenantID = this.user.tenant_id
+      this.user_created = this.user.email
     }
   }
 
@@ -118,7 +120,7 @@ export class RunComponent implements OnInit {
       let fileObj = {
         tenant_id: this.user.tenant_id,
         form_id: this.builderService.formObj.form_id,
-        user_created: this.user.email,
+        user_created: this.user_created,
         file_array: this.fileArray
       }
       this.dataService.saveFile(fileObj).subscribe(res => {
@@ -133,7 +135,7 @@ export class RunComponent implements OnInit {
       is_file: true,
       formObj: this.builderService.formObj
     };
-    
+    console.log(obj)
     this.dataService.save(obj).subscribe(response => {
       this.newform = response;
 

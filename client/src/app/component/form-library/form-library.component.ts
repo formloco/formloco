@@ -169,13 +169,16 @@ export class FormLibraryComponent implements OnChanges {
       })
     }
     else {
-      let user = this.authService.userSignedIn()
-      if (user !== null) {
-        this.appService.pageTitle = formObj.form.name
-        this.builderService.formObj = formObj
-        this.appService.page = 'data'
-      }
-      else this.dataService.openIdbData(formObj)
+      this.appService.pageTitle = formObj.form.name
+      this.builderService.formObj = formObj
+      this.appService.page = 'data'
+      // let user = this.authService.userSignedIn()
+      // if (user !== null) {
+      //   this.appService.pageTitle = formObj.form.name
+      //   this.builderService.formObj = formObj
+      //   this.appService.page = 'data'
+      // }
+      // else this.dataService.openIdbData(formObj)
     }
   }
 

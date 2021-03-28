@@ -75,7 +75,7 @@ export class AppService {
             if (formObj.tenant_id !== undefined) tenant_id = formObj.tenant_id
 
             this.apiLists.push({
-              src: 'assets/logo/formlocoshield.png',
+              src: 'assets/logo/parrot.png',
               type: 'formloco',
               tenant_id: tenant_id,
               form_id: formObj.form_id,

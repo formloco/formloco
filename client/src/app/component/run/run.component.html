@@ -1,14 +1,11 @@
 <div class="run-form-container">
   <form [formGroup]="runForm">
     <span *ngIf="!appService.isAnonymous">
-      <div *ngIf="appService.isDesktop" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between center">
+      <div *ngIf="appService.isDesktop" fxLayout="row" fxLayoutAlign="space-between center">
         <div fxLayoutAlign="start center">
           <h1 class="margin-10px">{{builderService.formObj?.form.name}}</h1>
         </div>
         <div fxLayoutAlign="end center" fxLayoutGap="20px">
-          <button type="button" mat-stroked-button color="warn" (click)="close()">
-            Close
-          </button>
           <button *ngIf="builderService.formObj.form.is_list" mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>more_vert</mat-icon>
           </button>
@@ -17,17 +14,20 @@
               <span>Delete List</span>
             </button>
           </mat-menu>
-          <button *ngIf="user === null && !builderService.formObj.form.is_list" mat-raised-button i18n (click)="save()" color="primary"
-            type="submit">
+          <button *ngIf="!builderService.formObj.form.is_list && !builderService.formObj.is_published" mat-raised-button i18n
+            (click)="save()" color="primary" type="submit">
             Save
           </button>
-          <button *ngIf="user !== null && !builderService.formObj.form.is_list" mat-raised-button i18n (click)="saveCloud()" color="primary"
-            type="submit">
+          <button *ngIf="user !== null && !builderService.formObj.form.is_list && builderService.formObj.is_published" mat-raised-button
+            i18n (click)="saveCloud()" color="primary" type="submit">
             Save
           </button>
           <button *ngIf="builderService.formObj.is_data && !builderService.formObj.form.is_list" mat-raised-button i18n (click)="this.appService.page = 'data'"
             color="primary" type="submit">
             View Data
+          </button>
+          <button type="button" mat-stroked-button color="warn" (click)="close()">
+            Close
           </button>
         </div>
       </div>
@@ -50,7 +50,7 @@
       <div [ngClass]="(appService.isDesktop ? 'run-container':'')" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between center">
         <div fxLayoutAlign="start center">
           <a href="https://form369.formloco.com">
-            <img src="assets/logo/formlocoshield.svg" height="50">
+            <img src="assets/logo/parrot.svg" height="50">
           </a>
           <div class="margin-10px" fxLayout="column">
             <div class="title">{{builderService.formObj?.form.name}}</div>

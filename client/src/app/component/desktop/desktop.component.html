@@ -38,7 +38,7 @@
         <span class="menu-title">Connectors</span>
       </button>
     </div>
-    <div *ngIf="appService.isMainMenu" class="verison-text">build 4.1 - Mar 27, 2021</div>
+    <div *ngIf="appService.isMainMenu" class="verison-text">build 4.2 - Mar 28, 2021</div>
   </mat-sidenav>
   <mat-sidenav [ngClass]="(builderService.isExpandDetails ? 'detail-container-exp':'detail-container')" mode="over" [(opened)]="builderService.isRightMenu"
     position="end">
@@ -106,7 +106,7 @@
           </mat-menu>
         </div>
         <button mat-stroked-button (click)="openLists()" class="menu-label" cdkOverlayOrigin #lookupTrigger="cdkOverlayOrigin">
-          <img src="assets/logo/formlocoshield.png" height="22">&nbsp;&nbsp;Lists
+          <img src="assets/logo/parrot.png" height="22">&nbsp;&nbsp;Lists
         </button>
       </div>
     </div>

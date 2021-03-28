@@ -13,25 +13,23 @@
           </button>
         </div>
       </div>
-      <span *ngIf="isData">
-        <table #table mat-table matSort [dataSource]="dataSource">
-          <ng-container [matColumnDef]="column" *ngFor="let column of columnsToDisplay; let i = index">
-            <th class="header-wht" style="cursor: pointer;" mat-header-cell *matHeaderCellDef mat-sort-header>
-              {{columnLabels[i]}}
-            </th>
-            <td mat-cell *matCellDef="let row">
-              <span *ngIf="column === 'date_created' && column !== 'form_columns'">{{ row[column] | date }}</span>
-              <span *ngIf="column === 'user_created' && column !== 'form_columns'">{{ row[column] }}</span>
-              <span *ngIf="column !== 'date_created' && column !== 'user_created' && column !== 'form_columns'">
-                {{ row[column] }}
-              </span>
-            </td>
-          </ng-container>
-          <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
-          <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
-        </table>
-      </span>
-      <div *ngIf="!isData">No data returned</div>
+      <table *ngIf="isData" #table mat-table matSort [dataSource]="dataSource">
+        <ng-container [matColumnDef]="column" *ngFor="let column of columnsToDisplay; let i = index">
+          <th class="header-wht" style="cursor: pointer;" mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{columnLabels[i]}}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <span *ngIf="column === 'date_created' && column !== 'form_columns'">{{ row[column] | date }}</span>
+            <span *ngIf="column === 'user_created' && column !== 'form_columns'">{{ row[column] }}</span>
+            <span *ngIf="column !== 'date_created' && column !== 'user_created' && column !== 'form_columns'">
+              {{ row[column] }}
+            </span>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+      </table>
+      <!-- <div *ngIf="!isData">No data returned</div> -->
     </mat-sidenav-content>
     <mat-sidenav class="file-list" *ngIf="isFiles" #right opened [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56" position="end">

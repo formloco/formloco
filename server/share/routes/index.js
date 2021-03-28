@@ -10,10 +10,10 @@ router.post('/share/publish/', VerifyToken, sharePublish);
 
 router.post('/share/delete/', VerifyToken, shareDelete);
 
-router.get('/share', VerifyToken, shareRead);
+router.get('/share/', VerifyToken, shareRead);
 
-router.post('/share', VerifyToken, shareCreate);
+router.post('/share/', VerifyToken, shareCreate);
 
-router.put('/share', VerifyToken, shareUpdate);
+router.put('/share/', VerifyToken, shareUpdate);
 
 module.exports = router;

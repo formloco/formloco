@@ -35,7 +35,7 @@ export class DataComponent implements OnInit {
   token
   columns
   isFiles: boolean = false
-  isData: boolean = true
+  isData: boolean
 
   filePaths = []
   columnLabels = []
@@ -63,10 +63,11 @@ export class DataComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.authService.userSignedIn()
-    if (this.user !== null)
-      this.getCloud()
-    else
-      this.getIdb()
+    if (this.builderService.formObj.is_published) {
+      if (this.user !== null) this.getCloud()
+      else this.getIdb()
+    }
+    this.getIdb()
   }
 
   transform(file) {
@@ -76,25 +77,27 @@ export class DataComponent implements OnInit {
   getIdb() {
     this.idbCrudService.readAll('data').subscribe(data => {
       this.data = data
+      this.setTable()
+    /** todo: refactor file support */
 
-      if (this.data.length > 0) {
-        if (this.data[0].file_array !== undefined) {
-          this.data.forEach(element => {
-            element.file_array.forEach(ele => {
-              this.filePaths.push({ data: ele.content })
-            })
-          })
-          // this.isFiles = true
-        }
-        else if (this.data[0].file_array.length > 0) this.isFiles = true
-        else  if (this.data[0].file_array.length === 0) this.isFiles = false
+      // if (this.data.length > 0) {
+      //   if (this.data[0].file_array !== undefined) {
+      //     this.data.forEach(element => {
+      //       element.file_array.forEach(ele => {
+      //         this.filePaths.push({ data: ele.content })
+      //       })
+      //     })
+      //     // this.isFiles = true
+      //   }
+      //   else if (this.data[0].file_array.length > 0) this.isFiles = true
+      //   else  if (this.data[0].file_array.length === 0) this.isFiles = false
 
-        this.data = this.data.filter(
-          data => data.form_id === this.builderService.formObj.form_id
-        )
-        this.columnLabels = JSON.parse(this.builderService.formObj.form.labels)
-        this.setTable()
-      }
+      //   this.data = this.data.filter(
+      //     data => data.form_id === this.builderService.formObj.form_id
+      //   )
+      //   this.columnLabels = JSON.parse(this.builderService.formObj.form.labels)
+      //   this.setTable()
+      // }
     })
   }
 
@@ -106,9 +109,9 @@ export class DataComponent implements OnInit {
 
     this.dataService.getData(obj).subscribe(data => {
       this.data = data
-      this.dataSource = this.data
-      if (this.data.length > 0) this.setTable()
 
+      if (this.data.length > 0) this.setTable()
+      else this.isData = false
     })
     /** todo: add file support */
     // if (this.builderService.formObj.is_file) {
@@ -129,6 +132,7 @@ export class DataComponent implements OnInit {
   }
 
   setTable() {
+    this.dataSource = this.data
     this.isData = true
     this.columns = Object.keys(this.data[0])
     this.columnLabels = JSON.parse(this.builderService.formObj.form.labels)

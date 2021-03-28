@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1616880113318,
+  "timestamp": 1616969502779,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -12,8 +12,8 @@
       },
       "urls": [
         "/index.html",
-        "/main-es2015.570d0ba5648bf5e1c9cb.js",
-        "/main-es5.570d0ba5648bf5e1c9cb.js",
+        "/main-es2015.72ea36451a55abfc33a2.js",
+        "/main-es5.72ea36451a55abfc33a2.js",
         "/manifest.webmanifest",
         "/polyfills-es2015.2d4d07e110b96fdcd14b.js",
         "/polyfills-es5.0cf50cc7364ac3d57c39.js",
@@ -97,6 +97,7 @@
         "/assets/logo/microsoft-business-central-shield.png",
         "/assets/logo/microsoft-dynamics-365-business-central-logo.png",
         "/assets/logo/parrot-sitting.svg",
+        "/assets/logo/parrot.png",
         "/assets/logo/qrcode.png",
         "/assets/logo/quickbooks-button.png",
         "/assets/logo/quickbooks-logo.png",
@@ -177,6 +178,7 @@
     "/assets/logo/microsoft-business-central-shield.png": "2d5d9dbd4a1c93461d29b95483d9379b16ea53f9",
     "/assets/logo/microsoft-dynamics-365-business-central-logo.png": "84f5d4daaa34c7664151dc9d41f7b238bc9a31b4",
     "/assets/logo/parrot-sitting.svg": "aa37c6989421ed4584fdee9a87fb89818cc12ae8",
+    "/assets/logo/parrot.png": "6996370c498914b178b54b0a69ddfc87f8edd760",
     "/assets/logo/qrcode.png": "a31d26911544fcba3e768127de6956ecd33b3de4",
     "/assets/logo/quickbooks-button.png": "0c7c4bc0c8a4d9b9462e030387f3d0c24649bacb",
     "/assets/logo/quickbooks-logo.png": "89ef56d7a13ef709102535351f49c9f6dd94978e",
@@ -185,9 +187,9 @@
     "/assets/logo/wave-shield.png": "175c8d653f7892ef86696cf50d49ffe23b71b233",
     "/assets/logo/xero-logo.png": "ba1ac0085e330340d9acb5097222a1c4825bff25",
     "/assets/tenant/logo-cleverdaycare.png": "89a8774c108a00a28346c5e825a0e0ffeb0da8ff",
-    "/index.html": "bad8997b680e129e81bf2604c4053a8480f56c65",
-    "/main-es2015.570d0ba5648bf5e1c9cb.js": "a76e4818c31024a3ee4662485ba79481a8d23d26",
-    "/main-es5.570d0ba5648bf5e1c9cb.js": "6daab06a528d2103b30c7e8aa0b2a7cad12f3a24",
+    "/index.html": "f64975d84d15802516d6e830780a09eb1ca36022",
+    "/main-es2015.72ea36451a55abfc33a2.js": "7e6fcb96a5a4edf95ec384248873e4b12effb714",
+    "/main-es5.72ea36451a55abfc33a2.js": "2f0edceb690fd638c3100270d188f40adc14c23b",
     "/manifest.webmanifest": "45f8a5cc9c9ed812bf0440fe05ea28bfea445e13",
     "/polyfills-es2015.2d4d07e110b96fdcd14b.js": "14cfbc58484c6433c4cbce27a3dd34ad5651c635",
     "/polyfills-es5.0cf50cc7364ac3d57c39.js": "22e71cca09fe346c438a279afe18aab47e171319",
