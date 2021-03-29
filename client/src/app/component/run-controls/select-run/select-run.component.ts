@@ -30,7 +30,6 @@ export class SelectRunComponent implements OnInit {
     public builderService: BuilderService) { }
 
   ngOnInit() {
-    console.log(this.builderService.detailArray[this.index])
     if (this.builderService.detailArray[this.index].list !== undefined) {
       // let user = this.authService.userSignedIn();
       // if (user !== null)

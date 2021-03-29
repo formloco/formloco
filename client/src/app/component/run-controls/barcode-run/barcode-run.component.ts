@@ -14,8 +14,6 @@ export class BarcodeRunComponent implements OnInit {
 
   constructor(public builderService: BuilderService) { }
 
-  ngOnInit(): void {
-    console.log(this.builderService.detailArray[this.index].value)
-  }
+  ngOnInit(): void {}
 
 }

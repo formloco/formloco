@@ -64,7 +64,6 @@ export class SelectDetailsComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    console.log(this.appService.apiLists, this.builderService.canvasFormControls.details[this.index])
     if (this.index !== undefined) {
       if (this.builderService.canvasFormControls.details[this.index].list === 'none') {
         this.list = 'none'
