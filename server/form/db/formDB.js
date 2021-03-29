@@ -21,7 +21,7 @@ const formReadSQL = async (form_id, tenant_id) => {
   let form = await client.query(`SELECT * FROM public.form WHERE form_id = '` +  form_id + `' AND date_archived is null`)
   
   client.release()
-console.log(form.rows[0])
+
   return form.rows[0]
 }
 
@@ -37,7 +37,7 @@ const formsReadSQL = async (tenant_id) => {
 }
 
 const formCreateSQL = async (data) => {
-  console.log(data)
+
   pool.options.database = data["tenant_id"]
   let client = await pool.connect()
 
