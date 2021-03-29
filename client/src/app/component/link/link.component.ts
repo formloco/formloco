@@ -58,12 +58,13 @@ export class LinkComponent implements OnInit {
   run(form_id, tenant_id) {
     this.formService.getForm(form_id, tenant_id).subscribe(obj => {
       this.formObj = obj
+      console.log(this.formObj)
       this.appService.isAnonymous = true
       this.builderService.formObj = this.formObj
       this.builderService.detailArray = this.formObj.form.details
       this.builderService.controlArray = this.formObj.form.controls
 
-      const bytes = CryptoJS.AES.decrypt(this.formObj["pin"], this.pinKeySecret)
+      const bytes = CryptoJS.AES.decrypt(this.formObj.form["pin"], this.pinKeySecret)
       if (bytes.toString()) {
         let pinAndUse = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
 

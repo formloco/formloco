@@ -76,6 +76,7 @@ export class DataComponent implements OnInit {
   getIdb() {
     this.idbCrudService.readAll('data').subscribe(data => {
       this.data = data
+      console.log(this.data)
       if (this.data !== undefined) this.setTable()
     /** todo: refactor file support */
 
@@ -137,7 +138,7 @@ export class DataComponent implements OnInit {
     this.columnLabels = JSON.parse(this.builderService.formObj.form.labels)
     this.columnLabels.push('Date Created')
     this.columnLabels.push('User Created')
-    
+    console.log(this.columns, this.builderService.formObj)
     let colIndex
     colIndex = this.columns.findIndex(col => col === 'tenant_id')
     if (colIndex != -1) this.columns.splice(colIndex, 1)
@@ -160,6 +161,7 @@ export class DataComponent implements OnInit {
     colIndex = this.columns.findIndex(col => col === 'form_columns')
     if (colIndex != -1) this.columns.splice(colIndex, 1)
 
+    console.log(this.columns)
     this.columnsToDisplay = this.columns.reverse()
     this.isData = true
   }

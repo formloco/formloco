@@ -21,7 +21,7 @@ const formReadSQL = async (form_id, tenant_id) => {
   let form = await client.query(`SELECT * FROM public.form WHERE form_id = '` +  form_id + `' AND date_archived is null`)
   
   client.release()
-
+console.log(form.rows[0])
   return form.rows[0]
 }
 
@@ -37,6 +37,7 @@ const formsReadSQL = async (tenant_id) => {
 }
 
 const formCreateSQL = async (data) => {
+  console.log(data)
   pool.options.database = data["tenant_id"]
   let client = await pool.connect()
 
@@ -58,11 +59,11 @@ const formUpdateSQL = async (data) => {
   let userUpdated = JSON.stringify(data["user_created"])
 
   if (data["date_archived"] === undefined || data["date_archived"] === null) {
-    await client.query(`UPDATE public.form SET form = '` + formObj + `', pin = '` + data["pin"] + `', user_updated = '` + userUpdated + `' WHERE form_id = '` + data["form_id"] + `'`)
+    await client.query(`UPDATE public.form SET form = '` + formObj + `', user_updated = '` + userUpdated + `' WHERE form_id = '` + data["form_id"] + `'`)
   }
   else {
     let userArchived = JSON.stringify(data["user_updated"])
-    await client.query(`UPDATE public.form SET form = '` + formObj + `', pin = '` + data["pin"] + `', user_updated = '` + userUpdated + `', date_archived = '` + data["date_archived"] + `' WHERE id = ` + data["id"])
+    await client.query(`UPDATE public.form SET form = '` + formObj + `', user_updated = '` + userUpdated + `', date_archived = '` + data["date_archived"] + `' WHERE id = ` + data["id"])
   }
 
   client.release()

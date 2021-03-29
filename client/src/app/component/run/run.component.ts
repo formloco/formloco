@@ -128,6 +128,7 @@ export class RunComponent implements OnInit {
       });
     }
 
+    this.builderService.formObj.form.is_data = true
     let obj = {
       data: data,
       columns: columns,
@@ -135,7 +136,7 @@ export class RunComponent implements OnInit {
       is_file: true,
       formObj: this.builderService.formObj
     };
-    console.log(obj,this.builderService.formObj.form_id)
+    
     this.dataService.save(obj).subscribe(response => {
       this.newform = response;
 

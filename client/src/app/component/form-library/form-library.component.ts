@@ -177,7 +177,7 @@ export class FormLibraryComponent implements OnChanges {
   openLinkOverlay(formObj, index) {
     if (formObj.is_published === true) {
       this.selectedIndex = index
-      const bytes = CryptoJS.AES.decrypt(formObj["pin"], this.pinKeySecret)
+      const bytes = CryptoJS.AES.decrypt(formObj.form["pin"], this.pinKeySecret)
     
       if (bytes.toString()) {
         let pinAndUse = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
@@ -208,7 +208,7 @@ export class FormLibraryComponent implements OnChanges {
     if (this.isPin) pinStr =  this.pin + false 
     else pinStr =  this.pin + true
 
-    formObj["pin"] = CryptoJS.AES.encrypt(JSON.stringify(pinStr), this.pinKeySecret).toString()
+    formObj.form["pin"] = CryptoJS.AES.encrypt(JSON.stringify(pinStr), this.pinKeySecret).toString()
   
     if (formObj.is_share)
       this.idbCrudService.put('share', formObj)
