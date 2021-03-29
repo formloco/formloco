@@ -1,25 +1,25 @@
-import { Component, OnChanges, Input, Inject } from '@angular/core';
+import { Component, OnChanges, Input, Inject } from '@angular/core'
 
-import { Observable, of, pipe } from 'rxjs';
-import { switchMap, debounceTime, tap, catchError } from 'rxjs/operators';
+import { Observable, of, pipe } from 'rxjs'
+import { switchMap, debounceTime, tap, catchError } from 'rxjs/operators'
 
 import { FormBuilder, FormControl, FormGroup, Validators }
-  from "@angular/forms";
+  from "@angular/forms"
 
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'
 
-import { AppService } from "../../../service/app.service";
-import { AuthService } from "../../../service/auth.service";
-import { EmailService } from "../../../service/email.service";
+import { AppService } from "../../../service/app.service"
+import { AuthService } from "../../../service/auth.service"
+import { EmailService } from "../../../service/email.service"
 
-// import { SocialUser } from "angularx-social-login";
-// import { AuthService as AuthSocialService } from "angularx-social-login";
-// import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
-// import { BroadcastService, MsalService } from '@azure/msal-angular';
+// import { SocialUser } from "angularx-social-login"
+// import { AuthService as AuthSocialService } from "angularx-social-login"
+// import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login"
+// import { BroadcastService, MsalService } from '@azure/msal-angular'
 
-import { ErrorService } from "../../../service/error.service";
+import { ErrorService } from "../../../service/error.service"
 
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../environments/environment'
 
 @Component({
   selector: 'app-phone-auth',
@@ -29,19 +29,19 @@ import { environment } from '../../../../environments/environment';
 export class PhoneAuthComponent implements OnChanges {
 
   @Input() isDarkMode
-  auth;
-  azureUser;
+  auth
+  azureUser
 
-  canvasBackground = '#000000';
+  canvasBackground = '#000000'
 
   // nav/component boolean controls
-  isSignin: boolean = true;
-  isSignup: boolean = false;
-  isForgotPassword: boolean = false;
+  isSignin: boolean = true
+  isSignup: boolean = false
+  isForgotPassword: boolean = false
 
-  emailSigninForm: FormGroup;
-  emailSignupForm: FormGroup;
-  forgotPasswordForm: FormGroup;
+  emailSigninForm: FormGroup
+  emailSignupForm: FormGroup
+  forgotPasswordForm: FormGroup
 
   constructor(
     private router: Router,
@@ -53,49 +53,49 @@ export class PhoneAuthComponent implements OnChanges {
     this.emailSigninForm = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.required]
-    });
+    })
     this.emailSignupForm = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.required]
-    });
+    })
     this.forgotPasswordForm = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.email])]
     })
   }
 
   ngOnChanges(): void {
-    if (this.isDarkMode) this.appService.canvasBackground = '#000000';
-    else this.canvasBackground = '#ffffff';
+    if (this.isDarkMode) this.appService.canvasBackground = '#000000'
+    else this.canvasBackground = '#ffffff'
   }
 
   signupEmail() {
     this.authService.signupEmail(this.emailSignupForm.value).subscribe(auth => {
-      this.auth = auth;
-      this.setSession('email');
-    });
+      this.auth = auth
+      this.setSession('email')
+    })
   }
 
   setPage(type) {
-    this.isForgotPassword = false;
+    this.isForgotPassword = false
   }
 
   togglePages() {
-    this.isSignin = !this.isSignin;
+    this.isSignin = !this.isSignin
   }
 
   forgotPassword() {
-    this.isForgotPassword = true;
+    this.isForgotPassword = true
   }
 
   forgotPasswordEmail() {
-    this.isSignin = true;
-    this.isForgotPassword = false;
+    this.isSignin = true
+    this.isForgotPassword = false
     let obj = {
       email: this.forgotPasswordForm['email'].value
     }
     this.emailService.forgotPassword(obj).subscribe(res => {
 
-    });
+    })
   }
 
   login(provider) {
@@ -105,24 +105,25 @@ export class PhoneAuthComponent implements OnChanges {
       password: this.emailSigninForm.value.password
     }
     this.authService.login(obj).subscribe(auth => {
-      this.auth = auth;
+      this.auth = auth
 
       if (this.auth.message === 'Sign in sucessful.') {
-        this.setSession(provider);
-        this.router.navigate(['/phone']);
-        setTimeout(function(){window.location = window.location}, 1000);
+        this.setSession(provider)
+        this.router.navigate(['/phone'])
+        this.appService.getForms()
+        // setTimeout(function(){window.location = window.location}, 1000)
       }
       else
-        this.errorService.popSnackbar(this.auth.message);
-    });
+        this.errorService.popSnackbar(this.auth.message)
+    })
 
   }
 
   setSession(provider) {
-    this.appService.authProvider = provider;
-    localStorage.setItem('authProvider', provider);
-    localStorage.setItem('formToken', this.auth.token);
-    localStorage.setItem('formUser', JSON.stringify(this.auth.user));
+    this.appService.authProvider = provider
+    localStorage.setItem('authProvider', provider)
+    localStorage.setItem('formToken', this.auth.token)
+    localStorage.setItem('formUser', JSON.stringify(this.auth.user))
   }
 
 }
