@@ -1,19 +1,19 @@
-import { Component, AfterViewInit, OnInit, Input } from '@angular/core';
+import { Component, AfterViewInit, OnInit, Input } from '@angular/core'
 
-import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
+import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode'
 
-import * as _moment from 'moment';
+import * as _moment from 'moment'
 
-import { FormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms'
 
-import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog'
 
-import { BuilderService } from "../../../service/builder.service";
+import { BuilderService } from "../../../service/builder.service"
 
-import { MessageComponent } from '../../dialogs/message/message.component';
+import { MessageComponent } from '../../dialogs/message/message.component'
 
 export interface Fruit {
-  name: string;
+  name: string
 }
 
 @Component({
@@ -23,17 +23,17 @@ export interface Fruit {
 })
 export class QrcodeComponent implements AfterViewInit, OnInit{
 
-  @Input() index;
+  @Input() index
 
-  begin = "";
-  end = "";
-  event = "";
+  begin = ""
+  end = ""
+  event = ""
 
-  elementType = NgxQrcodeElementTypes.URL;
-  correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
+  elementType = NgxQrcodeElementTypes.URL
+  correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH
   value
 
-  linkURL = new FormControl();
+  linkURL = new FormControl()
 
   constructor(
     private dialog: MatDialog,
@@ -43,30 +43,29 @@ export class QrcodeComponent implements AfterViewInit, OnInit{
 
 
   ngOnInit(): void {
-    this.value = 'after the fact';
+    this.value = 'after the fact'
   }
 
   ngAfterViewInit(): void {
-    this.begin = _moment().format('YYYYMMDD[T]HHmmss');
-    this.end = _moment().format('YYYYMMDD[T]HHmmss');
-    this.generateCodeData();
+    this.begin = _moment().format('YYYYMMDD[T]HHmmss')
+    this.end = _moment().format('YYYYMMDD[T]HHmmss')
+    this.generateCodeData()
   }
   
 
   generateCodeData(): void {
-    // this.event = QrCodeHelper.makeEvent('dffd',this.begin, this.end);
-    // let yy = QrCodeHelper.makeSMS('sddsd', 'ssddsds');
+    
   }
 
   openHelp(event, source) {
-    event.stopPropagation();
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.width = '450px';
+    event.stopPropagation()
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.width = '450px'
     dialogConfig.data = {
       title: 'Connector Information',
       message: 'Connectors have two ways they can communicate with your form, Lookup Lists and Actions.<br>Lookup Lists are used to search and find key data to put in your forms. They are attached to Select and Multi-Selct Form Controls. So when you run your form you will see your list that comes from'
-    };
-    const dialogRef = this.dialog.open(MessageComponent, dialogConfig);
+    }
+    const dialogRef = this.dialog.open(MessageComponent, dialogConfig)
   }
 
 }

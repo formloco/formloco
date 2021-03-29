@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core'
 
 import { FormBuilder, Validators, FormGroup, FormControl } 
-from '@angular/forms';
+from '@angular/forms'
 
-import { FontClasses } from "../../../model/label";
+import { FontClasses } from "../../../model/label"
 
-import { BuilderService } from "../../../service/builder.service";
+import { BuilderService } from "../../../service/builder.service"
 
 @Component({
   selector: 'app-label-details',
@@ -14,12 +14,12 @@ import { BuilderService } from "../../../service/builder.service";
 })
 export class LabelDetailsComponent implements OnInit {
 
-  @Input() index;
+  @Input() index
   
-  labelForm: FormGroup;
+  labelForm: FormGroup
 
-  isForm: boolean = false;
-  fontClasses = FontClasses;
+  isForm: boolean = false
+  fontClasses = FontClasses
 
   constructor(
     private fb: FormBuilder,
@@ -27,31 +27,31 @@ export class LabelDetailsComponent implements OnInit {
     this.labelForm = this.fb.group({
       label: [null, Validators.required],
       fontClass:  [null, Validators.required]
-    });
+    })
   }
 
   ngOnInit() {
     if (this.builderService.canvasFormControls.details[this.index]) {
-      this.isForm = true;
+      this.isForm = true
       this.labelForm.setValue({
         label: this.builderService.canvasFormControls.details[this.index].label,
         fontClass:  this.builderService.canvasFormControls.details[this.index].fontValue
-      });
+      })
     }
     else
-      this.isForm = false;
+      this.isForm = false
   }
 
   setLabel() {
-    this.builderService.canvasFormControls.details[this.index].label = this.labelForm.get('label').value;
+    this.builderService.canvasFormControls.details[this.index].label = this.labelForm.get('label').value
   }
 
   setFont() {
-    this.builderService.canvasFormControls.details[this.index].fontValue = this.labelForm.get('fontClass').value;
+    this.builderService.canvasFormControls.details[this.index].fontValue = this.labelForm.get('fontClass').value
   }
 
   deleteControl() {
-    this.builderService.deleteControl(this.index);
+    this.builderService.deleteControl(this.index)
   }
 
 }

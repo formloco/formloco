@@ -111,7 +111,6 @@ export class PhoneAuthComponent implements OnChanges {
         this.setSession(provider)
         this.router.navigate(['/phone'])
         this.appService.getForms()
-        // setTimeout(function(){window.location = window.location}, 1000)
       }
       else
         this.errorService.popSnackbar(this.auth.message)

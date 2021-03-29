@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
 import { FormBuilder, FormControl, FormGroup, Validators } 
-from "@angular/forms";
+from "@angular/forms"
 
-import { AuthService } from "../../../service/auth.service";
-import { SuccessService } from "../../../service/success.service";
-import { ConnectorSettingsService } from '../../../service/connector-settings.service';
+import { AuthService } from "../../../service/auth.service"
+import { SuccessService } from "../../../service/success.service"
+import { ConnectorSettingsService } from '../../../service/connector-settings.service'
 
 @Component({
   selector: 'app-google-maps',
@@ -14,8 +14,8 @@ import { ConnectorSettingsService } from '../../../service/connector-settings.se
 })
 export class GoogleMapsComponent implements OnInit {
 
-  obj;
-  isLogin = false;
+  obj
+  isLogin = false
 
   constructor(
     private fb: FormBuilder,
@@ -26,10 +26,10 @@ export class GoogleMapsComponent implements OnInit {
   }
 
   ngOnInit() {
-    let user = this.authService.userSignedIn();
+    let user = this.authService.userSignedIn()
     if (user !== null) {
-      this.isLogin = true;
-      this.getConnector();
+      this.isLogin = true
+      this.getConnector()
     }
   }
 

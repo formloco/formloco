@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
-import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog'
 
-import { MessageComponent } from '../../dialogs/message/message.component';
+import { MessageComponent } from '../../dialogs/message/message.component'
 
-import { AppService } from "../../../service/app.service";
-import { AuthService } from "../../../service/auth.service";
-import { FormService } from "../../../service/form.service";
-import { BuilderService } from "../../../service/builder.service";
+import { AppService } from "../../../service/app.service"
+import { AuthService } from "../../../service/auth.service"
+import { FormService } from "../../../service/form.service"
+import { BuilderService } from "../../../service/builder.service"
 
-import { IdbCrudService } from "../../../service-idb/idb-crud.service";
+import { IdbCrudService } from "../../../service-idb/idb-crud.service"
 
 @Component({
   selector: 'app-phone-form-launch',
@@ -18,10 +18,10 @@ import { IdbCrudService } from "../../../service-idb/idb-crud.service";
 })
 export class PhoneFormLaunchComponent implements OnInit {
 
-  data;
-  user;
-  forms;
-  idbData;
+  data
+  user
+  forms
+  idbData
 
   constructor(
     private dialog: MatDialog,
@@ -32,17 +32,17 @@ export class PhoneFormLaunchComponent implements OnInit {
     public builderService: BuilderService) { }
 
   ngOnInit(): void {
-    this.appService.getForms();
+    this.appService.getForms()
   }
 
   openForm(formObj) {
-    this.appService.parentPage = 'launch-forms';
-    this.appService.isMainMenu = false;
-    this.appService.isData = formObj.is_data;
-    this.builderService.formObj = formObj;
-    this.builderService.controlArray = formObj.form.controls;
-    this.builderService.detailArray = formObj.form.details;
-    this.appService.page = 'run';
+    this.appService.parentPage = 'launch-forms'
+    this.appService.isMainMenu = false
+    this.appService.isData = formObj.is_data
+    this.builderService.formObj = formObj
+    this.builderService.controlArray = formObj.form.controls
+    this.builderService.detailArray = formObj.form.details
+    this.appService.page = 'run'
   }
   
 }

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
-import { AppService } from "../../service/app.service";
-import { AuthService } from "../../service/auth.service";
-import { BuilderService } from "../../service/builder.service";
-import { SuccessService } from "../../service/success.service";
-import { ConnectorSettingsService } from '../../service/connector-settings.service';
+import { AppService } from "../../service/app.service"
+import { AuthService } from "../../service/auth.service"
+import { BuilderService } from "../../service/builder.service"
+import { SuccessService } from "../../service/success.service"
+import { ConnectorSettingsService } from '../../service/connector-settings.service'
 
 @Component({
   selector: 'app-connectors',
@@ -38,11 +38,11 @@ export class ConnectorsComponent implements OnInit {
     }
   ]
 
-  connector;
-  connectors;
-  currentIndex;
-  connectorName;
-  connectorType;
+  connector
+  connectors
+  currentIndex
+  connectorName
+  connectorType
 
   constructor(
     private appService: AppService,
@@ -54,28 +54,28 @@ export class ConnectorsComponent implements OnInit {
 
   ngOnInit() {
     
-    let user = this.authService.userSignedIn();
+    let user = this.authService.userSignedIn()
     
     if (user !== null) {
       this.connectorSettingsService.read(user.tenant_id).subscribe(connectors => {
-        this.connectors = connectors;
-      });
+        this.connectors = connectors
+      })
     }
   }
 
   open(index, connector) {
-    this.connectorName = connector.name;
-    this.connectorType = connector.type;
+    this.connectorName = connector.name
+    this.connectorType = connector.type
 
-    this.connector = {};
+    this.connector = {}
     this.connectors.forEach(element => {
-      if (element.settings.name === connector.name) this.connector = element;
-    });
+      if (element.settings.name === connector.name) this.connector = element
+    })
   }
 
   close() {
-    this.appService.isMainMenu = true;
-    this.appService.page = 'form-library';
+    this.appService.isMainMenu = true
+    this.appService.page = 'form-library'
   }
 
 }

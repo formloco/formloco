@@ -1,10 +1,10 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core'
 
 import { FormBuilder, Validators, FormGroup, FormControl } 
-from '@angular/forms';
+from '@angular/forms'
 
-import { AppService } from "../../../service/app.service";
-import { BuilderService } from "../../../service/builder.service";
+import { AppService } from "../../../service/app.service"
+import { BuilderService } from "../../../service/builder.service"
 
 @Component({
   selector: 'app-slider-details',
@@ -13,9 +13,9 @@ import { BuilderService } from "../../../service/builder.service";
 })
 export class SliderDetailsComponent implements OnChanges {
 
-  @Input() index;
+  @Input() index
 
-  sliderForm: FormGroup;
+  sliderForm: FormGroup
 
   constructor(
     private fb: FormBuilder,
@@ -30,7 +30,7 @@ export class SliderDetailsComponent implements OnChanges {
       interval:   [null, Validators.required],
       thumbLabel: [null],
       invert:     [null]
-    });
+    })
   }
 
   ngOnChanges() {
@@ -44,44 +44,44 @@ export class SliderDetailsComponent implements OnChanges {
         interval: this.builderService.canvasFormControls.details[this.index].interval,
         thumbLabel: this.builderService.canvasFormControls.details[this.index].thumbLabel,
         invert: this.builderService.canvasFormControls.details[this.index].invert
-      });
+      })
     }
   }
 
   setLabel() {
-    this.builderService.canvasFormControls.details[this.index].label = this.sliderForm.get('label').value;
+    this.builderService.canvasFormControls.details[this.index].label = this.sliderForm.get('label').value
   }
 
   setValue() {
-    this.builderService.canvasFormControls.details[this.index].value = this.sliderForm.get('value').value;    
+    this.builderService.canvasFormControls.details[this.index].value = this.sliderForm.get('value').value    
   }
 
   setMin() {
-    this.builderService.canvasFormControls.details[this.index].min = this.sliderForm.get('min').value;    
+    this.builderService.canvasFormControls.details[this.index].min = this.sliderForm.get('min').value    
   }
 
   setMax() {
-    this.builderService.canvasFormControls.details[this.index].max = this.sliderForm.get('max').value;    
+    this.builderService.canvasFormControls.details[this.index].max = this.sliderForm.get('max').value    
   }
 
   setStep() {
-    this.builderService.canvasFormControls.details[this.index].step = this.sliderForm.get('step').value;    
+    this.builderService.canvasFormControls.details[this.index].step = this.sliderForm.get('step').value    
   }
 
   setInterval() {
-    this.builderService.canvasFormControls.details[this.index].interval = this.sliderForm.get('interval').value;    
+    this.builderService.canvasFormControls.details[this.index].interval = this.sliderForm.get('interval').value    
   }
 
   setThumb() {
-    this.builderService.canvasFormControls.details[this.index].label = this.sliderForm.get('label').value;    
+    this.builderService.canvasFormControls.details[this.index].label = this.sliderForm.get('label').value    
   }
 
   setInvert() {
-    this.builderService.canvasFormControls.details[this.index].invert = this.sliderForm.get('invert').value;    
+    this.builderService.canvasFormControls.details[this.index].invert = this.sliderForm.get('invert').value    
   }
 
   deleteControl() {
-    this.builderService.deleteControl(this.index);
+    this.builderService.deleteControl(this.index)
   }
 
 }

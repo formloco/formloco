@@ -1,12 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core'
 
 import { FormBuilder, Validators, FormGroup, FormControl }
-from '@angular/forms';
+from '@angular/forms'
 
-import { Appearances, Types } from "../../../model/textbox";
+import { Appearances, Types } from "../../../model/textbox"
 
-import { AppService } from "../../../service/app.service";
-import { BuilderService } from "../../../service/builder.service";
+import { AppService } from "../../../service/app.service"
+import { BuilderService } from "../../../service/builder.service"
 
 @Component({
   selector: 'app-textbox-details',
@@ -15,14 +15,14 @@ import { BuilderService } from "../../../service/builder.service";
 })
 export class TextboxDetailsComponent implements OnInit {
 
-  @Input() index;
+  @Input() index
 
-  canvasIndex: number;
-  textboxForm: FormGroup;
+  canvasIndex: number
+  textboxForm: FormGroup
 
-  appearances = Appearances;
-  types = Types;
-  textboxRequired: boolean;
+  appearances = Appearances
+  types = Types
+  textboxRequired: boolean
 
   constructor(
     private fb: FormBuilder,
@@ -35,7 +35,7 @@ export class TextboxDetailsComponent implements OnInit {
       placeholder: [null, Validators.required],
       required: [null, Validators.required],
       types: [null, Validators.required]
-    });
+    })
   }
 
   ngOnInit() {
@@ -47,45 +47,45 @@ export class TextboxDetailsComponent implements OnInit {
         placeholder: this.builderService.canvasFormControls.details[this.index].placeholder,
         required: this.builderService.canvasFormControls.details[this.index].required,
         types: this.builderService.canvasFormControls.details[this.index].types
-      });
+      })
       if (this.builderService.canvasFormControls.details[this.index].required === true)
-        this.textboxRequired = true;
+        this.textboxRequired = true
       else
-        this.textboxRequired = false;
+        this.textboxRequired = false
     }
   }
 
   setAppearance() {
-    this.builderService.canvasFormControls.details[this.index].appearance = this.textboxForm.get('appearance').value;  
+    this.builderService.canvasFormControls.details[this.index].appearance = this.textboxForm.get('appearance').value  
   }
 
   setTypes() {
-    this.builderService.canvasFormControls.details[this.index].types = this.textboxForm.get('types').value;
+    this.builderService.canvasFormControls.details[this.index].types = this.textboxForm.get('types').value
   }
 
   setLabel() {
-    this.builderService.canvasFormControls.details[this.index].label = this.textboxForm.get('label').value;
+    this.builderService.canvasFormControls.details[this.index].label = this.textboxForm.get('label').value
   }
 
   setPlaceholder() {
-    this.builderService.canvasFormControls.details[this.index].placeholder = this.textboxForm.get('placeholder').value;
+    this.builderService.canvasFormControls.details[this.index].placeholder = this.textboxForm.get('placeholder').value
   }
 
   setError() {
-    this.builderService.canvasFormControls.details[this.index].error = this.textboxForm.get('error').value;
+    this.builderService.canvasFormControls.details[this.index].error = this.textboxForm.get('error').value
   }
 
   setRequired(value) {
     if (value === true)
-      this.textboxRequired = true;
+      this.textboxRequired = true
     else
-      this.textboxRequired = false;
+      this.textboxRequired = false
       
-    this.builderService.canvasFormControls.details[this.index].required = this.textboxRequired;
+    this.builderService.canvasFormControls.details[this.index].required = this.textboxRequired
   }
 
   deleteControl() {
-    this.builderService.deleteControl(this.index);
+    this.builderService.deleteControl(this.index)
   }
 
 }

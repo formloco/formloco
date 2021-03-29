@@ -2,26 +2,26 @@
  * form structures and data and list data
 */
 
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 
-import { AppService } from "../service/app.service";
-import { SyncService } from "../service/sync.service";
-import { FormService } from "../service/form.service";
-import { SuccessService } from "../service/success.service";
-import { IdbCrudService } from "../service-idb/idb-crud.service";
+import { AppService } from "../service/app.service"
+import { SyncService } from "../service/sync.service"
+import { FormService } from "../service/form.service"
+import { SuccessService } from "../service/success.service"
+import { IdbCrudService } from "../service-idb/idb-crud.service"
 
 @Injectable({
   providedIn: 'root'
 })
 export class SyncControlService {
 
-  lists;
-  forms;
-  listForms;
-  shareForms;
-  tenantForms;
-  idbData;
-  listData;
+  lists
+  forms
+  listForms
+  shareForms
+  tenantForms
+  idbData
+  listData
 
   constructor(
     public appService: AppService,
@@ -32,16 +32,16 @@ export class SyncControlService {
 
 
   syncFormsIdb(user) {
-    this.forms = [];
+    this.forms = []
     this.idbCrudService.readAll('form').subscribe(forms => {
-      this.forms = forms;
+      this.forms = forms
 
       if (this.forms.length > 0) {
         // update form list obj if 'Select/MutiSelect' and list is not 'none'
         this.forms.forEach(element => {
           element["user_created"] = { email: user.email, date_created: new Date() }
           element["tenant_id"] = user.tenant_id
-        });
+        })
 
         let obj = {
           user: user,
@@ -49,29 +49,29 @@ export class SyncControlService {
         }
         // sync forms owned by tenant
         this.syncService.syncForm(obj).subscribe(res => {
-          this.forms = res;
+          this.forms = res
 
-          this.idbCrudService.clear('form').subscribe();
+          this.idbCrudService.clear('form').subscribe()
           this.forms.forEach(formObj => {
-            this.idbCrudService.put('form', formObj).subscribe();
-          });
-        });
+            this.idbCrudService.put('form', formObj).subscribe()
+          })
+        })
       }
       else {
         this.formService.getForms(user.tenant_id).subscribe(res => {
-          this.forms = res;
-          this.idbCrudService.clear('form').subscribe();
+          this.forms = res
+          this.idbCrudService.clear('form').subscribe()
           this.forms.forEach(formObj => {
-            this.idbCrudService.put('form', formObj).subscribe();
-          });
-        });
+            this.idbCrudService.put('form', formObj).subscribe()
+          })
+        })
       }
-    });
+    })
   }
 
   syncShareIdb(user) {
     if (user.share_roles.length > 0) {
-      this.idbCrudService.clear('share').subscribe();
+      this.idbCrudService.clear('share').subscribe()
       user.share_roles.forEach((element, index) => {
         if (element === 'Admin') {
           let userCreated = {
@@ -90,17 +90,17 @@ export class SyncControlService {
             is_data: user.share[index].is_data,
             is_published: user.share[index].is_published,
             is_share: true
-          });
-          this.idbCrudService.put('share', idbForm).subscribe();
+          })
+          this.idbCrudService.put('share', idbForm).subscribe()
         }
-      });
+      })
     }
   }
 
   syncDataCloud(user) {
-    this.idbData = [];
+    this.idbData = []
     this.idbCrudService.readAll('data').subscribe(data => {
-      this.idbData = data;
+      this.idbData = data
 
       if (this.idbData.length > 0) {
         this.idbData.forEach((element, index) => {
@@ -109,25 +109,25 @@ export class SyncControlService {
               email: user.email,
               date_created: new Date(),
             }
-          element["tenant_id"] = user.tenant_id;
-        });
+          element["tenant_id"] = user.tenant_id
+        })
 
         this.syncService.syncDataCloud(this.idbData).subscribe(res => {
-          let response = res;
+          let response = res
           if (response["message"] === 'Data synchronized.') {
-            this.idbCrudService.clear('data').subscribe();
+            this.idbCrudService.clear('data').subscribe()
           }
-        });
+        })
       }
-    });
+    })
   }
 
   syncDataListCloud(user) {
     let obj = {}
-    this.idbData = [];
-    this.successService.popSnackbar("Welcome to formloco!");
+    this.idbData = []
+    this.successService.popSnackbar("Welcome to formloco!")
     this.idbCrudService.readAll('list_data').subscribe(data => {
-      this.idbData = data;
+      this.idbData = data
 
       if (this.idbData.length > 0) {
         this.idbData.forEach((element, index) => {
@@ -137,8 +137,8 @@ export class SyncControlService {
               date_created: new Date(),
             }
           if (element["tenant_id"] === undefined)
-            element["tenant_id"] = user.tenant_id;
-        });
+            element["tenant_id"] = user.tenant_id
+        })
 
         let obj = {
           tenant_id: user.tenant_id,
@@ -146,17 +146,17 @@ export class SyncControlService {
         }
         this.syncListData(obj)
       }
-    });
+    })
   }
 
   syncListData(obj) {
     this.syncService.syncDataListCloud(obj).subscribe(listData => {
-      this.idbData = listData;
-      this.idbCrudService.clear('list_data').subscribe();
+      this.idbData = listData
+      this.idbCrudService.clear('list_data').subscribe()
       this.idbData.forEach(list => {
-        this.idbCrudService.put('list_data', list).subscribe();
-      });
-    });
+        this.idbCrudService.put('list_data', list).subscribe()
+      })
+    })
   }
 
 }

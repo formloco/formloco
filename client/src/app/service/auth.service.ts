@@ -1,65 +1,61 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 
-import { Observable } from 'rxjs';
-import { tap, concatMap } from 'rxjs/operators';
+import { Observable } from 'rxjs'
+import { tap, concatMap } from 'rxjs/operators'
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  authUrl = environment.authUrl;
-  userUrl = environment.userUrl;
-  emailUrl = environment.emailUrl;
+  authUrl = environment.authUrl
+  userUrl = environment.userUrl
+  emailUrl = environment.emailUrl
 
   constructor(
     private _http: HttpClient
   ) { }
 
-  // auth() {
-  //   return this._http.get(this.authUrl+'auth/');
-  // }
-
   userSignedIn() {
-    return JSON.parse(localStorage.getItem('formUser'));
+    return JSON.parse(localStorage.getItem('formUser'))
   }
 
   isOnline() {
-    return window.navigator.onLine;
+    return window.navigator.onLine
   }
 
   login(obj) {
-    return this._http.post(this.authUrl, obj);
+    return this._http.post(this.authUrl, obj)
   }
 
   loginProvider(obj) {
-    return this._http.post(this.authUrl+'provider', obj);
+    return this._http.post(this.authUrl+'provider', obj)
   }
 
   signupEmail(obj) {
-    return this._http.post(this.authUrl+'email', obj);
+    return this._http.post(this.authUrl+'email', obj)
   }
 
   resetPassword(obj) {
-    return this._http.put(this.userUrl+'user/resetpassword', obj);
+    return this._http.put(this.userUrl+'user/resetpassword', obj)
   }
 
   token() {
-    return this._http.get(this.authUrl+'token');
+    return this._http.get(this.authUrl+'token')
   }
 
   refreshToken() {
-    let obj = ({id: localStorage.getItem('formUserId')});
-    return this._http.post(this.authUrl+'token/refresh', (obj));
+    let obj = ({id: localStorage.getItem('formUserId')})
+    return this._http.post(this.authUrl+'token/refresh', (obj))
   }
 
   refreshUser(user) {
-    localStorage.setItem('formUser', JSON.stringify(user));
-    return JSON.parse(localStorage.getItem('formUser'));
+    localStorage.setItem('formUser', JSON.stringify(user))
+    return JSON.parse(localStorage.getItem('formUser'))
   }
 
 }

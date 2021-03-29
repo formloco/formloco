@@ -1,28 +1,28 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 
-import { BuilderService } from "./builder.service";
+import { BuilderService } from "./builder.service"
 
-import { ActionGroupFreshbooks, ActionGroupQuickbooks, ActionGroupXero, ActionGroupMicrosoftBusinessCentral, ActionGroupWave } from '../model/connector';
+import { ActionGroupFreshbooks, ActionGroupQuickbooks, ActionGroupXero, ActionGroupMicrosoftBusinessCentral, ActionGroupWave } from '../model/connector'
 
 @Injectable({
   providedIn: 'root'
 })
 export class BuilderControlService {
 
-  actionGroup;
-  actionGroupXero = ActionGroupXero;
-  actionGroupWave = ActionGroupWave;
-  actionGroupFreshbooks = ActionGroupFreshbooks;
-  actionGroupQuickbooks = ActionGroupQuickbooks;
-  actionGroupMicrosoftBusinessCentral = ActionGroupMicrosoftBusinessCentral;
+  actionGroup
+  actionGroupXero = ActionGroupXero
+  actionGroupWave = ActionGroupWave
+  actionGroupFreshbooks = ActionGroupFreshbooks
+  actionGroupQuickbooks = ActionGroupQuickbooks
+  actionGroupMicrosoftBusinessCentral = ActionGroupMicrosoftBusinessCentral
 
   constructor(public builderService: BuilderService) { }
 
   updateDetail(control, index) {
 
-    let obj = {};
-    let type = control[index].type;
-    let length = this.builderService.canvasFormControls.details.length;
+    let obj = {}
+    let type = control[index].type
+    let length = this.builderService.canvasFormControls.details.length
 
     if (type == 'Textbox') {
       obj = {
@@ -81,7 +81,7 @@ export class BuilderControlService {
             error: "Field is required"
           }
         ]
-      };
+      }
     }
     else if (type == 'Select') {
       obj = {
@@ -103,7 +103,7 @@ export class BuilderControlService {
             value: "2"
           }
         ]
-      };
+      }
     }
     else if (type == 'SelectMulti') {
       obj = {
@@ -125,20 +125,20 @@ export class BuilderControlService {
             value: "2"
           }
         ]
-      };
+      }
     }
     else if (type == 'File Upload') {
-      obj = [];
+      obj = []
     }
     else if (type == 'BarCode') {
-      obj = {};
+      obj = {}
     }
     else if (type == 'QRCode') {
       obj = {
         qrcode: '',
         redireectURL: '',
         tagArray: []
-      };
+      }
     }
     else if (type == 'BarCodeScanner') {
       obj = {
@@ -150,14 +150,14 @@ export class BuilderControlService {
     else if (type == 'QRCodeScanner') {
       obj = {
         files: []
-      };
+      }
     }
     else if (type == 'Label') {
       obj = {
         type: "Label",
         label: "Label",
         fontValue: "mat-display-1"
-      };
+      }
     }
     else if (type == 'Radio') {
       obj = {
@@ -178,7 +178,7 @@ export class BuilderControlService {
             labelPosition: "after"
           }
         ]
-      };
+      }
     }
     else if (type == 'Slider') {
       obj = {
@@ -192,7 +192,7 @@ export class BuilderControlService {
         step: 10,
         thumbLabel: true,
         value: 0,
-      };
+      }
     }
     else if (type == 'Textarea') {
       obj = {
@@ -204,7 +204,7 @@ export class BuilderControlService {
         required: false,
         types: "text",
         error: "Required Field"
-      };
+      }
     }
     else if (type == 'Toggle') {
       obj = {
@@ -228,35 +228,35 @@ export class BuilderControlService {
             error: "Toggle is required"
           }
         ]
-      };
+      }
     }
     else if (type == 'Editor') {
       obj = {
         type: "Editor",
         html: ''
-      };
+      }
     }
     else if (type == 'Connector') {
       let src
       if (control[index].label === 'Freshbooks') {
-        src = 'assets/logo/freshbooks-shield.png';
-        this.actionGroup = this.actionGroupFreshbooks;
+        src = 'assets/logo/freshbooks-shield.png'
+        this.actionGroup = this.actionGroupFreshbooks
       }
       if (control[index].label === 'Quickbooks') {
-        src = 'assets/logo/quickbooks-button.png';
-        this.actionGroup = this.actionGroupQuickbooks;
+        src = 'assets/logo/quickbooks-button.png'
+        this.actionGroup = this.actionGroupQuickbooks
       }
       if (control[index].label === 'Xero') {
-        src = 'assets/logo/xero-logo.png';
-        this.actionGroup = this.actionGroupXero;
+        src = 'assets/logo/xero-logo.png'
+        this.actionGroup = this.actionGroupXero
       }
       if (control[index].label === 'Microsoft Business Central') {
-        src = 'assets/logo/microsoft-business-central-shield.png';
-        this.actionGroup = this.actionGroupMicrosoftBusinessCentral;
+        src = 'assets/logo/microsoft-business-central-shield.png'
+        this.actionGroup = this.actionGroupMicrosoftBusinessCentral
       }
       if (control[index].label === 'Wave') {
-        src = 'assets/logo/wave-shield.png';
-        this.actionGroup = this.actionGroupWave;
+        src = 'assets/logo/wave-shield.png'
+        this.actionGroup = this.actionGroupWave
       }
 
       obj = {
@@ -265,7 +265,7 @@ export class BuilderControlService {
         lists: this.actionGroup[0].action,
         actions: this.actionGroup[1].action,
         src: src
-      };
+      }
 
     }
     else if (type == 'MicroApp') {
@@ -274,15 +274,15 @@ export class BuilderControlService {
         type: "MicroApp",
         link: control[index].link,
         settings: []
-      };
+      }
     }
 
     if (this.builderService.previousIndex === index) {
       if (index === 0)
-        this.builderService.canvasFormControls.details.unshift(obj);
+        this.builderService.canvasFormControls.details.unshift(obj)
       else
-        this.builderService.canvasFormControls.details.push(obj);
-      this.builderService.previousIndex = this.builderService.canvasFormControls.details.length;
+        this.builderService.canvasFormControls.details.push(obj)
+      this.builderService.previousIndex = this.builderService.canvasFormControls.details.length
     }
     else {
       this.builderService.canvasFormControls.details.splice(index, 0, obj)

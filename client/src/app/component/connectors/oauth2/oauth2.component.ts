@@ -1,12 +1,12 @@
-import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core'
 
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
 
-import { AuthService } from "../../../service/auth.service";
-import { SuccessService } from "../../../service/success.service";
-import { ConnectorSettingsService } from '../../../service/connector-settings.service';
+import { AuthService } from "../../../service/auth.service"
+import { SuccessService } from "../../../service/success.service"
+import { ConnectorSettingsService } from '../../../service/connector-settings.service'
 
-import { ActionGroupFreshbooks, ActionGroupQuickbooks, ActionGroupXero, ActionGroupMicrosoftBusinessCentral, ActionGroupWave } from '../../../model/connector';
+import { ActionGroupFreshbooks, ActionGroupQuickbooks, ActionGroupXero, ActionGroupMicrosoftBusinessCentral, ActionGroupWave } from '../../../model/connector'
 
 @Component({
   selector: 'app-oauth2',
@@ -15,18 +15,18 @@ import { ActionGroupFreshbooks, ActionGroupQuickbooks, ActionGroupXero, ActionGr
 })
 export class Oauth2Component implements OnChanges {
 
-  @Input() connectorName;
-  @Input() connector;
+  @Input() connectorName
+  @Input() connector
 
-  isLogin = false;
-  oAuth2Form: FormGroup;
+  isLogin = false
+  oAuth2Form: FormGroup
 
-  actionGroup;
-  actionGroupFreshbooks = ActionGroupFreshbooks;
-  actionGroupQuickbooks = ActionGroupQuickbooks;
-  actionGroupMicrosoftBusinessCentral = ActionGroupMicrosoftBusinessCentral;
-  actionGroupXero = ActionGroupXero;
-  actionGroupWave = ActionGroupWave;
+  actionGroup
+  actionGroupFreshbooks = ActionGroupFreshbooks
+  actionGroupQuickbooks = ActionGroupQuickbooks
+  actionGroupMicrosoftBusinessCentral = ActionGroupMicrosoftBusinessCentral
+  actionGroupXero = ActionGroupXero
+  actionGroupWave = ActionGroupWave
 
   constructor(
     private fb: FormBuilder,
@@ -39,21 +39,21 @@ export class Oauth2Component implements OnChanges {
       client_secret: ['', Validators.required],
       redirect_uri: ['', Validators.required],
       actions: ['', Validators.required]
-    });
+    })
   }
 
   ngOnChanges() {
-    this.oAuth2Form.reset();
-    let user = this.authService.userSignedIn();
+    this.oAuth2Form.reset()
+    let user = this.authService.userSignedIn()
 
-    if (this.connectorName === 'Freshbooks') this.actionGroup = this.actionGroupFreshbooks;
-    if (this.connectorName === 'Quickbooks') this.actionGroup = this.actionGroupQuickbooks;
-    if (this.connectorName === 'Xero') this.actionGroup = this.actionGroupXero;
-    if (this.connectorName === 'Microsoft Business Central') this.actionGroup = this.actionGroupMicrosoftBusinessCentral;
-    if (this.connectorName === 'Wave') this.actionGroup = this.actionGroupWave;
+    if (this.connectorName === 'Freshbooks') this.actionGroup = this.actionGroupFreshbooks
+    if (this.connectorName === 'Quickbooks') this.actionGroup = this.actionGroupQuickbooks
+    if (this.connectorName === 'Xero') this.actionGroup = this.actionGroupXero
+    if (this.connectorName === 'Microsoft Business Central') this.actionGroup = this.actionGroupMicrosoftBusinessCentral
+    if (this.connectorName === 'Wave') this.actionGroup = this.actionGroupWave
 
     if (user !== null) {
-      this.isLogin = true;
+      this.isLogin = true
 
       if (this.connector.id !== undefined) {
         this.oAuth2Form.patchValue({
@@ -61,14 +61,14 @@ export class Oauth2Component implements OnChanges {
           client_secret: this.connector.settings.client_secret,
           redirect_uri: this.connector.settings.redirect_uri,
           actions: this.connector.settings.actions
-        });
+        })
       }
     }
   }
 
   save() {
-    let user = this.authService.userSignedIn();
-    const formValue = this.oAuth2Form.value;
+    let user = this.authService.userSignedIn()
+    const formValue = this.oAuth2Form.value
     let settings = {
       name: this.connectorName,
       client_id: formValue.client_id,
@@ -81,17 +81,17 @@ export class Oauth2Component implements OnChanges {
       user_created: {email: user.email, date: new Date()},
       user_updated: {email: user.email, date: new Date()},
       settings: settings
-    };
+    }
     if (this.connector.id !== undefined) {
-      obj["id"] = this.connector.id;
+      obj["id"] = this.connector.id
       this.connectorSettingsService.update(obj).subscribe(msg => {
-        this.successService.popSnackbar(msg);
-      });
+        this.successService.popSnackbar(msg)
+      })
     }
     else {
       this.connectorSettingsService.create(obj).subscribe(msg => {
-        this.successService.popSnackbar(msg);
-      });
+        this.successService.popSnackbar(msg)
+      })
     }
   }
 

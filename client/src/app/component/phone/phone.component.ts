@@ -17,7 +17,7 @@ export class PhoneComponent implements OnChanges {
 
   @HostBinding('class') className = 'darkMode'
 
-  myInnerHeight = window.innerHeight;
+  myInnerHeight = window.innerHeight
 
   isSignin = false
   canvasBackground = '#3b3b3b'
@@ -29,7 +29,7 @@ export class PhoneComponent implements OnChanges {
     private overlayContainer: OverlayContainer) { }
 
   ngOnChanges(): void {
-    this.appService.getForms();
+    this.appService.getForms()
     if (this.appService.isDarkMode) this.canvasBackground = '#3b3b3b'
     else this.canvasBackground = '#ffffff'
     
@@ -64,12 +64,12 @@ export class PhoneComponent implements OnChanges {
   }
 
   signout() {
-    this.isSignin = false;
-    localStorage.removeItem('formToken');
-    localStorage.removeItem('formUser');
-    localStorage.removeItem('authProvider');
-    this.appService.authProvider = undefined;
-    setTimeout(function(){window.location = window.location}, 1000);
+    this.isSignin = false
+    localStorage.removeItem('formToken')
+    localStorage.removeItem('formUser')
+    localStorage.removeItem('authProvider')
+    this.appService.authProvider = undefined
+    setTimeout(function(){window.location = window.location}, 1000)
   }
 
 

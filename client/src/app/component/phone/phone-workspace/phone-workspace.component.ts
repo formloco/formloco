@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
-import { TooltipPosition } from '@angular/material/tooltip';
-import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
+import { TooltipPosition } from '@angular/material/tooltip'
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog'
 
-import { AppService } from "../../../service/app.service";
-import { AuthService } from "../../../service/auth.service";
-import { BuilderService } from "../../../service/builder.service";
+import { AppService } from "../../../service/app.service"
+import { AuthService } from "../../../service/auth.service"
+import { BuilderService } from "../../../service/builder.service"
 
-import { IdbCrudService } from "../../../service-idb/idb-crud.service";
+import { IdbCrudService } from "../../../service-idb/idb-crud.service"
 
 @Component({
   selector: 'app-phone-workspace',
@@ -16,9 +16,9 @@ import { IdbCrudService } from "../../../service-idb/idb-crud.service";
 })
 export class PhoneWorkspaceComponent implements OnInit {
 
-  data;
-  isForm;
-  pageTitle;
+  data
+  isForm
+  pageTitle
 
   constructor(
     private dialog: MatDialog,
@@ -28,53 +28,52 @@ export class PhoneWorkspaceComponent implements OnInit {
     private idbCrudService: IdbCrudService) { }
 
   ngOnInit(): void {
-    // this.appService.getForms();
-    this.appService.page = 'launch-forms';
-    this.appService.pageTitle = 'Launch Forms';
+    this.appService.page = 'launch-forms'
+    this.appService.pageTitle = 'Launch Forms'
   }
 
   setPage(page) {
     if (page === 'launch-forms') {
-      this.appService.pageTitle = 'Launch Forms';
+      this.appService.pageTitle = 'Launch Forms'
     }
     if (page === 'template') {
-      this.appService.pageTitle = 'Template Library';
+      this.appService.pageTitle = 'Template Library'
     }
-    this.appService.page = page;
+    this.appService.page = page
   }
 
   openHome() {
-    this.appService.page = 'home';
-    this.appService.pageTitle = 'Form Library';
+    this.appService.page = 'home'
+    this.appService.pageTitle = 'Form Library'
   }
 
   openRun() {
-    this.appService.page = 'run';
-    this.appService.pageTitle = 'Preview';
+    this.appService.page = 'run'
+    this.appService.pageTitle = 'Preview'
   }
 
   openData() {
-    this.appService.page = 'data-cards';
-    this.appService.pageTitle = 'Form Data';
+    this.appService.page = 'data-cards'
+    this.appService.pageTitle = 'Form Data'
   }
 
   openForm(value) {
-    this.appService.page = 'design';
+    this.appService.page = 'design'
     if (value === 'new')
-      this.appService.pageTitle = 'Create Form';
+      this.appService.pageTitle = 'Create Form'
     else
-      this.appService.pageTitle = 'Edit Form';
+      this.appService.pageTitle = 'Edit Form'
   }
 
   openShare() {
-    this.appService.page = 'share';
-    this.appService.pageTitle = 'Share';
+    this.appService.page = 'share'
+    this.appService.pageTitle = 'Share'
   }
 
   close() {
     if (this.appService.parentPage === 'form-library') this.appService.pageTitle = 'Form Libary'
     if (this.appService.parentPage === 'data-cards') this.appService.pageTitle = 'Form Data'
-    this.appService.page = this.appService.parentPage;
+    this.appService.page = this.appService.parentPage
   }
 
 }

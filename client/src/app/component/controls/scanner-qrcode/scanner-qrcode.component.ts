@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core'
 
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
-import { BuilderService } from "../../../service/builder.service";
+import { ZXingScannerModule } from '@zxing/ngx-scanner'
+import { BuilderService } from "../../../service/builder.service"
 
 @Component({
   selector: 'app-scanner-qrcode',
@@ -10,7 +10,7 @@ import { BuilderService } from "../../../service/builder.service";
 })
 export class ScannerQrcodeComponent implements OnInit {
 
-  @Input() index;
+  @Input() index
 
   constructor(public builderService: BuilderService) { }
 

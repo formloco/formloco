@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import * as CryptoJS from 'crypto-js'
 
-import { Router, ActivatedRoute, Params } from '@angular/router'
+import { ActivatedRoute, Params } from '@angular/router'
 
 import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog'
 
@@ -34,7 +34,6 @@ export class LinkComponent implements OnInit {
   pinKeySecret = environment.pinKeySecret
 
   constructor(
-    // private router: Router,
     private dialog: MatDialog,
     private route: ActivatedRoute,
     private appService: AppService,
@@ -58,7 +57,6 @@ export class LinkComponent implements OnInit {
   run(form_id, tenant_id) {
     this.formService.getForm(form_id, tenant_id).subscribe(obj => {
       this.formObj = obj
-      console.log(this.formObj)
       this.appService.isAnonymous = true
       this.builderService.formObj = this.formObj
       this.builderService.detailArray = this.formObj.form.details

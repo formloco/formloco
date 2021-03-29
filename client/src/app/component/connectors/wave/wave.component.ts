@@ -1,12 +1,12 @@
-import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core'
 
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
 
-import { AuthService } from "../../../service/auth.service";
-import { SuccessService } from "../../../service/success.service";
-import { ConnectorSettingsService } from '../../../service/connector-settings.service';
+import { AuthService } from "../../../service/auth.service"
+import { SuccessService } from "../../../service/success.service"
+import { ConnectorSettingsService } from '../../../service/connector-settings.service'
 
-import { ActionGroupWave } from '../../../model/connector';
+import { ActionGroupWave } from '../../../model/connector'
 
 @Component({
   selector: 'app-wave',
@@ -15,13 +15,13 @@ import { ActionGroupWave } from '../../../model/connector';
 })
 export class WaveComponent implements OnChanges {
 
-  @Input() connectorName;
-  @Input() connector;
+  @Input() connectorName
+  @Input() connector
 
-  isLogin = false;
-  waveForm: FormGroup;
+  isLogin = false
+  waveForm: FormGroup
 
-  actionGroup = ActionGroupWave;
+  actionGroup = ActionGroupWave
 
   constructor(
     private fb: FormBuilder,
@@ -34,15 +34,15 @@ export class WaveComponent implements OnChanges {
       client_secret: ['', Validators.required],
       full_access_token: ['', Validators.required],
       actions: ['', Validators.required]
-    });
+    })
   }
 
   ngOnChanges() {
-    this.waveForm.reset();
-    let user = this.authService.userSignedIn();
+    this.waveForm.reset()
+    let user = this.authService.userSignedIn()
 
     if (user !== null) {
-      this.isLogin = true;
+      this.isLogin = true
 
       if (this.connector.id !== undefined) {
         this.waveForm.patchValue({
@@ -50,14 +50,14 @@ export class WaveComponent implements OnChanges {
           client_secret: this.connector.settings.client_secret,
           full_access_token: this.connector.settings.full_access_token,
           actions: this.connector.settings.actions
-        });
+        })
       }
     }
   }
 
   save() {
-    let user = this.authService.userSignedIn();
-    const formValue = this.waveForm.value;
+    let user = this.authService.userSignedIn()
+    const formValue = this.waveForm.value
     let settings = {
       name: this.connectorName,
       client_id: formValue.client_id,
@@ -70,17 +70,17 @@ export class WaveComponent implements OnChanges {
       user_created: {email: user.email, date: new Date()},
       user_updated: {email: user.email, date: new Date()},
       settings: settings
-    };
+    }
     if (this.connector.id !== undefined) {
-      obj["id"] = this.connector.id;
+      obj["id"] = this.connector.id
       this.connectorSettingsService.update(obj).subscribe(msg => {
-        this.successService.popSnackbar(msg);
-      });
+        this.successService.popSnackbar(msg)
+      })
     }
     else {
       this.connectorSettingsService.create(obj).subscribe(msg => {
-        this.successService.popSnackbar(msg);
-      });
+        this.successService.popSnackbar(msg)
+      })
     }
   }
 

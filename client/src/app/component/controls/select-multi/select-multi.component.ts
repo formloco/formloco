@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core'
 
-import { BuilderService } from "../../../service/builder.service";
+import { BuilderService } from "../../../service/builder.service"
 
 @Component({
   selector: 'app-select-multi',
@@ -9,13 +9,13 @@ import { BuilderService } from "../../../service/builder.service";
 })
 export class SelectMultiComponent {
 
-  @Input() index;
+  @Input() index
 
   constructor(public builderService: BuilderService) { }
 
   ngOnChanges() {
     if (this.builderService.canvasFormControls.details[this.index].list !== 'none')
-      this.builderService.getList(this.index);
+      this.builderService.getList(this.index)
   }
 
 }

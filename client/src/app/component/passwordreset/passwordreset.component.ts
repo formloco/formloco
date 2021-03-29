@@ -1,11 +1,11 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Inject } from '@angular/core'
+import { Router, ActivatedRoute } from '@angular/router'
 
-import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog'
 
-import { ResetpasswordComponent } from '../dialogs/resetpassword/resetpassword.component';
+import { ResetpasswordComponent } from '../dialogs/resetpassword/resetpassword.component'
 
-import { AppService } from "../../service/app.service";
+import { AppService } from "../../service/app.service"
 
 @Component({
   selector: 'app-passwordreset',
@@ -17,7 +17,7 @@ export class PasswordresetComponent implements OnInit {
    * to forgotpassword dialog. sets the user to 
    * main dashboard and pops up change password
    */
-  email;
+  email
 
   constructor(
     private router: Router,
@@ -27,15 +27,15 @@ export class PasswordresetComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
-      this.email = params['email'];
-      localStorage.setItem('formToken', params['token']);
-      this.router.navigate(['']);
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.height = '400px';
-      dialogConfig.width = '540px';
-      dialogConfig.data = {email: this.email};
-      const dialogRef = this.dialog.open(ResetpasswordComponent, dialogConfig);
-    });
+      this.email = params['email']
+      localStorage.setItem('formToken', params['token'])
+      this.router.navigate([''])
+      const dialogConfig = new MatDialogConfig()
+      dialogConfig.height = '400px'
+      dialogConfig.width = '540px'
+      dialogConfig.data = {email: this.email}
+      const dialogRef = this.dialog.open(ResetpasswordComponent, dialogConfig)
+    })
   }
 
 }

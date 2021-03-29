@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core'
 
-import { BuilderService } from "../../../service/builder.service";
+import { BuilderService } from "../../../service/builder.service"
 
 @Component({
   selector: 'app-fileupload-details',
@@ -9,7 +9,7 @@ import { BuilderService } from "../../../service/builder.service";
 })
 export class FileuploadDetailsComponent implements OnInit {
   
-  @Input() index;
+  @Input() index
 
   constructor(
     public builderService: BuilderService) { }
@@ -19,7 +19,7 @@ export class FileuploadDetailsComponent implements OnInit {
   }
 
   deleteControl() {
-    this.builderService.deleteControl(this.index);
+    this.builderService.deleteControl(this.index)
   }
 
 }

@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core'
 
-import { BuilderService } from "../../../service/builder.service";
+import { BuilderService } from "../../../service/builder.service"
 
 @Component({
   selector: 'app-checkbox',
@@ -9,7 +9,7 @@ import { BuilderService } from "../../../service/builder.service";
 })
 export class CheckboxComponent {
 
-  @Input() index;
+  @Input() index
 
   constructor(
     public builderService: BuilderService) { }

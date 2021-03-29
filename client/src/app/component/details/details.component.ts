@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
 
-// import { TextboxDetailsComponent } from '../details/textbox-details/textbox-details.component';
 import { AppService } from "../../service/app.service";
 import { BuilderService } from "../../service/builder.service";
 

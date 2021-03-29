@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core'
 
-import { BuilderService } from "../../../service/builder.service";
+import { BuilderService } from "../../../service/builder.service"
 
 @Component({
   selector: 'app-textarea',
@@ -9,9 +9,9 @@ import { BuilderService } from "../../../service/builder.service";
 })
 export class TextareaComponent {
 
-  @Input() index;
+  @Input() index
 
-  control;
+  control
 
   constructor(public builderService: BuilderService) { }
 

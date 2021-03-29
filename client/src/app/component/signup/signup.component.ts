@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
-import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog'
 
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'
 
-import { AuthComponent } from '../dialogs/auth/auth.component';
+import { AuthComponent } from '../dialogs/auth/auth.component'
 
 @Component({
   selector: 'app-signup',
@@ -19,17 +19,17 @@ export class SignupComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.router.navigate(['']);
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.height = '800px';
-    dialogConfig.width = '540px';
+    this.router.navigate([''])
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.height = '800px'
+    dialogConfig.width = '540px'
     dialogConfig.data = {
       isSignin: false
-    };
-    const dialogRef = this.dialog.open(AuthComponent, dialogConfig);
+    }
+    const dialogRef = this.dialog.open(AuthComponent, dialogConfig)
     //   dialogRef.afterClosed().subscribe(() => {
-    //     this.getUser();
-    //  });
+    //     this.getUser()
+    //  })
   }
 
 }

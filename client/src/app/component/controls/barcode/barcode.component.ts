@@ -1,10 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core'
 
-import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog'
 
-import { BuilderService } from "../../../service/builder.service";
+import { BuilderService } from "../../../service/builder.service"
 
-import { MessageComponent } from '../../dialogs/message/message.component';
+import { MessageComponent } from '../../dialogs/message/message.component'
 
 @Component({
   selector: 'app-barcode',
@@ -13,9 +13,9 @@ import { MessageComponent } from '../../dialogs/message/message.component';
 })
 export class BarcodeComponent implements OnInit {
 
-  @Input() index;
+  @Input() index
 
-  value;
+  value
 
   constructor(
     private dialog: MatDialog,
@@ -24,14 +24,14 @@ export class BarcodeComponent implements OnInit {
   ngOnInit(): void {}
 
   openHelp(event, source) {
-    event.stopPropagation();
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.width = '450px';
+    event.stopPropagation()
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.width = '450px'
     dialogConfig.data = {
       title: 'Connector Information',
       message: 'Connectors have two ways they can communicate with your form, Lookup Lists and Actions.<br>Lookup Lists are used to search and find key data to put in your forms. They are attached to Select and Multi-Selct Form Controls. So when you run your form you will see your list that comes from'
-    };
-    const dialogRef = this.dialog.open(MessageComponent, dialogConfig);
+    }
+    const dialogRef = this.dialog.open(MessageComponent, dialogConfig)
   }
 
 }

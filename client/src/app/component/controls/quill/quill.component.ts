@@ -1,6 +1,6 @@
-import { Component, Input, Output, EventEmitter, OnChanges, ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, ViewChild } from '@angular/core'
 
-import { BuilderService } from "../../../service/builder.service";
+import { BuilderService } from "../../../service/builder.service"
 
 @Component({
   selector: 'app-quill',
@@ -9,14 +9,14 @@ import { BuilderService } from "../../../service/builder.service";
 })
 export class QuillComponent implements OnChanges{
 
-  @Input() index;
+  @Input() index
 
   constructor(public builderService: BuilderService) { }
 
   ngOnChanges() {
-    this.builderService.currentQilllIndex = this.index;
+    this.builderService.currentQilllIndex = this.index
   }
   
-  setFocus(editor) { editor.focus(); } 
+  setFocus(editor) { editor.focus() } 
 
 }

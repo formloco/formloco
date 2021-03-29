@@ -29,7 +29,7 @@ export class PhoneService {
           }
 
           if (formObj.form.is_list) {
-            let tenant_id = null;
+            let tenant_id = null
             if (formObj.tenant_id !== undefined) tenant_id = formObj.tenant_id
               
             this.apiLists.push({
@@ -38,7 +38,7 @@ export class PhoneService {
               tenant_id: tenant_id, 
               form_id: formObj.form_id, 
               name: formObj.form.name
-            });
+            })
             this.lookupLists.push(formObj)
           }
         })

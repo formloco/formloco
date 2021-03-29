@@ -173,17 +173,13 @@ export class CanvasComponent implements OnChanges {
     if (this.builderService.formObj === undefined)
       this.saveIdbForm()
     else {
-      console.log(this.builderService.formObj)
-
       this.builderService.formObj 
       this.idbCrudService.read('form', this.builderService.formObj.id).subscribe(form => {
         this.form = form
-        // this.form["is_data"] = this.form.is_data
         this.form.form = this.builderService.canvasFormControls
         let obj = this.transformStructureService.generateSQLStructure('data')
         this.builderService.canvasFormControls["labels"] = obj.labels
         this.builderService.canvasFormControls["columns"] = obj.columns
-        // this.form.date_last_access = new Date()
         this.idbCrudService.put('form', this.form).subscribe()
         this.successService.popSnackbar('Successfully Saved')
 
@@ -202,7 +198,6 @@ export class CanvasComponent implements OnChanges {
   }
 
   saveIdbForm() {
-    console.log(this.builderService.canvasFormControls)
     let obj = this.transformStructureService.generateSQLStructure('data')
 
     this.builderService.canvasFormControls["labels"] = obj.labels
@@ -237,8 +232,6 @@ export class CanvasComponent implements OnChanges {
       this.builderService.controlArray = idbForm.form.controls
     })
     this.successService.popSnackbar('Successfully Saved')
-
-    console.log(idbForm)
 
     if (this.user !== null) this.formService.create(idbForm).subscribe(res => { })
 
@@ -275,11 +268,9 @@ export class CanvasComponent implements OnChanges {
         this.formService.delete(this.builderService.formObj).subscribe(response => {
           this.response = response
           this.successService.popSnackbar(this.response.message)
-          // setTimeout(function () { window.location = window.location }, 1000)
         })
       }
       this.appService.getForms()
-      // else setTimeout(function () { window.location = window.location }, 1000)
     }
 
     else {

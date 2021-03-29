@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core'
 
-import { BuilderService } from "../../../service/builder.service";
+import { BuilderService } from "../../../service/builder.service"
 
 @Component({
   selector: 'app-gps',
@@ -9,16 +9,12 @@ import { BuilderService } from "../../../service/builder.service";
 })
 export class GpsComponent {
 
-  @Input() index;
+  @Input() index
 
-  lat;
-  long;
+  lat
+  long
 
   constructor(public builderService: BuilderService) {
-    // navigator.geolocation.getCurrentPosition(position => {
-    //   let lat = position.coords.latitude;
-    //   let long = position.coords.longitude;
-    // });
   }
 
 }
