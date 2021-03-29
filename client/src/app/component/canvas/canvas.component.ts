@@ -163,7 +163,7 @@ export class CanvasComponent implements OnChanges {
   }
 
   save(): void {
-    console.log(this.builderService.formObj, this.builderService.canvasFormControls)
+    
     this.user = this.authService.userSignedIn()
     let sixdigitsrandom = Math.floor(100000 + Math.random() * 900000)
 
@@ -245,7 +245,8 @@ export class CanvasComponent implements OnChanges {
     }
     const dialogRef = this.dialog.open(ArchiveComponent, dialogConfig)
     dialogRef.afterClosed().subscribe(data => {
-      setTimeout(function () { window.location = window.location }, 1000)
+      this.appService.getForms()
+      // setTimeout(function () { window.location = window.location }, 1000)
     })
   }
 
@@ -267,10 +268,11 @@ export class CanvasComponent implements OnChanges {
         this.formService.delete(this.builderService.formObj).subscribe(response => {
           this.response = response
           this.successService.popSnackbar(this.response.message)
-          setTimeout(function () { window.location = window.location }, 1000)
+          // setTimeout(function () { window.location = window.location }, 1000)
         })
       }
-      else setTimeout(function () { window.location = window.location }, 1000)
+      this.appService.getForms()
+      // else setTimeout(function () { window.location = window.location }, 1000)
     }
 
     else {
@@ -285,8 +287,8 @@ export class CanvasComponent implements OnChanges {
   }
 
   close() {
+    this.appService.getForms()
     this.appService.page = this.appService.parentPage
-    setTimeout(function () { window.location = window.location }, 1000)
   }
 
   exportJSON() {
