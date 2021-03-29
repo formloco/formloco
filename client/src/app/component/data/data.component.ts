@@ -66,8 +66,7 @@ export class DataComponent implements OnInit {
     if (this.builderService.formObj.is_published) {
       if (this.user !== null) this.getCloud()
       else this.getIdb()
-    }
-    this.getIdb()
+    } else this.getIdb()
   }
 
   transform(file) {
@@ -77,7 +76,7 @@ export class DataComponent implements OnInit {
   getIdb() {
     this.idbCrudService.readAll('data').subscribe(data => {
       this.data = data
-      this.setTable()
+      if (this.data !== undefined) this.setTable()
     /** todo: refactor file support */
 
       // if (this.data.length > 0) {

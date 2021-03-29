@@ -1,149 +1,148 @@
 <div [ngStyle]="{'background-color': canvasBackground}" fxLayout="column">
-
-<app-navigation [ngStyle]="{'background-color': canvasBackground}" [userName]=userName (toggleTheme)="toggleTheme()"></app-navigation>
-<mat-sidenav-container class="menu-container" autosize>
-  <mat-sidenav #sidenav [ngClass]="(appService.isMainMenu ? 'menu-open':'menu-icons')" mode="side" opened>
-    <div fxLayout="row" class="toggle-close icon-pointer" (click)="toggleMainMenu()" fxLayoutAlign="end">
-      <mat-icon *ngIf="appService.isMainMenu">menu_open</mat-icon>
-      <mat-icon *ngIf="!appService.isMainMenu">menu</mat-icon>
-    </div>
-    <div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="center start">
-      <button class="create-form-btn" mat-flat-button (click)="setPage('design')" matTooltip="Create Form">
-        <mat-icon>control_point</mat-icon>
-        <span class="menu-title">Create Form</span>
-      </button>
-      <button (click)="setPage('form-library')" matTooltip="Form Library" [ngClass]="(appService.page === 'form-library' ? 'menu-label-selected':'menu-label')"
-        mat-button>
-        <mat-icon>local_library</mat-icon>
-        <span class="menu-title">Form Library</span>
-      </button>
-      <button (click)="setPage('data-cards')" matTooltip="Form Data" [ngClass]="(appService.page === 'data-cards' ? 'menu-label-selected':'menu-label')"
-        mat-button>
-        <mat-icon>storage</mat-icon>
-        <span class="menu-title">Form Data</span>
-      </button>
-      <button (click)="setPage('launch-forms')" matTooltip="Forms" [ngClass]="(appService.page === 'launch-forms' ? 'menu-label-selected':'menu-label')"
-        mat-button>
-        <mat-icon>dynamic_form</mat-icon>
-        <span class="menu-title">Launch Forms</span>
-      </button>
-      <button (click)="setPage('share-all')" matTooltip="Share Forms" [ngClass]="(appService.page === 'share-all' ? 'menu-label-selected':'menu-label')"
-        mat-button>
-        <mat-icon>share</mat-icon>
-        <span class="menu-title">Sharing</span>
-      </button>
-      <button (click)="setPage('connector')" matTooltip="Connectors" [ngClass]="(appService.page === 'connectors' ? 'menu-label-selected':'menu-label')"
-        mat-button>
-        <mat-icon>extension</mat-icon>
-        <span class="menu-title">Connectors</span>
-      </button>
-    </div>
-    <div *ngIf="appService.isMainMenu" class="verison-text">build 4.2 - Mar 28, 2021</div>
-  </mat-sidenav>
-  <mat-sidenav [ngClass]="(builderService.isExpandDetails ? 'detail-container-exp':'detail-container')" mode="over" [(opened)]="builderService.isRightMenu"
-    position="end">
-    <app-form-lists *ngIf="builderService.isLookuplist" (openForm)="openForm($event)" (openRun)="openRun()" (openShare)="openShare()"></app-form-lists>
-    <app-details *ngIf="builderService.isDetails" [index]=builderService.currentIndex></app-details>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <div *ngIf="appService.page !== 'design' && appService.page !== 'run' && appService.page !== 'data' && appService.page !== 'share'   && appService.page !== 'form-library'"
-      fxLayout="row" fxLayoutGap="20px">
-      <div fxLayout="row" class="title title-padding">
-        <div class="sm-margin" fxFlex="30px">
-          <mat-icon *ngIf="appService.page === 'launch-forms'">dynamic_form</mat-icon>
-          <mat-icon *ngIf="appService.page === 'data-cards'">storage</mat-icon>
-          <mat-icon *ngIf="appService.page === 'share-all' || appService.page === 'share'">share</mat-icon>
-        </div>
-        <div>{{appService.pageTitle}}</div>
+  <app-navigation [ngStyle]="{'background-color': canvasBackground}" [userName]=userName (toggleTheme)="toggleTheme()"></app-navigation>
+  <mat-sidenav-container class="menu-container" autosize>
+    <mat-sidenav #sidenav [ngClass]="(appService.isMainMenu ? 'menu-open':'menu-icons')" mode="side" opened>
+      <div fxLayout="row" class="toggle-close icon-pointer" (click)="toggleMainMenu()" fxLayoutAlign="end">
+        <mat-icon *ngIf="appService.isMainMenu">menu_open</mat-icon>
+        <mat-icon *ngIf="!appService.isMainMenu">menu</mat-icon>
       </div>
-    </div>
-    <div *ngIf="appService.page === 'form-library'" class="title title-padding-data" fxLayout="row" fxLayoutAlign="space-between center">
-      <div fxLayout="row">
-        <div class="sm-margin" fxFlex="30px">
+      <div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="center start">
+        <button class="create-form-btn" mat-flat-button (click)="setPage('design')" matTooltip="Create Form">
+          <mat-icon>control_point</mat-icon>
+          <span class="menu-title">Create Form</span>
+        </button>
+        <button (click)="setPage('form-library')" matTooltip="Form Library" [ngClass]="(appService.page === 'form-library' ? 'menu-label-selected':'menu-label')"
+          mat-button>
           <mat-icon>local_library</mat-icon>
-        </div>
-        <div>{{appService.pageTitle}}</div>
-      </div>
-      <div fxLayoutAlign="end center" fxLayoutGap="20px">
-        <button mat-stroked-button (click)="isImportOpen = !isImportOpen" class="menu-label" cdkOverlayOrigin #importTrigger="cdkOverlayOrigin">
-          <mat-icon>import_export</mat-icon>Import Template
+          <span class="menu-title">Form Library</span>
         </button>
-        <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="importTrigger" [cdkConnectedOverlayOpen]="isImportOpen" (backdropClick)="closeOverlay()"
-          [cdkConnectedOverlayHasBackdrop]=true cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop">
-          <div class="link-overlay" fxLayout="column">
-            <div class="files-padding">
-              <ngx-dropzone class="custom-dropzone" accept="*" [multiple]="true" [maxFileSize]="200000" (change)="onSelect($event)">
-                <ngx-dropzone-label>Drop JSON file(s) or click to select for import</ngx-dropzone-label>
-                <ngx-dropzone-preview *ngFor="let f of fileArray" [removable]="true" (removed)="onRemove(f)">
-                  <ngx-dropzone-label>
-                    <p>{{ f.name | truncate:[20, '...']}}</p>
-                    <p *ngIf="f.type">({{ f.type | truncate:[20, '...']}})</p>
-                  </ngx-dropzone-label>
-                </ngx-dropzone-preview>
-              </ngx-dropzone>
-            </div>
-            <div *ngIf="isError">From controls and details must have the same count.</div>
-            <br>
-            <div fxLayoutAlign="center" fxLayout="row" fxLayoutGap="1rem">
-              <button (click)="import()" mat-raised-button color="primary" [disabled]="isNotFile">
-                Import
-              </button>
-              <button mat-stroked-button color="primary" (click)="closeOverlay()">
-                Cancel
-              </button>
-            </div>
-          </div>
-        </ng-template>
-        <div *ngIf="appService.archives.length > 0">
-          <button mat-stroked-button class="menu-label" [matMenuTriggerFor]="menu">
-            <mat-icon>archive</mat-icon>Archives
-          </button>
-          <mat-menu #menu="matMenu">
-            <button *ngFor="let archive of appService.archives" (click)=restore(archive) matTooltip="Click to Restore Form" mat-menu-item>
-              <mat-icon>unarchive</mat-icon>
-              <span>{{ archive.form.name }}</span>
-            </button>
-          </mat-menu>
-        </div>
-        <button mat-stroked-button (click)="openLists()" class="menu-label" cdkOverlayOrigin #lookupTrigger="cdkOverlayOrigin">
-          <img src="assets/logo/parrot.png" height="22">&nbsp;&nbsp;Lists
+        <button (click)="setPage('data-cards')" matTooltip="Form Data" [ngClass]="(appService.page === 'data-cards' ? 'menu-label-selected':'menu-label')"
+          mat-button>
+          <mat-icon>storage</mat-icon>
+          <span class="menu-title">Form Data</span>
         </button>
-      </div>
-    </div>
-    <div *ngIf="appService.page === 'data'" class="title title-padding-data" fxLayout="row" fxLayoutAlign="space-between center">
-      <div fxFlex="50">
-        {{appService.pageTitle}}
-      </div>
-      <div fxLayoutGap="20px">
-        <button mat-stroked-button color="warn" (click)="close()">
-          Close
+        <button (click)="setPage('launch-forms')" matTooltip="Forms" [ngClass]="(appService.page === 'launch-forms' ? 'menu-label-selected':'menu-label')"
+          mat-button>
+          <mat-icon>dynamic_form</mat-icon>
+          <span class="menu-title">Launch Forms</span>
         </button>
-      </div>
-    </div>
-    <div *ngIf="appService.page === 'share'" class="title title-padding-data" fxLayout="row" fxLayoutAlign="space-between center">
-      <div fxLayout="row">
-        <div class="sm-margin" fxFlex="30px">
+        <button (click)="setPage('share-all')" matTooltip="Share Forms" [ngClass]="(appService.page === 'share-all' ? 'menu-label-selected':'menu-label')"
+          mat-button>
           <mat-icon>share</mat-icon>
-        </div>
-        <div>{{appService.pageTitle}}</div>
-      </div>
-      <div fxLayoutGap="20px">
-        <button mat-stroked-button color="warn" (click)="close()">
-          Close
+          <span class="menu-title">Sharing</span>
+        </button>
+        <button (click)="setPage('connector')" matTooltip="Connectors" [ngClass]="(appService.page === 'connectors' ? 'menu-label-selected':'menu-label')"
+          mat-button>
+          <mat-icon>extension</mat-icon>
+          <span class="menu-title">Connectors</span>
         </button>
       </div>
-    </div>
-    <app-form-library *ngIf="appService.page === 'form-library'" (openForm)="openForm($event)" (openRun)="openRun()" (openShare)="openShare()">
-    </app-form-library>
-    <app-form-launch *ngIf="appService.page === 'launch-forms'"></app-form-launch>
-    <app-data *ngIf="appService.page === 'data'" [form]=builderService.formObj></app-data>
-    <app-data-cards *ngIf="appService.page === 'data-cards'"></app-data-cards>
-    <app-run *ngIf="appService.page === 'run'"></app-run>
-    <app-share *ngIf="appService.page === 'share-all'"></app-share>
-    <app-share *ngIf="appService.page === 'share'"></app-share>
-    <app-build *ngIf="appService.page === 'design'" [formObj]="formObj"></app-build>
-    <!-- <app-build *ngIf="appService.page === 'preview'"></app-build> -->
-    <app-connectors *ngIf="appService.page === 'connector'"></app-connectors>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+      <div *ngIf="appService.isMainMenu" class="verison-text">build 4.2 - Mar 28, 2021</div>
+    </mat-sidenav>
+    <mat-sidenav [ngClass]="(builderService.isExpandDetails ? 'detail-container-exp':'detail-container')" mode="over" [(opened)]="builderService.isRightMenu"
+      position="end">
+      <app-form-lists *ngIf="builderService.isLookuplist" (openForm)="openForm($event)" (openRun)="openRun()" (openShare)="openShare()"></app-form-lists>
+      <app-details *ngIf="builderService.isDetails" [index]=builderService.currentIndex></app-details>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div *ngIf="appService.page !== 'design' && appService.page !== 'run' && appService.page !== 'data' && appService.page !== 'share'   && appService.page !== 'form-library'"
+        fxLayout="row" fxLayoutGap="20px">
+        <div fxLayout="row" class="title title-padding">
+          <div class="sm-margin" fxFlex="30px">
+            <mat-icon *ngIf="appService.page === 'launch-forms'">dynamic_form</mat-icon>
+            <mat-icon *ngIf="appService.page === 'data-cards'">storage</mat-icon>
+            <mat-icon *ngIf="appService.page === 'share-all' || appService.page === 'share'">share</mat-icon>
+          </div>
+          <div>{{appService.pageTitle}}</div>
+        </div>
+      </div>
+      <div *ngIf="appService.page === 'form-library'" class="title title-padding-data" fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row">
+          <div class="sm-margin" fxFlex="30px">
+            <mat-icon>local_library</mat-icon>
+          </div>
+          <div>{{appService.pageTitle}}</div>
+        </div>
+        <div fxLayoutAlign="end center" fxLayoutGap="20px">
+          <button mat-stroked-button (click)="isImportOpen = !isImportOpen" class="menu-label" cdkOverlayOrigin #importTrigger="cdkOverlayOrigin">
+            <mat-icon>import_export</mat-icon>Import Template
+          </button>
+          <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="importTrigger" [cdkConnectedOverlayOpen]="isImportOpen" (backdropClick)="closeOverlay()"
+            [cdkConnectedOverlayHasBackdrop]=true cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop">
+            <div class="link-overlay" fxLayout="column">
+              <div class="files-padding">
+                <ngx-dropzone class="custom-dropzone" accept="*" [multiple]="true" [maxFileSize]="200000" (change)="onSelect($event)">
+                  <ngx-dropzone-label>Drop JSON file(s) or click to select for import</ngx-dropzone-label>
+                  <ngx-dropzone-preview *ngFor="let f of fileArray" [removable]="true" (removed)="onRemove(f)">
+                    <ngx-dropzone-label>
+                      <p>{{ f.name | truncate:[20, '...']}}</p>
+                      <p *ngIf="f.type">({{ f.type | truncate:[20, '...']}})</p>
+                    </ngx-dropzone-label>
+                  </ngx-dropzone-preview>
+                </ngx-dropzone>
+              </div>
+              <div *ngIf="isError">From controls and details must have the same count.</div>
+              <br>
+              <div fxLayoutAlign="center" fxLayout="row" fxLayoutGap="1rem">
+                <button (click)="import()" mat-raised-button color="primary" [disabled]="isNotFile">
+                  Import
+                </button>
+                <button mat-stroked-button color="primary" (click)="closeOverlay()">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </ng-template>
+          <div *ngIf="appService.archives.length > 0">
+            <button mat-stroked-button class="menu-label" [matMenuTriggerFor]="menu">
+              <mat-icon>archive</mat-icon>Archives
+            </button>
+            <mat-menu #menu="matMenu">
+              <button *ngFor="let archive of appService.archives" (click)=restore(archive) matTooltip="Click to Restore Form" mat-menu-item>
+                <mat-icon>unarchive</mat-icon>
+                <span>{{ archive.form.name }}</span>
+              </button>
+            </mat-menu>
+          </div>
+          <button mat-stroked-button (click)="openLists()" class="menu-label" cdkOverlayOrigin #lookupTrigger="cdkOverlayOrigin">
+            <img src="assets/logo/parrot.png" height="22">&nbsp;&nbsp;Lists
+          </button>
+        </div>
+      </div>
+      <div *ngIf="appService.page === 'data'" class="title title-padding-data" fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxFlex="50">
+          {{appService.pageTitle}}
+        </div>
+        <div fxLayoutGap="20px">
+          <button mat-stroked-button color="warn" (click)="close()">
+            Close
+          </button>
+        </div>
+      </div>
+      <div *ngIf="appService.page === 'share'" class="title title-padding-data" fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row">
+          <div class="sm-margin" fxFlex="30px">
+            <mat-icon>share</mat-icon>
+          </div>
+          <div>{{appService.pageTitle}}</div>
+        </div>
+        <div fxLayoutGap="20px">
+          <button mat-stroked-button color="warn" (click)="close()">
+            Close
+          </button>
+        </div>
+      </div>
+      <app-form-library *ngIf="appService.page === 'form-library'" (openForm)="openForm($event)" (openRun)="openRun()" (openShare)="openShare()">
+      </app-form-library>
+      <app-form-launch *ngIf="appService.page === 'launch-forms'"></app-form-launch>
+      <app-data *ngIf="appService.page === 'data'" [form]=builderService.formObj></app-data>
+      <app-data-cards *ngIf="appService.page === 'data-cards'"></app-data-cards>
+      <app-run *ngIf="appService.page === 'run'"></app-run>
+      <app-share *ngIf="appService.page === 'share-all'"></app-share>
+      <app-share *ngIf="appService.page === 'share'"></app-share>
+      <app-build *ngIf="appService.page === 'design'" [formObj]="formObj"></app-build>
+      <!-- <app-build *ngIf="appService.page === 'preview'"></app-build> -->
+      <app-connectors *ngIf="appService.page === 'connector'"></app-connectors>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

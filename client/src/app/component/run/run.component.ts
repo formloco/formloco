@@ -135,7 +135,7 @@ export class RunComponent implements OnInit {
       is_file: true,
       formObj: this.builderService.formObj
     };
-    console.log(obj)
+    console.log(obj,this.builderService.formObj.form_id)
     this.dataService.save(obj).subscribe(response => {
       this.newform = response;
 
