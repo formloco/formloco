@@ -224,22 +224,23 @@ export class DesktopComponent implements OnChanges {
         let formObj = JSON.parse(atob(element.content.slice(29)))
         
         if (formObj.form.details.length === formObj.form.controls.length) {
-          this.builderService.canvasFormControls = formObj.form
-  
-          let obj = this.transformStructureService.generateSQLStructure('data') 
-          this.builderService.canvasFormControls["labels"] = obj.labels
-          this.builderService.canvasFormControls["columns"] = obj.columns
-  
           let userCreated = { email: 'polly@formloco.com', date_created: new Date() }
   
           let sixdigitsrandom = Math.floor(100000 + Math.random() * 900000)
   
           let pin = CryptoJS.AES.encrypt(JSON.stringify(sixdigitsrandom + 'true'), this.pinKeySecret).toString()
   
+          this.builderService.canvasFormControls = formObj.form
+  
+          let obj = this.transformStructureService.generateSQLStructure('data') 
+          this.builderService.canvasFormControls["pin"] = pin
+          this.builderService.canvasFormControls["labels"] = obj.labels
+          this.builderService.canvasFormControls["columns"] = obj.columns
+  
+         
           let idbForm = ({
             form: this.builderService.canvasFormControls,
             form_id: uuid.v4(),
-            pin: pin,
             date_created: new Date(),
             date_archived: undefined,
             date_last_access: new Date(),
