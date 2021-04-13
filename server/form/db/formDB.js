@@ -37,6 +37,7 @@ const formsReadSQL = async (tenant_id) => {
 }
 
 const formCreateSQL = async (data) => {
+  console.log(data)
 
   pool.options.database = data["tenant_id"]
   let client = await pool.connect()
@@ -44,7 +45,9 @@ const formCreateSQL = async (data) => {
   let formJSON = JSON.stringify(data["form"])
   let userCreated = JSON.stringify(data["user_created"])
 
-  let form = await client.query(`INSERT INTO public.form(form_id, form, tenant_id, is_data, is_published, pin, user_created) VALUES ( '` + data["form_id"] + `', '` + formJSON + `', '` + data["tenant_id"] + `', ` + data["is_data"] + `, ` + data["is_published"] + `, '` + data["pin"] + `', '` + userCreated + `') returning id`)
+  console.log(`INSERT INTO public.form(form_id, form, tenant_id, is_data, is_published, is_list, pin, user_created) VALUES ( '` + data["form_id"] + `', '` + formJSON + `', '` + data["tenant_id"] + `', ` + data["is_data"] + `, ` + data["is_published"] + `, '` + data["is_list"] + `, '` + data["form"]["pin"] + `', '` + userCreated + `') returning id`)
+
+  let form = await client.query(`INSERT INTO public.form(form_id, form, tenant_id, is_data, is_published, is_list, pin, user_created) VALUES ( '` + data["form_id"] + `', '` + formJSON + `', '` + data["tenant_id"] + `', ` + data["is_data"] + `, ` + data["is_published"] + `, ` + data["is_list"] + `, '` + data["form"]["pin"] + `', '` + userCreated + `') returning id`)
    
   client.release()
 

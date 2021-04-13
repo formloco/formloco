@@ -70,7 +70,7 @@ export class SyncControlService {
   }
 
   syncShareIdb(user) {
-    if (user.share_roles.length > 0) {
+    if (user.share_roles != null) {
       this.idbCrudService.clear('share').subscribe()
       user.share_roles.forEach((element, index) => {
         if (element === 'Admin') {

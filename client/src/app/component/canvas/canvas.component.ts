@@ -222,6 +222,7 @@ export class CanvasComponent implements OnChanges {
       user_created: userCreated,
       user_archived: null,
       is_data: false,
+      is_list: false,
       is_published: false
     })
 

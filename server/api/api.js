@@ -28,6 +28,7 @@ app.use(cors(corsOptions))
 app.use(routes, cors());
  
 app.listen(9003, () => console.log('form app listening on port 9003!'))
+app.timeout = 20000
  
 module.exports = {
   app
