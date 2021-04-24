@@ -30,6 +30,7 @@ const dataReadSQL = async (tenant_id, form_id) => {
 }
 
 const dataCreateSQL = async (dataObj) => {
+
   pool.options.database = dataObj["user"]["tenant_id"]
   let client = await pool.connect()
   let obj = ``
@@ -40,13 +41,13 @@ const dataCreateSQL = async (dataObj) => {
     })
     obj = obj.slice(0, -1)
   }
-  else obj = `'`+dataObj["user"]["email"]+`'`+','+`'`+moment().format('YYYYMMDD, h:mm:ss')+`'`;
-    
+  else obj = `'` + dataObj["user"]["email"] + `'` + ',' + `'` + moment().format('YYYYMMDD, h:mm:ss') + `'`;
+
   let tableExist = await client.query(`SELECT EXISTS (SELECT FROM pg_tables WHERE schemaname = 'public' AND tablename  = '` + dataObj["formObj"]["form_id"] + `')`)
 
   // create data table
   if (!tableExist.rows[0].exists) {
-    
+
     let formJSON = JSON.stringify(dataObj["formObj"]["form"])
     let columns = dataObj["formObj"]["form"]["columns"].replace(/`/g, "'")
 
@@ -56,13 +57,13 @@ const dataCreateSQL = async (dataObj) => {
     }
     let userCreated = JSON.stringify(user_created)
 
-    await client.query(`INSERT INTO form(form_id, form, pin, tenant_id, is_published, is_data, user_created) VALUES ( '` + dataObj["formObj"]["form_id"] + `', '` + formJSON + `', '` + dataObj["formObj"]["pin"] + `', '` + dataObj["user"]["tenant_id"] + `', ` + dataObj["formObj"]["is_published"] + `, ` + dataObj["formObj"]["is_data"] + `, '` + userCreated + `')`)
+    await client.query(`INSERT INTO form(form_id, form, pin, tenant_id, is_published, is_data, user_created) VALUES ( '` + dataObj["formObj"]["form_id"] + `', '` + formJSON + `', '` + dataObj["formObj"]["form"]["pin"] + `', '` + dataObj["user"]["tenant_id"] + `', ` + dataObj["formObj"]["is_published"] + `, ` + dataObj["formObj"]["is_data"] + `, '` + userCreated + `')`)
 
     await client.query(`CREATE SEQUENCE IF NOT EXISTS id_seq`)
 
     await client.query(`CREATE TABLE IF NOT EXISTS "` + dataObj["formObj"]["form_id"] + `" (` + columns + `)`)
   }
-  
+
   await client.query(`INSERT INTO "` + dataObj["formObj"]["form_id"] + `" (` + dataObj["columns"] + `) VALUES (` + obj + `)`)
 
   await client.query(`UPDATE form SET is_data = true WHERE form_id = '` + dataObj["formObj"]["form_id"] + `'`)
@@ -75,22 +76,33 @@ const dataCreateSQL = async (dataObj) => {
 }
 
 const dataUpdateSQL = async (data) => {
-  /** not required at this time */
+
   pool.options.database = data["tenant_id"]
   let client = await pool.connect()
 
-  return await client.query(`UPDATE ` + data["table_name"] + ` SET ` + data["params"] + `WHERE id = ` + data["id"])
+  let params = + `date_updated = '` + moment().format('YYYYMMDD, h:mm:ss') + `', ` + data["params"]
+
+  await client.query(`UPDATE "` + data["form_id"] + `" SET date_updated = '` + moment().format('YYYYMMDD, h:mm:ss') + `', ` + data["params"] + ` WHERE id = ` + data["id"])
+
+  let updatedData = await client.query(`SELECT * FROM "` + data["form_id"] + `"`)
 
   client.release()
+
+  return updatedData.rows
 }
 
 const dataDeleteSQL = async (data) => {
+
   pool.options.database = data["tenant_id"]
   let client = await pool.connect()
 
-  await client.query(`UPDATE` + data["tableName"] + `SET date_archived = ` + data["date_archived"] + `, user_archive = ` + data["user_archive"] + ` WHERE id = ` + data["id"])
+  await client.query(`DELETE FROM "` + data["form_id"] + `" WHERE id = ` + data["id"])
+
+  let updatedData = await client.query(`SELECT * FROM "` + data["form_id"] + `"`)
 
   client.release()
+
+  return updatedData.rows
 }
 
 module.exports = {

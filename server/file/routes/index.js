@@ -1,6 +1,3 @@
-/**
- * Purpose: tenant static files CRUD services
- */
 const express = require('express') 
 const VerifyToken = require('../../helper')
 

@@ -141,12 +141,10 @@ const publishShareSQL = async (data) => {
 
   let form = await clientTenant.query(`SELECT * FROM public.form WHERE form_id = '` + data["form_id"] + `'`)
   
-  // add form to tenant library
   let formObj = JSON.stringify(data["form"])
   let userObj = JSON.stringify(data["user_updated"])
   let columns = data["form"]["columns"].replace(/`/g, "'")
   
-  //** todo: sharing lists is_list needs to be added to insert */
   if (form.rowCount === 0)
     await clientTenant.query(`INSERT INTO public.form(form_id, form, tenant_id, is_published, user_created) VALUES ( '` + data["form_id"] + `', '` + formObj + `', '` + data["tenant_id"] + `', '` + data["is_published"] + `', '` + userObj + `')`)
   else

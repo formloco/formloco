@@ -37,7 +37,6 @@ const formsReadSQL = async (tenant_id) => {
 }
 
 const formCreateSQL = async (data) => {
-  console.log(data)
 
   pool.options.database = data["tenant_id"]
   let client = await pool.connect()

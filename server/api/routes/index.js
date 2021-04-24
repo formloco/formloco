@@ -12,6 +12,6 @@ router.post('/api/', VerifyToken, createData)
 
 router.put('/api/', VerifyToken, updateData)
 
-router.delete('/api/', VerifyToken, deleteData)
+router.post('/api/delete/', VerifyToken, deleteData)
 
 module.exports = router

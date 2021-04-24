@@ -10,7 +10,6 @@ const api = { secret: process.env.SECRET }
 
 const { loginAuthSQL, providerLoginSQL, emailSignupSQL, passwordResetSQL, refreshTokenSQL } = require('../db/pgDB')
 
-// temporary token
 const tokenTemp = async(data) => {
   try {
     let token = jwt.sign({ id: .369 }, api.secret, {expiresIn: 3600})

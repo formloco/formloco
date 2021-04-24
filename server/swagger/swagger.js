@@ -1,28 +1,21 @@
-/**
- * Purpose: Serves swagger documents for form CRUD
- */
 const express = require('express')
+const cors = require('cors')
 const fs = require('fs')
 const app = express()
 const swaggerUi = require('swagger-ui-express')
 const YAML = require('yamljs')
 
-const cors = require('cors')
-
 const VerifyToken = require('../helper')
 
-var corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200 
-}
-
-app.use(cors(corsOptions));
+// enable pre-flight
+app.use(cors())
+app.options('*', cors()) 
 
 app.use('/api-docs/:token/:tenant/', VerifyToken, async function(req, res, next) {
   try {
-    await fs.promises.access(`./docs/`+req.params.tenant+`.yaml`);
+    await fs.promises.access(`./docs/`+req.params.tenant+`.yaml`)
     req.swaggerDoc = YAML.load(`./docs/`+req.params.tenant+`.yaml`)
-    next();
+    next()
   } catch (error) {
    res.status(406)
    res.send('No forms published')

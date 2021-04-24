@@ -19,10 +19,6 @@ const pool = new Pool({
   port: process.env.PORT
 })
 
-/* 
- * this endpoint excludes the tenant making the request
- * used for user lookup
- */
 const readUsersSQL = async (tenant_id) => {
 
   let client = await pool.connect()

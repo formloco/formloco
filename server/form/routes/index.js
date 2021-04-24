@@ -1,7 +1,3 @@
-/**
- * Purpose: tenant and template forms json form CRUD services
- */
-
 const express = require('express') 
 const VerifyToken = require('../../helper');
 

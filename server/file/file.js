@@ -1,14 +1,12 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 const cors = require('cors')
-const routes = require('./routes')
+const bodyParser = require('body-parser')
 const app = express()
-  
-const corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200
-};
-app.use(cors(corsOptions))
+const routes = require('./routes')
+
+// enable pre-flight
+app.use(cors())
+app.options('*', cors()) 
 
 app.use(bodyParser.json({ limit: '50mb' }))
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }))

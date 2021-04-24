@@ -1,6 +1,3 @@
-/**
- * Purpose: sign up, login and temporary token services
- */
 const express = require('express') 
 const VerifyToken = require('../../helper')
 

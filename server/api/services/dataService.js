@@ -1,4 +1,4 @@
-const { dataReadSQL, dataCreateSQL, dataUpddateSQL, dataDeleteSQL } = require('../db/dataDB')
+const { dataReadSQL, dataCreateSQL, dataUpdateSQL, dataDeleteSQL } = require('../db/dataDB')
 
 const dataRead = async(tenant_id, form_id) => {
   try {
@@ -20,7 +20,8 @@ const dataCreate = async(data) => {
 
 const dataUpdate = async(data) => {
   try {
-    await dataUpdateSQL(data)
+    let rows = await dataUpdateSQL(data)
+    return rows
   } catch(e) {
     throw new Error(e.message)
   }
@@ -28,7 +29,8 @@ const dataUpdate = async(data) => {
 
 const dataDelete = async(data) => {
   try {
-    await dataDeleteSQL(data)
+    let rows = await dataDeleteSQL(data)
+    return rows
   } catch(e) {
     throw new Error(e.message)
   }

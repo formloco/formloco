@@ -48,14 +48,13 @@ const loginAuthSQL = async (data) => {
     let shares = await client.query(`SELECT tenant_id, forms, role, is_tenant_share FROM public.share WHERE email = '` + data["email"] + `'`)
     
     let userShares = []
-    let shareRoles = [] // setup shadow role array for sync placement
+    let shareRoles = []
     for (let j = 0; j < shares.rows.length; j++) {
       
       poolTenant.options.database = shares.rows[j]["tenant_id"]
       let clientTenant = await poolTenant.connect()
-      // need to check if share status = Active
-
-      /** if library share (is_tenant_share === true), allll forms in library are shared
+      
+      /** if library share (is_tenant_share === true), all forms in library are shared
        * if false only the selected form is shared
       */
       if (shares.rows[j]["is_tenant_share"]) {
@@ -122,7 +121,7 @@ const emailSignupSQL = async (data) => {
 
   let id = await client.query(`INSERT INTO public.user(tenant_id, role, password, email, handle, settings, members) VALUES ('` + tenant_id + `', 'Owner', '` + hashedPassword + `', '` + data["email"] + `', '` + data["handle"] + `', '` + settings + `', '` + members + `') returning id`)
 
-  let token = jwt.sign({ id: id }, api.secret, { expiresIn: 86400 }) //24 hour expirey
+  let token = jwt.sign({ id: id }, api.secret, { expiresIn: 86400 })
 
   // last token used to verify refresh token
   await client.query(`UPDATE public.user SET last_token = '` + token + `' WHERE id = ` + id.rows[0].id)
@@ -136,14 +135,13 @@ const emailSignupSQL = async (data) => {
   poolTenant.options.database = tenant_id
   let clientTenant = await poolTenant.connect()
 
-  /** creates tenant database that stores forms and data */
   await clientTenant.query(`CREATE SEQUENCE form_id_seq`)
   
   await clientTenant.query(`CREATE TABLE public.form ("id" int4 NOT NULL DEFAULT nextval('form_id_seq'::regclass),form_id uuid, tenant_id uuid, form jsonb, pin varchar, date_last_access timestamp DEFAULT now(), date_created timestamp DEFAULT now(), date_archived timestamp, user_created jsonb, user_updated jsonb, user_archive int4, is_data bool, is_list bool, is_published bool, PRIMARY KEY ("id"))`)
 
   await clientTenant.query(`CREATE TABLE "public"."files" ("tenant_id" uuid, "form_id" uuid, "file_name" text, "type" text, "date_created" timestamp, "date_archived" timestamp, "user_created" text)`)
-  // create diretory for swagger and files
-  fs.mkdir(`../swagger/docs/`+tenant_id, function(err){
+  
+  fs.mkdir(`../swagger/docs/`+tenant_id, function(err) {
     if (err)
       console.log(err)
   });
