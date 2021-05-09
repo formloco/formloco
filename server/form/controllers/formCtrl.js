@@ -1,5 +1,5 @@
 
-const { formsRead, formRead, formCreate, formUpdate, formDelete, templatesRead, templateRead, templateCreate, templateUpdate, templatePublish, templateDelete } = require('../services/formService')
+const { formsRead, formRead, formCreate, formUpdate, formDelete, templatesRead, templateRead, templateCreate, templateUpdate, templatePublish, templateDelete, formRegister } = require('../services/formService')
 
 const readForms = async(req, res) => {
   try {
@@ -41,6 +41,15 @@ const deleteForm = async(req, res) => {
   try {
     await formDelete(req.body)
     res.status(201).json({"message": "Form deleted."})
+  } catch(e) {
+    res.sendStatus(500)
+  }
+}
+
+const registerForm = async(req, res) => {
+  try {
+    let data = await formRegister(req.body)
+    res.status(201).json(data)
   } catch(e) {
     res.sendStatus(500)
   }
@@ -101,5 +110,5 @@ const deleteTemplate = async(req, res) => {
 }
 
 module.exports = {
-  readForms, readForm, createForm, updateForm, deleteForm, readTemplates, readTemplate, createTemplate, updateTemplate, publishTemplate, deleteTemplate
+  readForms, readForm, createForm, updateForm, deleteForm, readTemplates, readTemplate, createTemplate, updateTemplate, publishTemplate, deleteTemplate, registerForm
 }

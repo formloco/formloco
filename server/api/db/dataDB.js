@@ -105,6 +105,21 @@ const dataDeleteSQL = async (data) => {
   return updatedData.rows
 }
 
-module.exports = {
-  dataReadSQL, dataCreateSQL, dataUpdateSQL, dataDeleteSQL
+const dataGetSQL = async (data) => {
+  pool.options.database = data["tenant_id"]
+  let client = await pool.connect()
+
+  let rows = []
+  let tableExist = await client.query(`SELECT EXISTS (SELECT FROM pg_tables WHERE schemaname = 'public' AND tablename  = '` + data["form_id"] + `')`)
+
+  if (tableExist.rows[0].exists) {
+    let res = await client.query(`SELECT * FROM "` + data["form_id"] + `"`)
+    rows = res.rows
+  }
+  
+  return rows
+}
+
+module.exports = { 
+  dataReadSQL, dataCreateSQL, dataUpdateSQL, dataDeleteSQL, dataGetSQL
 }

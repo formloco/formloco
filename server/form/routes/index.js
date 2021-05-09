@@ -1,7 +1,7 @@
 const express = require('express') 
 const VerifyToken = require('../../helper');
 
-const { readForms, readForm, createForm, updateForm, deleteForm, readTemplates, readTemplate, createTemplate, updateTemplate, publishTemplate, deleteTemplate } = require('../controllers/formCtrl')
+const { readForms, readForm, createForm, updateForm, deleteForm, readTemplates, readTemplate, createTemplate, updateTemplate, publishTemplate, deleteTemplate, registerForm } = require('../controllers/formCtrl')
 
 const router = express.Router()
 
@@ -26,6 +26,8 @@ router.post('/form', VerifyToken, createForm)
 router.put('/form', VerifyToken, updateForm)
 
 router.post('/form/delete', VerifyToken, deleteForm)
+
+router.post('/form/register', VerifyToken, registerForm)
 
 router.get('/:form_id/:tenant_id/', readForm)
 

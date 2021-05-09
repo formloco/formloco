@@ -4,6 +4,8 @@ envPath = envPath.slice(0,envPath.length-5)+'/.env'
 const dotenv = require('dotenv')
 dotenv.config({ path: envPath })
 
+const { v4: uuidv4 } = require('uuid')
+
 const { Pool } = require('pg')
 
 const pool = new Pool({
@@ -84,6 +86,47 @@ const formDeleteSQL = async (data) => {
    client.release()
 }
 
+// takes form structure from client and updates database
+const formRegisterSQL = async (data) => {
+  pool.options.database = data["tenant_id"]
+  let client = await pool.connect()
+
+  let form_id
+  let history = []
+
+  let form = await client.query(`SELECT * FROM public.form WHERE name = '`+data["name"]+`'`)
+
+  if (form.rowCount === 0) {
+    form_id = uuidv4()
+    let formJSON = JSON.stringify(data["formObj"])
+    let columns = JSON.stringify(data["formObj"]["form"]["columns"])
+    let userCreated = JSON.stringify(data["user_created"])
+
+    columns = columns.replace(/`/g, "'")
+    columns = columns.replace(/"/g, "")
+  
+    await client.query(`INSERT INTO public.form(form_id, name, form, tenant_id, is_data, is_published, is_list, pin, user_created) VALUES ( '` + form_id + `', '` + data["name"] + `', '` + formJSON + `', '` + data["tenant_id"] + `', ` + false + `, ` + true + `, ` + false + `, '369', '` + userCreated + `')`)  
+    
+    await client.query(`CREATE SEQUENCE IF NOT EXISTS id_seq`)
+
+    await client.query(`CREATE TABLE IF NOT EXISTS "` + form_id + `" (` + columns + `)`)
+  
+  }
+  else {
+    form_id = form.rows[0]["form_id"]
+
+    let formData = await client.query(`SELECT * FROM "`+form_id+`"`)
+
+    history.push(formData.rows)
+  }
+  
+  client.release()
+
+  let obj = { form_id: form_id, history: history }
+
+  return obj
+}
+
 const templatesReadSQL = async () => {
   pool.options.database = 'user'
   let client = await pool.connect()
@@ -152,5 +195,5 @@ const templateDeleteSQL = async (id) => {
   client.release()
 }
 
-module.exports = { formReadSQL, formsReadSQL, formCreateSQL, formUpdateSQL, formDeleteSQL, templatesReadSQL, templateReadSQL, templateCreateSQL, templateUpdateSQL, templatePublishSQL, templateDeleteSQL
+module.exports = { formReadSQL, formsReadSQL, formCreateSQL, formUpdateSQL, formDeleteSQL, templatesReadSQL, templateReadSQL, templateCreateSQL, templateUpdateSQL, templatePublishSQL, templateDeleteSQL, formRegisterSQL
 }
