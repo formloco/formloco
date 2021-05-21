@@ -1,4 +1,4 @@
-const { formSyncSQL, importSyncSQL, dataSyncToTenantSQL, dataListTenantSyncSQL, dataListFormSyncSQL, syncDeleteListSQL } = require('../db/syncDB')
+const { formSyncSQL, importSyncSQL, dataSyncToTenantSQL, dataListTenantSyncSQL, dataListFormSyncSQL, listsTenantSQL, syncDeleteListSQL } = require('../db/syncDB')
 
 const formSync = async(data) => {
   try {
@@ -42,6 +42,14 @@ const dataListFormSync = async(data) => {
   }
 }
 
+const listsTenant = async(data) => {
+  try {
+    return await listsTenantSQL(data);
+  } catch(e) {
+    throw new Error(e.message)
+  }
+}
+
 const syncDeleteList = async(data) => {
   try {
     return await syncDeleteListSQL(data);
@@ -50,14 +58,14 @@ const syncDeleteList = async(data) => {
   }
 }
 
-const syncListDataToIdb = async(tenant_id) => {
-  try {
-    return await syncListDataToIdbSQL(tenant_id);
-  } catch(e) {
-    throw new Error(e.message)
-  }
-}
+// const syncListDataToIdb = async(tenant_id) => {
+//   try {
+//     return await syncListDataToIdbSQL(tenant_id);
+//   } catch(e) {
+//     throw new Error(e.message)
+//   }
+// }
 
 module.exports = {
-  formSync, importSync, dataSyncToTenant, dataListTenantSync, dataListFormSync, syncDeleteList
+  formSync, importSync, dataSyncToTenant, dataListTenantSync, listsTenant, dataListFormSync, syncDeleteList
 };

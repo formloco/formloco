@@ -1,7 +1,7 @@
 const express = require('express') 
 const VerifyToken = require('../../helper')
 
-const { readData, createData, updateData, deleteData, getData } = require('../controllers/dataCtrl')
+const { readData, createData, updateData, deleteData, getLists } = require('../controllers/dataCtrl')
 
 const router = express.Router()
  
@@ -14,6 +14,6 @@ router.put('/api/', VerifyToken, updateData)
 
 router.post('/api/delete/', VerifyToken, deleteData)
 
-router.post('/api/read/', VerifyToken, getData)
+router.post('/api/lists/', VerifyToken, getLists)
 
 module.exports = router

@@ -7,8 +7,8 @@
   </mat-card>
   <div *ngFor="let formObj of appService.forms; let i=index">
     <mat-card class="custom" *ngIf="i !== 0 && formObj.form !== undefined && formObj.form.is_list === undefined">
-      <div [ngClass]="(formObj.form.name.length < 24 ? 'add-padding':'')" fxLayout="row wrap" class="form-title" fxLayoutAlign="center center">
-        {{formObj.form.name | truncate:[28, '...']}}
+      <div [ngClass]="(formObj.name.length < 24 ? 'add-padding':'')" fxLayout="row wrap" class="form-title" fxLayoutAlign="center center">
+        {{formObj.name | truncate:[28, '...']}}
       </div>
       <div fxLayout="row" fxLayoutAlign="center center">
         <div class="icon-pointer" (click)="run(formObj)" fxLayout="column" fxFlex="33" fxLayoutAlign="center center">

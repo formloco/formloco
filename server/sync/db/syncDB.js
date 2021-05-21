@@ -193,7 +193,7 @@ const dataSyncToTenantSQL = async (data) => {
 const dataListTenantSyncSQL = async (listObj) => {
 
   let client
-  
+
   for (let i = 0; i < listObj.data.length; i++) {
 
     if (listObj["tenant_id"] === listObj.data[i]["tenant_id"]) {
@@ -215,7 +215,7 @@ const dataListTenantSyncSQL = async (listObj) => {
 
   }
 
-  
+
   for (let j = 0; j < listObj.data.length; j++) {
 
     if (listObj["tenant_id"] === listObj.data[j]["tenant_id"]) {
@@ -258,7 +258,7 @@ const dataListTenantSyncSQL = async (listObj) => {
     }
 
   }
-  
+
   poolTenant.options.database = listObj["tenant_id"]
   client = await poolTenant.connect()
 
@@ -294,7 +294,7 @@ const dataListTenantSyncSQL = async (listObj) => {
  * used when temporary token is issued - 'copy link', 'embedded' forms
  */
 const dataListFormSyncSQL = async (data) => {
- 
+
   let listArray = []
   let lastFormID
   for (let j = 0; j < data.length; j++) {
@@ -317,6 +317,37 @@ const dataListFormSyncSQL = async (data) => {
 
 }
 
+const listsTenantSQL = async (listObj) => {
+
+  poolTenant.options.database = listObj["tenant_id"]
+  client = await poolTenant.connect()
+
+  let allForms = await client.query(`SELECT * FROM form WHERE date_archived is null`)
+
+  let listData = []
+  let lastFormID
+  for (let j = 0; j < allForms.rows.length; j++) {
+
+    if (allForms.rows[j]["form"]["is_list"]) {
+
+      let data = await client.query(`SELECT * FROM "` + allForms.rows[j]["form_id"] + `"`)
+
+      let obj = {
+        columns: data.rows[0].columns,
+        data: data.rows[0].data,
+        form_id: data.rows[0].form_id,
+        tenant_id: data.rows[0].tenant_id
+      }
+      listData.push(obj)
+    }
+
+    client.release()
+
+  }
+
+  return listArray
+}
+
 const syncDeleteListSQL = async (formObj) => {
 
   poolTenant.options.database = formObj["tenant_id"]
@@ -330,5 +361,5 @@ const syncDeleteListSQL = async (formObj) => {
 }
 
 module.exports = {
-  formSyncSQL, importSyncSQL, dataSyncToTenantSQL, dataListTenantSyncSQL, dataListFormSyncSQL, syncDeleteListSQL
+  formSyncSQL, importSyncSQL, dataSyncToTenantSQL, dataListTenantSyncSQL, dataListFormSyncSQL, listsTenantSQL, syncDeleteListSQL
 }

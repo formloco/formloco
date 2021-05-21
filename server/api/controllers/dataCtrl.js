@@ -1,5 +1,5 @@
 
-const { dataRead, dataCreate, dataUpdate, dataDelete, dataGet } = require('../services/dataService')
+const { dataRead, dataCreate, dataUpdate, dataDelete, listsGet } = require('../services/dataService')
 
 const readData = async(req, res) => {
   try {
@@ -37,9 +37,9 @@ const deleteData = async(req, res) => {
   }
 }
 
-const getData = async(req, res) => {
+const getLists = async(req, res) => {
   try {
-    let data = await dataGet(req.body)
+    let data = await listsGet(req.body)
     res.status(201).json(data)
   } catch(e) {
     res.sendStatus(500)
@@ -47,5 +47,5 @@ const getData = async(req, res) => {
 }
 
 module.exports = {
-  readData, createData, updateData, deleteData, getData
+  readData, createData, updateData, deleteData, getLists
 }

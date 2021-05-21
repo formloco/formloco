@@ -20,11 +20,12 @@ const dataReadSQL = async (tenant_id, form_id) => {
   let client = await pool.connect()
 
   let data = []
+  
   let tableExist = await client.query(`SELECT EXISTS (SELECT FROM pg_tables WHERE schemaname = 'public' AND tablename  = '` + form_id + `')`)
 
   if (tableExist.rows[0].exists) {
-    let res = await client.query(`SELECT * FROM "` + form_id + `"`)
-    data = res.rows
+   let formData = await client.query(`SELECT * FROM "` + form_id + `" ORDER BY id`)
+    data = formData.rows
   }
   return data
 }
@@ -105,21 +106,29 @@ const dataDeleteSQL = async (data) => {
   return updatedData.rows
 }
 
-const dataGetSQL = async (data) => {
+const listsGetSQL = async (data) => {
   pool.options.database = data["tenant_id"]
   let client = await pool.connect()
 
-  let rows = []
-  let tableExist = await client.query(`SELECT EXISTS (SELECT FROM pg_tables WHERE schemaname = 'public' AND tablename  = '` + data["form_id"] + `')`)
-
-  if (tableExist.rows[0].exists) {
-    let res = await client.query(`SELECT * FROM "` + data["form_id"] + `"`)
-    rows = res.rows
-  }
+  let listArray = []
+  let lists  = await client.query(`SELECT * FROM form WHERE is_list = true`)
   
-  return rows
+  for (let i = 0; i < lists.rows.length; i++) {
+
+    let listRows = []
+    let tableExist = await client.query(`SELECT EXISTS (SELECT FROM pg_tables WHERE schemaname = 'public' AND tablename  = '` + lists.rows[i].form_id + `')`)
+
+    if (tableExist.rows[0].exists) {
+      let listData  = await client.query(`SELECT id, data FROM "` + lists.rows[i].form_id + `"`)
+      listRows = listData.rows
+    }
+    listArray.push({name: lists.rows[i].name, form_id: lists.rows[i].form_id, rows: listRows })
+  }
+  client.release()
+
+  return listArray
 }
 
 module.exports = { 
-  dataReadSQL, dataCreateSQL, dataUpdateSQL, dataDeleteSQL, dataGetSQL
+  dataReadSQL, dataCreateSQL, dataUpdateSQL, dataDeleteSQL, listsGetSQL
 }

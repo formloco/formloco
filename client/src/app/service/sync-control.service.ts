@@ -47,6 +47,7 @@ export class SyncControlService {
           user: user,
           forms: this.forms
         }
+        
         // sync forms owned by tenant
         this.syncService.syncForm(obj).subscribe(res => {
           this.forms = res
@@ -150,6 +151,7 @@ export class SyncControlService {
   }
 
   syncListData(obj) {
+    console.log(obj)
     this.syncService.syncDataListCloud(obj).subscribe(listData => {
       this.idbData = listData
       this.idbCrudService.clear('list_data').subscribe()

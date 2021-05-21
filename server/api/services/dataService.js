@@ -1,4 +1,4 @@
-const { dataReadSQL, dataCreateSQL, dataUpdateSQL, dataDeleteSQL, dataGetSQL } = require('../db/dataDB')
+const { dataReadSQL, dataCreateSQL, dataUpdateSQL, dataDeleteSQL, listsGetSQL } = require('../db/dataDB')
 
 const dataRead = async(tenant_id, form_id) => {
   try {
@@ -36,9 +36,9 @@ const dataDelete = async(data) => {
   }
 }
 
-const dataGet = async(data) => {
+const listsGet = async(data) => {
   try {
-    let rows = await dataGetSQL(data)
+    let rows = await listsGetSQL(data)
     return rows
   } catch(e) {
     throw new Error(e.message)
@@ -47,5 +47,5 @@ const dataGet = async(data) => {
 
 
 module.exports = {
-  dataRead, dataCreate, dataUpdate, dataDelete, dataGet
+  dataRead, dataCreate, dataUpdate, dataDelete, listsGet
 }

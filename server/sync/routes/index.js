@@ -1,7 +1,7 @@
 const express = require('express') 
 const VerifyToken = require('../../helper');
 
-const { syncForm, syncImport, syncDataToTenant, syncDataListTenant, syncDataListForm, syncListDelete } = require('../controllers/syncCtrl')
+const { syncForm, syncImport, syncDataToTenant, syncDataListTenant, tenantLists, syncDataListForm, syncListDelete } = require('../controllers/syncCtrl')
 
 const router = express.Router()
 
@@ -13,6 +13,8 @@ router.post('/sync/import/', VerifyToken, syncImport)
 router.post('/sync/data/', VerifyToken, syncDataToTenant)
 
 router.post('/sync/list/tenant/', VerifyToken, syncDataListTenant)
+
+router.post('/sync/list/', VerifyToken, tenantLists);
 
 router.post('/sync/list/form/', VerifyToken, syncDataListForm);
 
