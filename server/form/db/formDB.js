@@ -31,7 +31,7 @@ const formsReadSQL = async (tenant_id) => {
   pool.options.database = tenant_id
   let client = await pool.connect()
 
-  let forms = await client.query(`SELECT * FROM public.form WHERE date_archived is null`)
+  let forms = await client.query(`SELECT * FROM public.form WHERE date_archived is null AND type = 'dynamic'`)
    
   client.release()
 
@@ -48,7 +48,7 @@ const formCreateSQL = async (data) => {
 
   if (data["name"] == null) data["name"] = ''
 
-  let form = await client.query(`INSERT INTO public.form(form_id, name, form, tenant_id, is_data, is_published, is_list, pin, user_created) VALUES ( '` + data["form_id"] + `', '` + data["name"] + `', '` + formJSON + `', '` + data["tenant_id"] + `', ` + data["is_data"] + `, ` + data["is_published"] + `, ` + data["is_list"] + `, '` + data["form"]["pin"] + `', '` + userCreated + `') returning id`)
+  let form = await client.query(`INSERT INTO public.form(form_id, name, type, form, tenant_id, is_data, is_published, is_list, type, pin, user_created) VALUES ( '` + data["form_id"] + `', '` + data["name"] + `', '` + data["type"] + `', '` + formJSON + `', '` + data["tenant_id"] + `', ` + data["is_data"] + `, ` + data["is_published"] + `, ` + data["is_list"] + `, '` + data["form"]["type"] + `, '` + data["form"]["pin"] + `', '` + userCreated + `') returning id`)
    
   client.release()
 
@@ -107,7 +107,7 @@ const formRegisterSQL = async (data) => {
     columns = columns.replace(/`/g, "'")
     columns = columns.replace(/"/g, "")
   
-    await client.query(`INSERT INTO public.form(form_id, name, form, tenant_id, is_data, is_published, is_list, pin, user_created) VALUES ( '` + form_id + `', '` + data["name"] + `', '` + formJSON + `', '` + data["tenant_id"] + `', ` + false + `, ` + true + `, ` + false + `, '369', '` + userCreated + `')`)  
+    await client.query(`INSERT INTO public.form(form_id, name, type, form, tenant_id, is_data, is_published, is_list, pin, user_created) VALUES ( '` + form_id + `', '` + data["name"] + `', '` + data["type"] + formJSON + `', '` + data["tenant_id"] + `', ` + false + `, ` + true + `, ` + false + `, 'list', 369', '` + userCreated + `')`)  
     
     await client.query(`CREATE SEQUENCE IF NOT EXISTS id_seq`)
 

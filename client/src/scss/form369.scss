@@ -209,12 +209,11 @@ h1.responsive-app-name {
 }
 
 ngx-dropzone {
-  &.custom-dropzone {
-    height: 100px;
-    width: 100%;
-    background: #fff;
-    color: #8799AD;
-    border: 2px dashed;
+  &.dark-dropzone {
+    background: #3b3b3b;
+    border-radius: 2px;
+  }
+  &.white-dropzone {
     border-radius: 2px;
   }
 }

@@ -31,7 +31,7 @@ import { WelcomeComponent } from '../dialogs/welcome/welcome.component'
 export class NavigationComponent implements OnChanges {
 
   @Input() userName
-  @Output() toggleTheme = new EventEmitter()
+  @Output() changeTheme = new EventEmitter()
 
   user
   token
@@ -91,7 +91,7 @@ export class NavigationComponent implements OnChanges {
 
   signin() {
     const dialogConfig = new MatDialogConfig()
-    dialogConfig.height = '600px' //800 for other logins
+    dialogConfig.height = '600px'
     dialogConfig.width = '500px'
     dialogConfig.data = {
       isSignin: true
@@ -100,6 +100,9 @@ export class NavigationComponent implements OnChanges {
     dialogRef.afterClosed().subscribe(() => {
       this.getUser()
       this.appService.getForms()
+      // setTimeout(function () { 
+      //   window.location = window.location 
+      // }, 1000)
     })
   }
 
@@ -159,8 +162,8 @@ export class NavigationComponent implements OnChanges {
     const dialogRef = this.dialog.open(WelcomeComponent, dialogConfig)
   }
 
-  changeTheme(event) {
-    this.toggleTheme.emit()
+  toggleTheme(event) {
+    this.changeTheme.emit()
   }
 
 }

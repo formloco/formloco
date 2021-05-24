@@ -7,8 +7,6 @@ import { Routes, RouterModule } from '@angular/router';
  * 2. tenant based - uses tenant auth & layout component
  */
 
-import { LayoutComponent as Layout } from './component/layout/layout.component';
-
 // import { TenantAuthComponent as Layout } from './component/tenant-auth/tenant-auth.component';
 // import { TenantLayoutComponent } from './component/tenant-layout/tenant-layout.component';
 
@@ -26,14 +24,6 @@ const routes: Routes = [
     redirectTo: '/',
     pathMatch: 'full'
   },
-  {
-    path: '',
-    component: Layout
-  },
-  // {
-  //   path: 'home',
-  //   component: TenantLayoutComponent
-  // },
   {
     path: 'run',
     component: RunComponent

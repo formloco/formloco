@@ -84,6 +84,7 @@ export class FormLibraryComponent implements OnChanges {
 
   ngOnChanges() {
     this.user = this.authService.userSignedIn()
+    console.log(this.appService.forms)
   }
 
   newForm() {

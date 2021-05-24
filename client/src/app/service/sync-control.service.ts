@@ -2,12 +2,11 @@
  * form structures and data and list data
 */
 
-import { Injectable } from '@angular/core'
+import { Injectable, ɵɵtrustConstantResourceUrl } from '@angular/core'
 
 import { AppService } from "../service/app.service"
 import { SyncService } from "../service/sync.service"
 import { FormService } from "../service/form.service"
-import { SuccessService } from "../service/success.service"
 import { IdbCrudService } from "../service-idb/idb-crud.service"
 
 @Injectable({
@@ -27,43 +26,36 @@ export class SyncControlService {
     public appService: AppService,
     private syncService: SyncService,
     private formService: FormService,
-    private successService: SuccessService,
     private idbCrudService: IdbCrudService) { }
 
-
-  syncFormsIdb(user) {
-    this.forms = []
+  syncTenant(user) {
     this.idbCrudService.readAll('form').subscribe(forms => {
       this.forms = forms
 
-      if (this.forms.length > 0) {
-        // update form list obj if 'Select/MutiSelect' and list is not 'none'
+      if (this.forms.length > 0 && this.forms[0].tenant_id === user.tenant_id) {
         this.forms.forEach(element => {
           element["user_created"] = { email: user.email, date_created: new Date() }
           element["tenant_id"] = user.tenant_id
         })
 
-        let obj = {
-          user: user,
-          forms: this.forms
-        }
-        
+        let obj = { user: user, forms: this.forms }
+
         // sync forms owned by tenant
         this.syncService.syncForm(obj).subscribe(res => {
-          this.forms = res
-
-          this.idbCrudService.clear('form').subscribe()
-          this.forms.forEach(formObj => {
-            this.idbCrudService.put('form', formObj).subscribe()
-          })
+          this.appService.forms = res
+          this.appService.forms.unshift('New Form')
+          this.syncShareIdb(user)
         })
       }
       else {
         this.formService.getForms(user.tenant_id).subscribe(res => {
-          this.forms = res
-          this.idbCrudService.clear('form').subscribe()
-          this.forms.forEach(formObj => {
-            this.idbCrudService.put('form', formObj).subscribe()
+          this.appService.forms = res
+          this.idbCrudService.clear('form').subscribe(res => {
+            this.appService.forms.forEach(formObj => {
+              this.idbCrudService.put('form', formObj).subscribe()
+            })
+            this.appService.forms.unshift('New Form')
+            this.syncShareIdb(user)
           })
         })
       }
@@ -95,6 +87,7 @@ export class SyncControlService {
           this.idbCrudService.put('share', idbForm).subscribe()
         }
       })
+      this.syncDataCloud(user)
     }
   }
 
@@ -120,13 +113,13 @@ export class SyncControlService {
           }
         })
       }
+      this.syncDataListCloud(user)
     })
   }
 
   syncDataListCloud(user) {
     let obj = {}
     this.idbData = []
-    this.successService.popSnackbar("Welcome to formloco!")
     this.idbCrudService.readAll('list_data').subscribe(data => {
       this.idbData = data
 
@@ -151,7 +144,6 @@ export class SyncControlService {
   }
 
   syncListData(obj) {
-    console.log(obj)
     this.syncService.syncDataListCloud(obj).subscribe(listData => {
       this.idbData = listData
       this.idbCrudService.clear('list_data').subscribe()

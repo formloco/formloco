@@ -211,10 +211,10 @@ export class CanvasComponent implements OnChanges {
     }
 
     this.builderService.canvasFormControls.pin = this.pin
-
     let idbForm = ({
       form: this.builderService.canvasFormControls,
       form_id: uuid.v4(),
+      name: this.canvasForm.controls['name'].value,
       tenant_id: tenantID,
       date_created: new Date(),
       date_archived: undefined,
@@ -223,7 +223,8 @@ export class CanvasComponent implements OnChanges {
       user_archived: null,
       is_data: false,
       is_list: false,
-      is_published: false
+      is_published: false,
+      type: 'dynamic'
     })
 
     this.idbCrudService.put('form', idbForm).subscribe(id => {

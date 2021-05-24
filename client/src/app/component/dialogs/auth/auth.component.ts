@@ -10,18 +10,14 @@ import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
 import { AppService } from "../../../service/app.service"
 import { AuthService } from "../../../service/auth.service"
 import { EmailService } from "../../../service/email.service"
+import { ErrorService } from "../../../service/error.service"
+import { SuccessService } from "../../../service/success.service"
 import { SyncControlService } from "../../../service/sync-control.service"
 
 // import { SocialUser } from "angularx-social-login"
 // import { AuthService as AuthSocialService } from "angularx-social-login"
 // import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login"
 // import { BroadcastService, MsalService } from '@azure/msal-angular'
-
-import { ErrorService } from "../../../service/error.service"
-import { SuccessService } from "../../../service/success.service"
-
-import { IdbCrudService } from "../../../service-idb/idb-crud.service"
-
 
 import { environment } from '../../../../environments/environment'
 @Component({
@@ -32,6 +28,10 @@ import { environment } from '../../../../environments/environment'
 export class AuthComponent implements OnInit {
 
   auth
+  forms
+  canvasBackground = '#3b3b3b'
+
+  isLoggingIn = false
   // socialUser: SocialUser
   azureUser
   isForgotPassword: boolean = false
@@ -48,6 +48,7 @@ export class AuthComponent implements OnInit {
     private authService: AuthService,
     private errorService: ErrorService,
     private emailService: EmailService,
+    
     // private authMsalService: MsalService,
     private successService: SuccessService,
     // private broadcastService: BroadcastService,
@@ -68,9 +69,12 @@ export class AuthComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (!this.appService.isDarkMode) this.canvasBackground = ''
+  }
 
   login(provider) {
+    this.isLoggingIn = true
     let obj = {}
     if (provider === 'email') {
       obj = { email: this.emailSigninForm.value.email, password: this.emailSigninForm.value.password }
@@ -89,10 +93,8 @@ export class AuthComponent implements OnInit {
     this.authService.login(obj).subscribe(auth => {
       this.auth = auth
       
-      if (this.auth.message === 'Sign in sucessful.')
-        this.setSession(provider)
-      else
-        this.errorService.popSnackbar(this.auth.message)
+      if (this.auth.message === 'Sign in sucessful.') this.setSession(provider)
+      else this.errorService.popSnackbar(this.auth.message)
       
       this.dialogRef.close()
     })
@@ -180,10 +182,7 @@ export class AuthComponent implements OnInit {
     localStorage.setItem('authProvider', provider)
     localStorage.setItem('formToken', this.auth.token)
     localStorage.setItem('formUser', JSON.stringify(this.auth.user))
-    this.syncControlService.syncFormsIdb(this.auth.user)
-    this.syncControlService.syncShareIdb(this.auth.user)
-    this.syncControlService.syncDataCloud(this.auth.user)
-    this.syncControlService.syncDataListCloud(this.auth.user)
+    this.syncControlService.syncTenant(this.auth.user)
   }
 
 }

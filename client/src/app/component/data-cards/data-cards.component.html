@@ -17,8 +17,8 @@
   <div fxLayout="row wrap" fxLayoutGap="30px" fxFlex>
     <ng-container *ngFor="let formObj of appService.forms; let i=index">
       <mat-card class="custom custom-background" *ngIf="i !== 0 && formObj.date_archived === undefined || i !== 0 && formObj.date_archived === null">
-        <div [ngClass]="(formObj.form.name.length < 24 ? 'add-padding':'')" fxLayout="column" class="form-title" fxLayoutAlign="center center">
-          {{formObj.form.name | truncate:[28, '...']}}
+        <div [ngClass]="(formObj.name.length < 24 ? 'add-padding':'')" fxLayout="column" class="form-title" fxLayoutAlign="center center">
+          {{formObj.name | truncate:[28, '...']}}
         </div>
         <div fxLayout="row">
           <div class="icon-pointer left20" (click)="openData(formObj)">

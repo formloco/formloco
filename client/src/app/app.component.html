@@ -1,1 +1,3 @@
+<app-desktop *ngIf="appService.isDesktop" (toggleTheme)=toggleTheme() [isDarkMode]="appService.isDarkMode"></app-desktop>
+<app-phone *ngIf="appService.isPhone" (toggleTheme)=toggleTheme() [isDarkMode]="appService.isDarkMode"></app-phone>
 <router-outlet></router-outlet>

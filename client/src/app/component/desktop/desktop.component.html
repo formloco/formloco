@@ -1,5 +1,5 @@
-<div [ngStyle]="{'background-color': canvasBackground}" fxLayout="column">
-  <app-navigation [ngStyle]="{'background-color': canvasBackground}" [userName]=userName (toggleTheme)="toggleTheme()"></app-navigation>
+<div fxLayout="column">
+  <app-navigation [userName]=userName (changeTheme)=changeTheme($event)></app-navigation>
   <mat-sidenav-container class="menu-container" autosize>
     <mat-sidenav #sidenav [ngClass]="(appService.isMainMenu ? 'menu-open':'menu-icons')" mode="side" opened>
       <div fxLayout="row" class="toggle-close icon-pointer" (click)="toggleMainMenu()" fxLayoutAlign="end">
@@ -71,7 +71,7 @@
             [cdkConnectedOverlayHasBackdrop]=true cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop">
             <div class="link-overlay" fxLayout="column">
               <div class="files-padding">
-                <ngx-dropzone class="custom-dropzone" accept="*" [multiple]="true" [maxFileSize]="200000" (change)="onSelect($event)">
+                <ngx-dropzone [ngClass]="(appService.isDarkMode ? 'dark-dropzone':'white-dropzone')"class="" accept="*" [multiple]="true" [maxFileSize]="200000" (change)="onSelect($event)">
                   <ngx-dropzone-label>Drop JSON file(s) or click to select for import</ngx-dropzone-label>
                   <ngx-dropzone-preview *ngFor="let f of fileArray" [removable]="true" (removed)="onRemove(f)">
                     <ngx-dropzone-label>

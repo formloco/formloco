@@ -137,7 +137,7 @@ const emailSignupSQL = async (data) => {
 
   await clientTenant.query(`CREATE SEQUENCE form_id_seq`)
   
-  await clientTenant.query(`CREATE TABLE public.form ("id" int4 NOT NULL DEFAULT nextval('form_id_seq'::regclass),form_id uuid, tenant_id uuid, name varchar, form jsonb, pin varchar, date_last_access timestamp DEFAULT now(), date_created timestamp DEFAULT now(), date_archived timestamp, user_created jsonb, user_updated jsonb, user_archive int4, is_data bool, is_list bool, is_published bool, PRIMARY KEY ("id"))`)
+  await clientTenant.query(`CREATE TABLE public.form ("id" int4 NOT NULL DEFAULT nextval('form_id_seq'::regclass),form_id uuid, tenant_id uuid, name varchar, form jsonb, pin varchar, date_last_access timestamp DEFAULT now(), date_created timestamp DEFAULT now(), date_archived timestamp, user_created jsonb, user_updated jsonb, user_archive int4, is_data bool, is_list bool, type varchar, is_published bool, PRIMARY KEY ("id"))`)
 
   await clientTenant.query(`CREATE TABLE "public"."files" ("tenant_id" uuid, "form_id" uuid, "file_name" text, "type" text, "date_created" timestamp, "date_archived" timestamp, "user_created" text)`)
   

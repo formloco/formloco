@@ -99,11 +99,15 @@
   border: solid 1px #ccc;
   border-radius: 5px;
   padding: 20px;
-  background: #424242;
   min-width: 400px;
 }
 
 ngx-dropzone-label {
   padding-left: 20px;
   padding-right: 20px;
+}
+
+dropzone ::ng-deep .dropzone.dz-wrapper .dz-message {
+  background: #90ee90;
+  border: none !important;
 }

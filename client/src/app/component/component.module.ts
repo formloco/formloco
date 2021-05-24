@@ -27,7 +27,6 @@ import { FormListsComponent } from './form-lists/form-lists.component'
 import { FormLibraryComponent } from './form-library/form-library.component'
 import { DesktopComponent } from './desktop/desktop.component'
 import { BuildComponent } from './build/build.component'
-import { LayoutComponent } from './layout/layout.component'
 import { CanvasComponent } from './canvas/canvas.component'
 import { FooterComponent } from './footer/footer.component'
 
@@ -132,7 +131,6 @@ import { MicroAppRunComponent } from './run-controls/micro-app-run/micro-app-run
     BuildComponent,
     RadioComponent,
     LabelComponent,
-    LayoutComponent,
     SaveasComponent,
     ExportComponent,
     ImportComponent,
@@ -229,7 +227,6 @@ import { MicroAppRunComponent } from './run-controls/micro-app-run/micro-app-run
     BuildComponent,
     RadioComponent,
     LabelComponent,
-    LayoutComponent,
     CanvasComponent,
     FooterComponent,
     ShareComponent,

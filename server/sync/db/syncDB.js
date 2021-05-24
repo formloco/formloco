@@ -24,50 +24,30 @@ const poolTenant = new Pool({
  */
 const formSyncSQL = async (data) => {
 
+  poolTenant.options.database = data.user.tenant_id
+  let client = await poolTenant.connect()
+
   for (let j = 0; j < data.forms.length; j++) {
-    if (data.forms[j].tenant_id !== undefined)
-      poolTenant.options.database = data.forms[j].tenant_id
-    else
-      poolTenant.options.database = data.user.tenant_id
-
-    for (let k = 0; k < data.forms[j].form.details.length; k++) {
-      if (data.forms[j].form.details[k]["type"] === 'Select' || data.forms[j].form.details[k]["type"] === 'MultiSelect') {
-        if (data.forms[j].form.details[k]["list"] !== 'none') {
-          data.forms[j].form.details[k]["list"]["tenant_id"] = data["user"]["tenant_id"]
-        }
-      }
-    }
-
-    let client = await poolTenant.connect()
-
+   
     let formObj = await client.query(`SELECT * FROM form WHERE form_id = '` + data.forms[j].form_id + `'`)
+
     if (formObj.rowCount === 0) {
       let formJSON = JSON.stringify(data.forms[j].form)
       let formUser = JSON.stringify(data.user)
-
-      let qryStr = `INSERT INTO form(form_id, form, pin, tenant_id, is_published, is_data, user_created) VALUES ( '` + data.forms[j].form_id + `', '` + formJSON + `', '` + data.forms[j].pin + `', '` + data.forms[j].tenant_id + `', ` + data.forms[j].is_published + `, ` + data.forms[j].is_data + `, '` + formUser + `')`
-      await client.query(qryStr)
+      await client.query(`INSERT INTO form(form_id, form, pin, tenant_id, is_published, is_data, user_created, type, name) VALUES ( '` + data.forms[j].form_id + `', '` + formJSON + `', '` + data.forms[j].pin + `', '` + data.forms[j].tenant_id + `', ` + data.forms[j].is_published + `, ` + data.forms[j].is_data + `, '` + formUser + `', '` + data.forms[j].type + `', '` + data.forms[j].name + `')`)
     }
     else {
-      let isObjectEqual = formObj.rows[0].form.controls.length == data.forms[j].form.controls.length;
-
-      if (isObjectEqual) {
-        let formJSON = JSON.stringify(data.forms[j].form)
-
-        await client.query(`UPDATE form SET form = '` + formJSON + `' WHERE form_id = '` + data.forms[j].form_id + `'`)
-      }
+      let formJSON = JSON.stringify(data.forms[j].form)
+      await client.query(`UPDATE form SET form = '` + formJSON + `' WHERE form_id = '` + data.forms[j].form_id + `'`)
     }
-    client.release()
-  }
 
-  poolTenant.options.database = data.user.tenant_id
-  let client = await poolTenant.connect()
+  }
 
   let forms = await client.query(`SELECT * FROM form`)
 
   client.release()
 
-  return forms.rows;
+  return forms.rows
 }
 
 const importSyncSQL = async (data) => {

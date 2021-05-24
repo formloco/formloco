@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input, HostBinding } from '@angular/core'
+import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core'
 
 import * as uuid from 'uuid'
 import * as CryptoJS from 'crypto-js'
@@ -34,8 +34,8 @@ import { LookupList } from '../../model/connector'
 export class DesktopComponent implements OnChanges {
 
   @Input() isDarkMode
-
-  @HostBinding('class') className = 'darkMode'
+  @Output() toggleTheme = new EventEmitter<any>()
+  @Output() refresh = new EventEmitter<any>()
 
   user
   userName
@@ -104,8 +104,6 @@ export class DesktopComponent implements OnChanges {
       this.appService.authProvider = localStorage.getItem('authProvider')
     }
     this.appService.getForms()
-    if (this.isDarkMode) this.canvasBackground = '#3b3b3b'
-    else this.canvasBackground = '#ffffff'
 
     this.builderService.showControls = true
     if (this.formObj === undefined) {
@@ -113,6 +111,10 @@ export class DesktopComponent implements OnChanges {
       this.appService.pageTitle = 'Form Library'
     }
     else this.appService.page = 'design'
+  }
+
+  changeTheme(event) {
+    this.toggleTheme.emit();
   }
 
   setPage(page) {
@@ -148,30 +150,6 @@ export class DesktopComponent implements OnChanges {
     }
     this.appService.page = page
   }
-
-  toggleTheme() {
-
-    let darkClassName = ''
-
-    if (this.appService.isDarkMode) darkClassName = ''
-    else darkClassName = 'darkMode'
-
-    this.setMode(darkClassName)
-
-    let obj = { id: 0, dark_mode: !this.appService.isDarkMode }
-    this.idbCrudService.put('prefs', obj)
-
-  }
-
-  setMode(darkClassName) {
-    this.className = 'darkMode' ? darkClassName : ''
-
-    if (darkClassName === 'darkMode')
-      this.overlayContainer.getContainerElement().classList.add(darkClassName)
-    else
-      this.overlayContainer.getContainerElement().classList.remove('darkMode')
-  }
-
 
   toggleMainMenu() {
     this.appService.isMainMenu = !this.appService.isMainMenu
@@ -236,11 +214,11 @@ export class DesktopComponent implements OnChanges {
           this.builderService.canvasFormControls["pin"] = pin
           this.builderService.canvasFormControls["labels"] = obj.labels
           this.builderService.canvasFormControls["columns"] = obj.columns
-  
          
           let idbForm = ({
             form: this.builderService.canvasFormControls,
             form_id: uuid.v4(),
+            name: formObj.form.name,
             date_created: new Date(),
             date_archived: undefined,
             date_last_access: new Date(),

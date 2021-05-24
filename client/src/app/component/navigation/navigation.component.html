@@ -1,12 +1,11 @@
-<div class="nav-padding" fxLayout="row" fxLayoutAlign="space-between center">
-  <div>
-    <div>
-      <a href="https://formloco.com">
-        <img *ngIf="!appService.isDarkMode" src="assets/logo/logo-light.svg" height="80">
-        <img *ngIf="appService.isDarkMode" src="assets/logo/logo-dark.svg" height="80">
-      </a>
-    </div>
+<mat-toolbar style="height:80px;">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <a href="https://formloco.com">
+      <img *ngIf="!appService.isDarkMode" src="assets/logo/logo-light.svg" height="60">
+      <img *ngIf="appService.isDarkMode" src="assets/logo/logo-dark.svg" height="60">
+    </a>
   </div>
+  <span class="spacer"></span>
   <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center">
     <a mat-stroked-button class="menu-label" href="https://github.com/formloco" target="blank">
       <img class="filterIcon" src="assets/logo/GitHub_Logo.png" height="20">
@@ -24,7 +23,7 @@
       <mat-icon>person</mat-icon>&nbsp;&nbsp;{{ userName }}
     </button>
     <div fxLayoutAlign="center center">
-      <mat-slide-toggle [(ngModel)]="appService.isDarkMode" color="warn" (click)="changeTheme($event)"></mat-slide-toggle>&nbsp;
+      <mat-slide-toggle [(ngModel)]="appService.isDarkMode" color="warn" (click)="toggleTheme($event)"></mat-slide-toggle>&nbsp;
       <div class="menu-label" fxLayoutAlign="center center">
         <mat-icon *ngIf="!appService.isDarkMode">mode_night</mat-icon>
         <mat-icon *ngIf="appService.isDarkMode">wb_sunny</mat-icon>
@@ -33,4 +32,4 @@
     <button class="green" *ngIf="!appService.authProvider" (click)="signin()" mat-flat-button>Sign In</button>
     <button class="green" *ngIf="appService.authProvider" (click)="signout()" mat-flat-button color="light-green">Sign Out</button>
   </div>
-</div>
+</mat-toolbar>

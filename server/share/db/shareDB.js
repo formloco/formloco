@@ -146,7 +146,7 @@ const publishShareSQL = async (data) => {
   let columns = data["form"]["columns"].replace(/`/g, "'")
   
   if (form.rowCount === 0)
-    await clientTenant.query(`INSERT INTO public.form(form_id, form, tenant_id, is_published, user_created) VALUES ( '` + data["form_id"] + `', '` + formObj + `', '` + data["tenant_id"] + `', '` + data["is_published"] + `', '` + userObj + `')`)
+    await client.query(`INSERT INTO public.form(form_id, name, type, form, tenant_id, is_data, is_published, is_list, type, pin, user_created) VALUES ( '` + data["form_id"] + `', '` + data["name"] + `', '` + data["type"] + `', '` + formJSON + `', '` + data["tenant_id"] + `', ` + data["is_data"] + `, ` + data["is_published"] + `, ` + data["is_list"] + `, '` + data["form"]["type"] + `, '` + data["form"]["pin"] + `', '` + userCreated + `')`)
   else
     await clientTenant.query(`UPDATE public.form SET is_published = ` + data["is_published"] + `, form = '` + formObj + `', user_updated = '` + userObj + `' WHERE form_id = '` + data["form_id"] + `'`)
     
