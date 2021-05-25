@@ -25,7 +25,7 @@
             Save
           </button>
           <span *ngIf="builderService.formObj" fxLayoutGap="10px">
-            <button mat-stroked-button color="primary" (click)="copyUrl('link')">
+            <button mat-stroked-button color="primary" (click)="formAdminService.copyUrl('link', builderService.formObj)">
               <mat-icon class="card-icon">link</mat-icon>
               link
             </button>
@@ -37,21 +37,21 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="copyUrl('preview')">
+              <button mat-menu-item (click)="formAdminService.copyUrl('preview', builderService.formObj)">
                 <span>Preview Link</span>
               </button>
-              <button mat-menu-item (click)=saveas()>
+              <button mat-menu-item (click)="saveas()">
                 <span>Save As</span>
               </button>
-              <button mat-menu-item (click)=exportJSON()>
+              <button mat-menu-item (click)="formAdminService.exportJSON()">
                 <span>Save As Template</span>
               </button>
-              <button mat-menu-item (click)=archive()>
+              <button mat-menu-item (click)="formAdminService.archive()">
                 <span>Archive</span>
               </button>
               <span *ngIf="!builderService.formObj.is_data">
                 <mat-divider></mat-divider>
-                <button mat-menu-item color="warn" (click)=delete()>
+                <button mat-menu-item color="warn" (click)="formAdminService.delete(builderService.formObj)">
                   <span>Delete</span>
                 </button>
               </span>

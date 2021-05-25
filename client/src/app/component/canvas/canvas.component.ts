@@ -11,9 +11,9 @@ import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dial
 import * as uuid from 'uuid'
 
 import { SaveasComponent } from '../dialogs/saveas/saveas.component'
-import { ArchiveComponent } from '../dialogs/archive/archive.component'
+// import { ArchiveComponent } from '../dialogs/archive/archive.component'
 
-import { MessageComponent } from '../dialogs/message/message.component'
+// import { MessageComponent } from '../dialogs/message/message.component'
 
 import { AppService } from "../../service/app.service"
 import { AuthService } from "../../service/auth.service"
@@ -21,12 +21,12 @@ import { DataService } from "../../service/data.service"
 import { FormService } from "../../service/form.service"
 import { ErrorService } from "../../service/error.service"
 import { BuilderService } from "../../service/builder.service"
-import { BuilderControlService } from "../../service/builder-control.service"
 import { SuccessService } from "../../service/success.service"
-import { TransformStructureService } from "../../service/transform-structure.service"
-
+import { FormAdminService } from "../../service/form-admin.service"
 import { IdbCrudService } from "../../service-idb/idb-crud.service"
+import { BuilderControlService } from "../../service/builder-control.service"
 import { IdbPersistenceService } from "../../service-idb/idb-persistence.service"
+import { TransformStructureService } from "../../service/transform-structure.service"
 
 import { environment } from '../../../environments/environment'
 
@@ -84,6 +84,7 @@ export class CanvasComponent implements OnChanges {
     public builderService: BuilderService,
     private successService: SuccessService,
     private idbCrudService: IdbCrudService,
+    private formAdminService: FormAdminService,
     private builderControlService: BuilderControlService,
     private idbPersistenceService: IdbPersistenceService,
     private transformStructureService: TransformStructureService) {
@@ -163,7 +164,6 @@ export class CanvasComponent implements OnChanges {
   }
 
   save(): void {
-    
     this.user = this.authService.userSignedIn()
     let sixdigitsrandom = Math.floor(100000 + Math.random() * 900000)
 
@@ -176,6 +176,7 @@ export class CanvasComponent implements OnChanges {
       this.builderService.formObj 
       this.idbCrudService.read('form', this.builderService.formObj.id).subscribe(form => {
         this.form = form
+        this.form["name"] = this.canvasForm.controls['name'].value
         this.form.form = this.builderService.canvasFormControls
         let obj = this.transformStructureService.generateSQLStructure('data')
         this.builderService.canvasFormControls["labels"] = obj.labels
@@ -239,19 +240,6 @@ export class CanvasComponent implements OnChanges {
 
   }
 
-  archive() {
-    const dialogConfig = new MatDialogConfig()
-    dialogConfig.width = '450px'
-    dialogConfig.data = {
-      form: this.builderService.formObj
-    }
-    const dialogRef = this.dialog.open(ArchiveComponent, dialogConfig)
-    dialogRef.afterClosed().subscribe(data => {
-      this.appService.getForms()
-      // setTimeout(function () { window.location = window.location }, 1000)
-    })
-  }
-
   run() {
     this.appService.page = 'run'
     this.appService.pageTitle = ''
@@ -261,62 +249,9 @@ export class CanvasComponent implements OnChanges {
     this.builderService.detailArray = this.canvasFormControl.details
   }
 
-  delete() {
-    if (this.builderService.formObj.is_data === false) {
-      this.idbCrudService.delete('form', this.builderService.formObj.id)
-      let user = this.authService.userSignedIn()
-
-      if (user !== null) {
-        this.formService.delete(this.builderService.formObj).subscribe(response => {
-          this.response = response
-          this.successService.popSnackbar(this.response.message)
-        })
-      }
-      this.appService.getForms()
-    }
-
-    else {
-      const dialogConfig = new MatDialogConfig()
-      dialogConfig.width = '450px'
-      dialogConfig.data = {
-        title: 'Form Has Data',
-        message: 'Please login to sync your data before deleting the form.'
-      }
-      const dialogRef = this.dialog.open(MessageComponent, dialogConfig)
-    }
-  }
-
   close() {
     this.appService.getForms()
     this.appService.page = this.appService.parentPage
-  }
-
-  exportJSON() {
-    let yy = JSON.stringify(this.builderService.formObj)
-    let blob = new Blob([yy], { type: 'text/plain' })
-    saveAs(blob, 'template.json')
-  }
-
-  copyUrl(type) {
-    let link = ''
-    let url = this.builderService.formObj["form_id"] + '&tenant_id=' + this.builderService.formObj["tenant_id"]
-    if (type === 'preview')
-      link = this.linkUrl + 'link?form_id=' + url
-    else
-      link = this.linkUrl + 'form?form_id=' + url
-
-    const selBox = document.createElement('textarea')
-    selBox.style.position = 'fixed'
-    selBox.style.left = '0'
-    selBox.style.top = '0'
-    selBox.style.opacity = '0'
-    selBox.value = link
-    document.body.appendChild(selBox)
-    selBox.focus()
-    selBox.select()
-    document.execCommand('copy')
-    document.body.removeChild(selBox)
-    this.successService.popSnackbar('URL copied to clipboard.')
   }
 
 }

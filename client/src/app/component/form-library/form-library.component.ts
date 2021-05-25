@@ -17,7 +17,7 @@ import { UserService } from "../../service/user.service"
 import { ShareService } from "../../service/share.service"
 import { SuccessService } from "../../service/success.service"
 import { BuilderService } from "../../service/builder.service"
-
+import { FormAdminService } from "../../service/form-admin.service"
 import { IdbCrudService } from "../../service-idb/idb-crud.service"
 
 import { Observable } from 'rxjs'
@@ -45,6 +45,7 @@ export class FormLibraryComponent implements OnChanges {
   idbData
   formObj
   tenant
+  response
   navigation
   isLinkSelect = false
   selectedIndex
@@ -75,6 +76,7 @@ export class FormLibraryComponent implements OnChanges {
     public builderService: BuilderService,
     private successService: SuccessService,
     private idbCrudService: IdbCrudService,
+    private formAdminService: FormAdminService,
     changeDetectorRef: ChangeDetectorRef) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)')
     this._mobileQueryListener = () => changeDetectorRef.detectChanges()
@@ -84,7 +86,6 @@ export class FormLibraryComponent implements OnChanges {
 
   ngOnChanges() {
     this.user = this.authService.userSignedIn()
-    console.log(this.appService.forms)
   }
 
   newForm() {
@@ -135,7 +136,7 @@ export class FormLibraryComponent implements OnChanges {
   edit(formObj) {
     this.appService.isMainMenu = false
     this.appService.isData = formObj.is_data
-
+    
     /** for canvas */
     this.builderService.currentIndex = 0
     this.builderService.formObj = formObj
@@ -223,22 +224,6 @@ export class FormLibraryComponent implements OnChanges {
         this.appService.getForms()
       })
     }
-  }
-
-  copyUrl(formObj: string) {
-    let link = this.linkUrl+'link?form_id='+formObj["form_id"]+'&tenant_id='+formObj["tenant_id"]
-    const selBox = document.createElement('textarea')
-    selBox.style.position = 'fixed'
-    selBox.style.left = '0'
-    selBox.style.top = '0'
-    selBox.style.opacity = '0'
-    selBox.value = link
-    document.body.appendChild(selBox)
-    selBox.focus()
-    selBox.select()
-    document.execCommand('copy')
-    document.body.removeChild(selBox)
-    this.successService.popSnackbar('URL copied to clipboard.')
   }
 
   closeOverlay() {

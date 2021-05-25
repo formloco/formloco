@@ -100,9 +100,6 @@ export class NavigationComponent implements OnChanges {
     dialogRef.afterClosed().subscribe(() => {
       this.getUser()
       this.appService.getForms()
-      // setTimeout(function () { 
-      //   window.location = window.location 
-      // }, 1000)
     })
   }
 

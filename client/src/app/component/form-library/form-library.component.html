@@ -7,9 +7,35 @@
   </mat-card>
   <div *ngFor="let formObj of appService.forms; let i=index">
     <mat-card class="custom" *ngIf="i !== 0 && formObj.form !== undefined && formObj.form.is_list === undefined && formObj.type === 'dynamic'">
-      <div [ngClass]="(formObj.name.length < 24 ? 'add-padding':'')" fxLayout="row wrap" class="form-title" fxLayoutAlign="center center">
-        {{formObj.name | truncate:[28, '...']}}
+      <div fxLayout="row" class="form-title" fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row">{{formObj.name | truncate:[30, '...']}}</div>
+        <div>
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="formAdminService.copyUrl('preview',formObj)">
+              <span>Preview Link</span>
+            </button>
+            <button mat-menu-item (click)=formAdminService.exportJSON()>
+              <span>Save As Template</span>
+            </button>
+            <button mat-menu-item (click)=formAdminService.archive()>
+              <span>Archive</span>
+            </button>
+            <span *ngIf="!builderService.is_data">
+              <mat-divider></mat-divider>
+              <button mat-menu-item color="warn" (click)=formAdminService.delete(formObj)>
+                <span>Delete</span>
+              </button>
+            </span>
+          </mat-menu>
+        </div>
       </div>
+
+      <!-- <div [ngClass]="(formObj.name.length < 24 ? 'add-padding':'')" fxLayout="row wrap" class="form-title" fxLayoutAlign="center center">
+        {{formObj.name | truncate:[28, '...']}}
+      </div> -->
       <div fxLayout="row" fxLayoutAlign="center center">
         <div class="icon-pointer" (click)="run(formObj)" fxLayout="column" fxFlex="33" fxLayoutAlign="center center">
           <mat-icon *ngIf="formObj.form.is_list" class="card-icon">pageview</mat-icon>
@@ -35,7 +61,7 @@
           <span class="action-label">Edit</span>
         </div>
         <div (click)=openLinkOverlay(formObj,i) class="icon-pointer" fxLayout="column" fxFlex="30" fxLayoutAlign="center center">
-          <span mat-icon-button  cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+          <span mat-icon-button cdkOverlayOrigin #trigger="cdkOverlayOrigin">
             <mat-icon class="card-icon">link</mat-icon>
           </span>
           <span class="link-label">Link</span>
@@ -53,7 +79,7 @@
           <div class="mat-caption">
             <mat-checkbox color="warn" (click)=usePIN(formObj) [(ngModel)]="isPin">Use PIN</mat-checkbox>
           </div>
-          <button (click)=copyUrl(formObj) mat-button color="primary">Copy Link</button>
+          <button (click)="formAdminService.copyUrl('link', formObj)" mat-button color="primary">Copy Link</button>
         </div>
       </ng-template>
     </mat-card>
