@@ -48,7 +48,7 @@ const formCreateSQL = async (data) => {
 
   if (data["name"] == null) data["name"] = ''
 
-  let form = await client.query(`INSERT INTO public.form(form_id, name, type, form, tenant_id, is_data, is_published, is_list, type, pin, user_created) VALUES ( '` + data["form_id"] + `', '` + data["name"] + `', '` + data["type"] + `', '` + formJSON + `', '` + data["tenant_id"] + `', ` + data["is_data"] + `, ` + data["is_published"] + `, ` + data["is_list"] + `, '` + data["form"]["type"] + `, '` + data["form"]["pin"] + `', '` + userCreated + `') returning id`)
+  let form = await client.query(`INSERT INTO public.form(form_id, name, type, form, tenant_id, is_data, is_published, is_list, pin, user_created) VALUES ( '` + data["form_id"] + `', '` + data["name"] + `', '` + data["type"] + `', '` + formJSON + `', '` + data["tenant_id"] + `', ` + data["is_data"] + `, ` + data["is_published"] + `, ` + data["is_list"] + `, '` + data["form"]["pin"] + `', '` + userCreated + `') returning id`)
    
   client.release()
 
@@ -91,40 +91,25 @@ const formDeleteSQL = async (data) => {
 // takes form structure from client and updates database
 const formRegisterSQL = async (data) => {
   pool.options.database = data["tenant_id"]
-  let client = await pool.connect()
+  client = await pool.connect()
 
-  let form_id
-  let history = []
+  form_id = uuidv4()
+  formJSON = JSON.stringify(data["formObj"])
+  columns = JSON.stringify(data["formObj"]["form"]["columns"])
+  userCreated = JSON.stringify(data["user_created"])
 
-  let form = await client.query(`SELECT * FROM public.form WHERE name = '`+data["name"]+`'`)
+  columns = columns.replace(/`/g, "'")
+  columns = columns.replace(/"/g, "")
 
-  if (form.rowCount === 0) {
-    form_id = uuidv4()
-    let formJSON = JSON.stringify(data["formObj"])
-    let columns = JSON.stringify(data["formObj"]["form"]["columns"])
-    let userCreated = JSON.stringify(data["user_created"])
-
-    columns = columns.replace(/`/g, "'")
-    columns = columns.replace(/"/g, "")
-  
-    await client.query(`INSERT INTO public.form(form_id, name, type, form, tenant_id, is_data, is_published, is_list, pin, user_created) VALUES ( '` + form_id + `', '` + data["name"] + `', '` + data["type"] + formJSON + `', '` + data["tenant_id"] + `', ` + false + `, ` + true + `, ` + false + `, 'list', 369', '` + userCreated + `')`)  
-    
-    await client.query(`CREATE SEQUENCE IF NOT EXISTS id_seq`)
-
-    await client.query(`CREATE TABLE IF NOT EXISTS "` + form_id + `" (` + columns + `)`)
-  
-  }
-  else {
-    form_id = form.rows[0]["form_id"]
-
-    let formData = await client.query(`SELECT * FROM "`+form_id+`"`)
-
-    history.push(formData.rows)
-  }
+  await client.query(`CREATE SEQUENCE IF NOT EXISTS form_id_seq`)
+  await client.query(`CREATE TABLE IF NOT EXISTS public.form ("id" int4 NOT NULL DEFAULT nextval('form_id_seq'::regclass),form_id uuid, tenant_id uuid, name varchar, form jsonb, pin varchar, date_last_access timestamp DEFAULT now(), date_created timestamp DEFAULT now(), date_archived timestamp, user_created jsonb, user_updated jsonb, user_archive int4, is_data bool, is_list bool, type varchar, is_published bool, PRIMARY KEY ("id"))`)
+  await client.query(`INSERT INTO public.form(form_id, name, type, form, tenant_id, is_data, is_published, is_list, pin, user_created) VALUES ( '` + form_id + `', '` + data["name"] + `', 'custom', '` + formJSON + `', '` + data["tenant_id"] + `', ` + false + `, ` + true + `, ` + false + `, '369', '` + userCreated + `')`)  
+  await client.query(`CREATE SEQUENCE IF NOT EXISTS id_seq`)
+  await client.query(`CREATE TABLE IF NOT EXISTS "` + form_id + `" (` + columns + `)`)
   
   client.release()
 
-  let obj = { form_id: form_id, history: history }
+  let obj = { form_id: form_id }
 
   return obj
 }
