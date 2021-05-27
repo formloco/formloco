@@ -1,0 +1,33 @@
+<div class="row-margin" fxLayout="row wrap">
+  <div *ngFor="let app of apps; let i=index">
+    <mat-card class="custom">
+      <div class="form-title" fxLayout="row" fxLayoutAlign="center center">
+        <h5>{{app.name | truncate:[30, '...']}}</h5>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <div class="icon-pointer" (click)="settings(app)" fxLayout="column" fxFlex fxLayoutAlign="center center">
+          <mat-icon class="card-icon">settings</mat-icon>
+          <span class="action-label">Settings</span>
+        </div>
+        <div fxLayout="column" fxFlex fxLayoutAlign="center center">
+          <div class="publish" fxLayoutAlign="center center">
+            <mat-slide-toggle (change)="publish(app, $event)" color="warn" [(ngModel)]=app.enabled>
+            </mat-slide-toggle>
+          </div>
+          <span class="action-label-pub" *ngIf="app.enabled">Enabled</span>
+          <span class="action-label-pub" *ngIf="!app.enabled">Disabled</span>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div class="icon-pointer" (click)="users(app)" fxLayout="column" fxFlex fxLayoutAlign="center center">
+          <mat-icon class="card-icon">people</mat-icon>
+          <span class="action-label">Users</span>
+        </div>
+        <div class="icon-pointer" (click)="data(app)" fxLayout="column" fxFlex fxLayoutAlign="center center">
+          <mat-icon class="card-icon">storage</mat-icon>
+          <span class="action-label-data">Data</span>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

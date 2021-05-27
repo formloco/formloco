@@ -49,8 +49,8 @@ export class FormLibraryComponent implements OnChanges {
   navigation
   isLinkSelect = false
   selectedIndex
-  yAxis = 12
-  xAxis = -46
+  yAxis = 0
+  xAxis = -75
 
   libraryList
 

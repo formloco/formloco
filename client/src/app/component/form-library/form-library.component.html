@@ -7,7 +7,7 @@
   </mat-card>
   <div *ngFor="let formObj of appService.forms; let i=index">
     <mat-card class="custom" *ngIf="i !== 0 && formObj.form !== undefined && formObj.form.is_list === undefined && formObj.type === 'dynamic'">
-      <div fxLayout="row" class="form-title" fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxLayout="row" class="form-title" fxLayoutAlign="space-between center">
         <div fxLayout="row">{{formObj.name | truncate:[30, '...']}}</div>
         <div>
           <button mat-icon-button [matMenuTriggerFor]="menu">
@@ -74,8 +74,8 @@
       <ng-template *ngIf="selectedIndex === i" cdkConnectedOverlay (backdropClick)="closeOverlay()" [cdkConnectedOverlayOrigin]="trigger"
         [cdkConnectedOverlayOpen]="isLinkSelect" [cdkConnectedOverlayHasBackdrop]=true cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
         [cdkConnectedOverlayOffsetX]="xAxis" [cdkConnectedOverlayOffsetY]="yAxis">
-        <div class="link-overlay">
-          <div>PIN:&nbsp;{{pin}}</div>
+        <div [ngStyle]="{'background-color': appService.canvasBackground}" class="link-overlay text-color">
+          <div class="add-padding">PIN:&nbsp;{{pin}}</div>
           <div class="mat-caption">
             <mat-checkbox color="warn" (click)=usePIN(formObj) [(ngModel)]="isPin">Use PIN</mat-checkbox>
           </div>

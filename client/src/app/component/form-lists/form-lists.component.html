@@ -10,10 +10,10 @@
       (backdropClick)="closeOverlay()"
       [cdkConnectedOverlayHasBackdrop]=true 
       cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop" 
-      cdkConnectedOverlayOffsetX=-80
-      cdkConnectedOverlayOffsetY=20>
+      cdkConnectedOverlayOffsetX=-160
+      cdkConnectedOverlayOffsetY=10>
       <form [formGroup]="lookupListForm">
-        <div class="link-overlay" fxLayout="column">
+        <div [ngStyle]="{'background-color': appService.canvasBackground}" class="link-overlay text-color" fxLayout="column">
           <div>
             <mat-form-field appearance="outline" fxFlex>
               <mat-label>List</mat-label>

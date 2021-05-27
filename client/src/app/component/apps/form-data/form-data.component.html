@@ -1,0 +1,23 @@
+<div class="container-padding">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div>{{formObj.name}}</div>
+    <div *ngIf="isData" fxLayoutGap="20px">
+      <button mat-raised-button color="primary" (click)="exportData()">
+        Export Data
+      </button>
+    </div>
+  </div>
+  <cdk-virtual-scroll-viewport class="viewport-450" itemSize="10">
+    <dl class="example-dl">
+      <ng-container *cdkVirtualFor="let detail of data; let i = index">
+        <dt (click)="edit(i, detail)" class="example-dt">Company:
+          <b>{{detail.company_name}}</b>, Job Number:
+          <b>{{detail.job_number}}</b>,
+          <br>Created by:
+          <b>{{detail.user_created.name}}</b>, Date Created:
+          <b>{{detail.user_created.date_created | date}}</b>
+        </dt>
+      </ng-container>
+    </dl>
+  </cdk-virtual-scroll-viewport>
+</div>

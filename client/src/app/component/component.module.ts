@@ -112,13 +112,25 @@ import { ConnectorsComponent } from './connectors/connectors.component'
 import { ConnectorComponent } from './controls/connector/connector.component'
 import { GoogleMapsComponent } from './connectors/google-maps/google-maps.component'
 
-//micro-apps
+// apps
+import { AppsComponent } from './apps/apps.component'
+import { UserComponent } from './apps/user/user.component'
+import { SettingsComponent } from './apps/settings/settings.component'
+import { FormDataComponent } from './apps/form-data/form-data.component'
+import { DataFormsComponent } from './apps/data-forms/data-forms.component'
+
+// micro-apps
 import { MicroAppComponent } from './controls/micro-app/micro-app.component'
 import { MicroAppRunComponent } from './run-controls/micro-app-run/micro-app-run.component'
 
 @NgModule({
   declarations: [
     RunComponent,
+    AppsComponent,
+    DataFormsComponent,
+    FormDataComponent,
+    SettingsComponent,
+    UserComponent,
     LinkComponent,
     PhoneComponent,
     PhoneAuthComponent,
@@ -217,6 +229,11 @@ import { MicroAppRunComponent } from './run-controls/micro-app-run/micro-app-run
     PinComponent,
     PipeModule,
     RunComponent,
+    AppsComponent,
+    DataFormsComponent,
+    FormDataComponent,
+    SettingsComponent,
+    UserComponent,
     LinkComponent,
     PhoneComponent,
     PhoneAuthComponent,

@@ -35,6 +35,13 @@
           mat-button>
           <mat-icon>extension</mat-icon>
           <span class="menu-title">Connectors</span>
+          <mat-icon>science</mat-icon>
+        </button>
+        <button (click)="setPage('apps')" matTooltip="Apps" [ngClass]="(appService.page === 'apps' ? 'menu-label-selected':'menu-label')"
+          mat-button>
+          <mat-icon>phone_android</mat-icon>
+          <span class="menu-title">Apps</span>
+          <mat-icon>science</mat-icon>
         </button>
       </div>
       <div *ngIf="appService.isMainMenu" class="verison-text">build 4.8 - May 24, 2021</div>
@@ -49,6 +56,7 @@
         fxLayout="row" fxLayoutGap="20px">
         <div fxLayout="row" class="title title-padding">
           <div class="sm-margin" fxFlex="30px">
+            <mat-icon *ngIf="appService.page === 'apps'">phone_android</mat-icon>
             <mat-icon *ngIf="appService.page === 'launch-forms'">dynamic_form</mat-icon>
             <mat-icon *ngIf="appService.page === 'data-cards'">storage</mat-icon>
             <mat-icon *ngIf="appService.page === 'share-all' || appService.page === 'share'">share</mat-icon>
@@ -138,9 +146,11 @@
       <app-data *ngIf="appService.page === 'data'" [form]=builderService.formObj></app-data>
       <app-data-cards *ngIf="appService.page === 'data-cards'"></app-data-cards>
       <app-run *ngIf="appService.page === 'run'"></app-run>
+      <app-apps *ngIf="appService.page === 'apps'"></app-apps>
       <app-share *ngIf="appService.page === 'share-all'"></app-share>
       <app-share *ngIf="appService.page === 'share'"></app-share>
       <app-build *ngIf="appService.page === 'design'" [formObj]="formObj"></app-build>
+      <app-data-forms *ngIf="appService.page === 'app-data-forms'"></app-data-forms>
       <!-- <app-build *ngIf="appService.page === 'preview'"></app-build> -->
       <app-connectors *ngIf="appService.page === 'connector'"></app-connectors>
     </mat-sidenav-content>

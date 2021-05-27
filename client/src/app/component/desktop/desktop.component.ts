@@ -94,6 +94,9 @@ export class DesktopComponent implements OnChanges {
   }
 
   ngOnChanges(): void {
+    if (this.appService.isDarkMode) this.appService.canvasBackground = '#3b3b3b'
+    else this.appService.canvasBackground = '#ffffff'
+
     this.user = this.authService.userSignedIn()
     if (this.user && this.user !== null) {
       if (this.user.first_name !== null && this.user.last_name !== null)
@@ -118,6 +121,9 @@ export class DesktopComponent implements OnChanges {
   }
 
   setPage(page) {
+    if (page === 'apps') {
+      this.appService.pageTitle = 'Apps'
+    }
     if (page === 'launch-forms') {
       this.appService.pageTitle = 'Launch Forms'
     }

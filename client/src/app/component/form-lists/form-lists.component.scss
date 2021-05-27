@@ -1,11 +1,4 @@
-.link-overlay {
-  text-align: center;
-  border: solid 1px #ccc;
-  border-radius: 5px;
-  padding: 20px;
-  background: white;
-  min-width: 280px;
-}
+
 
 ngx-dropzone-label {
   padding-left: 20px;
@@ -23,6 +16,14 @@ ngx-dropzone-label {
 
 .custom-background {
   background-color: rgb(71,120,141);
+}
+
+.link-overlay {
+  text-align: center;
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  min-width: 280px;
 }
 
 .row-margin {

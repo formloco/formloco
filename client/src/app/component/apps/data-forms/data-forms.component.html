@@ -1,0 +1,13 @@
+<div class="form-padding">
+  <mat-accordion *ngFor="let formObj of forms" multi>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title fxLayoutAlign="start center">
+          <mat-icon class="form-icon material-icons-outlined">{{formObj.icon}}</mat-icon>
+          &nbsp;&nbsp;{{formObj.name}} - {{formObj.description}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-form-data [formObj]=formObj></app-form-data>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
