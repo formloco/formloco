@@ -17,7 +17,7 @@ export class FormService {
   ) { }
 
   create(obj) {
-    return this._http.post(this.formUrl+'form', obj)
+    return this._http.post(this.formUrl, obj)
   }
 
   getForm(form_id, tenant_id) {
@@ -25,19 +25,19 @@ export class FormService {
   }
 
   getForms(tenant_id) {
-    return this._http.get(this.formUrl+'form/' + tenant_id)
+    return this._http.get(this.formUrl + tenant_id)
   }
 
   update(obj) {
-    return this._http.put(this.formUrl+'form', obj)
+    return this._http.put(this.formUrl, obj)
   }
 
   delete(obj) {
-    return this._http.post(this.formUrl+'form/delete', obj)
+    return this._http.post(this.formUrl+'delete/', obj)
   }
 
   getArchives(tenant_id) {
-    return this._http.get(this.formUrl+'form/archives', {params: {tenant_id: tenant_id}})
+    return this._http.get(this.formUrl+'archives/', {params: {tenant_id: tenant_id}})
   }
 
   getTemplate(id) {

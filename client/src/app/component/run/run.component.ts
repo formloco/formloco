@@ -134,7 +134,9 @@ export class RunComponent implements OnInit {
       columns: columns,
       user: this.user,
       is_file: true,
-      formObj: this.builderService.formObj
+      formObj: this.builderService.formObj,
+      type: 'dynamic',
+      name: this.builderService.formObj.name
     }
     
     this.dataService.save(obj).subscribe(response => {
