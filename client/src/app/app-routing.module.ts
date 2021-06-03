@@ -15,6 +15,7 @@ import { LinkComponent } from './component/link/link.component';
 import { FormComponent } from './component/form/form.component';
 import { PhoneComponent } from './component/phone/phone.component';
 import { SignupComponent } from './component/signup/signup.component';
+import { LayoutComponent } from './component/layout/layout.component';
 import { PreviewComponent } from './component/preview/preview.component';
 import { PasswordresetComponent } from './component/passwordreset/passwordreset.component';
 
@@ -23,6 +24,10 @@ const routes: Routes = [
     path: '',
     redirectTo: '/',
     pathMatch: 'full'
+  },
+  {
+    path: '',
+    component: LayoutComponent
   },
   {
     path: 'run',

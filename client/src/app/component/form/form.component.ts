@@ -33,7 +33,7 @@ export class FormComponent implements OnInit {
         localStorage.setItem('formToken', this.token.token)
         this.formService.getForm(params['form_id'], params['tenant_id']).subscribe(obj => {
           this.formObj = obj
-          
+          console.log(this.formObj)
           this.appService.pageTitle = 'Edit Form'
           this.appService.page = 'design'
           this.appService.isMainMenu = false

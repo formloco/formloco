@@ -18,6 +18,7 @@ import { TenantNavigationComponent } from './tenant-navigation/tenant-navigation
 // app functional components
 import { RunComponent } from './run/run.component'
 import { LinkComponent } from './link/link.component'
+import { LayoutComponent } from './layout/layout.component'
 import { FormLaunchComponent } from './form-launch/form-launch.component'
 import { SignupComponent } from './signup/signup.component'
 import { DataComponent } from './data/data.component'
@@ -132,6 +133,7 @@ import { MicroAppRunComponent } from './run-controls/micro-app-run/micro-app-run
     SettingsComponent,
     UserComponent,
     LinkComponent,
+    LayoutComponent,
     PhoneComponent,
     PhoneAuthComponent,
     PhoneWorkspaceComponent,
@@ -235,6 +237,7 @@ import { MicroAppRunComponent } from './run-controls/micro-app-run/micro-app-run
     SettingsComponent,
     UserComponent,
     LinkComponent,
+    LayoutComponent,
     PhoneComponent,
     PhoneAuthComponent,
     PhoneWorkspaceComponent,

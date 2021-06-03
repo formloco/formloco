@@ -54,6 +54,7 @@ export class RunComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.builderService.controlArray)
     this.lists = []
     this.fileArray = []
     

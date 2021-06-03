@@ -23,6 +23,7 @@ export class PinComponent implements OnInit {
     }
 
   ngOnInit(): void {
+  
   }
 
   checkPIN() {

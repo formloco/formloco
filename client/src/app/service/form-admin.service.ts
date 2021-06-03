@@ -13,12 +13,14 @@ import { BuilderService } from "../service/builder.service"
 import { SuccessService } from "../service/success.service"
 import { IdbCrudService } from "../service-idb/idb-crud.service"
 
+import { environment } from '../../environments/environment'
+
 @Injectable({
   providedIn: 'root'
 })
 export class FormAdminService {
 
-  linkUrl
+  linkUrl = environment.linkUrl
   response
 
   constructor(
@@ -33,7 +35,8 @@ export class FormAdminService {
   copyUrl(type, formObj) {
     let link = ''
     let url = formObj["form_id"] + '&tenant_id=' + formObj["tenant_id"]
-    if (type === 'preview')
+
+    if (type === 'link')
       link = this.linkUrl + 'link?form_id=' + url
     else
       link = this.linkUrl + 'form?form_id=' + url

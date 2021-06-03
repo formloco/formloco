@@ -36,7 +36,7 @@ export class LinkComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private route: ActivatedRoute,
-    private appService: AppService,
+    public appService: AppService,
     private authService: AuthService,
     private formService: FormService,
     private syncService: SyncService,
@@ -57,6 +57,7 @@ export class LinkComponent implements OnInit {
   run(form_id, tenant_id) {
     this.formService.getForm(form_id, tenant_id).subscribe(obj => {
       this.formObj = obj
+      console.log(this.formObj)
       this.appService.isAnonymous = true
       this.builderService.formObj = this.formObj
       this.builderService.detailArray = this.formObj.form.details

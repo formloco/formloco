@@ -21,7 +21,7 @@ export class FormService {
   }
 
   getForm(form_id, tenant_id) {
-    return this._http.get(this.formUrl+form_id+'/'+tenant_id)
+    return this._http.get(this.formUrl+form_id+'/'+tenant_id+'/')
   }
 
   getForms(tenant_id) {

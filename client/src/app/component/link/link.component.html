@@ -1,1 +1,3 @@
-<app-run *ngIf="isRun"></app-run>
+<div [ngStyle]="{'background-color': appService.canvasBackground}">
+  <app-run *ngIf="isRun"></app-run>
+</div>

@@ -29,6 +29,6 @@ router.post('/form/delete/', VerifyToken, deleteForm)
 
 router.post('/form/register/', VerifyToken, registerForm)
 
-router.get('/:form_id/:tenant_id/', readForm)
+router.get('/form/:form_id/:tenant_id/', readForm)
 
 module.exports = router
