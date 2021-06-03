@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  // linkUrl:      'http://form369.formloco.com/',
+  linkUrl:      'http://form369.formloco.com/',
   authUrl:      'https://bluerockmicro.com/auth/',
   userUrl:      'https://bluerockmicro.com/user/',
   shareUrl:     'https://bluerockmicro.com/share/',
@@ -30,7 +30,7 @@ export const environment = {
   // templateUrl: 'http://localhost:9002/template/',
   // connectorUrl: 'http://localhost:9005/connector/',
 
-  linkUrl: 'http://localhost:4200/',
+  // linkUrl: 'http://localhost:4200/',
   redirectForgotPasswordUrl: 'http://localhost:4200/O451fd2702f54a00b1007f6e80b32e45',
   pinKeySecret: 'supersecret'
 };
