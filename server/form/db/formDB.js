@@ -20,8 +20,6 @@ const formReadSQL = async (form_id, tenant_id) => {
   pool.options.database = tenant_id
   let client = await pool.connect()
 
-  console.log(`SELECT * FROM public.form WHERE form_id = '` +  form_id + `' AND date_archived is null`)
-
   let form = await client.query(`SELECT * FROM public.form WHERE form_id = '` +  form_id + `' AND date_archived is null`)
   
   client.release()
