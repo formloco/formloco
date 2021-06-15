@@ -4,6 +4,10 @@ const bodyParser = require('body-parser')
 const app = express()
 const routes = require('./routes')
 
+// dev or prod
+const loadConfig = require('../config')
+loadConfig()
+
 // enable pre-flight
 app.use(cors())
 app.options('*', cors())

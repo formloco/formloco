@@ -1,11 +1,10 @@
-let envPath = process.cwd()
-envPath = envPath.slice(0, envPath.length - 4) + '/.env'
-const dotenv = require('dotenv')
-dotenv.config({ path: envPath })
-
-const moment = require('moment');
+require("dotenv").config()
+const moment = require('moment')
 
 const { Pool } = require('pg')
+
+const loadConfig = require('../../config')
+loadConfig()
 
 const pool = new Pool({
   user: process.env.DBUSER,
@@ -14,6 +13,8 @@ const pool = new Pool({
   password: process.env.PASSWORD,
   port: process.env.PORT
 })
+
+console.log(process.env)
 
 const dataReadSQL = async (tenant_id, form_id) => {
   pool.options.database = tenant_id
@@ -63,10 +64,10 @@ const dataCreateSQL = async (dataObj) => {
     await client.query(`CREATE SEQUENCE IF NOT EXISTS id_seq`)
 
     await client.query(`CREATE TABLE IF NOT EXISTS "` + dataObj["formObj"]["form_id"] + `" (` + columns + `)`)
+  
   }
 
-  // console.log(`INSERT INTO "` + dataObj["formObj"]["form_id"] + `" (` + dataObj["columns"] + `) VALUES (` + obj + `)`)
-
+  // data update
   await client.query(`INSERT INTO "` + dataObj["formObj"]["form_id"] + `" (` + dataObj["columns"] + `) VALUES (` + obj + `)`)
 
   await client.query(`UPDATE form SET is_data = true WHERE form_id = '` + dataObj["formObj"]["form_id"] + `'`)
@@ -131,6 +132,45 @@ const listsGetSQL = async (data) => {
   return listArray
 }
 
+const listSaveSQL = async (dataObj) => {
+
+  pool.options.database = dataObj["user"]["tenant_id"]
+  let client = await pool.connect()
+  let obj = ``
+
+  if (dataObj.data !== undefined) {
+    dataObj.data.forEach(element => {
+      obj = obj + `'` + element + `',`
+    })
+    obj = obj.slice(0, -1)
+  }
+  else obj = `'` + dataObj["user"]["email"] + `'` + ',' + `'` + moment().format('YYYYMMDD, h:mm:ss') + `'`;
+
+  let tableExist = await client.query(`SELECT EXISTS (SELECT FROM pg_tables WHERE schemaname = 'public' AND tablename  = '` + dataObj["formObj"]["form_id"] + `')`)
+
+  // create data table
+  if (!tableExist.rows[0].exists) {
+
+    let columns = dataObj["formObj"]["form"]["columns"].replace(/`/g, "'")
+    
+    await client.query(`CREATE SEQUENCE IF NOT EXISTS id_seq`)
+
+    await client.query(`CREATE TABLE IF NOT EXISTS "` + dataObj["formObj"]["form_id"] + `" (` + columns + `)`)
+  
+  }
+
+  // data update
+  await client.query(`INSERT INTO "` + dataObj["formObj"]["form_id"] + `" (` + dataObj["columns"] + `) VALUES (` + obj + `)`)
+
+  await client.query(`UPDATE form SET is_data = true WHERE form_id = '` + dataObj["formObj"]["form_id"] + `'`)
+
+  let currentForm = await client.query(`SELECT * FROM form WHERE form_id = '` + dataObj["formObj"]["form_id"] + `'`)
+
+  client.release()
+
+  return currentForm.rows[0]
+}
+
 module.exports = { 
-  dataReadSQL, dataCreateSQL, dataUpdateSQL, dataDeleteSQL, listsGetSQL
+  dataReadSQL, dataCreateSQL, dataUpdateSQL, dataDeleteSQL, listsGetSQL, listSaveSQL
 }

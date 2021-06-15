@@ -1,9 +1,7 @@
 const fs = require('fs')
-const dotenv = require('dotenv')
-
-let envPath = process.cwd()
-envPath = envPath.slice(0,envPath.length-5)+'/.env'
-dotenv.config({ path: envPath })
+require("dotenv").config()
+const loadConfig = require('../../config')
+loadConfig()
 
 const { Pool } = require('pg')
 

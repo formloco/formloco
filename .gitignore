@@ -23,4 +23,5 @@ speed-measure-plugin.json
 
 # System Files
 .DS_Store
+.env
 Thumbs.db

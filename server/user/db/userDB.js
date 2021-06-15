@@ -1,10 +1,9 @@
-const dotenv = require('dotenv')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-let envPath = process.cwd()
-envPath = envPath.slice(0,envPath.length-5)+'/.env'
-dotenv.config({ path: envPath })
+require("dotenv").config()
+const loadConfig = require('../../config')
+loadConfig()
 
 const api = { secret: process.env.SECRET }
 const { v4: uuidv4 } = require('uuid')

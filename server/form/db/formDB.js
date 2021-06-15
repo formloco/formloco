@@ -1,8 +1,8 @@
 const fs = require('fs')
-let envPath = process.cwd()
-envPath = envPath.slice(0,envPath.length-5)+'/.env'
-const dotenv = require('dotenv')
-dotenv.config({ path: envPath })
+
+require("dotenv").config()
+const loadConfig = require('../../config')
+loadConfig()
 
 const { v4: uuidv4 } = require('uuid')
 

@@ -1,10 +1,8 @@
-const dotenv = require('dotenv')
 const fs = require('fs')
 
-let path = process.cwd()
-envPath = path.slice(0, path.length - 5) + '/.env'
-let staticPath = path.slice(0, path.length - 4) + 'http-server/'
-dotenv.config({ path: envPath })
+require("dotenv").config()
+const loadConfig = require('../../config')
+loadConfig()
 
 const { Pool } = require('pg')
 
