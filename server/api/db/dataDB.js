@@ -3,18 +3,24 @@ const moment = require('moment')
 
 const { Pool } = require('pg')
 
-const loadConfig = require('../../config')
-loadConfig()
+// const loadConfig = require('../../config')
+// loadConfig()
+
+// const pool = new Pool({
+//   user: process.env.DBUSER,
+//   host: process.env.HOST,
+//   database: '',
+//   password: process.env.PASSWORD,
+//   port: process.env.PORT
+// })
 
 const pool = new Pool({
-  user: process.env.DBUSER,
-  host: process.env.HOST,
+  user: 'fieldasset',
+  host: "db-postgresql-nyc3-00566-do-user-1998730-0.b.db.ondigitalocean.com",
   database: '',
-  password: process.env.PASSWORD,
-  port: process.env.PORT
+  password: 'fieldasset',
+  port: 5432
 })
-
-console.log(process.env)
 
 const dataReadSQL = async (tenant_id, form_id) => {
   pool.options.database = tenant_id
@@ -110,15 +116,18 @@ const dataDeleteSQL = async (data) => {
 }
 
 const listsGetSQL = async (data) => {
+
   pool.options.database = data["tenant_id"]
   let client = await pool.connect()
 
   let listArray = []
-  let lists  = await client.query(`SELECT * FROM form WHERE is_list = true`)
   
+  let lists  = await client.query(`SELECT * FROM form WHERE is_list = true`)
+
   for (let i = 0; i < lists.rows.length; i++) {
 
     let listRows = []
+    
     let tableExist = await client.query(`SELECT EXISTS (SELECT FROM pg_tables WHERE schemaname = 'public' AND tablename  = '` + lists.rows[i].form_id + `')`)
 
     if (tableExist.rows[0].exists) {

@@ -5,14 +5,21 @@ const loadConfig = require('../../config')
 loadConfig()
 
 const { Pool } = require('pg')
-
 const pool = new Pool({
-  user: process.env.DBUSER,
-  host: process.env.HOST,
+  user: 'fieldasset',
+  host: "db-postgresql-nyc3-00566-do-user-1998730-0.b.db.ondigitalocean.com",
   database: '',
-  password: process.env.PASSWORD,
-  port: process.env.PORT
+  password: 'fieldasset',
+  port: 5432
 })
+
+// const pool = new Pool({
+//   user: process.env.DBUSER,
+//   host: process.env.HOST,
+//   database: '',
+//   password: process.env.PASSWORD,
+//   port: process.env.PORT
+// })
 
 const fileGetSQL = async (tenant_id, form_id) => {
 

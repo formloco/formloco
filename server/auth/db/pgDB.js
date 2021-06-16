@@ -12,12 +12,19 @@ const { v4: uuidv4 } = require('uuid')
 const { Pool } = require('pg')
 
 const pool = new Pool({
-  user: process.env.DBUSER,
-  host: process.env.HOST,
-  database: 'user',
-  password: process.env.PASSWORD,
-  port: process.env.PORT
+  user: 'fieldasset',
+  host: "db-postgresql-nyc3-00566-do-user-1998730-0.b.db.ondigitalocean.com",
+  database: '',
+  password: 'fieldasset',
+  port: 5432
 })
+// const pool = new Pool({
+//   user: process.env.DBUSER,
+//   host: process.env.HOST,
+//   database: 'user',
+//   password: process.env.PASSWORD,
+//   port: process.env.PORT
+// })
 
 const poolTenant = new Pool({
   user: process.env.DBUSER,

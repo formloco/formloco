@@ -9,12 +9,19 @@ const { v4: uuidv4 } = require('uuid')
 const { Pool } = require('pg')
 
 const pool = new Pool({
-  user: process.env.DBUSER,
-  host: process.env.HOST,
+  user: 'fieldasset',
+  host: "db-postgresql-nyc3-00566-do-user-1998730-0.b.db.ondigitalocean.com",
   database: '',
-  password: process.env.PASSWORD,
-  port: process.env.PORT
+  password: 'fieldasset',
+  port: 5432
 })
+// const pool = new Pool({
+//   user: process.env.DBUSER,
+//   host: process.env.HOST,
+//   database: '',
+//   password: process.env.PASSWORD,
+//   port: process.env.PORT
+// })
 
 const formReadSQL = async (form_id, tenant_id) => {
   pool.options.database = tenant_id

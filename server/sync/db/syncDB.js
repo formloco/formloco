@@ -6,13 +6,21 @@ loadConfig()
 
 const { Pool } = require('pg')
 
-const poolTenant = new Pool({
-  user: process.env.DBUSER,
-  host: process.env.HOST,
+const pool = new Pool({
+  user: 'fieldasset',
+  host: "db-postgresql-nyc3-00566-do-user-1998730-0.b.db.ondigitalocean.com",
   database: '',
-  password: process.env.PASSWORD,
-  port: process.env.PORT
+  password: 'fieldasset',
+  port: 5432
 })
+
+// const poolTenant = new Pool({
+//   user: process.env.DBUSER,
+//   host: process.env.HOST,
+//   database: '',
+//   password: process.env.PASSWORD,
+//   port: process.env.PORT
+// })
 
 /** updates tenant form database
  * forms cannot be updated once data is stored, the frontend handles this logic

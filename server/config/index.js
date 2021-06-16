@@ -2,6 +2,7 @@ require("dotenv").config();
 
 module.exports = function loadConfig() {
   if (process.env.NODE_ENV === "dev") {
+    console.log('got here', process.env.DEV_DBUSER)
     process.env.DBUSER = process.env.DEV_DBUSER,
     process.env.HOST = process.env.DEV_HOST,
     process.env.PORT = process.env.DEV_PORT,
