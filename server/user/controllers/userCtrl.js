@@ -52,9 +52,5 @@ const userResetpassword = async(req, res) => {
 }
 
 module.exports = {
-  usersRead,
-  userDelete, 
-  userCreate, 
-  userUpdate,
-  userResetpassword
+  usersRead, userDelete, userCreate, userUpdate, userResetpassword
 };

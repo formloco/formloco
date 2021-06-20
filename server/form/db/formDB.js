@@ -1,17 +1,13 @@
 const fs = require('fs')
-
-require("dotenv").config()
-const loadConfig = require('../../config')
-loadConfig()
-
+const { Pool } = require('pg')
 const { v4: uuidv4 } = require('uuid')
 
-const { Pool } = require('pg')
+const loadConfig = require('../../config')
+loadConfig()
 
 const pool = new Pool({
   user: process.env.DBUSER,
   host: process.env.HOST,
-  database: '',
   password: process.env.PASSWORD,
   port: process.env.PORT
 })

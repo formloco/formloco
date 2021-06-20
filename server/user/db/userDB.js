@@ -1,14 +1,10 @@
+const { Pool } = require('pg')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-
-require("dotenv").config()
-const loadConfig = require('../../config')
-loadConfig()
-
-const api = { secret: process.env.SECRET }
 const { v4: uuidv4 } = require('uuid')
 
-const { Pool } = require('pg')
+const loadConfig = require('../../config')
+loadConfig()
 
 const pool = new Pool({
   user: process.env.DBUSER,
@@ -40,7 +36,7 @@ const deleteUserSQL = async (data) => {
 
 }
 
-const userCreateSQL = async (data) => {
+const createUserSQL = async (data) => {
   let client = await pool.connect()
 
   let email = await client.query(`SELECT id FROM public.user WHERE tenant_id =  ` + data["api"] + `, AND email = ` + data["email"])
@@ -91,5 +87,5 @@ const resetpasswordUserSQL = async (data) => {
 }
 
 module.exports = {
-  readUsersSQL, deleteUserSQL, userCreateSQL, updateUserSQL, resetpasswordUserSQL
+  readUsersSQL, deleteUserSQL, createUserSQL, updateUserSQL, resetpasswordUserSQL
 }

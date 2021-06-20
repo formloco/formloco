@@ -1,4 +1,3 @@
-require("dotenv").config()
 const moment = require('moment')
 
 const { Pool } = require('pg')
@@ -9,12 +8,9 @@ loadConfig()
 const pool = new Pool({
   user: process.env.DBUSER,
   host: process.env.HOST,
-  database: '',
   password: process.env.PASSWORD,
   port: process.env.PORT
 })
-
-console.log(process.env)
 
 const dataReadSQL = async (tenant_id, form_id) => {
   pool.options.database = tenant_id

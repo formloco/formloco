@@ -1,11 +1,9 @@
 const superagent = require('superagent')
 const OAuthClient = require('intuit-oauth')
+const { Pool } = require('pg')
 
-require("dotenv").config()
 const loadConfig = require('../../config')
 loadConfig()
-
-const { Pool } = require('pg')
 
 const pool = new Pool({
   user: process.env.DBUSER,

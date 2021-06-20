@@ -1,12 +1,3 @@
-const dotenv = require('dotenv')
-const jwt = require('jsonwebtoken')
-const bcrypt  = require('bcryptjs')
-
-let envPath = process.cwd()
-envPath = envPath.slice(0,envPath.length-4)+'/.env'
-
-const api = { secret: process.env.SECRET }
-
 const { readUsersSQL, deleteUserSQL, createUserSQL, updateUserSQL, resetpasswordUserSQL } = require('../db/userDB')
 
 const readUsers = async(tenant_id) => {

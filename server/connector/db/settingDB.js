@@ -1,8 +1,7 @@
-require("dotenv").config()
+const { Pool } = require('pg')
+
 const loadConfig = require('../../config')
 loadConfig()
-
-const { Pool } = require('pg')
 
 const pool = new Pool({
   user: process.env.DBUSER,

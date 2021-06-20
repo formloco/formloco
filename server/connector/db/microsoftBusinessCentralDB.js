@@ -1,10 +1,8 @@
 const fs = require('fs')
+const { Pool } = require('pg')
 
-require("dotenv").config()
 const loadConfig = require('../../config')
 loadConfig()
-
-const { Pool } = require('pg')
 
 const pool = new Pool({
   user: process.env.DBUSER,

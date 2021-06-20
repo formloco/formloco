@@ -8,7 +8,6 @@ const YAML = require('yamljs')
 const VerifyToken = require('../helper')
 
 // enable pre-flight
-app.use(cors())
 app.options('*', cors()) 
 
 app.use('/api-docs/:token/:tenant/', VerifyToken, async function(req, res, next) {

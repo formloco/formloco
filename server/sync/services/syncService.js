@@ -58,14 +58,6 @@ const syncDeleteList = async(data) => {
   }
 }
 
-// const syncListDataToIdb = async(tenant_id) => {
-//   try {
-//     return await syncListDataToIdbSQL(tenant_id);
-//   } catch(e) {
-//     throw new Error(e.message)
-//   }
-// }
-
 module.exports = {
   formSync, importSync, dataSyncToTenant, dataListTenantSync, listsTenant, dataListFormSync, syncDeleteList
 };

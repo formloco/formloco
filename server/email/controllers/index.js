@@ -1,19 +1,12 @@
 const fs = require('fs')
-const dotenv = require('dotenv')
 const jwt = require('jsonwebtoken')
+const footer = fs.readFileSync('../templates/footer.html')
+const sendEmail = require('../services')
 
-let envPath = process.cwd()
-envPath = envPath.slice(0,envPath.length-6)+'/.env'
-
-dotenv.config({ path: envPath })
+const loadConfig = require('../../config')
+loadConfig()
 
 const api = { secret: process.env.SECRET }
-
-let templatePath = process.cwd()+`/templates/footer.html`
-
-const footer = fs.readFileSync(templatePath)
-
-const sendEmail = require('../services')
 
 const invite = async(req, res) => {
 

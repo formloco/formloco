@@ -4,19 +4,10 @@ const bodyParser = require('body-parser')
 const app = express()
 const routes = require('./routes')
 
-// dev or prod
-const loadConfig = require('../config')
-loadConfig()
-
-// enable pre-flight
-app.use(cors())
+app.use(express.json())
 app.options('*', cors()) 
-
-app.use(bodyParser.json({ limit: '50mb' }))
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }))
-
+app.use(cors())
 app.use(express.static('files'))
-
 app.use('/file',routes)
 
 const port = 9006;

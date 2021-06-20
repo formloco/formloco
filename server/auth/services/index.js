@@ -1,14 +1,11 @@
 const jwt = require('jsonwebtoken')
 const bcrypt  = require('bcryptjs')
-
-let envPath = process.cwd()
-envPath = envPath.slice(0,envPath.length-5)+'/.env'
-const dotenv = require('dotenv')
-dotenv.config({ path: envPath })
+const loadSecret = require('../../config')
+loadSecret()
 
 const api = { secret: process.env.SECRET }
 
-const { loginAuthSQL, providerLoginSQL, emailSignupSQL, passwordResetSQL, refreshTokenSQL } = require('../db/pgDB')
+const { loginAuthSQL, providerLoginSQL, emailSignupSQL, refreshTokenSQL } = require('../db/pgDB')
 
 const tokenTemp = async(data) => {
   try {

@@ -2,7 +2,6 @@ const fs = require('fs')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
-require("dotenv").config()
 const loadConfig = require('../../config')
 loadConfig()
 

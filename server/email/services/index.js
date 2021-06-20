@@ -1,8 +1,8 @@
 Mailgun = require('mailgun-js')
 
-const api_key = 'key-3020ce69e75e78e4565ad612b371c13b'
-const domain  = 'mg.bluerockapps.com'
-const mailgun = new Mailgun({apiKey: api_key, domain: domain})
+require("dotenv").config()
+
+const mailgun = new Mailgun({apiKey: process.env.MAILGUN_KEY, domain: process.env.MAILGUN_DOMAIN})
 
 function sendEmail(msg, req, res) {
   mailgun.messages().send(msg).then(resp => {

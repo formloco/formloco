@@ -1,11 +1,10 @@
 const fs = require('fs')
-require("dotenv").config()
+const { Pool } = require('pg')
+
 const loadConfig = require('../../config')
 loadConfig()
 
-const { Pool } = require('pg')
-
-apiServer = 'https://bluerockmicro.com/api'
+apiServer = process.env.SWAGGER_SERVER
 
 const pool = new Pool({
   user: process.env.DBUSER,

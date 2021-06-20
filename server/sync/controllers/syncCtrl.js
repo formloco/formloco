@@ -46,8 +46,6 @@ const tenantLists = async(req, res) => {
   }
 }
 
-tenantLists
-
 const syncDataListForm = async(req, res) => {
   try {
     let data = await dataListFormSync(req.body);
