@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   linkUrl:      'http://form369.formloco.com/',
-  authUrl:      'https://api-dev.formloco.com/auth/',
+  // authUrl:      'https://api-dev.formloco.com/auth/',
   userUrl:      'https://api-dev.formloco.com/user/',
   shareUrl:     'https://api-dev.formloco.com/share/',
   syncUrl:      'https://api-dev.formloco.com/sync/',
@@ -17,7 +17,7 @@ export const environment = {
   fileUrl:      'https://api-dev.formloco.com/file/',
   staticUrl:    'https://api-dev.formloco.com/static/',
   templateUrl:  'https://api-dev.formloco.com/template/',
-  // authUrl: 'http://localhost:9000/',
+  authUrl: 'http://localhost:9000/',
   // userUrl: 'http://localhost:9001/',
   // formUrl: 'http://localhost:9002/form/',
   // apiUrl: 'http://localhost:9003/api/',

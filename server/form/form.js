@@ -6,7 +6,7 @@ const routes = require('./routes')
 app.use(express.json())
 app.options('*', cors())
 app.use(cors())
-app.use(routes);
+app.use(routes, cors());
  
 app.listen(9002, () => console.log('form api listening on port 9002!'));
  

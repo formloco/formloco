@@ -28,7 +28,7 @@ const formsReadSQL = async (tenant_id) => {
   let client = await pool.connect()
 
   let forms = await client.query(`SELECT * FROM public.form WHERE date_archived is null AND type = 'dynamic'`)
-   
+   console.log(forms)
   client.release()
 
   return forms.rows
