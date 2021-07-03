@@ -14,7 +14,7 @@ router.put('/api/', VerifyToken, updateData)
 
 router.post('/api/delete/', VerifyToken, deleteData)
 
-router.post('/api/lists/', VerifyToken, getLists)
+router.post('/api/lists/', getLists)
 
 router.post('/api/list/', VerifyToken, saveList)
 

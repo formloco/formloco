@@ -1,15 +1,11 @@
 const jwt = require('jsonwebtoken')
 const bcrypt  = require('bcryptjs')
-const loadSecret = require('../../config')
-loadSecret()
-
-const api = { secret: process.env.SECRET }
 
 const { loginAuthSQL, providerLoginSQL, emailSignupSQL, refreshTokenSQL } = require('../db/pgDB')
 
-const tokenTemp = async(data) => {
+const tokenTemp = async() => {
   try {
-    let token = jwt.sign({ id: .369 }, api.secret, {expiresIn: 3600})
+    let token = jwt.sign({ id: .369 }, process.env.SECRET, {expiresIn: 3600})
     return { token: token }
   } catch(e) {
     throw new Error(e.message)

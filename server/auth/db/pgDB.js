@@ -74,7 +74,8 @@ const loginAuthSQL = async (data) => {
        
     let user = await client.query(`SELECT tenant_id, first_name, last_name, email, role, members, settings FROM public.user WHERE id = '` + response.rows[0].id + `'`)
 
-    user.rows[0]["share"] = userShares
+    user.y
+    rows[0]["share"] = userShares
     user.rows[0]["share_roles"] = shareRoles
 
     return {

@@ -1,9 +1,6 @@
 const fs = require('fs')
 const { Pool } = require('pg')
 
-const loadConfig = require('../../config')
-loadConfig()
-
 const pool = new Pool({
   user: process.env.DBUSER,
   host: process.env.HOST,
@@ -29,7 +26,7 @@ const fileGetSQL = async (tenant_id, form_id) => {
 
 const fileCreateSQL = async (data) => {
   let client = await pool.connect()
-console.log(data)
+
   await client.query(`INSERT INTO public.file (tenant_id, data_id, form_id, file_name, type, date_created, user_created) VALUES ('` + data["tenant_id"] + `', ` + data["form_id"] + `', '` + data["file_name"] + `', '` + data["type"] + `', ` + new Date() + `, '` + user_created + `')`)
 
   client.release()

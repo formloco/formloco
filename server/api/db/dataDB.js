@@ -1,9 +1,5 @@
 const moment = require('moment')
-
 const { Pool } = require('pg')
-
-const loadConfig = require('../../config')
-loadConfig()
 
 const pool = new Pool({
   user: process.env.DBUSER,
@@ -106,6 +102,7 @@ const dataDeleteSQL = async (data) => {
 }
 
 const listsGetSQL = async (data) => {
+  console.log(data)
   pool.options.database = data["tenant_id"]
   let client = await pool.connect()
 

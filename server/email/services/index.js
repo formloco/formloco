@@ -1,7 +1,5 @@
 Mailgun = require('mailgun-js')
 
-require("dotenv").config()
-
 const mailgun = new Mailgun({apiKey: process.env.MAILGUN_KEY, domain: process.env.MAILGUN_DOMAIN})
 
 function sendEmail(msg, req, res) {

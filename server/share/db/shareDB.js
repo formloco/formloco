@@ -1,11 +1,6 @@
 const fs = require('fs')
 const { Pool } = require('pg')
 
-const loadConfig = require('../../config')
-loadConfig()
-
-apiServer = process.env.SWAGGER_SERVER
-
 const pool = new Pool({
   user: process.env.DBUSER,
   host: process.env.HOST,
@@ -174,7 +169,7 @@ const publishShareSQL = async (data) => {
     let definitionStr = ''
     let schemaPropertyStr = ''
 
-    let ymlHeader = `swagger: '2.0'` + `\n` + `info:` + tab1 + `description: This the API server for your forms. You will need to use a copy of the api key to authorize.` + tab1 + `version: 1.0.0` + tab1 + `title: formloco API` + tab1 + `termsOfService: https://formloco/terms/` + tab1 + `contact:` + tab2 + `email: polly@formloco.com` + tab1 + `license:` + tab2 + `name: MIT` + tab2 + `url: https://opensource.org/licenses/MIT`+ `\n` + `host: ` + apiServer + `\n` + `securityDefinitions:` + tab1 + `ApiKeyAuth:` + tab2 + `type: apiKey` + tab2 + `in: header` + tab2 + `name: x-access-token` + `\n` + `security:` + tab1 + `- ApiKeyAuth: []` + `\n` + `paths:`
+    let ymlHeader = `swagger: '2.0'` + `\n` + `info:` + tab1 + `description: This the API server for your forms. You will need to use a copy of the api key to authorize.` + tab1 + `version: 1.0.0` + tab1 + `title: formloco API` + tab1 + `termsOfService: https://formloco/terms/` + tab1 + `contact:` + tab2 + `email: polly@formloco.com` + tab1 + `license:` + tab2 + `name: MIT` + tab2 + `url: https://opensource.org/licenses/MIT`+ `\n` + `host: ` + process.env.SWAGGER_SERVER + `\n` + `securityDefinitions:` + tab1 + `ApiKeyAuth:` + tab2 + `type: apiKey` + tab2 + `in: header` + tab2 + `name: x-access-token` + `\n` + `security:` + tab1 + `- ApiKeyAuth: []` + `\n` + `paths:`
 
     for (let j = 0; j < forms.rows.length; j++) {
   

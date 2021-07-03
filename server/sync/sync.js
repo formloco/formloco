@@ -1,8 +1,9 @@
 const express = require('express')
 const cors = require('cors')
-const bodyParser = require('body-parser')
 const app = express()
 const routes = require('./routes')
+const loadConfig = require('../config')
+loadConfig()
 
 app.use(express.json())
 app.options('*', cors())

@@ -1,7 +1,5 @@
 const fs = require('fs')
 const { Pool } = require('pg')
-const loadConfig = require('../../config')
-loadConfig()
 
 const poolTenant = new Pool({
   user: process.env.DBUSER,

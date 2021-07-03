@@ -1,4 +1,5 @@
-require("dotenv").config();
+const path = require('path')
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
 
 module.exports = function loadConfig() {
   if (process.env.NODE_ENV === "dev") {
@@ -17,13 +18,5 @@ module.exports = function loadConfig() {
     process.env.SECRET = process.env.PROD_SECRET,
     process.env.SWAGGER_SERVER = process.env.PROD_SWAGGER_SERVER
   }
-
-  module.exports = function loadSecret() {
-    if (process.env.NODE_ENV === "dev") {
-      process.env.SECRET = process.env.DEV_SECRET
-    }
-    if (process.env.NODE_ENV === "prod") {
-      process.env.SECRET = process.env.PROD_SECRET
-    }
-  }
+  
 }
