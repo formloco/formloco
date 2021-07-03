@@ -1,6 +1,7 @@
 const fs = require('fs')
 const jwt = require('jsonwebtoken')
-const footer = fs.readFileSync('../templates/footer.html')
+const path = require('path')
+const footer = fs.readFileSync(path.resolve(__dirname, '../templates/footer.html'))
 const sendEmail = require('../services')
 
 const loadConfig = require('../../config')

@@ -1,4 +1,4 @@
-const path = require('path')
+c
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
 
 module.exports = function loadConfig() {
