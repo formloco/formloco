@@ -43,7 +43,6 @@ const fileCreateSQL = async (data) => {
         if (err) console.log(err)
       })
     }
-    
   }
 
   client.release()
@@ -69,6 +68,30 @@ const fileDeleteSQL = async (data) => {
   client.release()
 }
 
+const fileGetPgSQL = async (tenant_id, form_id) => {
+
+  pool.options.database = tenant_id
+  let client = await pool.connect()
+
+  let file = await client.query(`SELECT * FROM public.files WHERE tenant_id = '` + tenant_id + `' AND form_id = '` + form_id + `'`)
+
+  return file.rows
+}
+
+const fileCreatePgSQL = async (data) => {
+
+  pool.options.database = data["tenant_id"]
+  let client = await pool.connect()
+
+  for (let j = 0; j < data.file_array.length; j++) {
+    console.log(`INSERT INTO public.files (tenant_id, form_id, image, user_created) VALUES ('` + data["tenant_id"] + `', '` + data["form_id"] + `', '` + data.file_array[j] + `', '` + data["user_created"] + `')`)
+
+    await client.query(`INSERT INTO public.files (tenant_id, form_id, image, user_created) VALUES ('` + data["tenant_id"] + `', '` + data["form_id"] + `', '` + data.file_array[j] + `', '` + data["user_created"] + `')`)
+  }
+
+  client.release()
+}
+
 module.exports = {
-  fileGetSQL, fileCreateSQL, fileUpdateSQL, fileDeleteSQL
+  fileGetSQL, fileCreateSQL, fileUpdateSQL, fileDeleteSQL, fileGetPgSQL, fileCreatePgSQL
 }
