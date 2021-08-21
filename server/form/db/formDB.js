@@ -1,6 +1,4 @@
 const fs = require('fs')
-
-require("dotenv").config()
 const loadConfig = require('../../config')
 loadConfig()
 
@@ -9,19 +7,11 @@ const { v4: uuidv4 } = require('uuid')
 const { Pool } = require('pg')
 
 const pool = new Pool({
-  user: 'fieldasset',
-  host: "field-asset.crtnqmxucjr7.us-east-2.rds.amazonaws.com",
-  database: '',
-  password: 'fieldasset',
-  port: 5432
+  user: process.env.DBUSER,
+  host: process.env.HOST,
+  password: process.env.PASSWORD,
+  port: process.env.PORT
 })
-// const pool = new Pool({
-//   user: process.env.DBUSER,
-//   host: process.env.HOST,
-//   database: '',
-//   password: process.env.PASSWORD,
-//   port: process.env.PORT
-// })
 
 const formReadSQL = async (form_id, tenant_id) => {
   pool.options.database = tenant_id

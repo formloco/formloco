@@ -1,26 +1,15 @@
 const fs = require('fs')
-
-require("dotenv").config()
 const loadConfig = require('../../config')
 loadConfig()
 
 const { Pool } = require('pg')
 
-const pool = new Pool({
-  user: 'fieldasset',
-  host: "field-asset.crtnqmxucjr7.us-east-2.rds.amazonaws.com",
-  database: '',
-  password: 'fieldasset',
-  port: 5432
+const poolTenant = new Pool({
+  user: process.env.DBUSER,
+  host: process.env.HOST,
+  password: process.env.PASSWORD,
+  port: process.env.PORT
 })
-
-// const poolTenant = new Pool({
-//   user: process.env.DBUSER,
-//   host: process.env.HOST,
-//   database: '',
-//   password: process.env.PASSWORD,
-//   port: process.env.PORT
-// })
 
 /** updates tenant form database
  * forms cannot be updated once data is stored, the frontend handles this logic

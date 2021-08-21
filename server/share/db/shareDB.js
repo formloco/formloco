@@ -1,5 +1,4 @@
 const fs = require('fs')
-require("dotenv").config()
 const loadConfig = require('../../config')
 loadConfig()
 
@@ -15,29 +14,20 @@ const pool = new Pool({
   port: 5432
 })
 
-const poolTenant = new Pool({
-  user: 'fieldasset',
-  host: "field-asset.crtnqmxucjr7.us-east-2.rds.amazonaws.com",
-  database: '',
-  password: 'fieldasset',
-  port: 5432
+const pool = new Pool({
+  user: process.env.DBUSER,
+  host: process.env.HOST,
+  database: 'user',
+  password: process.env.PASSWORD,
+  port: process.env.PORT
 })
 
-// const pool = new Pool({
-//   user: process.env.DBUSER,
-//   host: process.env.HOST,
-//   database: 'user',
-//   password: process.env.PASSWORD,
-//   port: process.env.PORT
-// })
-
-// const poolTenant = new Pool({
-//   user: process.env.DBUSER,
-//   host: process.env.HOST,
-//   database: '',
-//   password: process.env.PASSWORD,
-//   port: process.env.PORT
-// })
+const poolTenant = new Pool({
+  user: process.env.DBUSER,
+  host: process.env.HOST,
+  password: process.env.PASSWORD,
+  port: process.env.PORT
+})
 
 const readShareSQL = async (data) => {
   let client = await pool.connect()

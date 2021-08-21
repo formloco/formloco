@@ -1,4 +1,3 @@
-require("dotenv").config()
 const loadConfig = require('../../config')
 loadConfig()
 
@@ -7,7 +6,6 @@ const { Pool } = require('pg')
 const pool = new Pool({
   user: process.env.DBUSER,
   host: process.env.HOST,
-  database: '',
   password: process.env.PASSWORD,
   port: process.env.PORT
 })

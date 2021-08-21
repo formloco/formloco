@@ -1,7 +1,6 @@
 const superagent = require('superagent')
 const OAuthClient = require('intuit-oauth')
 
-require("dotenv").config()
 const loadConfig = require('../../config')
 loadConfig()
 

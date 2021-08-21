@@ -1,6 +1,4 @@
 const fs = require('fs')
-
-require("dotenv").config()
 const loadConfig = require('../../config')
 loadConfig()
 

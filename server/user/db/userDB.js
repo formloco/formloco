@@ -1,7 +1,6 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-require("dotenv").config()
 const loadConfig = require('../../config')
 loadConfig()
 
@@ -11,20 +10,12 @@ const { v4: uuidv4 } = require('uuid')
 const { Pool } = require('pg')
 
 const pool = new Pool({
-  user: 'fieldasset',
-  host: "field-asset.crtnqmxucjr7.us-east-2.rds.amazonaws.com",
+  user: process.env.DBUSER,
+  host: process.env.HOST,
   database: 'user',
-  password: 'fieldasset',
-  port: 5432
+  password: process.env.PASSWORD,
+  port: process.env.PORT
 })
-
-// const pool = new Pool({
-//   user: process.env.DBUSER,
-//   host: process.env.HOST,
-//   database: 'user',
-//   password: process.env.PASSWORD,
-//   port: process.env.PORT
-// })
 
 const readUsersSQL = async (tenant_id) => {
 

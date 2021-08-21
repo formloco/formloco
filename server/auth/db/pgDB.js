@@ -1,10 +1,9 @@
+const loadConfig = require('../../config')
+loadConfig()
+
 const fs = require('fs')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-
-require("dotenv").config()
-const loadConfig = require('../../config')
-loadConfig()
 
 const api = { secret: process.env.SECRET }
 const { v4: uuidv4 } = require('uuid')
@@ -12,41 +11,17 @@ const { v4: uuidv4 } = require('uuid')
 const { Pool } = require('pg')
 
 const pool = new Pool({
-  user: 'fieldasset',
-  host: "field-asset.crtnqmxucjr7.us-east-2.rds.amazonaws.com",
-  database: '',
-  password: 'fieldasset',
-  port: 5432
+  user: process.env.DBUSER,
+  host: process.env.HOST,
+  password: process.env.PASSWORD,
+  port: process.env.PORT
 })
-// const pool = new Pool({
-//   user: process.env.DBUSER,
-//   host: process.env.HOST,
-//   database: 'user',
-//   password: process.env.PASSWORD,
-//   port: process.env.PORT
-// })
-const poolTenant = new Pool({
-  user: 'fieldasset',
-  host: "field-asset.crtnqmxucjr7.us-east-2.rds.amazonaws.com",
-  database: '',
-  password: 'fieldasset',
-  port: 5432
-})
-
-// const poolTenant = new Pool({
-//   user: process.env.DBUSER,
-//   host: process.env.HOST,
-//   database: '',
-//   password: process.env.PASSWORD,
-//   port: process.env.PORT
-// })
 
 const loginAuthSQL = async (data) => {
-
+  pool.options.database = 'user'
   let client = await pool.connect()
 
   let response = await client.query(`SELECT id, password FROM public.user WHERE email = '` + data["email"] + `'`)
-
   client.release()
  
   if (response.rowCount > 0) {
@@ -64,8 +39,8 @@ const loginAuthSQL = async (data) => {
     let shareRoles = []
     for (let j = 0; j < shares.rows.length; j++) {
       
-      poolTenant.options.database = shares.rows[j]["tenant_id"]
-      let clientTenant = await poolTenant.connect()
+      pool.options.database = shares.rows[j]["tenant_id"]
+      let clientTenant = await pool.connect()
       
       /** if library share (is_tenant_share === true), all forms in library are shared
        * if false only the selected form is shared
@@ -109,6 +84,8 @@ const loginAuthSQL = async (data) => {
 
 // todo
 const providerLoginSQL = async (data) => {
+
+  pool.options.database = 'user'
   let client = await pool.connect()
 
   let res = await client.query(`SELECT id FROM public.user WHERE email = '` + data["email"] + `'`)
@@ -117,6 +94,7 @@ const providerLoginSQL = async (data) => {
 
 const emailSignupSQL = async (data) => {
 
+  pool.options.database = 'user'
   let client = await pool.connect()
 
   let user = await client.query(`SELECT id FROM public.user WHERE email = '` + data["email"] + `'`)
@@ -172,6 +150,8 @@ const emailSignupSQL = async (data) => {
 }
 
 const refreshTokenSQL = async (data) => {
+
+  pool.options.database = 'user'
   let client = await pool.connect()
 
   let userIdToken = await client.query(`SELECT id, last_token FROM public.user WHERE tenant_id = '` + data["tenant_id"] + `'`)
