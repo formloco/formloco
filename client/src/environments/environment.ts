@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   linkUrl:      'http://form369.formloco.com/',
-  // authUrl:      'https://bluerockmicro.com/auth/',
+  authUrl:      'https://bluerockmicro.com/auth/',
   userUrl:      'https://bluerockmicro.com/user/',
   shareUrl:     'https://bluerockmicro.com/share/',
   syncUrl:      'https://bluerockmicro.com/sync/',
@@ -17,7 +17,7 @@ export const environment = {
   fileUrl:      'https://bluerockmicro.com/file/',
   staticUrl:    'https://bluerockmicro.com/static/',
   templateUrl:  'https://bluerockmicro.com/template/',
-  authUrl: 'http://localhost:9000/',
+  // authUrl: 'http://localhost:9000/',
   // userUrl: 'http://localhost:9001/',
   // formUrl: 'http://localhost:9002/form/',
   // apiUrl: 'http://localhost:9003/api/',
