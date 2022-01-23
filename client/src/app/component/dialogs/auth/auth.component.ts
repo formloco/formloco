@@ -91,6 +91,7 @@ export class AuthComponent implements OnInit {
       obj = { user: this.azureUser, isAzure: true }
 
     this.authService.login(obj).subscribe(auth => {
+      console.log(auth)
       this.auth = auth
       
       if (this.auth.message === 'Sign in sucessful.') this.setSession(provider)

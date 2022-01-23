@@ -36,15 +36,15 @@ export class AppComponent implements OnInit {
     this.appService.isTablet = this.deviceService.isTablet()
     this.appService.isDesktop = this.deviceService.isDesktop()
 
-    this.idbCrudService.readAll('prefs').subscribe(prefs => {
-      this.prefs = prefs
+    // this.idbCrudService.readAll('prefs').subscribe(prefs => {
+    //   this.prefs = prefs
 
-      // state: not identified, uses default state from state.service
-      if (this.prefs.length === 0) {
-        let obj = { id: 0, dark_mode: true, user: {} }
-        this.idbCrudService.put('prefs', obj)
-      }
-    })
+    //   // state: not identified, uses default state from state.service
+    //   if (this.prefs.length === 0) {
+    //     let obj = { id: 0, dark_mode: true, user: {} }
+    //     this.idbCrudService.put('prefs', obj)
+    //   }
+    // })
   }
 
 }

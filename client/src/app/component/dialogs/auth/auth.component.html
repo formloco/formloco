@@ -5,8 +5,8 @@
     </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="center">
-    <img *ngIf="!appService.isDarkMode" src="assets/logo/logo-light.svg" height="130">
-    <img *ngIf="appService.isDarkMode" src="assets/logo/logo-dark.svg" height="130">
+    <img *ngIf="appService.isDarkMode" src="assets/logo/logo-light.png" height="130">
+    <img *ngIf="!appService.isDarkMode" src="assets/logo/logo-dark.png" height="130">
   </div>
   <div *ngIf="!isForgotPassword" class="signup-menu-padding" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="70px">
     <div [ngClass]="(data.isSignin ? 'unselected-menu':'selected-menu')" (click)="togglePages()">Sign up</div>

@@ -1,8 +1,8 @@
 <mat-toolbar style="height:80px;">
   <div fxLayout="row" fxLayoutAlign="center center">
     <a href="https://formloco.com">
-      <img *ngIf="!appService.isDarkMode" src="assets/logo/logo-light.svg" height="60">
-      <img *ngIf="appService.isDarkMode" src="assets/logo/logo-dark.svg" height="60">
+      <img *ngIf="appService.isDarkMode" src="assets/logo/logo-light.png" height="60">
+      <img *ngIf="!appService.isDarkMode" src="assets/logo/logo-dark.png" height="60">
     </a>
   </div>
   <span class="spacer"></span>
@@ -23,7 +23,7 @@
       <mat-icon>person</mat-icon>&nbsp;&nbsp;{{ userName }}
     </button>
     <div fxLayoutAlign="center center">
-      <mat-slide-toggle [(ngModel)]="appService.isDarkMode" color="warn" (click)="toggleTheme($event)"></mat-slide-toggle>&nbsp;
+      <mat-slide-toggle [checked]="appService.isDarkMode" color="warn" (click)="toggleTheme($event)"></mat-slide-toggle>&nbsp;
       <div class="menu-label" fxLayoutAlign="center center">
         <mat-icon *ngIf="!appService.isDarkMode">mode_night</mat-icon>
         <mat-icon *ngIf="appService.isDarkMode">wb_sunny</mat-icon>

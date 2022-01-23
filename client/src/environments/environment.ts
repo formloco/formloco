@@ -17,7 +17,7 @@ export const environment = {
   fileUrl:      'https://bluerockmicro.com/file/',
   staticUrl:    'https://bluerockmicro.com/static/',
   templateUrl:  'https://bluerockmicro.com/template/',
-  // authUrl: 'http://localhost:9000/',
+  // authUrl: 'http://localhost:9000/auth',
   // userUrl: 'http://localhost:9001/',
   // formUrl: 'http://localhost:9002/form/',
   // apiUrl: 'http://localhost:9003/api/',

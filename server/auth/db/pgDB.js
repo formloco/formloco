@@ -26,6 +26,7 @@ const loginAuthSQL = async (data) => {
  
   if (response.rowCount > 0) {
     let passwordIsValid = bcrypt.compareSync(data["password"], response.rows[0].password)
+    
     if (!passwordIsValid)
       return { message: 'Failed to authenticate.' }
 

@@ -8,7 +8,7 @@
   <div *ngFor="let formObj of appService.forms; let i=index">
     <mat-card class="custom" *ngIf="i !== 0 && formObj.form !== undefined && formObj.form.is_list === undefined && formObj.type === 'dynamic'">
       <div fxLayout="row" class="form-title" fxLayoutAlign="space-between center">
-        <a mat-button matTooltip="{{formObj.name}}">{{formObj.name | truncate:[18, '...']}}</a>
+        <a mat-button matTooltip="{{formObj.name}}">{{formObj.name | truncate:[13, '...']}}</a>
         <div>
           <button mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>more_vert</mat-icon>

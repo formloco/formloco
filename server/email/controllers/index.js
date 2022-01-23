@@ -8,7 +8,7 @@ envPath = envPath.slice(0,envPath.length-6)+'/.env'
 dotenv.config({ path: envPath })
 
 const api = { secret: process.env.SECRET }
-
+console.log(api)
 let templatePath = process.cwd()+`/templates/footer.html`
 
 const footer = fs.readFileSync(templatePath)

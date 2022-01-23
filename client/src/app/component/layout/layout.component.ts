@@ -19,9 +19,17 @@ export class LayoutComponent implements OnInit {
     private overlayContainer: OverlayContainer) { }
 
   ngOnInit(): void {
+    console.log(this.appService.isDarkMode)
+    let darkClassName = ''
+    this.idbCrudService.readAll('prefs').subscribe((prefs:any) => {
+      if (prefs.darkMode) darkClassName = 'darkMode'
+      else darkClassName = ''
+      this.setMode(darkClassName)
+    })
   }
 
   toggleTheme() {
+    this.appService.isDarkMode = !this.appService.isDarkMode
     let darkClassName = ''
 
     if (this.appService.isDarkMode) darkClassName = ''
@@ -29,8 +37,8 @@ export class LayoutComponent implements OnInit {
 
     this.setMode(darkClassName)
 
-    let obj = { id: 0, dark_mode: !this.appService.isDarkMode }
-    this.idbCrudService.put('prefs', obj)
+    let obj = { id: 0, dark_mode: this.appService.isDarkMode }
+    this.idbCrudService.put('prefs', obj).subscribe(() => {this.setMode(darkClassName)})
   }
 
   setMode(darkClassName) {
